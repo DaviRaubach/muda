@@ -28,7 +28,7 @@ def see_pitches(pitches):
     clef1_range = abjad.pitch.PitchRange("[A1, G3]")
     clef0 = abjad.Clef("bass_8")
     clef0_range = abjad.pitch.PitchRange("[-inf, C1]")
-    
+
     selection = abjad.select(G_staff).leaves()
     for i, leaf in enumerate(selection):
         if isinstance(leaf, abjad.Note):
@@ -38,7 +38,7 @@ def see_pitches(pitches):
                 abjad.attach(clef3, G_staff[i])
             elif test2 is True:
                 abjad.attach(clef2, G_staff[i])
-    
+
     selection2 = abjad.select(F_staff).leaves()
     for i, leaf in enumerate(selection2):
         if isinstance(leaf, abjad.Note):
@@ -52,7 +52,7 @@ def see_pitches(pitches):
                 abjad.attach(clef1, F_staff[i])
             elif test0 is True:
                 abjad.attach(clef0, F_staff[i])
-    
+
     abjad.show(staff_group)
-    
+
     return staff_group

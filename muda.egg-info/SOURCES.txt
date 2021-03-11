@@ -1,12 +1,15 @@
 README.md
+pyproject.toml
 setup.py
 muda/__init__.py
 muda/functions.py
+muda/material.py
 muda/pitch.py
 muda/rhythm.py
 muda/score.py
 muda/see_pitches.py
 muda/segmentmaker.py
+muda/segmentmakerold.py
 muda/timespan.py
 muda.egg-info/PKG-INFO
 muda.egg-info/SOURCES.txt
