@@ -6,6 +6,10 @@ class AnnotatedDuration(abjad.Duration):
     def __init__(self, annotation=None):
         self.annotation = annotation
 
+    def get_abjad_duration(self):
+        abjad_duration = abjad.Duration(self.pair)
+        return abjad_duration
+
 
 def SilenceAndRythmMaker(maker, annotated_divisions, *commands):
     rest_maker = rmakers.stack(rmakers.note(), rmakers.force_rest(abjad.select()))

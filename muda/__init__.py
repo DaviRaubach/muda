@@ -1,13 +1,13 @@
 from .score import (
     Instrument,
-    MakeScore,
-    AddInstrument,
-    MakeSkips,
-    WriteMaterial,
-    MakeLilyPondFile,
+    Score,
 )
 
-from .functions import MakeMeasures
+from .functions import (
+	MakeMeasures,
+	MakeSkips,
+	RewriteMeter,
+	)
 
 from .rhythm import (
     AnnotatedDuration,

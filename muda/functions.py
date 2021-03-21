@@ -22,6 +22,30 @@ def MakeMeasures(
 
     return measures
 
+def MakeSkips(score, time_signatures):
+    site = "muda.functions.MakeSkips()"
+    tag = abjad.Tag(site)
+    print(str(tag))
+
+    if isinstance(time_signatures[0], abjad.TimeSignature):
+        time_signatures_abjad = time_signatures
+        in_time_signatures = [_.pair for _ in time_signatures]
+    else:
+        in_time_signatures = time_signatures
+        time_signatures_abjad = [abjad.TimeSignature(_) for _ in in_time_signatures]
+
+    for time_sig in time_signatures_abjad:
+        skip = abjad.Skip(1, multiplier=(time_sig.pair))
+        score["Global_Context"].append(skip)
+
+    # select skips to attach TIME SIGNATURES
+    for i, element in enumerate(in_time_signatures):
+        previous_element = time_signatures[i - 1] if i > 0 else None
+        current_element = element
+
+        # if current_element != previous_element:
+        a = in_time_signatures.index(current_element)
+        abjad.attach(time_signatures_abjad[a], score["Global_Context"][i], tag=tag)
 
 # rewrite meter
 def RewriteMeter(score, time_signatures):
@@ -35,6 +59,7 @@ def RewriteMeter(score, time_signatures):
     for voice in abjad.select(score).components(abjad.Voice):
         # voice_dur = abjad.get.duration(voice)
         if voice:
+            print(voice[:])
             print("rewriting meter:", voice.name)
             # sig_dur = sum(durations)
             # assert voice_dur == sig_dur, (voice_dur, sig_dur)
@@ -129,3 +154,4 @@ def OppositeTimespanList(one_voice_timespan_list):
                 annotation="Silence " + one_voice_timespan_list[i + 1].annotation,
             )
             one_voice_timespan_list.append(new_span)
+

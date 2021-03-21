@@ -19,7 +19,6 @@ class Material:
             else:
                 selection = maker([dur], *commands)
                 self.container.extend(selection)
-        return self.container
 
     def WritePitches(self, pitches):
         logical_ties = abjad.select(self.container).leaves().logical_ties(pitched=True)
@@ -31,11 +30,45 @@ class Material:
                     pass
                 else:
                     note.written_pitch = pitch
-        return self.container
+
+    def WritePitchesByDurations(self, annotated_pitches, annotated_durations):
+        abjad_durations = []
+        for dur in annotated_durations:
+            abjad_durations.append(dur.get_abjad_duration())
+        selector = (
+            abjad.select()
+            .leaves()
+            .partition_by_durations(
+                abjad_durations,
+                cyclic=True,
+                fill=abjad.Exact,
+                in_seconds=False,
+                overhang=True,
+            )
+        )
+        selections = selector(self.container)
+
+        for selection, duration in zip(selections, annotated_durations):
+            logical_ties = abjad.select(selection).leaves().logical_ties(pitched=True)
+            for i, logical_tie in enumerate(logical_ties):
+                pitches = annotated_pitches[duration.annotation]
+                index = i % len(pitches)
+                pitch = pitches[index]
+                for note in logical_tie:
+                    note.written_pitch = pitch
+
+    def SeeLeavesNumber(self):
+        selection = abjad.select(self.container).leaves()        
+        see_leaves = selection._copy()
+        for i, leaf in enumerate(see_leaves):
+            str_ = r"\tiny {\null { \raise #2 {%i}}}" % (i)
+            abjad.attach(
+                abjad.Markup(str_, direction=abjad.Up), leaf,
+            )
+        abjad.show(abjad.Container(see_leaves))
 
     def WriteIndicators(
         self,
-        see_leaves_number=False,
         dynamic_list=[],
         attach_dyn_lists=[],
         slur_up=[],
@@ -45,13 +78,8 @@ class Material:
         abjad_literal_indicators=[],
         abjad_literal_leafs=[],
     ):
+
         selection = abjad.select(self.container).leaves()
-        if see_leaves_number == True:
-            for i, leaf in enumerate(selection):
-                str_ = r"\tiny {\null { \raise #2 {%i}}}" % (i)
-                abjad.attach(
-                    abjad.Markup(str_, direction=abjad.Up), leaf,
-                )
 
         if dynamic_list and attach_dyn_lists:
             for dyn, leaf in zip(dynamic_list, attach_dyn_lists):
@@ -74,13 +102,10 @@ class Material:
         if slur_down:
             for n in slur_down:
                 a, b = n
-                b = b + 1
                 abjad.attach(abjad.StartSlur(direction=abjad.Down), selection[a])
                 abjad.attach(abjad.StopSlur(), selection[b])
 
-        return self.container
-
-    def MakeMaterial(self):
+    def GetContainer(self):
         return self.container
 
     def AlternatingMaterials(
@@ -92,8 +117,3 @@ class Material:
                 if maker.tag.string == dur.annotation:
                     selection = maker([dur])
                     self.container.extend(selection)
-        return self.container
-
-
-# test = Material()
-# test.WriteIndicators(pp=[1, 2])

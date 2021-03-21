@@ -54,6 +54,7 @@ class TimespanList(abjad.TimespanList):
         return dur_list
 
 
+
 def AlternatingTimespans(
     n_annotations=3,  # different materials
     alternations=[
