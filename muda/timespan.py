@@ -7,7 +7,7 @@ import muda
 class TimespanList(abjad.TimespanList):
     r"""Add fuctions to abjad original TimespanList"""
 
-    def SeparateTimespansByAnnotation(self):
+    def separate_timespans_by_annotation(self):
         voices = []
         for item in self:
             if item.annotation not in voices:
@@ -21,7 +21,7 @@ class TimespanList(abjad.TimespanList):
             general_list.append(ts_list)
         return general_list
 
-    def OppositeTimespanList(self):
+    def opposite_timespan_list(self):
         for span1, span2 in zip(self, self[1:]):
             i = self.index(span1)
             if i == 0:
@@ -45,7 +45,7 @@ class TimespanList(abjad.TimespanList):
                 self.append(new_span)
         return self
 
-    def AnnotatedDurations(self):
+    def annotated_durations(self):
         dur_list = []
         for span in self:
             dur = muda.rhythm.AnnotatedDuration(span.duration)
@@ -55,7 +55,7 @@ class TimespanList(abjad.TimespanList):
 
 
 
-def AlternatingTimespans(
+def alternating_timespans(
     n_annotations=3,  # different materials
     alternations=[
         [13, 5, 3],
@@ -68,7 +68,7 @@ def AlternatingTimespans(
         [1, 3, 13],
     ],
     denominator=4,
-    annotations=["Mat_1", "Mat_2", "Rests "],
+    annotations=["Mat_1", "Mat_2", "Rests"],
 ):
     """Makes timespans to use with alternating materials"""
     timespans = TimespanList()

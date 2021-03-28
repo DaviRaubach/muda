@@ -3,7 +3,7 @@ import re
 
 
 def Instrument(abjad_instrument, lilypond_name, nstaffs, nvoices, piano=None):
-    site = "muda.score.instrument()"
+    site = "muda.score.Instrument()"
     tag = abjad.Tag(site)
     staffs = []
     voices = []
@@ -101,8 +101,8 @@ class Score:
     def __call__(self):
         return self.score
 
-    def AddInstrument(self, instrument):
-        site = "muda.Score.AddInstrument()"
+    def add_instrument(self, instrument):
+        site = "muda.Score.add_instrument()"
         tag = abjad.Tag(site)
         print(str(tag))
         if isinstance(instrument, list):
@@ -113,8 +113,8 @@ class Score:
             self.score.append(instrument)
 
 
-    def MakeSkips(self, time_signatures):
-        site = "muda.Score.MakeSkips()"
+    def make_skips(self, time_signatures):
+        site = "muda.Score.make_skips()"
         tag = abjad.Tag(site)
         print(str(tag))
 
@@ -139,13 +139,13 @@ class Score:
             abjad.attach(time_signatures_abjad[a], self.score["Global_Context"][i], tag=tag)
 
 
-    def WriteMaterials(self, materials_list):
+    def write_materials(self, materials_list):
         """ Write materials to voices """
         for material in materials_list:
             self.score[material.name].extend(material.container)
 
     # rewrite meter
-    def RewriteMeter(self, time_signatures):
+    def rewrite_meter(self, time_signatures):
         # global_skips = [_ for _ in abjad.select(score["Global_Context"]).leaves()]
         # sigs = []
         # for skip in global_skips:
@@ -216,7 +216,7 @@ class Score:
         lilypond = abjad.lilypond(self.score)
         return lilypond
 
-    def MakeLilyPondFile(self, includes=None):
+    def make_lilypond_file(self, includes=None):
         lilypond_file = abjad.LilyPondFile(items=[self.score], includes=includes,)
         return lilypond_file
 

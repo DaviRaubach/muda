@@ -11,7 +11,7 @@ class AnnotatedDuration(abjad.Duration):
         return abjad_duration
 
 
-def SilenceAndRythmMaker(maker, annotated_divisions, *commands):
+def silence_and_rhythm_maker(maker, annotated_divisions, *commands):
     rest_maker = rmakers.stack(rmakers.note(), rmakers.force_rest(abjad.select()))
 
     my_stack_voice = abjad.Container()

@@ -10,7 +10,7 @@ class Material:
         self.container = abjad.Container()
         self.container.name = name
 
-    def SilenceAndRythmMaker(self, maker, annotated_divisions, *commands):
+    def silence_and_rhythm_maker(self, maker, annotated_divisions, *commands):
         rest_maker = rmakers.stack(rmakers.note(), rmakers.force_rest(abjad.select()))
         for dur in annotated_divisions:
             if dur.annotation.startswith("Rests ") is True:
@@ -20,7 +20,7 @@ class Material:
                 selection = maker([dur], *commands)
                 self.container.extend(selection)
 
-    def WritePitches(self, pitches):
+    def write_pitches(self, pitches):
         logical_ties = abjad.select(self.container).leaves().logical_ties(pitched=True)
         for i, logical_tie in enumerate(logical_ties):
             index = i % len(pitches)
@@ -31,7 +31,7 @@ class Material:
                 else:
                     note.written_pitch = pitch
 
-    def WritePitchesByDurations(self, annotated_pitches, annotated_durations):
+    def write_pitches_by_duration(self, annotated_pitches, annotated_durations):
         abjad_durations = []
         for dur in annotated_durations:
             abjad_durations.append(dur.get_abjad_duration())
@@ -57,7 +57,7 @@ class Material:
                 for note in logical_tie:
                     note.written_pitch = pitch
 
-    def SeeLeavesNumber(self):
+    def see_leaves_number(self):
         selection = abjad.select(self.container).leaves()        
         see_leaves = selection._copy()
         for i, leaf in enumerate(see_leaves):
@@ -67,7 +67,7 @@ class Material:
             )
         abjad.show(abjad.Container(see_leaves))
 
-    def WriteIndicators(
+    def write_indicators(
         self,
         dynamic_list=[],
         attach_dyn_lists=[],
@@ -105,10 +105,10 @@ class Material:
                 abjad.attach(abjad.StartSlur(direction=abjad.Down), selection[a])
                 abjad.attach(abjad.StopSlur(), selection[b])
 
-    def GetContainer(self):
+    def get_container(self):
         return self.container
 
-    def AlternatingMaterials(
+    def alternating_materials(
         self, annotated_divisions, *makers
     ):  # maybe I should include *commands for rmaker.stack
         n_materials = len(makers)

@@ -1,7 +1,7 @@
 import abjad
 
 
-def MakeMeasures(
+def make_measures(
     durations, rhythm_maker, pitches,
 ):
 
@@ -22,7 +22,7 @@ def MakeMeasures(
 
     return measures
 
-def MakeSkips(score, time_signatures):
+def make_skips(score, time_signatures):
     site = "muda.functions.MakeSkips()"
     tag = abjad.Tag(site)
     print(str(tag))
@@ -48,7 +48,7 @@ def MakeSkips(score, time_signatures):
         abjad.attach(time_signatures_abjad[a], score["Global_Context"][i], tag=tag)
 
 # rewrite meter
-def RewriteMeter(score, time_signatures):
+def rewrite_meter(score, time_signatures):
     # global_skips = [_ for _ in abjad.select(score["Global_Context"]).leaves()]
     # sigs = []
     # for skip in global_skips:
@@ -116,7 +116,7 @@ def RewriteMeter(score, time_signatures):
     # return measures
 
 
-def SeparateTimespansByAnnotation(timespan_list):
+def separate_timespans_by_annotation(timespan_list):
     voices = []
     for item in timespan_list:
         if item.annotation not in voices:
@@ -131,7 +131,7 @@ def SeparateTimespansByAnnotation(timespan_list):
     return general_list
 
 
-def OppositeTimespanList(one_voice_timespan_list):
+def opposite_timespans(one_voice_timespan_list):
     for span1, span2 in zip(one_voice_timespan_list, one_voice_timespan_list[1:]):
         i = one_voice_timespan_list.index(span1)
         if i == 0:

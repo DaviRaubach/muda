@@ -3,18 +3,22 @@ from .score import (
     Score,
 )
 
+from .pitch import see_pitches
+
 from .functions import (
-	MakeMeasures,
-	MakeSkips,
-	RewriteMeter,
+	make_measures,
+	make_skips,
+	rewrite_meter,
 	)
 
 from .rhythm import (
     AnnotatedDuration,
-    SilenceAndRythmMaker,
+    silence_and_rhythm_maker,
 )
 
-from .timespan import TimespanList, AlternatingTimespans
+from .timespan import TimespanList, alternating_timespans
 
 from .material import Material
+
+from .analysis import IracemaAnalysis
 
