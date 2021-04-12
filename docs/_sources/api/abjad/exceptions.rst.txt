@@ -1,0 +1,51 @@
+.. _abjad--exceptions:
+
+exceptions
+==========
+
+.. automodule:: abjad.exceptions
+
+.. currentmodule:: abjad.exceptions
+
+.. container:: svg-container
+
+   .. inheritance-diagram:: abjad
+      :lineage: abjad.exceptions
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Exceptions
+   :class: section-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~AssignabilityError
+   ~ImpreciseMetronomeMarkError
+   ~LilyPondParserError
+   ~MissingMetronomeMarkError
+   ~ParentageError
+   ~PersistentIndicatorError
+   ~SchemeParserFinishedError
+   ~UnboundedTimeIntervalError
+   ~WellformednessError
+
+.. autoexception:: AssignabilityError
+
+.. autoexception:: ImpreciseMetronomeMarkError
+
+.. autoexception:: LilyPondParserError
+
+.. autoexception:: MissingMetronomeMarkError
+
+.. autoexception:: ParentageError
+
+.. autoexception:: PersistentIndicatorError
+
+.. autoexception:: SchemeParserFinishedError
+
+.. autoexception:: UnboundedTimeIntervalError
+
+.. autoexception:: WellformednessError

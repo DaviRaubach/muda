@@ -1,0 +1,733 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
+
+    <meta name="generator" content="sphinx-3.5.3, furo 2021.03.20.beta30"/>
+        <title>io - muda 28/03/2021 documentation</title>
+      <link rel="stylesheet" href="../../_static/styles/furo.css?digest=978e1795dfe158b585dda6a8417f6411828bf3ed">
+    <link rel="stylesheet" href="../../_static/pygments.css">
+    <link media="(prefers-color-scheme: dark)" rel="stylesheet" href="../../_static/pygments_dark.css">
+    
+
+
+<style>
+  :root {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+  }
+
+  /* For allowing end-user-specific overrides */
+  .override-light {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  .override-dark {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+</style><link rel="stylesheet" type="text/css" href="../../_static/abjad.css" />
+    <link rel="stylesheet" href="../../_static/styles/furo-extensions.css?digest=d391b54134226e4196576da3bdb6dddb7e05ba2b"></head>
+  <body dir="">
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z"/>
+      <line x1="4" y1="6" x2="20" y2="6" />
+      <line x1="10" y1="12" x2="20" y2="12" />
+      <line x1="6" y1="18" x2="20" y2="18" />
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">muda 28/03/2021 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">muda 28/03/2021 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html">
+  <input class="sidebar-search" placeholder=Search name="q">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form><div class="sidebar-scroll"><div class="sidebar-tree">
+  
+</div>
+</div>
+      </div>
+      
+    </div>
+  </aside>
+  <main class="main">
+    <div class="content">
+      <article role="main">
+        <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+        </label>
+        <div class="section" id="module-abjad.io">
+<span id="io"></span><span id="abjad-io"></span><h1>io<a class="headerlink" href="#module-abjad.io" title="Permalink to this headline">¶</a></h1>
+<div class="svg-container docutils container">
+</div>
+<hr/><p class="section-header rubric">Classes</p>
+<dl class="py class">
+<dt id="abjad.io.AbjadGrapher">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">abjad.io.</span></code><code class="sig-name descname"><span class="pre">AbjadGrapher</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graphable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dot'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.io.AbjadGrapher" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abjad grapher.</p>
+<hr/><p class="class-header rubric">Attributes Summary</p>
+<hr/><p class="class-header rubric">Special methods</p>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.io.AbjadGrapher.__call__">
+<code class="sig-name descname"><span class="pre">__call__</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#abjad.io.AbjadGrapher.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call self as a function.</p>
+</dd></dl>
+</div>
+<hr/><p class="class-header rubric">Methods</p>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.io.AbjadGrapher.get_format">
+<code class="sig-name descname"><span class="pre">get_format</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> → <span class="pre">str</span><a class="headerlink" href="#abjad.io.AbjadGrapher.get_format" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</div>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.io.AbjadGrapher.get_layout">
+<code class="sig-name descname"><span class="pre">get_layout</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> → <span class="pre">str</span><a class="headerlink" href="#abjad.io.AbjadGrapher.get_layout" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</div>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.io.AbjadGrapher.get_openable_paths">
+<code class="sig-name descname"><span class="pre">get_openable_paths</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">format_</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_paths</span></span></em><span class="sig-paren">)</span> → <span class="pre">Generator</span><span class="p"><span class="pre">[</span></span><span class="pre">pathlib.Path</span><span class="p"><span class="pre">,</span> </span><span class="pre">None</span><span class="p"><span class="pre">,</span> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#abjad.io.AbjadGrapher.get_openable_paths" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</div>
+<dl class="py method">
+<dt id="abjad.io.AbjadGrapher.get_output_directory">
+<code class="sig-name descname"><span class="pre">get_output_directory</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> → <span class="pre">pathlib.Path</span><a class="headerlink" href="#abjad.io.AbjadGrapher.get_output_directory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.io.AbjadGrapher.get_render_command">
+<code class="sig-name descname"><span class="pre">get_render_command</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">format_</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layout</span></span></em><span class="sig-paren">)</span> → <span class="pre">str</span><a class="headerlink" href="#abjad.io.AbjadGrapher.get_render_command" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</div>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.io.AbjadGrapher.get_render_directory">
+<code class="sig-name descname"><span class="pre">get_render_directory</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#abjad.io.AbjadGrapher.get_render_directory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</div>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.io.AbjadGrapher.get_render_prefix">
+<code class="sig-name descname"><span class="pre">get_render_prefix</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="sig-paren">)</span> → <span class="pre">str</span><a class="headerlink" href="#abjad.io.AbjadGrapher.get_render_prefix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</div>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.io.AbjadGrapher.get_string">
+<code class="sig-name descname"><span class="pre">get_string</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> → <span class="pre">str</span><a class="headerlink" href="#abjad.io.AbjadGrapher.get_string" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</div>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.io.AbjadGrapher.migrate_assets">
+<code class="sig-name descname"><span class="pre">migrate_assets</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">render_prefix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">render_directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_directory</span></span></em><span class="sig-paren">)</span> → <span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">pathlib.Path</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#abjad.io.AbjadGrapher.migrate_assets" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</div>
+<dl class="py method">
+<dt id="abjad.io.AbjadGrapher.open_output_path">
+<code class="sig-name descname"><span class="pre">open_output_path</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.io.AbjadGrapher.open_output_path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.io.AbjadGrapher.persist_log">
+<code class="sig-name descname"><span class="pre">persist_log</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.io.AbjadGrapher.persist_log" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</div>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.io.AbjadGrapher.persist_string">
+<code class="sig-name descname"><span class="pre">persist_string</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.io.AbjadGrapher.persist_string" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</div>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.io.AbjadGrapher.run_command">
+<code class="sig-name descname"><span class="pre">run_command</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> → <span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#abjad.io.AbjadGrapher.run_command" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</div>
+</dd></dl>
+<dl class="py class">
+<dt id="abjad.io.Illustrator">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">abjad.io.</span></code><code class="sig-name descname"><span class="pre">Illustrator</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">illustrable</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_directory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">render_prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">should_copy_stylesheets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">should_open</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">should_persist_log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">keywords</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.io.Illustrator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Illustrator.</p>
+<hr/><p class="class-header rubric">Attributes Summary</p>
+<hr/><p class="class-header rubric">Special methods</p>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.io.Illustrator.__call__">
+<code class="sig-name descname"><span class="pre">__call__</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#abjad.io.Illustrator.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call self as a function.</p>
+</dd></dl>
+</div>
+<hr/><p class="class-header rubric">Methods</p>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.io.Illustrator.copy_stylesheets">
+<code class="sig-name descname"><span class="pre">copy_stylesheets</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">render_directory</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.io.Illustrator.copy_stylesheets" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</div>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.io.Illustrator.get_lilypond_path">
+<code class="sig-name descname"><span class="pre">get_lilypond_path</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#abjad.io.Illustrator.get_lilypond_path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</div>
+<dl class="py method">
+<dt id="abjad.io.Illustrator.get_openable_paths">
+<code class="sig-name descname"><span class="pre">get_openable_paths</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_paths</span></span></em><span class="sig-paren">)</span> → <span class="pre">Generator</span><a class="headerlink" href="#abjad.io.Illustrator.get_openable_paths" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.io.Illustrator.get_output_directory">
+<code class="sig-name descname"><span class="pre">get_output_directory</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> → <span class="pre">pathlib.Path</span><a class="headerlink" href="#abjad.io.Illustrator.get_output_directory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</div>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.io.Illustrator.get_render_command">
+<code class="sig-name descname"><span class="pre">get_render_command</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lilypond_path</span></span></em><span class="sig-paren">)</span> → <span class="pre">str</span><a class="headerlink" href="#abjad.io.Illustrator.get_render_command" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</div>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.io.Illustrator.get_render_directory">
+<code class="sig-name descname"><span class="pre">get_render_directory</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#abjad.io.Illustrator.get_render_directory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</div>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.io.Illustrator.get_render_prefix">
+<code class="sig-name descname"><span class="pre">get_render_prefix</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="sig-paren">)</span> → <span class="pre">str</span><a class="headerlink" href="#abjad.io.Illustrator.get_render_prefix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</div>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.io.Illustrator.get_string">
+<code class="sig-name descname"><span class="pre">get_string</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> → <span class="pre">str</span><a class="headerlink" href="#abjad.io.Illustrator.get_string" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</div>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.io.Illustrator.get_stylesheets_directories">
+<code class="sig-name descname"><span class="pre">get_stylesheets_directories</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> → <span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">pathlib.Path</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#abjad.io.Illustrator.get_stylesheets_directories" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</div>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.io.Illustrator.migrate_assets">
+<code class="sig-name descname"><span class="pre">migrate_assets</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">render_prefix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">render_directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_directory</span></span></em><span class="sig-paren">)</span> → <span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">pathlib.Path</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#abjad.io.Illustrator.migrate_assets" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</div>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.io.Illustrator.open_output_path">
+<code class="sig-name descname"><span class="pre">open_output_path</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.io.Illustrator.open_output_path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</div>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.io.Illustrator.persist_log">
+<code class="sig-name descname"><span class="pre">persist_log</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.io.Illustrator.persist_log" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</div>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.io.Illustrator.persist_string">
+<code class="sig-name descname"><span class="pre">persist_string</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.io.Illustrator.persist_string" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</div>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.io.Illustrator.run_command">
+<code class="sig-name descname"><span class="pre">run_command</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.io.Illustrator.run_command" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</div>
+</dd></dl>
+<dl class="py class">
+<dt id="abjad.io.LilyPondIO">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">abjad.io.</span></code><code class="sig-name descname"><span class="pre">LilyPondIO</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">illustrable</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_directory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">render_prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">should_copy_stylesheets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">should_open</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">should_persist_log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">keywords</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.io.LilyPondIO" title="Permalink to this definition">¶</a></dt>
+<dd><p>LilyPond IO.</p>
+<hr/><p class="class-header rubric">Attributes Summary</p>
+<hr/><p class="class-header rubric">Special methods</p>
+<dl class="py method">
+<dt id="abjad.io.LilyPondIO.__call__">
+<code class="sig-name descname"><span class="pre">__call__</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#abjad.io.LilyPondIO.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call self as a function.</p>
+</dd></dl>
+<hr/><p class="class-header rubric">Methods</p>
+<dl class="py method">
+<dt id="abjad.io.LilyPondIO.copy_stylesheets">
+<code class="sig-name descname"><span class="pre">copy_stylesheets</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">render_directory</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.io.LilyPondIO.copy_stylesheets" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt id="abjad.io.LilyPondIO.get_lilypond_path">
+<code class="sig-name descname"><span class="pre">get_lilypond_path</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#abjad.io.LilyPondIO.get_lilypond_path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt id="abjad.io.LilyPondIO.get_openable_paths">
+<code class="sig-name descname"><span class="pre">get_openable_paths</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_paths</span></span></em><span class="sig-paren">)</span> → <span class="pre">Generator</span><a class="headerlink" href="#abjad.io.LilyPondIO.get_openable_paths" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt id="abjad.io.LilyPondIO.get_output_directory">
+<code class="sig-name descname"><span class="pre">get_output_directory</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> → <span class="pre">pathlib.Path</span><a class="headerlink" href="#abjad.io.LilyPondIO.get_output_directory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt id="abjad.io.LilyPondIO.get_render_command">
+<code class="sig-name descname"><span class="pre">get_render_command</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lilypond_path</span></span></em><span class="sig-paren">)</span> → <span class="pre">str</span><a class="headerlink" href="#abjad.io.LilyPondIO.get_render_command" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt id="abjad.io.LilyPondIO.get_render_directory">
+<code class="sig-name descname"><span class="pre">get_render_directory</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#abjad.io.LilyPondIO.get_render_directory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt id="abjad.io.LilyPondIO.get_render_prefix">
+<code class="sig-name descname"><span class="pre">get_render_prefix</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="sig-paren">)</span> → <span class="pre">str</span><a class="headerlink" href="#abjad.io.LilyPondIO.get_render_prefix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt id="abjad.io.LilyPondIO.get_string">
+<code class="sig-name descname"><span class="pre">get_string</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> → <span class="pre">str</span><a class="headerlink" href="#abjad.io.LilyPondIO.get_string" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt id="abjad.io.LilyPondIO.get_stylesheets_directories">
+<code class="sig-name descname"><span class="pre">get_stylesheets_directories</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> → <span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">pathlib.Path</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#abjad.io.LilyPondIO.get_stylesheets_directories" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt id="abjad.io.LilyPondIO.migrate_assets">
+<code class="sig-name descname"><span class="pre">migrate_assets</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">render_prefix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">render_directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_directory</span></span></em><span class="sig-paren">)</span> → <span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">pathlib.Path</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#abjad.io.LilyPondIO.migrate_assets" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt id="abjad.io.LilyPondIO.open_output_path">
+<code class="sig-name descname"><span class="pre">open_output_path</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.io.LilyPondIO.open_output_path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt id="abjad.io.LilyPondIO.persist_log">
+<code class="sig-name descname"><span class="pre">persist_log</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.io.LilyPondIO.persist_log" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt id="abjad.io.LilyPondIO.persist_string">
+<code class="sig-name descname"><span class="pre">persist_string</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.io.LilyPondIO.persist_string" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt id="abjad.io.LilyPondIO.run_command">
+<code class="sig-name descname"><span class="pre">run_command</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.io.LilyPondIO.run_command" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt id="abjad.io.Player">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">abjad.io.</span></code><code class="sig-name descname"><span class="pre">Player</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">illustrable</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_directory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">render_prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">should_copy_stylesheets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">should_open</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">should_persist_log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">keywords</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.io.Player" title="Permalink to this definition">¶</a></dt>
+<dd><p>Player.</p>
+<hr/><p class="class-header rubric">Attributes Summary</p>
+<hr/><p class="class-header rubric">Special methods</p>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.io.Player.__call__">
+<code class="sig-name descname"><span class="pre">__call__</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#abjad.io.Player.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call self as a function.</p>
+</dd></dl>
+</div>
+<hr/><p class="class-header rubric">Methods</p>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.io.Player.copy_stylesheets">
+<code class="sig-name descname"><span class="pre">copy_stylesheets</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">render_directory</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.io.Player.copy_stylesheets" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</div>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.io.Player.get_lilypond_path">
+<code class="sig-name descname"><span class="pre">get_lilypond_path</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#abjad.io.Player.get_lilypond_path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</div>
+<dl class="py method">
+<dt id="abjad.io.Player.get_openable_paths">
+<code class="sig-name descname"><span class="pre">get_openable_paths</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_paths</span></span></em><span class="sig-paren">)</span> → <span class="pre">Generator</span><a class="headerlink" href="#abjad.io.Player.get_openable_paths" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.io.Player.get_output_directory">
+<code class="sig-name descname"><span class="pre">get_output_directory</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> → <span class="pre">pathlib.Path</span><a class="headerlink" href="#abjad.io.Player.get_output_directory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</div>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.io.Player.get_render_command">
+<code class="sig-name descname"><span class="pre">get_render_command</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lilypond_path</span></span></em><span class="sig-paren">)</span> → <span class="pre">str</span><a class="headerlink" href="#abjad.io.Player.get_render_command" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</div>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.io.Player.get_render_directory">
+<code class="sig-name descname"><span class="pre">get_render_directory</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#abjad.io.Player.get_render_directory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</div>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.io.Player.get_render_prefix">
+<code class="sig-name descname"><span class="pre">get_render_prefix</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="sig-paren">)</span> → <span class="pre">str</span><a class="headerlink" href="#abjad.io.Player.get_render_prefix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</div>
+<dl class="py method">
+<dt id="abjad.io.Player.get_string">
+<code class="sig-name descname"><span class="pre">get_string</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> → <span class="pre">str</span><a class="headerlink" href="#abjad.io.Player.get_string" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.io.Player.get_stylesheets_directories">
+<code class="sig-name descname"><span class="pre">get_stylesheets_directories</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> → <span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">pathlib.Path</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#abjad.io.Player.get_stylesheets_directories" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</div>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.io.Player.migrate_assets">
+<code class="sig-name descname"><span class="pre">migrate_assets</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">render_prefix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">render_directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_directory</span></span></em><span class="sig-paren">)</span> → <span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">pathlib.Path</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#abjad.io.Player.migrate_assets" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</div>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.io.Player.open_output_path">
+<code class="sig-name descname"><span class="pre">open_output_path</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.io.Player.open_output_path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</div>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.io.Player.persist_log">
+<code class="sig-name descname"><span class="pre">persist_log</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.io.Player.persist_log" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</div>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.io.Player.persist_string">
+<code class="sig-name descname"><span class="pre">persist_string</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.io.Player.persist_string" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</div>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.io.Player.run_command">
+<code class="sig-name descname"><span class="pre">run_command</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.io.Player.run_command" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+</div>
+</dd></dl>
+<hr/><p class="section-header rubric">Functions</p>
+<dl class="py function">
+<dt id="abjad.io.compare_files">
+<code class="sig-prename descclassname"><span class="pre">abjad.io.</span></code><code class="sig-name descname"><span class="pre">compare_files</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.io.compare_files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compares file <code class="docutils literal notranslate"><span class="pre">path_1</span></code> to file <code class="docutils literal notranslate"><span class="pre">path_2</span></code>.</p>
+<p>For all file types:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">Performs</span> <span class="n">line</span><span class="o">-</span><span class="n">by</span><span class="o">-</span><span class="n">line</span> <span class="n">comparison</span>
+<span class="o">*</span> <span class="n">Discards</span> <span class="n">blank</span> <span class="n">lines</span>
+</pre></div>
+</div>
+<p>For LilyPond files, additionally:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>* Discards any LilyPond version statements
+* Discards any lines beginning with ``%``
+</pre></div>
+</div>
+<p>Returns true when files compare the same and false when files compare
+differently.</p>
+</dd></dl>
+<dl class="py function">
+<dt id="abjad.io.count_function_calls">
+<code class="sig-prename descclassname"><span class="pre">abjad.io.</span></code><code class="sig-name descname"><span class="pre">count_function_calls</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">argument</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">global_context</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_context</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fixed_point</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> → <span class="pre">int</span><a class="headerlink" href="#abjad.io.count_function_calls" title="Permalink to this definition">¶</a></dt>
+<dd><p>Counts function calls required to execute <code class="docutils literal notranslate"><span class="pre">argument</span></code>.</p>
+</dd></dl>
+<dl class="py function">
+<dt id="abjad.io.execute_file">
+<code class="sig-prename descclassname"><span class="pre">abjad.io.</span></code><code class="sig-name descname"><span class="pre">execute_file</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attribute_names</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> → <span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#abjad.io.execute_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Executes file <code class="docutils literal notranslate"><span class="pre">path</span></code>.</p>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">attribute_names</span></code> from file.</p>
+</dd></dl>
+<dl class="py function">
+<dt id="abjad.io.execute_string">
+<code class="sig-prename descclassname"><span class="pre">abjad.io.</span></code><code class="sig-name descname"><span class="pre">execute_string</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attribute_names</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_namespace</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.io.execute_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Executes <code class="docutils literal notranslate"><span class="pre">string</span></code>.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">string</span> <span class="o">=</span> <span class="s1">'foo = 23'</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">attribute_names</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'foo'</span><span class="p">,</span> <span class="s1">'bar'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">execute_string</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">string</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">attribute_names</span><span class="o">=</span><span class="n">attribute_names</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="p">)</span>
+<span class="go">(23, None)</span>
+</pre></div>
+</div>
+</div>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">attribute_names</span></code> from executed string.</p>
+</dd></dl>
+<dl class="py function">
+<dt id="abjad.io.find_executable">
+<code class="sig-prename descclassname"><span class="pre">abjad.io.</span></code><code class="sig-name descname"><span class="pre">find_executable</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> → <span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">pathlib.Path</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#abjad.io.find_executable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds executable <code class="docutils literal notranslate"><span class="pre">name</span></code>.</p>
+<p>Similar to Unix <code class="docutils literal notranslate"><span class="pre">which</span></code> command.</p>
+<p>Returns list of zero or more full paths to <code class="docutils literal notranslate"><span class="pre">name</span></code>.</p>
+</dd></dl>
+<dl class="py function">
+<dt id="abjad.io.graph">
+<code class="sig-prename descclassname"><span class="pre">abjad.io.</span></code><code class="sig-name descname"><span class="pre">graph</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graphable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format_</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dot'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_timing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">keywords</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.io.graph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Graphs <code class="docutils literal notranslate"><span class="pre">argument</span></code>.</p>
+<div class="example docutils container">
+<p>Graphs staff:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">staff</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Staff</span><span class="p">(</span><span class="s2">"c'4 d' e' f'"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">graph</span><span class="p">(</span><span class="n">staff</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="example docutils container">
+<p>Graphs rhythm tree:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rtm_syntax</span> <span class="o">=</span> <span class="s1">'(3 ((2 (2 1)) 2))'</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">rhythmtrees</span><span class="o">.</span><span class="n">RhythmTreeParser</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rhythm_tree</span> <span class="o">=</span> <span class="n">parser</span><span class="p">(</span><span class="n">rtm_syntax</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">graph</span><span class="p">(</span><span class="n">rhythm_tree</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<p>Opens image in default image viewer.</p>
+</dd></dl>
+<dl class="py function">
+<dt id="abjad.io.make_subprocess">
+<code class="sig-prename descclassname"><span class="pre">abjad.io.</span></code><code class="sig-name descname"><span class="pre">make_subprocess</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> → <span class="pre">subprocess.Popen</span><a class="headerlink" href="#abjad.io.make_subprocess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes Popen instance.</p>
+<p>Defined equal to:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>process = subprocess.Popen(</dt><dd><p>command,
+shell=True,
+stdout=subprocess.PIPE,
+stderr=subprocess.STDOUT,
+)</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>Redirects stderr to stdout.</p>
+</dd></dl>
+<dl class="py function">
+<dt id="abjad.io.open_file">
+<code class="sig-prename descclassname"><span class="pre">abjad.io.</span></code><code class="sig-name descname"><span class="pre">open_file</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">application</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line_number</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.io.open_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Opens <code class="docutils literal notranslate"><span class="pre">file_path</span></code>.</p>
+<p>Uses <code class="docutils literal notranslate"><span class="pre">application</span></code> when <code class="docutils literal notranslate"><span class="pre">application</span></code> is not none.</p>
+<p>Uses Abjad configuration file <code class="docutils literal notranslate"><span class="pre">text_editor</span></code> when
+<code class="docutils literal notranslate"><span class="pre">application</span></code> is none.</p>
+<p>Takes best guess at operating system-specific file opener when both
+<code class="docutils literal notranslate"><span class="pre">application</span></code> and Abjad configuration file <code class="docutils literal notranslate"><span class="pre">text_editor</span></code> are none.</p>
+<p>Respects <code class="docutils literal notranslate"><span class="pre">line_number</span></code> when <code class="docutils literal notranslate"><span class="pre">file_path</span></code> can be opened with text
+editor.</p>
+</dd></dl>
+<dl class="py function">
+<dt id="abjad.io.open_last_log">
+<code class="sig-prename descclassname"><span class="pre">abjad.io.</span></code><code class="sig-name descname"><span class="pre">open_last_log</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> → <span class="pre">None</span><a class="headerlink" href="#abjad.io.open_last_log" title="Permalink to this definition">¶</a></dt>
+<dd><p>Opens LilyPond log file in operating system-specific text editor.</p>
+</dd></dl>
+<dl class="py function">
+<dt id="abjad.io.play">
+<code class="sig-prename descclassname"><span class="pre">abjad.io.</span></code><code class="sig-name descname"><span class="pre">play</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">illustrable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_timing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">keywords</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.io.play" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plays <code class="docutils literal notranslate"><span class="pre">argument</span></code>.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">note</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Note</span><span class="p">(</span><span class="s2">"c'4"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">note</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<p>Makes MIDI file.</p>
+<p>Appends <code class="docutils literal notranslate"><span class="pre">.mid</span></code> filename extension under Windows.</p>
+<p>Appends <code class="docutils literal notranslate"><span class="pre">.midi</span></code> filename extension under other operating systems.</p>
+<p>Opens MIDI file.</p>
+</dd></dl>
+<dl class="py function">
+<dt id="abjad.io.profile">
+<code class="sig-prename descclassname"><span class="pre">abjad.io.</span></code><code class="sig-name descname"><span class="pre">profile</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">argument</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">global_context</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line_count</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_context</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_callers</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_callees</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_to_terminal</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort_by</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'cumulative'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strip_dirs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> → <span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#abjad.io.profile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Profiles <code class="docutils literal notranslate"><span class="pre">argument</span></code>.</p>
+<div class="example docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">argument</span> <span class="o">=</span> <span class="s1">'abjad.Staff("c8 c8 c8 c8 c8 c8 c8 c8")'</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">profile</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">argument</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">global_context</span><span class="o">=</span><span class="nb">globals</span><span class="p">(),</span>
+<span class="gp">... </span>    <span class="p">)</span> 
+<span class="go">Tue Apr  5 20:32:40 2011    _tmp_abj_profile</span>
+
+<span class="go">        2852 function calls (2829 primitive calls) in 0.006 CPU seconds</span>
+
+<span class="go">Ordered by: cumulative time</span>
+<span class="go">List reduced from 118 to 12 due to restriction &lt;12&gt;</span>
+
+<span class="go">ncalls  tottime  percall  cumtime  percall filename:lineno(function)</span>
+<span class="go">        1    0.000    0.000    0.006    0.006 &lt;string&gt;:1(&lt;module&gt;)</span>
+<span class="go">        1    0.001    0.001    0.003    0.003 make_notes.py:12(make_not</span>
+<span class="go">        1    0.000    0.000    0.003    0.003 Staff.py:21(__init__)</span>
+<span class="go">        1    0.000    0.000    0.003    0.003 Context.py:11(__init__)</span>
+<span class="go">        1    0.000    0.000    0.003    0.003 Container.py:23(__init__)</span>
+<span class="go">        1    0.000    0.000    0.003    0.003 Container.py:271(_initial</span>
+<span class="go">        2    0.000    0.000    0.002    0.001 all_are_logical_voice_con</span>
+<span class="go">    52    0.001    0.000    0.002    0.000 component_to_logical_voic</span>
+<span class="go">        1    0.000    0.000    0.002    0.002 _construct_unprolated_not</span>
+<span class="go">        8    0.000    0.000    0.002    0.000 make_tied_note.py:5(make_</span>
+<span class="go">        8    0.000    0.000    0.002    0.000 make_tied_leaf.py:5(make_</span>
+</pre></div>
+</div>
+</div>
+<p>Wraps the built-in Python <code class="docutils literal notranslate"><span class="pre">cProfile</span></code> module.</p>
+<p>Set <code class="docutils literal notranslate"><span class="pre">argument</span></code> to any string of Abjad input.</p>
+<p>Set <code class="docutils literal notranslate"><span class="pre">sort_by</span></code> to <code class="docutils literal notranslate"><span class="pre">'cumulative'</span></code>, <code class="docutils literal notranslate"><span class="pre">'time'</span></code> or <code class="docutils literal notranslate"><span class="pre">'calls'</span></code>.</p>
+<p>Set <code class="docutils literal notranslate"><span class="pre">line_count</span></code> to any nonnegative integer.</p>
+<p>Set <code class="docutils literal notranslate"><span class="pre">strip_dirs</span></code> to true to strip directory names from output lines.</p>
+<p>See the <a class="reference external" href="http://docs.python.org/library/profile.html">Python docs</a>
+for more information on the Python profilers.</p>
+<p>Returns none when <code class="docutils literal notranslate"><span class="pre">print_to_terminal</span></code> is false.</p>
+<p>Returns string when <code class="docutils literal notranslate"><span class="pre">print_to_terminal</span></code> is true.</p>
+</dd></dl>
+<dl class="py function">
+<dt id="abjad.io.run_command">
+<code class="sig-prename descclassname"><span class="pre">abjad.io.</span></code><code class="sig-name descname"><span class="pre">run_command</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> → <span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#abjad.io.run_command" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs command in subprocess.</p>
+<p>Returns list of strings read from subprocess stdout.</p>
+</dd></dl>
+<dl class="py function">
+<dt id="abjad.io.run_lilypond">
+<code class="sig-prename descclassname"><span class="pre">abjad.io.</span></code><code class="sig-name descname"><span class="pre">run_lilypond</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ly_path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lilypond_log_file_path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">pathlib.Path</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> → <span class="pre">bool</span><a class="headerlink" href="#abjad.io.run_lilypond" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs LilyPond on <code class="docutils literal notranslate"><span class="pre">ly_path</span></code>.</p>
+<p>Writes redirected output of Unix <code class="docutils literal notranslate"><span class="pre">date</span></code> to top line of LilyPond log
+file.</p>
+<p>Then appends redirected output of LilyPond output to the LilyPond log
+file.</p>
+</dd></dl>
+<dl class="py function">
+<dt id="abjad.io.show">
+<code class="sig-prename descclassname"><span class="pre">abjad.io.</span></code><code class="sig-name descname"><span class="pre">show</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">illustrable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_timing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">keywords</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.io.show" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shows <code class="docutils literal notranslate"><span class="pre">argument</span></code>.</p>
+<div class="example docutils container">
+<p>Shows note:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">note</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Note</span><span class="p">(</span><span class="s2">"c'4"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">note</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="example docutils container">
+<p>Shows staff:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">staff</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Staff</span><span class="p">(</span><span class="s2">"c'4 d' e' f'"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">staff</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<p>Makes LilyPond input files and output PDF.</p>
+<p>Writes LilyPond input file and output PDF to Abjad output directory.</p>
+<p>Opens output PDF.</p>
+<p>Returns none when <code class="docutils literal notranslate"><span class="pre">return_timing</span></code> is false.</p>
+<p>Returns pair of <code class="docutils literal notranslate"><span class="pre">abjad_formatting_time</span></code> and <code class="docutils literal notranslate"><span class="pre">lilypond_rendering_time</span></code>
+when <code class="docutils literal notranslate"><span class="pre">return_timing</span></code> is true.</p>
+</dd></dl>
+<dl class="py function">
+<dt id="abjad.io.spawn_subprocess">
+<code class="sig-prename descclassname"><span class="pre">abjad.io.</span></code><code class="sig-name descname"><span class="pre">spawn_subprocess</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> → <span class="pre">int</span><a class="headerlink" href="#abjad.io.spawn_subprocess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Spawns subprocess and runs <code class="docutils literal notranslate"><span class="pre">command</span></code>.</p>
+<p>The function is basically a reimplementation of the
+deprecated <code class="docutils literal notranslate"><span class="pre">os.system()</span></code> using Python’s <code class="docutils literal notranslate"><span class="pre">subprocess</span></code> module.</p>
+<p>Redirects stderr to stdout.</p>
+</dd></dl>
+</div>
+
+      </article>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+
+        <div class="related-information">
+              Copyright &#169; 2021, Davi Raubach Tuchtenhagen
+            |
+            Built with <a href="https://www.sphinx-doc.org/">Sphinx</a>
+              and
+              <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+              <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
+            |
+            <a class="muted-link" href="../../_sources/api/abjad/io.rst.txt"
+               rel="nofollow">
+              Show Source
+            </a>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </main>
+</div>
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script defer="defer" src="../../_static/copybutton.js"></script>
+    <script src="../../_static/ga.js"></script>
+    <script src="../../_static/scripts/main.js?digest=e931d09b2a40c1bb82b542effe772014573baf67"></script></body>
+</html>

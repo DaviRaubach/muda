@@ -1,0 +1,45 @@
+.. _abjad--enumerate:
+
+enumerate
+=========
+
+.. automodule:: abjad.enumerate
+
+.. currentmodule:: abjad.enumerate
+
+.. container:: svg-container
+
+   .. inheritance-diagram:: abjad
+      :lineage: abjad.enumerate
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Functions
+   :class: section-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~yield_combinations
+   ~yield_outer_product
+   ~yield_pairs
+   ~yield_partitions
+   ~yield_permutations
+   ~yield_set_partitions
+   ~yield_subsequences
+
+.. autofunction:: yield_combinations
+
+.. autofunction:: yield_outer_product
+
+.. autofunction:: yield_pairs
+
+.. autofunction:: yield_partitions
+
+.. autofunction:: yield_permutations
+
+.. autofunction:: yield_set_partitions
+
+.. autofunction:: yield_subsequences

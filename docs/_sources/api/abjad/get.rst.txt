@@ -1,0 +1,264 @@
+.. _abjad--get:
+
+get
+===
+
+.. automodule:: abjad.get
+
+.. currentmodule:: abjad.get
+
+.. container:: svg-container
+
+   .. inheritance-diagram:: abjad
+      :lineage: abjad.get
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Functions
+   :class: section-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~after_grace_container
+   ~annotation
+   ~annotation_wrappers
+   ~bar_line_crossing
+   ~before_grace_container
+   ~contents
+   ~descendants
+   ~duration
+   ~effective
+   ~effective_staff
+   ~effective_wrapper
+   ~grace
+   ~has_effective_indicator
+   ~has_indicator
+   ~indicator
+   ~indicators
+   ~leaf
+   ~lineage
+   ~logical_tie
+   ~markup
+   ~measure_number
+   ~parentage
+   ~pitches
+   ~report_modifications
+   ~sounding_pitch
+   ~sounding_pitches
+   ~sustained
+   ~timespan
+   ~wrapper
+   ~wrappers
+
+.. autofunction:: after_grace_container
+
+.. autofunction:: annotation
+
+.. autofunction:: annotation_wrappers
+
+.. autofunction:: bar_line_crossing
+
+.. autofunction:: before_grace_container
+
+.. autofunction:: contents
+
+.. autofunction:: descendants
+
+.. autofunction:: duration
+
+.. autofunction:: effective
+
+.. autofunction:: effective_staff
+
+.. autofunction:: effective_wrapper
+
+.. autofunction:: grace
+
+.. autofunction:: has_effective_indicator
+
+.. autofunction:: has_indicator
+
+.. autofunction:: indicator
+
+.. autofunction:: indicators
+
+.. autofunction:: leaf
+
+.. autofunction:: lineage
+
+.. autofunction:: logical_tie
+
+.. autofunction:: markup
+
+.. autofunction:: measure_number
+
+.. autofunction:: parentage
+
+.. autofunction:: pitches
+
+.. autofunction:: report_modifications
+
+.. autofunction:: sounding_pitch
+
+.. autofunction:: sounding_pitches
+
+.. autofunction:: sustained
+
+.. autofunction:: timespan
+
+.. autofunction:: wrapper
+
+.. autofunction:: wrappers
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Selections
+   :class: section-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~Descendants
+   ~Lineage
+
+.. autoclass:: Descendants
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __getitem__
+      __len__
+      __repr__
+      component
+      components
+      count
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. container:: inherited
+
+      .. automethod:: Descendants.__contains__
+
+   .. automethod:: Descendants.__getitem__
+
+   .. container:: inherited
+
+      .. automethod:: Descendants.__iter__
+
+   .. automethod:: Descendants.__len__
+
+   .. automethod:: Descendants.__repr__
+
+   .. container:: inherited
+
+      .. automethod:: Descendants.__reversed__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Methods
+      :class: class-header
+
+   .. automethod:: Descendants.count
+
+   .. container:: inherited
+
+      .. automethod:: Descendants.index
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: Descendants.component
+
+   .. autoattribute:: Descendants.components
+
+.. autoclass:: Lineage
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __getitem__
+      __len__
+      __repr__
+      component
+      components
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. container:: inherited
+
+      .. automethod:: Lineage.__contains__
+
+   .. automethod:: Lineage.__getitem__
+
+   .. container:: inherited
+
+      .. automethod:: Lineage.__iter__
+
+   .. automethod:: Lineage.__len__
+
+   .. automethod:: Lineage.__repr__
+
+   .. container:: inherited
+
+      .. automethod:: Lineage.__reversed__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Methods
+      :class: class-header
+
+   .. container:: inherited
+
+      .. automethod:: Lineage.count
+
+   .. container:: inherited
+
+      .. automethod:: Lineage.index
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: Lineage.component
+
+   .. autoattribute:: Lineage.components

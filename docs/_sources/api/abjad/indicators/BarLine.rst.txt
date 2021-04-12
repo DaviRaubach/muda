@@ -1,0 +1,55 @@
+.. _abjad--indicators--BarLine:
+
+BarLine
+=======
+
+.. automodule:: abjad.indicators.BarLine
+
+.. currentmodule:: abjad.indicators.BarLine
+
+.. container:: svg-container
+
+   .. inheritance-diagram:: abjad
+      :lineage: abjad.indicators.BarLine
+
+.. autoclass:: BarLine
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __repr__
+      abbreviation
+      context
+      format_slot
+      tweaks
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: BarLine.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: BarLine.abbreviation
+
+   .. autoattribute:: BarLine.context
+
+   .. autoattribute:: BarLine.format_slot
+
+   .. autoattribute:: BarLine.tweaks

@@ -1,0 +1,208 @@
+.. _abjad--ext--sphinx:
+
+sphinx
+======
+
+.. automodule:: abjad.ext.sphinx
+
+.. currentmodule:: abjad.ext.sphinx
+
+.. container:: svg-container
+
+   .. inheritance-diagram:: abjad
+      :lineage: abjad.ext.sphinx
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Classes
+   :class: section-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~HiddenDoctestDirective
+   ~LilyPondExtension
+   ~ShellDirective
+   ~ThumbnailDirective
+   ~thumbnail_block
+
+.. autoclass:: HiddenDoctestDirective
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      final_argument_whitespace
+      has_content
+      option_spec
+      optional_arguments
+      required_arguments
+      run
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Methods
+      :class: class-header
+
+   .. automethod:: HiddenDoctestDirective.run
+
+.. autoclass:: LilyPondExtension
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      Kind
+      lilypond_block
+      setup_console
+      setup_sphinx
+      to_docutils
+      visit_block_html
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Methods
+      :class: class-header
+
+   .. automethod:: LilyPondExtension.to_docutils
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Class & static methods
+      :class: class-header
+
+   .. container:: inherited
+
+      .. automethod:: LilyPondExtension.add_option
+
+   .. container:: inherited
+
+      .. automethod:: LilyPondExtension.depart_block_text
+
+   .. automethod:: LilyPondExtension.setup_console
+
+   .. automethod:: LilyPondExtension.setup_sphinx
+
+   .. container:: inherited
+
+      .. automethod:: LilyPondExtension.teardown_console
+
+   .. automethod:: LilyPondExtension.visit_block_html
+
+   .. container:: inherited
+
+      .. automethod:: LilyPondExtension.visit_block_latex
+
+   .. container:: inherited
+
+      .. automethod:: LilyPondExtension.visit_block_text
+
+.. autoclass:: ShellDirective
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      final_argument_whitespace
+      has_content
+      option_spec
+      optional_arguments
+      required_arguments
+      run
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Methods
+      :class: class-header
+
+   .. automethod:: ShellDirective.run
+
+.. autoclass:: ThumbnailDirective
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      final_argument_whitespace
+      has_content
+      option_spec
+      optional_arguments
+      required_arguments
+      run
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Methods
+      :class: class-header
+
+   .. automethod:: ThumbnailDirective.run
+
+.. autoclass:: thumbnail_block
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Functions
+   :class: section-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~embed_images
+   ~install_lightbox_static_files
+   ~on_builder_inited
+   ~on_html_collect_pages
+   ~setup
+   ~visit_thumbnail_block_html
+   ~visit_thumbnail_block_latex
+
+.. autofunction:: embed_images
+
+.. autofunction:: install_lightbox_static_files
+
+.. autofunction:: on_builder_inited
+
+.. autofunction:: on_html_collect_pages
+
+.. autofunction:: setup
+
+.. autofunction:: visit_thumbnail_block_html
+
+.. autofunction:: visit_thumbnail_block_latex
