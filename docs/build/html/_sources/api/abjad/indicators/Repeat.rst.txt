@@ -1,0 +1,64 @@
+.. _abjad--indicators--Repeat:
+
+Repeat
+======
+
+.. automodule:: abjad.indicators.Repeat
+
+.. currentmodule:: abjad.indicators.Repeat
+
+.. container:: svg-container
+
+   .. inheritance-diagram:: abjad
+      :lineage: abjad.indicators.Repeat
+
+.. autoclass:: Repeat
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __eq__
+      __hash__
+      __repr__
+      __str__
+      context
+      repeat_count
+      repeat_type
+      tweaks
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: Repeat.__eq__
+
+   .. automethod:: Repeat.__hash__
+
+   .. automethod:: Repeat.__repr__
+
+   .. automethod:: Repeat.__str__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: Repeat.context
+
+   .. autoattribute:: Repeat.repeat_count
+
+   .. autoattribute:: Repeat.repeat_type
+
+   .. autoattribute:: Repeat.tweaks

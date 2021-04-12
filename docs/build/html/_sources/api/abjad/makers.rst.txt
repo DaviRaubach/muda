@@ -1,0 +1,130 @@
+.. _abjad--makers:
+
+makers
+======
+
+.. automodule:: abjad.makers
+
+.. currentmodule:: abjad.makers
+
+.. container:: svg-container
+
+   .. inheritance-diagram:: abjad
+      :lineage: abjad.makers
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Functions
+   :class: section-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~tuplet_from_duration_and_ratio
+   ~tuplet_from_leaf_and_ratio
+   ~tuplet_from_ratio_and_pair
+
+.. autofunction:: tuplet_from_duration_and_ratio
+
+.. autofunction:: tuplet_from_leaf_and_ratio
+
+.. autofunction:: tuplet_from_ratio_and_pair
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Makers
+   :class: section-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~LeafMaker
+   ~NoteMaker
+
+.. autoclass:: LeafMaker
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __call__
+      forbidden_note_duration
+      forbidden_rest_duration
+      increase_monotonic
+      skips_instead_of_rests
+      tag
+      use_multimeasure_rests
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: LeafMaker.__call__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: LeafMaker.forbidden_note_duration
+
+   .. autoattribute:: LeafMaker.forbidden_rest_duration
+
+   .. autoattribute:: LeafMaker.increase_monotonic
+
+   .. autoattribute:: LeafMaker.skips_instead_of_rests
+
+   .. autoattribute:: LeafMaker.tag
+
+   .. autoattribute:: LeafMaker.use_multimeasure_rests
+
+.. autoclass:: NoteMaker
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __call__
+      increase_monotonic
+      tag
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: NoteMaker.__call__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: NoteMaker.increase_monotonic
+
+   .. autoattribute:: NoteMaker.tag

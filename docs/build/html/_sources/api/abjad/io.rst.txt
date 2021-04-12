@@ -1,0 +1,408 @@
+.. _abjad--io:
+
+io
+==
+
+.. automodule:: abjad.io
+
+.. currentmodule:: abjad.io
+
+.. container:: svg-container
+
+   .. inheritance-diagram:: abjad
+      :lineage: abjad.io
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Classes
+   :class: section-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~AbjadGrapher
+   ~Illustrator
+   ~LilyPondIO
+   ~Player
+
+.. autoclass:: AbjadGrapher
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      get_output_directory
+      open_output_path
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. container:: inherited
+
+      .. automethod:: AbjadGrapher.__call__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Methods
+      :class: class-header
+
+   .. container:: inherited
+
+      .. automethod:: AbjadGrapher.get_format
+
+   .. container:: inherited
+
+      .. automethod:: AbjadGrapher.get_layout
+
+   .. container:: inherited
+
+      .. automethod:: AbjadGrapher.get_openable_paths
+
+   .. automethod:: AbjadGrapher.get_output_directory
+
+   .. container:: inherited
+
+      .. automethod:: AbjadGrapher.get_render_command
+
+   .. container:: inherited
+
+      .. automethod:: AbjadGrapher.get_render_directory
+
+   .. container:: inherited
+
+      .. automethod:: AbjadGrapher.get_render_prefix
+
+   .. container:: inherited
+
+      .. automethod:: AbjadGrapher.get_string
+
+   .. container:: inherited
+
+      .. automethod:: AbjadGrapher.migrate_assets
+
+   .. automethod:: AbjadGrapher.open_output_path
+
+   .. container:: inherited
+
+      .. automethod:: AbjadGrapher.persist_log
+
+   .. container:: inherited
+
+      .. automethod:: AbjadGrapher.persist_string
+
+   .. container:: inherited
+
+      .. automethod:: AbjadGrapher.run_command
+
+.. autoclass:: Illustrator
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      get_openable_paths
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. container:: inherited
+
+      .. automethod:: Illustrator.__call__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Methods
+      :class: class-header
+
+   .. container:: inherited
+
+      .. automethod:: Illustrator.copy_stylesheets
+
+   .. container:: inherited
+
+      .. automethod:: Illustrator.get_lilypond_path
+
+   .. automethod:: Illustrator.get_openable_paths
+
+   .. container:: inherited
+
+      .. automethod:: Illustrator.get_output_directory
+
+   .. container:: inherited
+
+      .. automethod:: Illustrator.get_render_command
+
+   .. container:: inherited
+
+      .. automethod:: Illustrator.get_render_directory
+
+   .. container:: inherited
+
+      .. automethod:: Illustrator.get_render_prefix
+
+   .. container:: inherited
+
+      .. automethod:: Illustrator.get_string
+
+   .. container:: inherited
+
+      .. automethod:: Illustrator.get_stylesheets_directories
+
+   .. container:: inherited
+
+      .. automethod:: Illustrator.migrate_assets
+
+   .. container:: inherited
+
+      .. automethod:: Illustrator.open_output_path
+
+   .. container:: inherited
+
+      .. automethod:: Illustrator.persist_log
+
+   .. container:: inherited
+
+      .. automethod:: Illustrator.persist_string
+
+   .. container:: inherited
+
+      .. automethod:: Illustrator.run_command
+
+.. autoclass:: LilyPondIO
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __call__
+      copy_stylesheets
+      get_lilypond_path
+      get_openable_paths
+      get_output_directory
+      get_render_command
+      get_render_directory
+      get_render_prefix
+      get_string
+      get_stylesheets_directories
+      migrate_assets
+      open_output_path
+      persist_log
+      persist_string
+      run_command
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: LilyPondIO.__call__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Methods
+      :class: class-header
+
+   .. automethod:: LilyPondIO.copy_stylesheets
+
+   .. automethod:: LilyPondIO.get_lilypond_path
+
+   .. automethod:: LilyPondIO.get_openable_paths
+
+   .. automethod:: LilyPondIO.get_output_directory
+
+   .. automethod:: LilyPondIO.get_render_command
+
+   .. automethod:: LilyPondIO.get_render_directory
+
+   .. automethod:: LilyPondIO.get_render_prefix
+
+   .. automethod:: LilyPondIO.get_string
+
+   .. automethod:: LilyPondIO.get_stylesheets_directories
+
+   .. automethod:: LilyPondIO.migrate_assets
+
+   .. automethod:: LilyPondIO.open_output_path
+
+   .. automethod:: LilyPondIO.persist_log
+
+   .. automethod:: LilyPondIO.persist_string
+
+   .. automethod:: LilyPondIO.run_command
+
+.. autoclass:: Player
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      get_openable_paths
+      get_string
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. container:: inherited
+
+      .. automethod:: Player.__call__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Methods
+      :class: class-header
+
+   .. container:: inherited
+
+      .. automethod:: Player.copy_stylesheets
+
+   .. container:: inherited
+
+      .. automethod:: Player.get_lilypond_path
+
+   .. automethod:: Player.get_openable_paths
+
+   .. container:: inherited
+
+      .. automethod:: Player.get_output_directory
+
+   .. container:: inherited
+
+      .. automethod:: Player.get_render_command
+
+   .. container:: inherited
+
+      .. automethod:: Player.get_render_directory
+
+   .. container:: inherited
+
+      .. automethod:: Player.get_render_prefix
+
+   .. automethod:: Player.get_string
+
+   .. container:: inherited
+
+      .. automethod:: Player.get_stylesheets_directories
+
+   .. container:: inherited
+
+      .. automethod:: Player.migrate_assets
+
+   .. container:: inherited
+
+      .. automethod:: Player.open_output_path
+
+   .. container:: inherited
+
+      .. automethod:: Player.persist_log
+
+   .. container:: inherited
+
+      .. automethod:: Player.persist_string
+
+   .. container:: inherited
+
+      .. automethod:: Player.run_command
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Functions
+   :class: section-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~compare_files
+   ~count_function_calls
+   ~execute_file
+   ~execute_string
+   ~find_executable
+   ~graph
+   ~make_subprocess
+   ~open_file
+   ~open_last_log
+   ~play
+   ~profile
+   ~run_command
+   ~run_lilypond
+   ~show
+   ~spawn_subprocess
+
+.. autofunction:: compare_files
+
+.. autofunction:: count_function_calls
+
+.. autofunction:: execute_file
+
+.. autofunction:: execute_string
+
+.. autofunction:: find_executable
+
+.. autofunction:: graph
+
+.. autofunction:: make_subprocess
+
+.. autofunction:: open_file
+
+.. autofunction:: open_last_log
+
+.. autofunction:: play
+
+.. autofunction:: profile
+
+.. autofunction:: run_command
+
+.. autofunction:: run_lilypond
+
+.. autofunction:: show
+
+.. autofunction:: spawn_subprocess

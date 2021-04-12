@@ -59,7 +59,6 @@ def rewrite_meter(score, time_signatures):
     for voice in abjad.select(score).components(abjad.Voice):
         # voice_dur = abjad.get.duration(voice)
         if voice:
-            print(voice[:])
             print("rewriting meter:", voice.name)
             # sig_dur = sum(durations)
             # assert voice_dur == sig_dur, (voice_dur, sig_dur)

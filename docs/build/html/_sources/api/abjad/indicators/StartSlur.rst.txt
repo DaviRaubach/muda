@@ -1,0 +1,67 @@
+.. _abjad--indicators--StartSlur:
+
+StartSlur
+=========
+
+.. automodule:: abjad.indicators.StartSlur
+
+.. currentmodule:: abjad.indicators.StartSlur
+
+.. container:: svg-container
+
+   .. inheritance-diagram:: abjad
+      :lineage: abjad.indicators.StartSlur
+
+.. autoclass:: StartSlur
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __eq__
+      __hash__
+      __repr__
+      context
+      direction
+      parameter
+      persistent
+      spanner_start
+      tweaks
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: StartSlur.__eq__
+
+   .. automethod:: StartSlur.__hash__
+
+   .. automethod:: StartSlur.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: StartSlur.context
+
+   .. autoattribute:: StartSlur.direction
+
+   .. autoattribute:: StartSlur.parameter
+
+   .. autoattribute:: StartSlur.persistent
+
+   .. autoattribute:: StartSlur.spanner_start
+
+   .. autoattribute:: StartSlur.tweaks

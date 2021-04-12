@@ -3,12 +3,28 @@ import abjadext.rmakers as rmakers
 
 
 class AnnotatedDuration(abjad.Duration):
-    def __init__(self, annotation=None):
-        self.annotation = annotation
 
-    def get_abjad_duration(self):
-        abjad_duration = abjad.Duration(self.pair)
-        return abjad_duration
+    def __new__(cls, *arguments, **kwargs):
+        # global global_annotation 
+        return super().__new__(cls, arguments[0])
+
+    def __init__(self, *arguments, **kwargs):
+        self.arguments = arguments
+        self.annotation = kwargs.get('annotation')
+
+    #     self.annotation = kwargs.get('annotation')
+    #     self.arguments = arguments[0]
+    #     self.dur = abjad.Duration(self.arguments)
+
+    # def __call__(self):
+    #     return self.dur.__call__()
+
+    # def __str__(self):
+    #     return self.dur.__str__()
+
+    def __repr__(self):
+        abdur = abjad.Duration(self.arguments)
+        return abdur.__repr__()
 
 
 def silence_and_rhythm_maker(maker, annotated_divisions, *commands):
@@ -24,4 +40,6 @@ def silence_and_rhythm_maker(maker, annotated_divisions, *commands):
             selection = maker([dur], *commands)
             my_stack_voice.extend(selection)
     return my_stack_voice
+
+# print(AnnotatedDuration(1, 4).__repr__())
 

@@ -1,0 +1,197 @@
+.. _abjad--label:
+
+label
+=====
+
+.. automodule:: abjad.label
+
+.. currentmodule:: abjad.label
+
+.. container:: svg-container
+
+   .. inheritance-diagram:: abjad
+      :lineage: abjad.label
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Classes
+   :class: section-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~ColorMap
+
+.. autoclass:: ColorMap
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __eq__
+      __getitem__
+      __hash__
+      __repr__
+      colors
+      get
+      is_twelve_tone_complete
+      is_twenty_four_tone_complete
+      pairs
+      pitch_iterables
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: ColorMap.__eq__
+
+   .. automethod:: ColorMap.__getitem__
+
+   .. automethod:: ColorMap.__hash__
+
+   .. automethod:: ColorMap.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Methods
+      :class: class-header
+
+   .. automethod:: ColorMap.get
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: ColorMap.colors
+
+   .. autoattribute:: ColorMap.is_twelve_tone_complete
+
+   .. autoattribute:: ColorMap.is_twenty_four_tone_complete
+
+   .. autoattribute:: ColorMap.pairs
+
+   .. autoattribute:: ColorMap.pitch_iterables
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Collaborators
+   :class: section-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~Label
+
+.. autoclass:: Label
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __repr__
+      by_selector
+      client
+      color_container
+      color_leaves
+      color_note_heads
+      deactivate
+      remove_markup
+      tag
+      vertical_moments
+      with_durations
+      with_indices
+      with_intervals
+      with_pitches
+      with_set_classes
+      with_start_offsets
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: Label.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Methods
+      :class: class-header
+
+   .. automethod:: Label.by_selector
+
+   .. automethod:: Label.color_container
+
+   .. automethod:: Label.color_leaves
+
+   .. automethod:: Label.color_note_heads
+
+   .. automethod:: Label.remove_markup
+
+   .. automethod:: Label.vertical_moments
+
+   .. automethod:: Label.with_durations
+
+   .. automethod:: Label.with_indices
+
+   .. automethod:: Label.with_intervals
+
+   .. automethod:: Label.with_pitches
+
+   .. automethod:: Label.with_set_classes
+
+   .. automethod:: Label.with_start_offsets
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: Label.client
+
+   .. autoattribute:: Label.deactivate
+
+   .. autoattribute:: Label.tag
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Functions
+   :class: section-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~label
+
+.. autofunction:: label

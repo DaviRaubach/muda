@@ -1,0 +1,15 @@
+.. _abjad--lilypond:
+
+lilypond
+========
+
+.. automodule:: abjad.lilypond
+
+.. currentmodule:: abjad.lilypond
+
+.. container:: svg-container
+
+   .. inheritance-diagram:: abjad
+      :lineage: abjad.lilypond
+
+.. autofunction:: lilypond
