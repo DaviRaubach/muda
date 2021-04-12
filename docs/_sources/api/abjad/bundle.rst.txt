@@ -1,0 +1,185 @@
+.. _abjad--bundle:
+
+bundle
+======
+
+.. automodule:: abjad.bundle
+
+.. currentmodule:: abjad.bundle
+
+.. container:: svg-container
+
+   .. inheritance-diagram:: abjad
+      :lineage: abjad.bundle
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: LilyPond formatting
+   :class: section-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~LilyPondFormatBundle
+   ~SlotContributions
+
+.. autoclass:: LilyPondFormatBundle
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __repr__
+      absolute_after
+      absolute_before
+      after
+      before
+      closing
+      context_settings
+      get
+      grob_overrides
+      grob_reverts
+      indent
+      opening
+      sort_overrides
+      tag_format_contributions
+      update
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: LilyPondFormatBundle.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Methods
+      :class: class-header
+
+   .. automethod:: LilyPondFormatBundle.get
+
+   .. automethod:: LilyPondFormatBundle.sort_overrides
+
+   .. automethod:: LilyPondFormatBundle.tag_format_contributions
+
+   .. automethod:: LilyPondFormatBundle.update
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: LilyPondFormatBundle.absolute_after
+
+   .. autoattribute:: LilyPondFormatBundle.absolute_before
+
+   .. autoattribute:: LilyPondFormatBundle.after
+
+   .. autoattribute:: LilyPondFormatBundle.before
+
+   .. autoattribute:: LilyPondFormatBundle.closing
+
+   .. autoattribute:: LilyPondFormatBundle.context_settings
+
+   .. autoattribute:: LilyPondFormatBundle.grob_overrides
+
+   .. autoattribute:: LilyPondFormatBundle.grob_reverts
+
+   .. autoattribute:: LilyPondFormatBundle.opening
+
+.. autoclass:: SlotContributions
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __repr__
+      articulations
+      commands
+      comments
+      get
+      has_contributions
+      indicators
+      leaks
+      markup
+      spanner_starts
+      spanner_stops
+      spanners
+      stem_tremolos
+      tag
+      trill_spanner_starts
+      update
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: SlotContributions.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Methods
+      :class: class-header
+
+   .. automethod:: SlotContributions.get
+
+   .. automethod:: SlotContributions.tag
+
+   .. automethod:: SlotContributions.update
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: SlotContributions.articulations
+
+   .. autoattribute:: SlotContributions.commands
+
+   .. autoattribute:: SlotContributions.comments
+
+   .. autoattribute:: SlotContributions.has_contributions
+
+   .. autoattribute:: SlotContributions.indicators
+
+   .. autoattribute:: SlotContributions.leaks
+
+   .. autoattribute:: SlotContributions.markup
+
+   .. autoattribute:: SlotContributions.spanner_starts
+
+   .. autoattribute:: SlotContributions.spanner_stops
+
+   .. autoattribute:: SlotContributions.spanners
+
+   .. autoattribute:: SlotContributions.stem_tremolos
+
+   .. autoattribute:: SlotContributions.trill_spanner_starts

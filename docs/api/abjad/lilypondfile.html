@@ -1,0 +1,1361 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
+
+    <meta name="generator" content="sphinx-3.5.3, furo 2021.03.20.beta30"/>
+        <title>lilypondfile - muda 28/03/2021 documentation</title>
+      <link rel="stylesheet" href="../../_static/styles/furo.css?digest=978e1795dfe158b585dda6a8417f6411828bf3ed">
+    <link rel="stylesheet" href="../../_static/pygments.css">
+    <link media="(prefers-color-scheme: dark)" rel="stylesheet" href="../../_static/pygments_dark.css">
+    
+
+
+<style>
+  :root {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+  }
+
+  /* For allowing end-user-specific overrides */
+  .override-light {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  .override-dark {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+</style><link rel="stylesheet" type="text/css" href="../../_static/abjad.css" />
+    <link rel="stylesheet" href="../../_static/styles/furo-extensions.css?digest=d391b54134226e4196576da3bdb6dddb7e05ba2b"></head>
+  <body dir="">
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z"/>
+      <line x1="4" y1="6" x2="20" y2="6" />
+      <line x1="10" y1="12" x2="20" y2="12" />
+      <line x1="6" y1="18" x2="20" y2="18" />
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">muda 28/03/2021 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">muda 28/03/2021 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html">
+  <input class="sidebar-search" placeholder=Search name="q">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form><div class="sidebar-scroll"><div class="sidebar-tree">
+  
+</div>
+</div>
+      </div>
+      
+    </div>
+  </aside>
+  <main class="main">
+    <div class="content">
+      <article role="main">
+        <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+        </label>
+        <div class="section" id="module-abjad.lilypondfile">
+<span id="lilypondfile"></span><span id="abjad-lilypondfile"></span><h1>lilypondfile<a class="headerlink" href="#module-abjad.lilypondfile" title="Permalink to this headline">¶</a></h1>
+<div class="svg-container docutils container">
+</div>
+<hr/><p class="section-header rubric">Classes</p>
+<dl class="py class">
+<dt id="abjad.lilypondfile.Block">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">abjad.lilypondfile.</span></code><code class="sig-name descname"><span class="pre">Block</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'score'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.lilypondfile.Block" title="Permalink to this definition">¶</a></dt>
+<dd><p>LilyPond file block.</p>
+<div class="example docutils container">
+<p>REGRESSION. Blocks remember attribute assignment order.</p>
+<p>Here right margin precedes left margin even though left margin
+alphabetizes before right margin:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">block</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Block</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"paper"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">right_margin</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondDimension</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">"cm"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">left_margin</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondDimension</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">"cm"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span>
+<span class="go">&lt;Block(name='paper')&gt;</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">string</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">lilypond</span><span class="p">(</span><span class="n">block</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+<span class="go">\paper {</span>
+<span class="go">    right-margin = 2\cm</span>
+<span class="go">    left-margin = 2\cm</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</div>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">block</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Block</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'score'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">markup</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Markup</span><span class="p">(</span><span class="s1">'foo'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">markup</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span>
+<span class="go">&lt;Block(name='score')&gt;</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">string</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">lilypond</span><span class="p">(</span><span class="n">block</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+<span class="go">\score {</span>
+<span class="go">    {</span>
+<span class="go">        \markup { foo }</span>
+<span class="go">    }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</div>
+<hr/><p class="class-header rubric">Attributes Summary</p>
+<hr/><p class="class-header rubric">Special methods</p>
+<dl class="py method">
+<dt id="abjad.lilypondfile.Block.__delattr__">
+<code class="sig-name descname"><span class="pre">__delattr__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span> → <span class="pre">None</span><a class="headerlink" href="#abjad.lilypondfile.Block.__delattr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes block attribute with <code class="docutils literal notranslate"><span class="pre">name</span></code>.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">header_block</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Block</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"header"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">header_block</span><span class="o">.</span><span class="n">tagline</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">header_block</span><span class="o">.</span><span class="n">tagline</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">delattr</span><span class="p">(</span><span class="n">header_block</span><span class="p">,</span> <span class="s2">"tagline"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">hasattr</span><span class="p">(</span><span class="n">header_block</span><span class="p">,</span> <span class="s2">"tagline"</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<dl class="py method">
+<dt id="abjad.lilypondfile.Block.__getitem__">
+<code class="sig-name descname"><span class="pre">__getitem__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.lilypondfile.Block.__getitem__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets item with <code class="docutils literal notranslate"><span class="pre">name</span></code>.</p>
+<div class="example docutils container">
+<p>Gets score with name <code class="docutils literal notranslate"><span class="pre">'Red</span> <span class="pre">Example</span> <span class="pre">Score'</span></code> in score block:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">block</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Block</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"score"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">score</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Score</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"Red_Example_Score"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="p">[</span><span class="s2">"Red_Example_Score"</span><span class="p">]</span>
+<span class="go">Score(simultaneous=True, name='Red_Example_Score')</span>
+</pre></div>
+</div>
+</div>
+<p>Returns item.</p>
+<p>Raises key error when no item with <code class="docutils literal notranslate"><span class="pre">name</span></code> is found.</p>
+</dd></dl>
+<dl class="py method">
+<dt id="abjad.lilypondfile.Block.__repr__">
+<code class="sig-name descname"><span class="pre">__repr__</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> → <span class="pre">str</span><a class="headerlink" href="#abjad.lilypondfile.Block.__repr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets interpreter representation.</p>
+</dd></dl>
+<dl class="py method">
+<dt id="abjad.lilypondfile.Block.__setattr__">
+<code class="sig-name descname"><span class="pre">__setattr__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.lilypondfile.Block.__setattr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets block <code class="docutils literal notranslate"><span class="pre">name</span></code> to <code class="docutils literal notranslate"><span class="pre">value</span></code>.</p>
+<p>Returns none.</p>
+</dd></dl>
+<hr/><p class="class-header rubric">Methods</p>
+<dl class="py method">
+<dt id="abjad.lilypondfile.Block.empty">
+<code class="sig-name descname"><span class="pre">empty</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> → <span class="pre">bool</span><a class="headerlink" href="#abjad.lilypondfile.Block.empty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is true when block contains no items and has no user attributes.</p>
+</dd></dl>
+<hr/><p class="class-header rubric">Read-only properties</p>
+<dl class="py attribute">
+<dt id="abjad.lilypondfile.Block.items">
+<code class="sig-name descname"><span class="pre">items</span></code><a class="headerlink" href="#abjad.lilypondfile.Block.items" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets items in block.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">block</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Block</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"score"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">markup</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Markup</span><span class="p">(</span><span class="s2">"foo"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">markup</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">items</span>
+<span class="go">[Markup(contents=['foo'])]</span>
+</pre></div>
+</div>
+</div>
+<div class="example docutils container">
+<p>Accepts strings:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">staff</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Staff</span><span class="p">(</span><span class="s2">"c'4 d' e' f'"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">score_block</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Block</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"score"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">score_block</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"&lt;&lt;"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">score_block</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">r</span><span class="s1">'{ \include "layout.ly" }'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">score_block</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">staff</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">score_block</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"&gt;&gt;"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondFile</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">lilypond_language_token</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">lilypond_version_token</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">score_block</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">string</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">lilypond</span><span class="p">(</span><span class="n">lilypond_file</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+<span class="go">\score {</span>
+<span class="go">    &lt;&lt;</span>
+<span class="go">    { \include "layout.ly" }</span>
+<span class="go">    \new Staff</span>
+<span class="go">    {</span>
+<span class="go">        c'4</span>
+<span class="go">        d'4</span>
+<span class="go">        e'4</span>
+<span class="go">        f'4</span>
+<span class="go">    }</span>
+<span class="go">    &gt;&gt;</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</div>
+<p>Returns list.</p>
+</dd></dl>
+<dl class="py attribute">
+<dt id="abjad.lilypondfile.Block.name">
+<code class="sig-name descname"><span class="pre">name</span></code><a class="headerlink" href="#abjad.lilypondfile.Block.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets name of block.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">block</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Block</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"score"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">markup</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Markup</span><span class="p">(</span><span class="s2">"foo"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">markup</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">name</span>
+<span class="go">'score'</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt id="abjad.lilypondfile.ContextBlock">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">abjad.lilypondfile.</span></code><code class="sig-name descname"><span class="pre">ContextBlock</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_lilypond_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alias</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.lilypondfile.ContextBlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>LilyPond file <code class="docutils literal notranslate"><span class="pre">\context</span></code> block.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">block</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">ContextBlock</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">source_lilypond_type</span><span class="o">=</span><span class="s2">"Staff"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">name</span><span class="o">=</span><span class="s2">"FluteStaff"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">type_</span><span class="o">=</span><span class="s2">"Engraver_group"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">alias</span><span class="o">=</span><span class="s2">"Staff"</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">remove_commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"Forbid_line_break_engraver"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">consists_commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"Horizontal_bracket_engraver"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">accepts_commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"FluteUpperVoice"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">accepts_commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"FluteLowerVoice"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\accidentalStyle dodecaphonic"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">override</span><span class="p">(</span><span class="n">block</span><span class="p">)</span><span class="o">.</span><span class="n">Beam</span><span class="o">.</span><span class="n">positions</span> <span class="o">=</span> <span class="s2">"#'(-4 . -4)"</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">override</span><span class="p">(</span><span class="n">block</span><span class="p">)</span><span class="o">.</span><span class="n">Stem</span><span class="o">.</span><span class="n">stem_end_position</span> <span class="o">=</span> <span class="o">-</span><span class="mi">6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">setting</span><span class="p">(</span><span class="n">block</span><span class="p">)</span><span class="o">.</span><span class="n">autoBeaming</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">setting</span><span class="p">(</span><span class="n">block</span><span class="p">)</span><span class="o">.</span><span class="n">tupletFullLength</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span>
+<span class="go">&lt;ContextBlock(source_lilypond_type='Staff', name='FluteStaff', type_='Engraver_group', alias='Staff')&gt;</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">abjad</span><span class="o">.</span><span class="n">lilypond</span><span class="p">(</span><span class="n">block</span><span class="p">))</span>
+<span class="go">\context {</span>
+<span class="go">    \Staff</span>
+<span class="go">    \name FluteStaff</span>
+<span class="go">    \type Engraver_group</span>
+<span class="go">    \alias Staff</span>
+<span class="go">    \remove Forbid_line_break_engraver</span>
+<span class="go">    \consists Horizontal_bracket_engraver</span>
+<span class="go">    \accepts FluteUpperVoice</span>
+<span class="go">    \accepts FluteLowerVoice</span>
+<span class="go">    \override Beam.positions = #'(-4 . -4)</span>
+<span class="go">    \override Stem.stem-end-position = -6</span>
+<span class="go">    autoBeaming = ##f</span>
+<span class="go">    tupletFullLength = ##t</span>
+<span class="go">    \accidentalStyle dodecaphonic</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</div>
+<hr/><p class="class-header rubric">Attributes Summary</p>
+<hr/><p class="class-header rubric">Special methods</p>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.lilypondfile.ContextBlock.__delattr__">
+<code class="sig-name descname"><span class="pre">__delattr__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span> → <span class="pre">None</span><a class="headerlink" href="#abjad.lilypondfile.ContextBlock.__delattr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes block attribute with <code class="docutils literal notranslate"><span class="pre">name</span></code>.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">header_block</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Block</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"header"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">header_block</span><span class="o">.</span><span class="n">tagline</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">header_block</span><span class="o">.</span><span class="n">tagline</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">delattr</span><span class="p">(</span><span class="n">header_block</span><span class="p">,</span> <span class="s2">"tagline"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">hasattr</span><span class="p">(</span><span class="n">header_block</span><span class="p">,</span> <span class="s2">"tagline"</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+</div>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.lilypondfile.ContextBlock.__getitem__">
+<code class="sig-name descname"><span class="pre">__getitem__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.lilypondfile.ContextBlock.__getitem__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets item with <code class="docutils literal notranslate"><span class="pre">name</span></code>.</p>
+<div class="example docutils container">
+<p>Gets score with name <code class="docutils literal notranslate"><span class="pre">'Red</span> <span class="pre">Example</span> <span class="pre">Score'</span></code> in score block:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">block</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Block</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"score"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">score</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Score</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"Red_Example_Score"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="p">[</span><span class="s2">"Red_Example_Score"</span><span class="p">]</span>
+<span class="go">Score(simultaneous=True, name='Red_Example_Score')</span>
+</pre></div>
+</div>
+</div>
+<p>Returns item.</p>
+<p>Raises key error when no item with <code class="docutils literal notranslate"><span class="pre">name</span></code> is found.</p>
+</dd></dl>
+</div>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.lilypondfile.ContextBlock.__repr__">
+<code class="sig-name descname"><span class="pre">__repr__</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> → <span class="pre">str</span><a class="headerlink" href="#abjad.lilypondfile.ContextBlock.__repr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets interpreter representation.</p>
+</dd></dl>
+</div>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.lilypondfile.ContextBlock.__setattr__">
+<code class="sig-name descname"><span class="pre">__setattr__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.lilypondfile.ContextBlock.__setattr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets block <code class="docutils literal notranslate"><span class="pre">name</span></code> to <code class="docutils literal notranslate"><span class="pre">value</span></code>.</p>
+<p>Returns none.</p>
+</dd></dl>
+</div>
+<hr/><p class="class-header rubric">Methods</p>
+<div class="inherited docutils container">
+<dl class="py method">
+<dt id="abjad.lilypondfile.ContextBlock.empty">
+<code class="sig-name descname"><span class="pre">empty</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> → <span class="pre">bool</span><a class="headerlink" href="#abjad.lilypondfile.ContextBlock.empty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is true when block contains no items and has no user attributes.</p>
+</dd></dl>
+</div>
+<hr/><p class="class-header rubric">Read-only properties</p>
+<dl class="py attribute">
+<dt id="abjad.lilypondfile.ContextBlock.accepts_commands">
+<code class="sig-name descname"><span class="pre">accepts_commands</span></code><a class="headerlink" href="#abjad.lilypondfile.ContextBlock.accepts_commands" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets arguments of LilyPond <code class="docutils literal notranslate"><span class="pre">\accepts</span></code> commands.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">block</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">ContextBlock</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">source_lilypond_type</span><span class="o">=</span><span class="s2">"Staff"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">name</span><span class="o">=</span><span class="s2">"FluteStaff"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">type_</span><span class="o">=</span><span class="s2">"Engraver_group"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">alias</span><span class="o">=</span><span class="s2">"Staff"</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">remove_commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"Forbid_line_break_engraver"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">consists_commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"Horizontal_bracket_engraver"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">accepts_commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"FluteUpperVoice"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">accepts_commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"FluteLowerVoice"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\accidentalStyle dodecaphonic"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">override</span><span class="p">(</span><span class="n">block</span><span class="p">)</span><span class="o">.</span><span class="n">Beam</span><span class="o">.</span><span class="n">positions</span> <span class="o">=</span> <span class="s2">"#'(-4 . -4)"</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">override</span><span class="p">(</span><span class="n">block</span><span class="p">)</span><span class="o">.</span><span class="n">Stem</span><span class="o">.</span><span class="n">stem_end_position</span> <span class="o">=</span> <span class="o">-</span><span class="mi">6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">setting</span><span class="p">(</span><span class="n">block</span><span class="p">)</span><span class="o">.</span><span class="n">autoBeaming</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">setting</span><span class="p">(</span><span class="n">block</span><span class="p">)</span><span class="o">.</span><span class="n">tupletFullLength</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">accepts_commands</span>
+<span class="go">['FluteUpperVoice', 'FluteLowerVoice']</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<dl class="py attribute">
+<dt id="abjad.lilypondfile.ContextBlock.alias">
+<code class="sig-name descname"><span class="pre">alias</span></code><a class="headerlink" href="#abjad.lilypondfile.ContextBlock.alias" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets and sets argument of LilyPond <code class="docutils literal notranslate"><span class="pre">\alias</span></code> command.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">block</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">ContextBlock</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">source_lilypond_type</span><span class="o">=</span><span class="s2">"Staff"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">name</span><span class="o">=</span><span class="s2">"FluteStaff"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">type_</span><span class="o">=</span><span class="s2">"Engraver_group"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">alias</span><span class="o">=</span><span class="s2">"Staff"</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">remove_commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"Forbid_line_break_engraver"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">consists_commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"Horizontal_bracket_engraver"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">accepts_commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"FluteUpperVoice"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">accepts_commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"FluteLowerVoice"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\accidentalStyle dodecaphonic"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">override</span><span class="p">(</span><span class="n">block</span><span class="p">)</span><span class="o">.</span><span class="n">Beam</span><span class="o">.</span><span class="n">positions</span> <span class="o">=</span> <span class="s2">"#'(-4 . -4)"</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">override</span><span class="p">(</span><span class="n">block</span><span class="p">)</span><span class="o">.</span><span class="n">Stem</span><span class="o">.</span><span class="n">stem_end_position</span> <span class="o">=</span> <span class="o">-</span><span class="mi">6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">setting</span><span class="p">(</span><span class="n">block</span><span class="p">)</span><span class="o">.</span><span class="n">autoBeaming</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">setting</span><span class="p">(</span><span class="n">block</span><span class="p">)</span><span class="o">.</span><span class="n">tupletFullLength</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">alias</span>
+<span class="go">'Staff'</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<dl class="py attribute">
+<dt id="abjad.lilypondfile.ContextBlock.consists_commands">
+<code class="sig-name descname"><span class="pre">consists_commands</span></code><a class="headerlink" href="#abjad.lilypondfile.ContextBlock.consists_commands" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets arguments of LilyPond <code class="docutils literal notranslate"><span class="pre">\consists</span></code> commands.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">block</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">ContextBlock</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">source_lilypond_type</span><span class="o">=</span><span class="s2">"Staff"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">name</span><span class="o">=</span><span class="s2">"FluteStaff"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">type_</span><span class="o">=</span><span class="s2">"Engraver_group"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">alias</span><span class="o">=</span><span class="s2">"Staff"</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">remove_commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"Forbid_line_break_engraver"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">consists_commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"Horizontal_bracket_engraver"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">accepts_commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"FluteUpperVoice"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">accepts_commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"FluteLowerVoice"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\accidentalStyle dodecaphonic"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">override</span><span class="p">(</span><span class="n">block</span><span class="p">)</span><span class="o">.</span><span class="n">Beam</span><span class="o">.</span><span class="n">positions</span> <span class="o">=</span> <span class="s2">"#'(-4 . -4)"</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">override</span><span class="p">(</span><span class="n">block</span><span class="p">)</span><span class="o">.</span><span class="n">Stem</span><span class="o">.</span><span class="n">stem_end_position</span> <span class="o">=</span> <span class="o">-</span><span class="mi">6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">setting</span><span class="p">(</span><span class="n">block</span><span class="p">)</span><span class="o">.</span><span class="n">autoBeaming</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">setting</span><span class="p">(</span><span class="n">block</span><span class="p">)</span><span class="o">.</span><span class="n">tupletFullLength</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">consists_commands</span>
+<span class="go">['Horizontal_bracket_engraver']</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<dl class="py attribute">
+<dt id="abjad.lilypondfile.ContextBlock.items">
+<code class="sig-name descname"><span class="pre">items</span></code><a class="headerlink" href="#abjad.lilypondfile.ContextBlock.items" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets items in context block.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">block</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">ContextBlock</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">source_lilypond_type</span><span class="o">=</span><span class="s2">"Staff"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">name</span><span class="o">=</span><span class="s2">"FluteStaff"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">type_</span><span class="o">=</span><span class="s2">"Engraver_group"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">alias</span><span class="o">=</span><span class="s2">"Staff"</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">remove_commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"Forbid_line_break_engraver"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">consists_commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"Horizontal_bracket_engraver"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">accepts_commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"FluteUpperVoice"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">accepts_commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"FluteLowerVoice"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\accidentalStyle dodecaphonic"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">override</span><span class="p">(</span><span class="n">block</span><span class="p">)</span><span class="o">.</span><span class="n">Beam</span><span class="o">.</span><span class="n">positions</span> <span class="o">=</span> <span class="s2">"#'(-4 . -4)"</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">override</span><span class="p">(</span><span class="n">block</span><span class="p">)</span><span class="o">.</span><span class="n">Stem</span><span class="o">.</span><span class="n">stem_end_position</span> <span class="o">=</span> <span class="o">-</span><span class="mi">6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">setting</span><span class="p">(</span><span class="n">block</span><span class="p">)</span><span class="o">.</span><span class="n">autoBeaming</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">setting</span><span class="p">(</span><span class="n">block</span><span class="p">)</span><span class="o">.</span><span class="n">tupletFullLength</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">items</span>
+<span class="go">['\\accidentalStyle dodecaphonic']</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<dl class="py attribute">
+<dt id="abjad.lilypondfile.ContextBlock.name">
+<code class="sig-name descname"><span class="pre">name</span></code><a class="headerlink" href="#abjad.lilypondfile.ContextBlock.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets and sets argument of LilyPond <code class="docutils literal notranslate"><span class="pre">\name</span></code> command.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">block</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">ContextBlock</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">source_lilypond_type</span><span class="o">=</span><span class="s2">"Staff"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">name</span><span class="o">=</span><span class="s2">"FluteStaff"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">type_</span><span class="o">=</span><span class="s2">"Engraver_group"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">alias</span><span class="o">=</span><span class="s2">"Staff"</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">remove_commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"Forbid_line_break_engraver"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">consists_commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"Horizontal_bracket_engraver"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">accepts_commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"FluteUpperVoice"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">accepts_commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"FluteLowerVoice"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\accidentalStyle dodecaphonic"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">override</span><span class="p">(</span><span class="n">block</span><span class="p">)</span><span class="o">.</span><span class="n">Beam</span><span class="o">.</span><span class="n">positions</span> <span class="o">=</span> <span class="s2">"#'(-4 . -4)"</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">override</span><span class="p">(</span><span class="n">block</span><span class="p">)</span><span class="o">.</span><span class="n">Stem</span><span class="o">.</span><span class="n">stem_end_position</span> <span class="o">=</span> <span class="o">-</span><span class="mi">6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">setting</span><span class="p">(</span><span class="n">block</span><span class="p">)</span><span class="o">.</span><span class="n">autoBeaming</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">setting</span><span class="p">(</span><span class="n">block</span><span class="p">)</span><span class="o">.</span><span class="n">tupletFullLength</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">name</span>
+<span class="go">'FluteStaff'</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<dl class="py attribute">
+<dt id="abjad.lilypondfile.ContextBlock.remove_commands">
+<code class="sig-name descname"><span class="pre">remove_commands</span></code><a class="headerlink" href="#abjad.lilypondfile.ContextBlock.remove_commands" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets arguments of LilyPond <code class="docutils literal notranslate"><span class="pre">\remove</span></code> commands.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">block</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">ContextBlock</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">source_lilypond_type</span><span class="o">=</span><span class="s2">"Staff"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">name</span><span class="o">=</span><span class="s2">"FluteStaff"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">type_</span><span class="o">=</span><span class="s2">"Engraver_group"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">alias</span><span class="o">=</span><span class="s2">"Staff"</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">remove_commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"Forbid_line_break_engraver"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">consists_commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"Horizontal_bracket_engraver"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">accepts_commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"FluteUpperVoice"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">accepts_commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"FluteLowerVoice"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\accidentalStyle dodecaphonic"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">override</span><span class="p">(</span><span class="n">block</span><span class="p">)</span><span class="o">.</span><span class="n">Beam</span><span class="o">.</span><span class="n">positions</span> <span class="o">=</span> <span class="s2">"#'(-4 . -4)"</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">override</span><span class="p">(</span><span class="n">block</span><span class="p">)</span><span class="o">.</span><span class="n">Stem</span><span class="o">.</span><span class="n">stem_end_position</span> <span class="o">=</span> <span class="o">-</span><span class="mi">6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">setting</span><span class="p">(</span><span class="n">block</span><span class="p">)</span><span class="o">.</span><span class="n">autoBeaming</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">setting</span><span class="p">(</span><span class="n">block</span><span class="p">)</span><span class="o">.</span><span class="n">tupletFullLength</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">remove_commands</span>
+<span class="go">['Forbid_line_break_engraver']</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<dl class="py attribute">
+<dt id="abjad.lilypondfile.ContextBlock.source_lilypond_type">
+<code class="sig-name descname"><span class="pre">source_lilypond_type</span></code><a class="headerlink" href="#abjad.lilypondfile.ContextBlock.source_lilypond_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets and sets source context name.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">block</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">ContextBlock</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">source_lilypond_type</span><span class="o">=</span><span class="s2">"Staff"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">name</span><span class="o">=</span><span class="s2">"FluteStaff"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">type_</span><span class="o">=</span><span class="s2">"Engraver_group"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">alias</span><span class="o">=</span><span class="s2">"Staff"</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">remove_commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"Forbid_line_break_engraver"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">consists_commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"Horizontal_bracket_engraver"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">accepts_commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"FluteUpperVoice"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">accepts_commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"FluteLowerVoice"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\accidentalStyle dodecaphonic"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">override</span><span class="p">(</span><span class="n">block</span><span class="p">)</span><span class="o">.</span><span class="n">Beam</span><span class="o">.</span><span class="n">positions</span> <span class="o">=</span> <span class="s2">"#'(-4 . -4)"</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">override</span><span class="p">(</span><span class="n">block</span><span class="p">)</span><span class="o">.</span><span class="n">Stem</span><span class="o">.</span><span class="n">stem_end_position</span> <span class="o">=</span> <span class="o">-</span><span class="mi">6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">setting</span><span class="p">(</span><span class="n">block</span><span class="p">)</span><span class="o">.</span><span class="n">autoBeaming</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">setting</span><span class="p">(</span><span class="n">block</span><span class="p">)</span><span class="o">.</span><span class="n">tupletFullLength</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">source_lilypond_type</span>
+<span class="go">'Staff'</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<dl class="py attribute">
+<dt id="abjad.lilypondfile.ContextBlock.type_">
+<code class="sig-name descname"><span class="pre">type_</span></code><a class="headerlink" href="#abjad.lilypondfile.ContextBlock.type_" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets and sets argument of LilyPond <code class="docutils literal notranslate"><span class="pre">\type</span></code> command.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">block</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">ContextBlock</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">source_lilypond_type</span><span class="o">=</span><span class="s2">"Staff"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">name</span><span class="o">=</span><span class="s2">"FluteStaff"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">type_</span><span class="o">=</span><span class="s2">"Engraver_group"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">alias</span><span class="o">=</span><span class="s2">"Staff"</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">remove_commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"Forbid_line_break_engraver"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">consists_commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"Horizontal_bracket_engraver"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">accepts_commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"FluteUpperVoice"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">accepts_commands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"FluteLowerVoice"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\accidentalStyle dodecaphonic"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">override</span><span class="p">(</span><span class="n">block</span><span class="p">)</span><span class="o">.</span><span class="n">Beam</span><span class="o">.</span><span class="n">positions</span> <span class="o">=</span> <span class="s2">"#'(-4 . -4)"</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">override</span><span class="p">(</span><span class="n">block</span><span class="p">)</span><span class="o">.</span><span class="n">Stem</span><span class="o">.</span><span class="n">stem_end_position</span> <span class="o">=</span> <span class="o">-</span><span class="mi">6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">setting</span><span class="p">(</span><span class="n">block</span><span class="p">)</span><span class="o">.</span><span class="n">autoBeaming</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">setting</span><span class="p">(</span><span class="n">block</span><span class="p">)</span><span class="o">.</span><span class="n">tupletFullLength</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">type_</span>
+<span class="go">'Engraver_group'</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt id="abjad.lilypondfile.DateTimeToken">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">abjad.lilypondfile.</span></code><code class="sig-name descname"><span class="pre">DateTimeToken</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">date_string</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.lilypondfile.DateTimeToken" title="Permalink to this definition">¶</a></dt>
+<dd><p>LilyPond file date / time token.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">DateTimeToken</span><span class="p">()</span>
+<span class="go">DateTimeToken()</span>
+</pre></div>
+</div>
+</div>
+<hr/><p class="class-header rubric">Attributes Summary</p>
+<hr/><p class="class-header rubric">Special methods</p>
+<dl class="py method">
+<dt id="abjad.lilypondfile.DateTimeToken.__repr__">
+<code class="sig-name descname"><span class="pre">__repr__</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> → <span class="pre">str</span><a class="headerlink" href="#abjad.lilypondfile.DateTimeToken.__repr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets interpreter representation of date / time token.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">DateTimeToken</span><span class="p">()</span>
+<span class="go">DateTimeToken()</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<hr/><p class="class-header rubric">Read-only properties</p>
+<dl class="py attribute">
+<dt id="abjad.lilypondfile.DateTimeToken.date_string">
+<code class="sig-name descname"><span class="pre">date_string</span></code><a class="headerlink" href="#abjad.lilypondfile.DateTimeToken.date_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets date string of date / time token.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">token</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">DateTimeToken</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">token</span><span class="o">.</span><span class="n">date_string</span> 
+<span class="go">'2014-01-23 12:21'</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt id="abjad.lilypondfile.LilyPondDimension">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">abjad.lilypondfile.</span></code><code class="sig-name descname"><span class="pre">LilyPondDimension</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cm'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.lilypondfile.LilyPondDimension" title="Permalink to this definition">¶</a></dt>
+<dd><p>LilyPond file <code class="docutils literal notranslate"><span class="pre">\paper</span></code> block dimension.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondDimension</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">"in"</span><span class="p">)</span>
+<span class="go">LilyPondDimension(value=2, unit='in')</span>
+</pre></div>
+</div>
+</div>
+<p>Use for LilyPond file <code class="docutils literal notranslate"><span class="pre">\paper</span></code> block attributes.</p>
+<hr/><p class="class-header rubric">Attributes Summary</p>
+<hr/><p class="class-header rubric">Special methods</p>
+<dl class="py method">
+<dt id="abjad.lilypondfile.LilyPondDimension.__repr__">
+<code class="sig-name descname"><span class="pre">__repr__</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> → <span class="pre">str</span><a class="headerlink" href="#abjad.lilypondfile.LilyPondDimension.__repr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets interpreter representation.</p>
+</dd></dl>
+<hr/><p class="class-header rubric">Read-only properties</p>
+<dl class="py attribute">
+<dt id="abjad.lilypondfile.LilyPondDimension.unit">
+<code class="sig-name descname"><span class="pre">unit</span></code><a class="headerlink" href="#abjad.lilypondfile.LilyPondDimension.unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets unit of LilyPond dimension.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dimension</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondDimension</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">"in"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dimension</span><span class="o">.</span><span class="n">unit</span>
+<span class="go">'in'</span>
+</pre></div>
+</div>
+</div>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">'cm'</span></code>, <code class="docutils literal notranslate"><span class="pre">'in'</span></code>, <code class="docutils literal notranslate"><span class="pre">'mm'</span></code> or <code class="docutils literal notranslate"><span class="pre">'pt'</span></code>.</p>
+</dd></dl>
+<dl class="py attribute">
+<dt id="abjad.lilypondfile.LilyPondDimension.value">
+<code class="sig-name descname"><span class="pre">value</span></code><a class="headerlink" href="#abjad.lilypondfile.LilyPondDimension.value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets value of LilyPond dimension.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dimension</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondDimension</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">"in"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dimension</span><span class="o">.</span><span class="n">value</span>
+<span class="go">2</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt id="abjad.lilypondfile.LilyPondFile">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">abjad.lilypondfile.</span></code><code class="sig-name descname"><span class="pre">LilyPondFile</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_time_token</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_paper_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">global_staff_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">includes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">items</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lilypond_language_token</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lilypond_version_token</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="tag.html#abjad.tag.Tag" title="abjad.tag.Tag"><span class="pre">abjad.tag.Tag</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_relative_includes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.lilypondfile.LilyPondFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>LilyPond file.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">staff</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Staff</span><span class="p">(</span><span class="s2">"c'8 d'8 e'8 f'8"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">comments</span> <span class="o">=</span> <span class="p">[</span>
+<span class="gp">... </span>    <span class="s2">"File construct as an example."</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s2">"Parts shown here for positioning."</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">includes</span> <span class="o">=</span> <span class="p">[</span>
+<span class="gp">... </span>    <span class="s2">"external-settings-file-1.ily"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s2">"external-settings-file-2.ily"</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondFile</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">items</span><span class="o">=</span><span class="p">[</span><span class="n">staff</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="n">default_paper_size</span><span class="o">=</span><span class="p">(</span><span class="s2">"a5"</span><span class="p">,</span> <span class="s2">"portrait"</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="n">comments</span><span class="o">=</span><span class="n">comments</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">includes</span><span class="o">=</span><span class="n">includes</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">global_staff_size</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">lilypond_file</span><span class="p">)</span> 
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">abjad</span><span class="o">.</span><span class="n">lilypond</span><span class="p">(</span><span class="n">lilypond_file</span><span class="p">))</span> 
+<span class="go">% File construct as an example.</span>
+<span class="go">% Parts shown here for positioning.</span>
+
+<span class="go">\version "2.23.0"</span>
+<span class="go">\language "english"</span>
+
+<span class="go">\include "external-settings-file-1.ily"</span>
+<span class="go">\include "external-settings-file-2.ily"</span>
+
+<span class="go">#(set-default-paper-size "a5" 'portrait)</span>
+<span class="go">#(set-global-staff-size 16)</span>
+
+<span class="go">\new Staff</span>
+<span class="go">{</span>
+<span class="go">    c'8</span>
+<span class="go">    d'8</span>
+<span class="go">    e'8</span>
+<span class="go">    f'8</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</div>
+<hr/><p class="class-header rubric">Attributes Summary</p>
+<hr/><p class="class-header rubric">Special methods</p>
+<dl class="py method">
+<dt id="abjad.lilypondfile.LilyPondFile.__contains__">
+<code class="sig-name descname"><span class="pre">__contains__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">argument</span></span></em><span class="sig-paren">)</span> → <span class="pre">bool</span><a class="headerlink" href="#abjad.lilypondfile.LilyPondFile.__contains__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is true when LilyPond file contains <code class="docutils literal notranslate"><span class="pre">argument</span></code>.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">staff</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Staff</span><span class="p">(</span><span class="s2">"c'4 d' e' f'"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondFile</span><span class="p">(</span><span class="n">items</span><span class="o">=</span><span class="p">[</span><span class="n">staff</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">staff</span> <span class="ow">in</span> <span class="n">lilypond_file</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">Staff</span> <span class="ow">in</span> <span class="n">lilypond_file</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="s2">"Allegro"</span> <span class="ow">in</span> <span class="n">lilypond_file</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">0</span> <span class="ow">in</span> <span class="n">lilypond_file</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<dl class="py method">
+<dt id="abjad.lilypondfile.LilyPondFile.__getitem__">
+<code class="sig-name descname"><span class="pre">__getitem__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.lilypondfile.LilyPondFile.__getitem__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets item with <code class="docutils literal notranslate"><span class="pre">name</span></code>.</p>
+<div class="example docutils container">
+<p>Searches score:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">voice_1</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Voice</span><span class="p">(</span><span class="s2">"c''4 b' a' g'"</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"Custom_Voice_1"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">literal</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondLiteral</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\voiceOne"</span><span class="p">,</span> <span class="s2">"opening"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">literal</span><span class="p">,</span> <span class="n">voice_1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">voice_2</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Voice</span><span class="p">(</span><span class="s2">"c'4 d' e' f'"</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"Custom_Voice_2"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">literal</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondLiteral</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\voiceTwo"</span><span class="p">,</span> <span class="s2">"opening"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">literal</span><span class="p">,</span> <span class="n">voice_2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">staff</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Staff</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="n">voice_1</span><span class="p">,</span> <span class="n">voice_2</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="n">simultaneous</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">name</span><span class="o">=</span><span class="s2">"Custom_Staff"</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">score</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Score</span><span class="p">([</span><span class="n">staff</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">"Custom_Score"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Block</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"score"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondFile</span><span class="p">(</span><span class="n">items</span><span class="o">=</span><span class="p">[</span><span class="n">block</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">score</span><span class="p">)</span> 
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span><span class="p">[</span><span class="s2">"score"</span><span class="p">]</span>
+<span class="go">&lt;Block(name='score')&gt;</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span><span class="p">[</span><span class="s2">"Custom_Score"</span><span class="p">]</span>
+<span class="go">&lt;Score-"Custom_Score"&lt;&lt;1&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span><span class="p">[</span><span class="n">abjad</span><span class="o">.</span><span class="n">Score</span><span class="p">]</span>
+<span class="go">&lt;Score-"Custom_Score"&lt;&lt;1&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span><span class="p">[</span><span class="s2">"Custom_Staff"</span><span class="p">]</span>
+<span class="go">&lt;Staff-"Custom_Staff"&lt;&lt;2&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span><span class="p">[</span><span class="n">abjad</span><span class="o">.</span><span class="n">Staff</span><span class="p">]</span>
+<span class="go">&lt;Staff-"Custom_Staff"&lt;&lt;2&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span><span class="p">[</span><span class="s2">"Custom_Voice_1"</span><span class="p">]</span>
+<span class="go">Voice("c''4 b'4 a'4 g'4", name='Custom_Voice_1')</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span><span class="p">[</span><span class="s2">"Custom_Voice_2"</span><span class="p">]</span>
+<span class="go">Voice("c'4 d'4 e'4 f'4", name='Custom_Voice_2')</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span><span class="p">[</span><span class="n">abjad</span><span class="o">.</span><span class="n">Voice</span><span class="p">]</span>
+<span class="go">Voice("c''4 b'4 a'4 g'4", name='Custom_Voice_1')</span>
+</pre></div>
+</div>
+</div>
+<div class="example docutils container">
+<p>REGRESSION. Works when score block contains parallel container:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">include_container</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Container</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">string</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">'\include "layout.ly"'</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">literal</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondLiteral</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="s2">"opening"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">literal</span><span class="p">,</span> <span class="n">include_container</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">staff</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Staff</span><span class="p">(</span><span class="s2">"c'4 d' e' f'"</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"Custom_Staff"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">container</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="n">include_container</span><span class="p">,</span> <span class="n">staff</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="n">simultaneous</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Block</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"score"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">block</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">container</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondFile</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">items</span><span class="o">=</span><span class="p">[</span><span class="n">block</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="n">lilypond_language_token</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">lilypond_version_token</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">string</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">lilypond</span><span class="p">(</span><span class="n">lilypond_file</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+<span class="go">\score {</span>
+<span class="go">    &lt;&lt;</span>
+<span class="go">        {</span>
+<span class="go">            \include "layout.ly"</span>
+<span class="go">        }</span>
+<span class="go">        \context Staff = "Custom_Staff"</span>
+<span class="go">        {</span>
+<span class="go">            c'4</span>
+<span class="go">            d'4</span>
+<span class="go">            e'4</span>
+<span class="go">            f'4</span>
+<span class="go">        }</span>
+<span class="go">    &gt;&gt;</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span><span class="p">[</span><span class="n">abjad</span><span class="o">.</span><span class="n">Staff</span><span class="p">]</span>
+<span class="go">Staff("c'4 d'4 e'4 f'4", name='Custom_Staff')</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span><span class="p">[</span><span class="s1">'Custom_Staff'</span><span class="p">]</span>
+<span class="go">Staff("c'4 d'4 e'4 f'4", name='Custom_Staff')</span>
+</pre></div>
+</div>
+</div>
+<p>Returns item.</p>
+<p>Raises key error when no item with <code class="docutils literal notranslate"><span class="pre">name</span></code> is found.</p>
+</dd></dl>
+<dl class="py method">
+<dt id="abjad.lilypondfile.LilyPondFile.__illustrate__">
+<code class="sig-name descname"><span class="pre">__illustrate__</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> → <a class="reference internal" href="#abjad.lilypondfile.LilyPondFile" title="abjad.lilypondfile.LilyPondFile"><span class="pre">abjad.lilypondfile.LilyPondFile</span></a><a class="headerlink" href="#abjad.lilypondfile.LilyPondFile.__illustrate__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Illustrates LilyPond file.</p>
+<p>Returns LilyPond file unchanged.</p>
+</dd></dl>
+<dl class="py method">
+<dt id="abjad.lilypondfile.LilyPondFile.__repr__">
+<code class="sig-name descname"><span class="pre">__repr__</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> → <span class="pre">str</span><a class="headerlink" href="#abjad.lilypondfile.LilyPondFile.__repr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets interpreter representation of LilyPond file.</p>
+</dd></dl>
+<hr/><p class="class-header rubric">Methods</p>
+<dl class="py method">
+<dt id="abjad.lilypondfile.LilyPondFile.get_tag">
+<code class="sig-name descname"><span class="pre">get_tag</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">site</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.lilypondfile.LilyPondFile.get_tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets tag.</p>
+</dd></dl>
+<hr/><p class="class-header rubric">Class &amp; static methods</p>
+<dl class="py method">
+<dt id="abjad.lilypondfile.LilyPondFile.rhythm">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">rhythm</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">selections</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">divisions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attach_lilypond_voice_commands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">implicit_scaling</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pitched_staff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simultaneous_selections</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_signatures</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> → <a class="reference internal" href="#abjad.lilypondfile.LilyPondFile" title="abjad.lilypondfile.LilyPondFile"><span class="pre">abjad.lilypondfile.LilyPondFile</span></a><a class="headerlink" href="#abjad.lilypondfile.LilyPondFile.rhythm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes rhythm-styled LilyPond file.</p>
+<div class="example docutils container">
+<p>Makes rhythmic staff:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">divisions</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">maker</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">NoteMaker</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">selections</span> <span class="o">=</span> <span class="p">[</span>
+<span class="gp">... </span>    <span class="n">maker</span><span class="p">(</span><span class="mi">6</span> <span class="o">*</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">)]),</span>
+<span class="gp">... </span>    <span class="n">maker</span><span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">16</span><span class="p">)]),</span>
+<span class="gp">... </span>    <span class="n">maker</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">)]),</span>
+<span class="gp">... </span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">selection</span> <span class="ow">in</span> <span class="n">selections</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">abjad</span><span class="o">.</span><span class="n">beam</span><span class="p">(</span><span class="n">selection</span><span class="p">[:])</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondFile</span><span class="o">.</span><span class="n">rhythm</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">selections</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">divisions</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">lilypond_file</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="example docutils container">
+<p>Set time signatures explicitly:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">divisions</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">maker</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">NoteMaker</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">selections</span> <span class="o">=</span> <span class="p">[</span>
+<span class="gp">... </span>    <span class="n">maker</span><span class="p">(</span><span class="mi">6</span> <span class="o">*</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">)]),</span>
+<span class="gp">... </span>    <span class="n">maker</span><span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">16</span><span class="p">)]),</span>
+<span class="gp">... </span>    <span class="n">maker</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">)]),</span>
+<span class="gp">... </span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">selection</span> <span class="ow">in</span> <span class="n">selections</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">abjad</span><span class="o">.</span><span class="n">beam</span><span class="p">(</span><span class="n">selection</span><span class="p">[:])</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondFile</span><span class="o">.</span><span class="n">rhythm</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">selections</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="p">[(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">)],</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">lilypond_file</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="example docutils container">
+<p>Makes pitched staff:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">divisions</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">maker</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">NoteMaker</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">selections</span> <span class="o">=</span> <span class="p">[</span>
+<span class="gp">... </span>    <span class="n">maker</span><span class="p">(</span><span class="mi">6</span> <span class="o">*</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">)]),</span>
+<span class="gp">... </span>    <span class="n">maker</span><span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">16</span><span class="p">)]),</span>
+<span class="gp">... </span>    <span class="n">maker</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">)]),</span>
+<span class="gp">... </span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">selection</span> <span class="ow">in</span> <span class="n">selections</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">abjad</span><span class="o">.</span><span class="n">beam</span><span class="p">(</span><span class="n">selection</span><span class="p">[:])</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondFile</span><span class="o">.</span><span class="n">rhythm</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">selections</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">divisions</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">pitched_staff</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">lilypond_file</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="example docutils container">
+<p>Makes simultaneous voices:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">divisions</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">maker</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">NoteMaker</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">selections</span> <span class="o">=</span> <span class="p">[</span>
+<span class="gp">... </span>    <span class="n">maker</span><span class="p">(</span><span class="mi">6</span> <span class="o">*</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">)]),</span>
+<span class="gp">... </span>    <span class="n">maker</span><span class="p">(</span><span class="mi">8</span> <span class="o">*</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">16</span><span class="p">)]),</span>
+<span class="gp">... </span>    <span class="n">maker</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">)]),</span>
+<span class="gp">... </span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">selection</span> <span class="ow">in</span> <span class="n">selections</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">abjad</span><span class="o">.</span><span class="n">beam</span><span class="p">(</span><span class="n">selection</span><span class="p">[:])</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">note</span> <span class="ow">in</span> <span class="n">abjad</span><span class="o">.</span><span class="n">iterate</span><span class="p">(</span><span class="n">selections</span><span class="p">)</span><span class="o">.</span><span class="n">components</span><span class="p">(</span><span class="n">abjad</span><span class="o">.</span><span class="n">Note</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">note</span><span class="o">.</span><span class="n">written_pitch</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">NamedPitch</span><span class="p">(</span><span class="s2">"e'"</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">selection_1</span> <span class="o">=</span> <span class="n">selections</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">selections</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">selections</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">selections</span> <span class="o">=</span> <span class="p">[</span>
+<span class="gp">... </span>    <span class="n">maker</span><span class="p">(</span><span class="mi">12</span> <span class="o">*</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">16</span><span class="p">)]),</span>
+<span class="gp">... </span>    <span class="n">maker</span><span class="p">(</span><span class="mi">16</span> <span class="o">*</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">32</span><span class="p">)]),</span>
+<span class="gp">... </span>    <span class="n">maker</span><span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">16</span><span class="p">)]),</span>
+<span class="gp">... </span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">selection</span> <span class="ow">in</span> <span class="n">selections</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">abjad</span><span class="o">.</span><span class="n">beam</span><span class="p">(</span><span class="n">selection</span><span class="p">[:])</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">selection_2</span> <span class="o">=</span> <span class="n">selections</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">selections</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">selections</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">selections</span> <span class="o">=</span> <span class="p">{</span>
+<span class="gp">... </span>    <span class="s2">"Voice_1"</span><span class="p">:</span> <span class="n">selection_1</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s2">"Voice_2"</span><span class="p">:</span> <span class="n">selection_2</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondFile</span><span class="o">.</span><span class="n">rhythm</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">selections</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">divisions</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">voice_1</span> <span class="o">=</span> <span class="n">lilypond_file</span><span class="p">[</span><span class="s2">"Voice_1"</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">literal</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondLiteral</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\voiceOne"</span><span class="p">,</span> <span class="s2">"opening"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">literal</span><span class="p">,</span> <span class="n">voice_1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">voice_2</span> <span class="o">=</span> <span class="n">lilypond_file</span><span class="p">[</span><span class="s2">"Voice_2"</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">literal</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondLiteral</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\voiceTwo"</span><span class="p">,</span> <span class="s2">"opening"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">literal</span><span class="p">,</span> <span class="n">voice_2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">lilypond_file</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<hr/><p class="class-header rubric">Read-only properties</p>
+<dl class="py attribute">
+<dt id="abjad.lilypondfile.LilyPondFile.comments">
+<code class="sig-name descname"><span class="pre">comments</span></code><a class="headerlink" href="#abjad.lilypondfile.LilyPondFile.comments" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets comments of Lilypond file.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondFile</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span><span class="o">.</span><span class="n">comments</span>
+<span class="go">[]</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<dl class="py attribute">
+<dt id="abjad.lilypondfile.LilyPondFile.date_time_token">
+<code class="sig-name descname"><span class="pre">date_time_token</span></code><a class="headerlink" href="#abjad.lilypondfile.LilyPondFile.date_time_token" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets date-time token.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondFile</span><span class="p">(</span><span class="n">date_time_token</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span><span class="o">.</span><span class="n">date_time_token</span>
+<span class="go">DateTimeToken()</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<dl class="py attribute">
+<dt id="abjad.lilypondfile.LilyPondFile.default_paper_size">
+<code class="sig-name descname"><span class="pre">default_paper_size</span></code><a class="headerlink" href="#abjad.lilypondfile.LilyPondFile.default_paper_size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets default paper size of LilyPond file.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondFile</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span><span class="o">.</span><span class="n">default_paper_size</span> <span class="ow">is</span> <span class="kc">None</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</div>
+<p>Returns pair or none.</p>
+</dd></dl>
+<dl class="py attribute">
+<dt id="abjad.lilypondfile.LilyPondFile.global_staff_size">
+<code class="sig-name descname"><span class="pre">global_staff_size</span></code><a class="headerlink" href="#abjad.lilypondfile.LilyPondFile.global_staff_size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets global staff size of LilyPond file.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondFile</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span><span class="o">.</span><span class="n">global_staff_size</span> <span class="ow">is</span> <span class="kc">None</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<dl class="py attribute">
+<dt id="abjad.lilypondfile.LilyPondFile.header_block">
+<code class="sig-name descname"><span class="pre">header_block</span></code><a class="headerlink" href="#abjad.lilypondfile.LilyPondFile.header_block" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets header block.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">block</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Block</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"header"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondFile</span><span class="p">(</span><span class="n">items</span><span class="o">=</span><span class="p">[</span><span class="n">block</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span><span class="o">.</span><span class="n">header_block</span>
+<span class="go">&lt;Block(name='header')&gt;</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<dl class="py attribute">
+<dt id="abjad.lilypondfile.LilyPondFile.includes">
+<code class="sig-name descname"><span class="pre">includes</span></code><a class="headerlink" href="#abjad.lilypondfile.LilyPondFile.includes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets includes of LilyPond file.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondFile</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span><span class="o">.</span><span class="n">includes</span>
+<span class="go">[]</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<dl class="py attribute">
+<dt id="abjad.lilypondfile.LilyPondFile.items">
+<code class="sig-name descname"><span class="pre">items</span></code><a class="headerlink" href="#abjad.lilypondfile.LilyPondFile.items" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets items in LilyPond file.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondFile</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span><span class="o">.</span><span class="n">items</span>
+<span class="go">[]</span>
+</pre></div>
+</div>
+</div>
+<div class="example docutils container">
+<p>Accepts strings:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">staff</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Staff</span><span class="p">(</span><span class="s2">"c'4 d' e' f'"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">score_block</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Block</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"score"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">score_block</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">staff</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondFile</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">lilypond_language_token</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">lilypond_version_token</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">string</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">"\customCommand"</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">score_block</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">string</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">lilypond</span><span class="p">(</span><span class="n">lilypond_file</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+<span class="go">\customCommand</span>
+
+<span class="go">\score {</span>
+<span class="go">    \new Staff</span>
+<span class="go">    {</span>
+<span class="go">        c'4</span>
+<span class="go">        d'4</span>
+<span class="go">        e'4</span>
+<span class="go">        f'4</span>
+<span class="go">    }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<dl class="py attribute">
+<dt id="abjad.lilypondfile.LilyPondFile.layout_block">
+<code class="sig-name descname"><span class="pre">layout_block</span></code><a class="headerlink" href="#abjad.lilypondfile.LilyPondFile.layout_block" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets layout block.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">block</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Block</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"layout"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondFile</span><span class="p">(</span><span class="n">items</span><span class="o">=</span><span class="p">[</span><span class="n">block</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span><span class="o">.</span><span class="n">layout_block</span>
+<span class="go">&lt;Block(name='layout')&gt;</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<dl class="py attribute">
+<dt id="abjad.lilypondfile.LilyPondFile.lilypond_language_token">
+<code class="sig-name descname"><span class="pre">lilypond_language_token</span></code><a class="headerlink" href="#abjad.lilypondfile.LilyPondFile.lilypond_language_token" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets LilyPond language token.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondFile</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span><span class="o">.</span><span class="n">lilypond_language_token</span>
+<span class="go">LilyPondLanguageToken()</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<dl class="py attribute">
+<dt id="abjad.lilypondfile.LilyPondFile.lilypond_version_token">
+<code class="sig-name descname"><span class="pre">lilypond_version_token</span></code><a class="headerlink" href="#abjad.lilypondfile.LilyPondFile.lilypond_version_token" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets LilyPond version token.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondFile</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span><span class="o">.</span><span class="n">lilypond_version_token</span> 
+<span class="go">LilyPondVersionToken('2.19.35')</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<dl class="py attribute">
+<dt id="abjad.lilypondfile.LilyPondFile.paper_block">
+<code class="sig-name descname"><span class="pre">paper_block</span></code><a class="headerlink" href="#abjad.lilypondfile.LilyPondFile.paper_block" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets paper block.</p>
+<div class="example docutils container">
+<p>Gets paper block:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">block</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Block</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"paper"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondFile</span><span class="p">(</span><span class="n">items</span><span class="o">=</span><span class="p">[</span><span class="n">block</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span><span class="o">.</span><span class="n">paper_block</span>
+<span class="go">&lt;Block(name='paper')&gt;</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<dl class="py attribute">
+<dt id="abjad.lilypondfile.LilyPondFile.score_block">
+<code class="sig-name descname"><span class="pre">score_block</span></code><a class="headerlink" href="#abjad.lilypondfile.LilyPondFile.score_block" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets score block.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">block</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Block</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"score"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondFile</span><span class="p">(</span><span class="n">items</span><span class="o">=</span><span class="p">[</span><span class="n">block</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span><span class="o">.</span><span class="n">score_block</span>
+<span class="go">&lt;Block(name='score')&gt;</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<dl class="py attribute">
+<dt id="abjad.lilypondfile.LilyPondFile.use_relative_includes">
+<code class="sig-name descname"><span class="pre">use_relative_includes</span></code><a class="headerlink" href="#abjad.lilypondfile.LilyPondFile.use_relative_includes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is true when LilyPond file should use relative includes.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondFile</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span><span class="o">.</span><span class="n">use_relative_includes</span> <span class="ow">is</span> <span class="kc">None</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt id="abjad.lilypondfile.LilyPondLanguageToken">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">abjad.lilypondfile.</span></code><code class="sig-name descname"><span class="pre">LilyPondLanguageToken</span></code><a class="headerlink" href="#abjad.lilypondfile.LilyPondLanguageToken" title="Permalink to this definition">¶</a></dt>
+<dd><p>LilyPond file <code class="docutils literal notranslate"><span class="pre">\language</span></code> token.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondLanguageToken</span><span class="p">()</span>
+<span class="go">LilyPondLanguageToken()</span>
+</pre></div>
+</div>
+</div>
+<hr/><p class="class-header rubric">Attributes Summary</p>
+<hr/><p class="class-header rubric">Special methods</p>
+<dl class="py method">
+<dt id="abjad.lilypondfile.LilyPondLanguageToken.__repr__">
+<code class="sig-name descname"><span class="pre">__repr__</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> → <span class="pre">str</span><a class="headerlink" href="#abjad.lilypondfile.LilyPondLanguageToken.__repr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets interpreter representation of LilyPond language token.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">token</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondLanguageToken</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">token</span>
+<span class="go">LilyPondLanguageToken()</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt id="abjad.lilypondfile.LilyPondVersionToken">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">abjad.lilypondfile.</span></code><code class="sig-name descname"><span class="pre">LilyPondVersionToken</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">version_string</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.lilypondfile.LilyPondVersionToken" title="Permalink to this definition">¶</a></dt>
+<dd><p>LilyPond file <code class="docutils literal notranslate"><span class="pre">\version</span></code> token.</p>
+<hr/><p class="class-header rubric">Attributes Summary</p>
+<hr/><p class="class-header rubric">Special methods</p>
+<dl class="py method">
+<dt id="abjad.lilypondfile.LilyPondVersionToken.__repr__">
+<code class="sig-name descname"><span class="pre">__repr__</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> → <span class="pre">str</span><a class="headerlink" href="#abjad.lilypondfile.LilyPondVersionToken.__repr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets interpreter representation of LilyPond version_string token.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">token</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondVersionToken</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">token</span> 
+<span class="go">LilyPondVersionToken('2.19.84')</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<hr/><p class="class-header rubric">Read-only properties</p>
+<dl class="py attribute">
+<dt id="abjad.lilypondfile.LilyPondVersionToken.version_string">
+<code class="sig-name descname"><span class="pre">version_string</span></code><a class="headerlink" href="#abjad.lilypondfile.LilyPondVersionToken.version_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets version string of LilyPond version token.</p>
+<div class="example docutils container">
+<p>Gets version string from install environment:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">token</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondVersionToken</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">version_string</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">token</span><span class="o">.</span><span class="n">version_string</span> 
+<span class="go">'2.19.84'</span>
+</pre></div>
+</div>
+</div>
+<div class="example docutils container">
+<p>Gets version string from explicit input:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">token</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondVersionToken</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">version_string</span><span class="o">=</span><span class="s2">"2.19.84"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">token</span><span class="o">.</span><span class="n">version_string</span>
+<span class="go">'2.19.84'</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt id="abjad.lilypondfile.PackageGitCommitToken">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">abjad.lilypondfile.</span></code><code class="sig-name descname"><span class="pre">PackageGitCommitToken</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">package_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.lilypondfile.PackageGitCommitToken" title="Permalink to this definition">¶</a></dt>
+<dd><p>Python package git commit token.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">token</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">PackageGitCommitToken</span><span class="p">(</span><span class="s2">"abjad"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">token</span>
+<span class="go">PackageGitCommitToken(package_name='abjad')</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">abjad</span><span class="o">.</span><span class="n">lilypond</span><span class="p">(</span><span class="n">token</span><span class="p">))</span>  
+<span class="go">package "abjad" @ b6a48a7 [implement-lpf-git-token] (2016-02-02 13:36:25)</span>
+</pre></div>
+</div>
+</div>
+<hr/><p class="class-header rubric">Attributes Summary</p>
+<hr/><p class="class-header rubric">Special methods</p>
+<dl class="py method">
+<dt id="abjad.lilypondfile.PackageGitCommitToken.__repr__">
+<code class="sig-name descname"><span class="pre">__repr__</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> → <span class="pre">str</span><a class="headerlink" href="#abjad.lilypondfile.PackageGitCommitToken.__repr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets interpreter representation.</p>
+</dd></dl>
+<hr/><p class="class-header rubric">Read-only properties</p>
+<dl class="py attribute">
+<dt id="abjad.lilypondfile.PackageGitCommitToken.package_name">
+<code class="sig-name descname"><span class="pre">package_name</span></code><a class="headerlink" href="#abjad.lilypondfile.PackageGitCommitToken.package_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets package name of package git commit token.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">token</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">PackageGitCommitToken</span><span class="p">(</span><span class="s2">"abjad"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">token</span><span class="o">.</span><span class="n">package_name</span>
+<span class="go">'abjad'</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+</dd></dl>
+</div>
+
+      </article>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+
+        <div class="related-information">
+              Copyright &#169; 2021, Davi Raubach Tuchtenhagen
+            |
+            Built with <a href="https://www.sphinx-doc.org/">Sphinx</a>
+              and
+              <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+              <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
+            |
+            <a class="muted-link" href="../../_sources/api/abjad/lilypondfile.rst.txt"
+               rel="nofollow">
+              Show Source
+            </a>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </main>
+</div>
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script defer="defer" src="../../_static/copybutton.js"></script>
+    <script src="../../_static/ga.js"></script>
+    <script src="../../_static/scripts/main.js?digest=e931d09b2a40c1bb82b542effe772014573baf67"></script></body>
+</html>

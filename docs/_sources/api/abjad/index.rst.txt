@@ -1,0 +1,155 @@
+.. _abjad:
+
+abjad
+=====
+
+.. automodule:: abjad
+
+.. currentmodule:: abjad
+
+.. container:: svg-container
+
+   .. inheritance-diagram:: abjad
+      :lineage: abjad
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Subpackages
+   :class: section-header
+
+.. toctree::
+   :hidden:
+
+   attach
+   bundle
+   configuration
+   contextmanagers
+   cyclictuple
+   deprecated
+   duration
+   enumerate
+   enums
+   exceptions
+   expression
+   ext/index
+   format
+   fsv
+   get
+   illustrators
+   indicators/index
+   instruments
+   io
+   iterate
+   iterpitches
+   label
+   lilypondfile
+   lyproxy
+   makers
+   markups
+   math
+   meter
+   metricmodulation
+   mutate
+   obgc
+   ordereddict
+   overrides
+   parentage
+   parsers/index
+   pattern
+   persist
+   pitch/index
+   ratio
+   rhythmtrees
+   score
+   segmentmaker
+   select
+   sequence
+   spanners
+   storage
+   string
+   tag
+   templates
+   timespan
+   typedcollections
+   verticalmoment
+   wf
+
+.. autosummary::
+   :nosignatures:
+
+   attach
+   bundle
+   configuration
+   contextmanagers
+   cyclictuple
+   deprecated
+   duration
+   enumerate
+   enums
+   exceptions
+   expression
+   ext
+   format
+   fsv
+   get
+   illustrators
+   indicators
+   instruments
+   io
+   iterate
+   iterpitches
+   label
+   lilypondfile
+   lyproxy
+   makers
+   markups
+   math
+   meter
+   metricmodulation
+   mutate
+   obgc
+   ordereddict
+   overrides
+   parentage
+   parsers
+   pattern
+   persist
+   pitch
+   ratio
+   rhythmtrees
+   score
+   segmentmaker
+   select
+   sequence
+   spanners
+   storage
+   string
+   tag
+   templates
+   timespan
+   typedcollections
+   verticalmoment
+   wf
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Functions
+   :class: section-header
+
+.. toctree::
+   :hidden:
+
+   grace_corner_cases
+   lilypond
+   new
+
+.. autosummary::
+   :nosignatures:
+
+   ~grace_corner_cases.grace_corner_cases
+   ~lilypond.lilypond
+   ~new.new

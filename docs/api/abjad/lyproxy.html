@@ -1,0 +1,1837 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
+
+    <meta name="generator" content="sphinx-3.5.3, furo 2021.03.20.beta30"/>
+        <title>lyproxy - muda 28/03/2021 documentation</title>
+      <link rel="stylesheet" href="../../_static/styles/furo.css?digest=978e1795dfe158b585dda6a8417f6411828bf3ed">
+    <link rel="stylesheet" href="../../_static/pygments.css">
+    <link media="(prefers-color-scheme: dark)" rel="stylesheet" href="../../_static/pygments_dark.css">
+    
+
+
+<style>
+  :root {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+  }
+
+  /* For allowing end-user-specific overrides */
+  .override-light {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  .override-dark {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+</style><link rel="stylesheet" type="text/css" href="../../_static/abjad.css" />
+    <link rel="stylesheet" href="../../_static/styles/furo-extensions.css?digest=d391b54134226e4196576da3bdb6dddb7e05ba2b"></head>
+  <body dir="">
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z"/>
+      <line x1="4" y1="6" x2="20" y2="6" />
+      <line x1="10" y1="12" x2="20" y2="12" />
+      <line x1="6" y1="18" x2="20" y2="18" />
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">muda 28/03/2021 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">muda 28/03/2021 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html">
+  <input class="sidebar-search" placeholder=Search name="q">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form><div class="sidebar-scroll"><div class="sidebar-tree">
+  
+</div>
+</div>
+      </div>
+      
+    </div>
+  </aside>
+  <main class="main">
+    <div class="content">
+      <article role="main">
+        <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+        </label>
+        <div class="section" id="module-abjad.lyproxy">
+<span id="lyproxy"></span><span id="abjad-lyproxy"></span><h1>lyproxy<a class="headerlink" href="#module-abjad.lyproxy" title="Permalink to this headline">¶</a></h1>
+<div class="svg-container docutils container">
+</div>
+<hr/><p class="section-header rubric">Classes</p>
+<dl class="py class">
+<dt id="abjad.lyproxy.LilyPondContext">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">abjad.lyproxy.</span></code><code class="sig-name descname"><span class="pre">LilyPondContext</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Voice'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.lyproxy.LilyPondContext" title="Permalink to this definition">¶</a></dt>
+<dd><p>LilyPond context.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">context</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondContext</span><span class="p">(</span><span class="s1">'MensuralStaff'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">string</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">storage</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+<span class="go">abjad.LilyPondContext(</span>
+<span class="go">    name='MensuralStaff',</span>
+<span class="go">    )</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">lilypond_context</span> <span class="ow">in</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondContext</span><span class="o">.</span><span class="n">list_all_contexts</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="n">is_global_context</span> <span class="o">=</span> <span class="s1">'X'</span> <span class="k">if</span> <span class="n">lilypond_context</span><span class="o">.</span><span class="n">is_global_context</span> <span class="k">else</span> <span class="s1">' '</span>
+<span class="gp">... </span>    <span class="n">is_score_context</span> <span class="o">=</span> <span class="s1">'X'</span> <span class="k">if</span> <span class="n">lilypond_context</span><span class="o">.</span><span class="n">is_score_context</span> <span class="k">else</span> <span class="s1">' '</span>
+<span class="gp">... </span>    <span class="n">is_staff_group_context</span> <span class="o">=</span> <span class="s1">'X'</span> <span class="k">if</span> <span class="n">lilypond_context</span><span class="o">.</span><span class="n">is_staff_group_context</span> <span class="k">else</span> <span class="s1">' '</span>
+<span class="gp">... </span>    <span class="n">is_staff_context</span> <span class="o">=</span> <span class="s1">'X'</span> <span class="k">if</span> <span class="n">lilypond_context</span><span class="o">.</span><span class="n">is_staff_context</span> <span class="k">else</span> <span class="s1">' '</span>
+<span class="gp">... </span>    <span class="n">is_bottom_context</span> <span class="o">=</span> <span class="s1">'X'</span> <span class="k">if</span> <span class="n">lilypond_context</span><span class="o">.</span><span class="n">is_bottom_context</span> <span class="k">else</span> <span class="s1">' '</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s1">'[</span><span class="si">{}</span><span class="s1">] [</span><span class="si">{}</span><span class="s1">] [</span><span class="si">{}</span><span class="s1">] [</span><span class="si">{}</span><span class="s1">] [</span><span class="si">{}</span><span class="s1">] </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+<span class="gp">... </span>        <span class="n">is_global_context</span><span class="p">,</span>
+<span class="gp">... </span>        <span class="n">is_score_context</span><span class="p">,</span>
+<span class="gp">... </span>        <span class="n">is_staff_group_context</span><span class="p">,</span>
+<span class="gp">... </span>        <span class="n">is_staff_context</span><span class="p">,</span>
+<span class="gp">... </span>        <span class="n">is_bottom_context</span><span class="p">,</span>
+<span class="gp">... </span>        <span class="n">lilypond_context</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+<span class="gp">... </span>        <span class="p">))</span>
+<span class="gp">...</span>
+<span class="go">[ ] [ ] [X] [ ] [ ] ChoirStaff</span>
+<span class="go">[ ] [ ] [ ] [ ] [X] ChordNames</span>
+<span class="go">[ ] [ ] [ ] [ ] [X] CueVoice</span>
+<span class="go">[ ] [ ] [ ] [ ] [X] Devnull</span>
+<span class="go">[ ] [ ] [ ] [X] [ ] DrumStaff</span>
+<span class="go">[ ] [ ] [ ] [ ] [X] DrumVoice</span>
+<span class="go">[ ] [ ] [ ] [ ] [X] Dynamics</span>
+<span class="go">[ ] [ ] [ ] [ ] [X] FiguredBass</span>
+<span class="go">[ ] [ ] [ ] [ ] [X] FretBoards</span>
+<span class="go">[X] [ ] [ ] [ ] [ ] Global</span>
+<span class="go">[ ] [ ] [X] [ ] [ ] GrandStaff</span>
+<span class="go">[ ] [ ] [ ] [X] [ ] GregorianTranscriptionStaff</span>
+<span class="go">[ ] [ ] [ ] [ ] [X] GregorianTranscriptionVoice</span>
+<span class="go">[ ] [ ] [ ] [X] [ ] KievanStaff</span>
+<span class="go">[ ] [ ] [ ] [ ] [X] KievanVoice</span>
+<span class="go">[ ] [ ] [ ] [ ] [X] Lyrics</span>
+<span class="go">[ ] [ ] [ ] [X] [ ] MensuralStaff</span>
+<span class="go">[ ] [ ] [ ] [ ] [X] MensuralVoice</span>
+<span class="go">[ ] [ ] [ ] [ ] [X] NoteNames</span>
+<span class="go">[ ] [ ] [ ] [ ] [X] NullVoice</span>
+<span class="go">[ ] [ ] [X] [ ] [ ] OneStaff</span>
+<span class="go">[ ] [ ] [ ] [X] [ ] PetrucciStaff</span>
+<span class="go">[ ] [ ] [ ] [ ] [X] PetrucciVoice</span>
+<span class="go">[ ] [ ] [X] [ ] [ ] PianoStaff</span>
+<span class="go">[ ] [ ] [ ] [X] [ ] RhythmicStaff</span>
+<span class="go">[ ] [X] [ ] [ ] [ ] Score</span>
+<span class="go">[ ] [ ] [ ] [X] [ ] Staff</span>
+<span class="go">[ ] [ ] [X] [ ] [ ] StaffGroup</span>
+<span class="go">[ ] [ ] [ ] [X] [ ] TabStaff</span>
+<span class="go">[ ] [ ] [ ] [ ] [X] TabVoice</span>
+<span class="go">[ ] [ ] [ ] [X] [ ] VaticanaStaff</span>
+<span class="go">[ ] [ ] [ ] [ ] [X] VaticanaVoice</span>
+<span class="go">[ ] [ ] [ ] [ ] [X] Voice</span>
+</pre></div>
+</div>
+</div>
+<hr/><p class="class-header rubric">Attributes Summary</p>
+<hr/><p class="class-header rubric">Special methods</p>
+<dl class="py method">
+<dt id="abjad.lyproxy.LilyPondContext.__new__">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">__new__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">class_</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Voice'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.lyproxy.LilyPondContext.__new__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create and return a new object.  See help(type) for accurate signature.</p>
+</dd></dl>
+<dl class="py method">
+<dt id="abjad.lyproxy.LilyPondContext.__repr__">
+<code class="sig-name descname"><span class="pre">__repr__</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> → <span class="pre">str</span><a class="headerlink" href="#abjad.lyproxy.LilyPondContext.__repr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets interpreter representation.</p>
+</dd></dl>
+<hr/><p class="class-header rubric">Methods</p>
+<dl class="py method">
+<dt id="abjad.lyproxy.LilyPondContext.unregister">
+<code class="sig-name descname"><span class="pre">unregister</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> → <span class="pre">None</span><a class="headerlink" href="#abjad.lyproxy.LilyPondContext.unregister" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unregisters custom context.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">custom_context</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondContext</span><span class="o">.</span><span class="n">register</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">accepted_by</span><span class="o">=</span><span class="p">[</span><span class="s1">'Score'</span><span class="p">,</span> <span class="s1">'StaffGroup'</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="n">alias</span><span class="o">=</span><span class="s1">'Staff'</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">name</span><span class="o">=</span><span class="s1">'FingeringStaff'</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">score_context</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondContext</span><span class="p">(</span><span class="s1">'Score'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">accepted_context</span> <span class="ow">in</span> <span class="n">score_context</span><span class="o">.</span><span class="n">accepts</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">accepted_context</span>
+<span class="gp">...</span>
+<span class="go">LilyPondContext(name='ChoirStaff')</span>
+<span class="go">LilyPondContext(name='ChordNames')</span>
+<span class="go">LilyPondContext(name='Devnull')</span>
+<span class="go">LilyPondContext(name='DrumStaff')</span>
+<span class="go">LilyPondContext(name='Dynamics')</span>
+<span class="go">LilyPondContext(name='FiguredBass')</span>
+<span class="go">LilyPondContext(name='FingeringStaff')</span>
+<span class="go">LilyPondContext(name='FretBoards')</span>
+<span class="go">LilyPondContext(name='GrandStaff')</span>
+<span class="go">LilyPondContext(name='GregorianTranscriptionStaff')</span>
+<span class="go">LilyPondContext(name='KievanStaff')</span>
+<span class="go">LilyPondContext(name='Lyrics')</span>
+<span class="go">LilyPondContext(name='MensuralStaff')</span>
+<span class="go">LilyPondContext(name='NoteNames')</span>
+<span class="go">LilyPondContext(name='OneStaff')</span>
+<span class="go">LilyPondContext(name='PetrucciStaff')</span>
+<span class="go">LilyPondContext(name='PianoStaff')</span>
+<span class="go">LilyPondContext(name='RhythmicStaff')</span>
+<span class="go">LilyPondContext(name='Staff')</span>
+<span class="go">LilyPondContext(name='StaffGroup')</span>
+<span class="go">LilyPondContext(name='TabStaff')</span>
+<span class="go">LilyPondContext(name='VaticanaStaff')</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">custom_context</span><span class="o">.</span><span class="n">unregister</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">score_context</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondContext</span><span class="p">(</span><span class="s1">'Score'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">accepted_context</span> <span class="ow">in</span> <span class="n">score_context</span><span class="o">.</span><span class="n">accepts</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">accepted_context</span>
+<span class="gp">...</span>
+<span class="go">LilyPondContext(name='ChoirStaff')</span>
+<span class="go">LilyPondContext(name='ChordNames')</span>
+<span class="go">LilyPondContext(name='Devnull')</span>
+<span class="go">LilyPondContext(name='DrumStaff')</span>
+<span class="go">LilyPondContext(name='Dynamics')</span>
+<span class="go">LilyPondContext(name='FiguredBass')</span>
+<span class="go">LilyPondContext(name='FretBoards')</span>
+<span class="go">LilyPondContext(name='GrandStaff')</span>
+<span class="go">LilyPondContext(name='GregorianTranscriptionStaff')</span>
+<span class="go">LilyPondContext(name='KievanStaff')</span>
+<span class="go">LilyPondContext(name='Lyrics')</span>
+<span class="go">LilyPondContext(name='MensuralStaff')</span>
+<span class="go">LilyPondContext(name='NoteNames')</span>
+<span class="go">LilyPondContext(name='OneStaff')</span>
+<span class="go">LilyPondContext(name='PetrucciStaff')</span>
+<span class="go">LilyPondContext(name='PianoStaff')</span>
+<span class="go">LilyPondContext(name='RhythmicStaff')</span>
+<span class="go">LilyPondContext(name='Staff')</span>
+<span class="go">LilyPondContext(name='StaffGroup')</span>
+<span class="go">LilyPondContext(name='TabStaff')</span>
+<span class="go">LilyPondContext(name='VaticanaStaff')</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<hr/><p class="class-header rubric">Class &amp; static methods</p>
+<dl class="py method">
+<dt id="abjad.lyproxy.LilyPondContext.list_all_contexts">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">list_all_contexts</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> → <span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#abjad.lyproxy.LilyPondContext" title="abjad.lyproxy.LilyPondContext"><span class="pre">abjad.lyproxy.LilyPondContext</span></a><span class="p"><span class="pre">,</span> </span><span class="p"><span class="pre">…</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#abjad.lyproxy.LilyPondContext.list_all_contexts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lists all contexts.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">lilypond_context</span> <span class="ow">in</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondContext</span><span class="o">.</span><span class="n">list_all_contexts</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="n">lilypond_context</span>
+<span class="gp">...</span>
+<span class="go">LilyPondContext(name='ChoirStaff')</span>
+<span class="go">LilyPondContext(name='ChordNames')</span>
+<span class="go">LilyPondContext(name='CueVoice')</span>
+<span class="go">LilyPondContext(name='Devnull')</span>
+<span class="go">LilyPondContext(name='DrumStaff')</span>
+<span class="go">LilyPondContext(name='DrumVoice')</span>
+<span class="go">LilyPondContext(name='Dynamics')</span>
+<span class="go">LilyPondContext(name='FiguredBass')</span>
+<span class="go">LilyPondContext(name='FretBoards')</span>
+<span class="go">LilyPondContext(name='Global')</span>
+<span class="go">LilyPondContext(name='GrandStaff')</span>
+<span class="go">LilyPondContext(name='GregorianTranscriptionStaff')</span>
+<span class="go">LilyPondContext(name='GregorianTranscriptionVoice')</span>
+<span class="go">LilyPondContext(name='KievanStaff')</span>
+<span class="go">LilyPondContext(name='KievanVoice')</span>
+<span class="go">LilyPondContext(name='Lyrics')</span>
+<span class="go">LilyPondContext(name='MensuralStaff')</span>
+<span class="go">LilyPondContext(name='MensuralVoice')</span>
+<span class="go">LilyPondContext(name='NoteNames')</span>
+<span class="go">LilyPondContext(name='NullVoice')</span>
+<span class="go">LilyPondContext(name='OneStaff')</span>
+<span class="go">LilyPondContext(name='PetrucciStaff')</span>
+<span class="go">LilyPondContext(name='PetrucciVoice')</span>
+<span class="go">LilyPondContext(name='PianoStaff')</span>
+<span class="go">LilyPondContext(name='RhythmicStaff')</span>
+<span class="go">LilyPondContext(name='Score')</span>
+<span class="go">LilyPondContext(name='Staff')</span>
+<span class="go">LilyPondContext(name='StaffGroup')</span>
+<span class="go">LilyPondContext(name='TabStaff')</span>
+<span class="go">LilyPondContext(name='TabVoice')</span>
+<span class="go">LilyPondContext(name='VaticanaStaff')</span>
+<span class="go">LilyPondContext(name='VaticanaVoice')</span>
+<span class="go">LilyPondContext(name='Voice')</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<dl class="py method">
+<dt id="abjad.lyproxy.LilyPondContext.register">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">register</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">accepted_by</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">accepts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alias</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><a class="reference internal" href="#abjad.lyproxy.LilyPondContext" title="abjad.lyproxy.LilyPondContext"><span class="pre">abjad.lyproxy.LilyPondContext</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">consists</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_child</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">denies</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">removes</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> → <a class="reference internal" href="#abjad.lyproxy.LilyPondContext" title="abjad.lyproxy.LilyPondContext"><span class="pre">abjad.lyproxy.LilyPondContext</span></a><a class="headerlink" href="#abjad.lyproxy.LilyPondContext.register" title="Permalink to this definition">¶</a></dt>
+<dd><p>Registers a new context.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">custom_context</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondContext</span><span class="o">.</span><span class="n">register</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">accepted_by</span><span class="o">=</span><span class="p">[</span><span class="s1">'Score'</span><span class="p">,</span> <span class="s1">'StaffGroup'</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="n">alias</span><span class="o">=</span><span class="s1">'Staff'</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">name</span><span class="o">=</span><span class="s1">'BowingStaff'</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">removes</span><span class="o">=</span><span class="p">[</span><span class="s1">'Note_heads_engraver'</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">abjad</span><span class="o">.</span><span class="n">storage</span><span class="p">(</span><span class="n">custom_context</span><span class="p">))</span>
+<span class="go">abjad.LilyPondContext(</span>
+<span class="go">    name='BowingStaff',</span>
+<span class="go">    )</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">custom_context</span><span class="o">.</span><span class="n">is_custom</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">engraver</span> <span class="ow">in</span> <span class="n">custom_context</span><span class="o">.</span><span class="n">engravers</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">engraver</span>
+<span class="gp">...</span>
+<span class="go">LilyPondEngraver(name='Accidental_engraver')</span>
+<span class="go">LilyPondEngraver(name='Axis_group_engraver')</span>
+<span class="go">LilyPondEngraver(name='Bar_engraver')</span>
+<span class="go">LilyPondEngraver(name='Clef_engraver')</span>
+<span class="go">LilyPondEngraver(name='Collision_engraver')</span>
+<span class="go">LilyPondEngraver(name='Cue_clef_engraver')</span>
+<span class="go">LilyPondEngraver(name='Dot_column_engraver')</span>
+<span class="go">LilyPondEngraver(name='Figured_bass_engraver')</span>
+<span class="go">LilyPondEngraver(name='Figured_bass_position_engraver')</span>
+<span class="go">LilyPondEngraver(name='Fingering_column_engraver')</span>
+<span class="go">LilyPondEngraver(name='Font_size_engraver')</span>
+<span class="go">LilyPondEngraver(name='Grob_pq_engraver')</span>
+<span class="go">LilyPondEngraver(name='Instrument_name_engraver')</span>
+<span class="go">LilyPondEngraver(name='Key_engraver')</span>
+<span class="go">LilyPondEngraver(name='Ledger_line_engraver')</span>
+<span class="go">LilyPondEngraver(name='Ottava_spanner_engraver')</span>
+<span class="go">LilyPondEngraver(name='Output_property_engraver')</span>
+<span class="go">LilyPondEngraver(name='Piano_pedal_align_engraver')</span>
+<span class="go">LilyPondEngraver(name='Piano_pedal_engraver')</span>
+<span class="go">LilyPondEngraver(name='Pure_from_neighbor_engraver')</span>
+<span class="go">LilyPondEngraver(name='Rest_collision_engraver')</span>
+<span class="go">LilyPondEngraver(name='Script_row_engraver')</span>
+<span class="go">LilyPondEngraver(name='Separating_line_group_engraver')</span>
+<span class="go">LilyPondEngraver(name='Staff_collecting_engraver')</span>
+<span class="go">LilyPondEngraver(name='Staff_symbol_engraver')</span>
+<span class="go">LilyPondEngraver(name='Time_signature_engraver')</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">score_context</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondContext</span><span class="p">(</span><span class="s1">'Score'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">custom_context</span> <span class="ow">in</span> <span class="n">score_context</span><span class="o">.</span><span class="n">accepts</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">custom_context</span><span class="o">.</span><span class="n">unregister</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<hr/><p class="class-header rubric">Read-only properties</p>
+<dl class="py attribute">
+<dt id="abjad.lyproxy.LilyPondContext.accepted_by">
+<code class="sig-name descname"><span class="pre">accepted_by</span></code><a class="headerlink" href="#abjad.lyproxy.LilyPondContext.accepted_by" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets contexts accepting LilyPond context.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">context</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondContext</span><span class="p">(</span><span class="s1">'MensuralStaff'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">accepting_context</span> <span class="ow">in</span> <span class="n">context</span><span class="o">.</span><span class="n">accepted_by</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">accepting_context</span>
+<span class="gp">...</span>
+<span class="go">LilyPondContext(name='OneStaff')</span>
+<span class="go">LilyPondContext(name='Score')</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">lilypond_context</span> <span class="ow">in</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondContext</span><span class="o">.</span><span class="n">list_all_contexts</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">lilypond_context</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">:'</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">accepted_by</span> <span class="o">=</span> <span class="n">lilypond_context</span><span class="o">.</span><span class="n">accepted_by</span>
+<span class="gp">... </span>    <span class="k">if</span> <span class="n">accepted_by</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">accepted_by</span> <span class="o">=</span> <span class="s1">',</span><span class="se">\n</span><span class="s1">    '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">accepted_by</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'    </span><span class="si">{</span><span class="n">accepted_by</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="go">ChoirStaff:</span>
+<span class="go">    ChoirStaff,</span>
+<span class="go">    Score,</span>
+<span class="go">    StaffGroup</span>
+<span class="go">ChordNames:</span>
+<span class="go">    ChoirStaff,</span>
+<span class="go">    GrandStaff,</span>
+<span class="go">    OneStaff,</span>
+<span class="go">    PianoStaff,</span>
+<span class="go">    Score,</span>
+<span class="go">    StaffGroup</span>
+<span class="go">CueVoice:</span>
+<span class="go">    DrumStaff,</span>
+<span class="go">    GregorianTranscriptionStaff,</span>
+<span class="go">    KievanStaff,</span>
+<span class="go">    MensuralStaff,</span>
+<span class="go">    PetrucciStaff,</span>
+<span class="go">    RhythmicStaff,</span>
+<span class="go">    Staff,</span>
+<span class="go">    TabStaff,</span>
+<span class="go">    VaticanaStaff</span>
+<span class="go">Devnull:</span>
+<span class="go">    Score</span>
+<span class="go">DrumStaff:</span>
+<span class="go">    ChoirStaff,</span>
+<span class="go">    GrandStaff,</span>
+<span class="go">    OneStaff,</span>
+<span class="go">    PianoStaff,</span>
+<span class="go">    Score,</span>
+<span class="go">    StaffGroup</span>
+<span class="go">DrumVoice:</span>
+<span class="go">    DrumStaff</span>
+<span class="go">Dynamics:</span>
+<span class="go">    ChoirStaff,</span>
+<span class="go">    GrandStaff,</span>
+<span class="go">    OneStaff,</span>
+<span class="go">    PianoStaff,</span>
+<span class="go">    Score</span>
+<span class="go">FiguredBass:</span>
+<span class="go">    ChoirStaff,</span>
+<span class="go">    GrandStaff,</span>
+<span class="go">    OneStaff,</span>
+<span class="go">    PianoStaff,</span>
+<span class="go">    Score,</span>
+<span class="go">    StaffGroup</span>
+<span class="go">FretBoards:</span>
+<span class="go">    OneStaff,</span>
+<span class="go">    Score,</span>
+<span class="go">    StaffGroup</span>
+<span class="go">Global:</span>
+<span class="go">GrandStaff:</span>
+<span class="go">    ChoirStaff,</span>
+<span class="go">    Score,</span>
+<span class="go">    StaffGroup</span>
+<span class="go">GregorianTranscriptionStaff:</span>
+<span class="go">    OneStaff,</span>
+<span class="go">    Score</span>
+<span class="go">GregorianTranscriptionVoice:</span>
+<span class="go">    GregorianTranscriptionStaff</span>
+<span class="go">KievanStaff:</span>
+<span class="go">    OneStaff,</span>
+<span class="go">    Score</span>
+<span class="go">KievanVoice:</span>
+<span class="go">    KievanStaff</span>
+<span class="go">Lyrics:</span>
+<span class="go">    ChoirStaff,</span>
+<span class="go">    GrandStaff,</span>
+<span class="go">    OneStaff,</span>
+<span class="go">    PianoStaff,</span>
+<span class="go">    Score,</span>
+<span class="go">    StaffGroup</span>
+<span class="go">MensuralStaff:</span>
+<span class="go">    OneStaff,</span>
+<span class="go">    Score</span>
+<span class="go">MensuralVoice:</span>
+<span class="go">    MensuralStaff</span>
+<span class="go">NoteNames:</span>
+<span class="go">    OneStaff,</span>
+<span class="go">    Score</span>
+<span class="go">NullVoice:</span>
+<span class="go">    DrumStaff,</span>
+<span class="go">    GregorianTranscriptionStaff,</span>
+<span class="go">    KievanStaff,</span>
+<span class="go">    MensuralStaff,</span>
+<span class="go">    PetrucciStaff,</span>
+<span class="go">    RhythmicStaff,</span>
+<span class="go">    Staff,</span>
+<span class="go">    TabStaff,</span>
+<span class="go">    VaticanaStaff</span>
+<span class="go">OneStaff:</span>
+<span class="go">    ChoirStaff,</span>
+<span class="go">    Score,</span>
+<span class="go">    StaffGroup</span>
+<span class="go">PetrucciStaff:</span>
+<span class="go">    OneStaff,</span>
+<span class="go">    Score</span>
+<span class="go">PetrucciVoice:</span>
+<span class="go">    PetrucciStaff</span>
+<span class="go">PianoStaff:</span>
+<span class="go">    ChoirStaff,</span>
+<span class="go">    Score,</span>
+<span class="go">    StaffGroup</span>
+<span class="go">RhythmicStaff:</span>
+<span class="go">    ChoirStaff,</span>
+<span class="go">    GrandStaff,</span>
+<span class="go">    OneStaff,</span>
+<span class="go">    PianoStaff,</span>
+<span class="go">    Score,</span>
+<span class="go">    StaffGroup</span>
+<span class="go">Score:</span>
+<span class="go">    Global</span>
+<span class="go">Staff:</span>
+<span class="go">    ChoirStaff,</span>
+<span class="go">    GrandStaff,</span>
+<span class="go">    OneStaff,</span>
+<span class="go">    PianoStaff,</span>
+<span class="go">    Score,</span>
+<span class="go">    StaffGroup</span>
+<span class="go">StaffGroup:</span>
+<span class="go">    ChoirStaff,</span>
+<span class="go">    Score,</span>
+<span class="go">    StaffGroup</span>
+<span class="go">TabStaff:</span>
+<span class="go">    GrandStaff,</span>
+<span class="go">    OneStaff,</span>
+<span class="go">    PianoStaff,</span>
+<span class="go">    Score,</span>
+<span class="go">    StaffGroup</span>
+<span class="go">TabVoice:</span>
+<span class="go">    TabStaff</span>
+<span class="go">VaticanaStaff:</span>
+<span class="go">    OneStaff,</span>
+<span class="go">    Score</span>
+<span class="go">VaticanaVoice:</span>
+<span class="go">    VaticanaStaff</span>
+<span class="go">Voice:</span>
+<span class="go">    RhythmicStaff,</span>
+<span class="go">    Staff</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<dl class="py attribute">
+<dt id="abjad.lyproxy.LilyPondContext.accepts">
+<code class="sig-name descname"><span class="pre">accepts</span></code><a class="headerlink" href="#abjad.lyproxy.LilyPondContext.accepts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets contexts accepted by LilyPond context.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">context</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondContext</span><span class="p">(</span><span class="s1">'MensuralStaff'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">accepted_context</span> <span class="ow">in</span> <span class="n">context</span><span class="o">.</span><span class="n">accepts</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">accepted_context</span>
+<span class="gp">...</span>
+<span class="go">LilyPondContext(name='CueVoice')</span>
+<span class="go">LilyPondContext(name='MensuralVoice')</span>
+<span class="go">LilyPondContext(name='NullVoice')</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<dl class="py attribute">
+<dt id="abjad.lyproxy.LilyPondContext.alias">
+<code class="sig-name descname"><span class="pre">alias</span></code><a class="headerlink" href="#abjad.lyproxy.LilyPondContext.alias" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets alias of LilyPond context.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">context</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondContext</span><span class="p">(</span><span class="s1">'MensuralStaff'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">context</span><span class="o">.</span><span class="n">alias</span>
+<span class="go">LilyPondContext(name='Staff')</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<dl class="py attribute">
+<dt id="abjad.lyproxy.LilyPondContext.default_child">
+<code class="sig-name descname"><span class="pre">default_child</span></code><a class="headerlink" href="#abjad.lyproxy.LilyPondContext.default_child" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets default child of LilyPond context.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">context</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondContext</span><span class="p">(</span><span class="s1">'MensuralStaff'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">context</span><span class="o">.</span><span class="n">default_child</span>
+<span class="go">LilyPondContext(name='MensuralVoice')</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">lilypond_context</span> <span class="ow">in</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondContext</span><span class="o">.</span><span class="n">list_all_contexts</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">lilypond_context</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">:'</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">default_child</span> <span class="o">=</span> <span class="n">lilypond_context</span><span class="o">.</span><span class="n">default_child</span>
+<span class="gp">... </span>    <span class="k">if</span> <span class="n">default_child</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'    </span><span class="si">{</span><span class="n">default_child</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="go">ChoirStaff:</span>
+<span class="go">    Staff</span>
+<span class="go">ChordNames:</span>
+<span class="go">CueVoice:</span>
+<span class="go">Devnull:</span>
+<span class="go">DrumStaff:</span>
+<span class="go">    DrumVoice</span>
+<span class="go">DrumVoice:</span>
+<span class="go">Dynamics:</span>
+<span class="go">FiguredBass:</span>
+<span class="go">FretBoards:</span>
+<span class="go">Global:</span>
+<span class="go">    Score</span>
+<span class="go">GrandStaff:</span>
+<span class="go">    Staff</span>
+<span class="go">GregorianTranscriptionStaff:</span>
+<span class="go">    GregorianTranscriptionVoice</span>
+<span class="go">GregorianTranscriptionVoice:</span>
+<span class="go">KievanStaff:</span>
+<span class="go">    KievanVoice</span>
+<span class="go">KievanVoice:</span>
+<span class="go">Lyrics:</span>
+<span class="go">MensuralStaff:</span>
+<span class="go">    MensuralVoice</span>
+<span class="go">MensuralVoice:</span>
+<span class="go">NoteNames:</span>
+<span class="go">NullVoice:</span>
+<span class="go">OneStaff:</span>
+<span class="go">    Staff</span>
+<span class="go">PetrucciStaff:</span>
+<span class="go">    PetrucciVoice</span>
+<span class="go">PetrucciVoice:</span>
+<span class="go">PianoStaff:</span>
+<span class="go">    Staff</span>
+<span class="go">RhythmicStaff:</span>
+<span class="go">    Voice</span>
+<span class="go">Score:</span>
+<span class="go">    Staff</span>
+<span class="go">Staff:</span>
+<span class="go">    Voice</span>
+<span class="go">StaffGroup:</span>
+<span class="go">    Staff</span>
+<span class="go">TabStaff:</span>
+<span class="go">    TabVoice</span>
+<span class="go">TabVoice:</span>
+<span class="go">VaticanaStaff:</span>
+<span class="go">    VaticanaVoice</span>
+<span class="go">VaticanaVoice:</span>
+<span class="go">Voice:</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<dl class="py attribute">
+<dt id="abjad.lyproxy.LilyPondContext.engravers">
+<code class="sig-name descname"><span class="pre">engravers</span></code><a class="headerlink" href="#abjad.lyproxy.LilyPondContext.engravers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets engravers belonging to LilyPond context.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">context</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondContext</span><span class="p">(</span><span class="s1">'MensuralStaff'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">engraver</span> <span class="ow">in</span> <span class="n">context</span><span class="o">.</span><span class="n">engravers</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">engraver</span>
+<span class="gp">...</span>
+<span class="go">LilyPondEngraver(name='Accidental_engraver')</span>
+<span class="go">LilyPondEngraver(name='Axis_group_engraver')</span>
+<span class="go">LilyPondEngraver(name='Bar_engraver')</span>
+<span class="go">LilyPondEngraver(name='Clef_engraver')</span>
+<span class="go">LilyPondEngraver(name='Collision_engraver')</span>
+<span class="go">LilyPondEngraver(name='Cue_clef_engraver')</span>
+<span class="go">LilyPondEngraver(name='Custos_engraver')</span>
+<span class="go">LilyPondEngraver(name='Dot_column_engraver')</span>
+<span class="go">LilyPondEngraver(name='Figured_bass_engraver')</span>
+<span class="go">LilyPondEngraver(name='Figured_bass_position_engraver')</span>
+<span class="go">LilyPondEngraver(name='Fingering_column_engraver')</span>
+<span class="go">LilyPondEngraver(name='Font_size_engraver')</span>
+<span class="go">LilyPondEngraver(name='Grob_pq_engraver')</span>
+<span class="go">LilyPondEngraver(name='Instrument_name_engraver')</span>
+<span class="go">LilyPondEngraver(name='Key_engraver')</span>
+<span class="go">LilyPondEngraver(name='Ledger_line_engraver')</span>
+<span class="go">LilyPondEngraver(name='Ottava_spanner_engraver')</span>
+<span class="go">LilyPondEngraver(name='Output_property_engraver')</span>
+<span class="go">LilyPondEngraver(name='Piano_pedal_align_engraver')</span>
+<span class="go">LilyPondEngraver(name='Piano_pedal_engraver')</span>
+<span class="go">LilyPondEngraver(name='Pure_from_neighbor_engraver')</span>
+<span class="go">LilyPondEngraver(name='Rest_collision_engraver')</span>
+<span class="go">LilyPondEngraver(name='Script_row_engraver')</span>
+<span class="go">LilyPondEngraver(name='Separating_line_group_engraver')</span>
+<span class="go">LilyPondEngraver(name='Staff_collecting_engraver')</span>
+<span class="go">LilyPondEngraver(name='Staff_symbol_engraver')</span>
+<span class="go">LilyPondEngraver(name='Time_signature_engraver')</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<dl class="py attribute">
+<dt id="abjad.lyproxy.LilyPondContext.grobs">
+<code class="sig-name descname"><span class="pre">grobs</span></code><a class="headerlink" href="#abjad.lyproxy.LilyPondContext.grobs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets grobs created by LilyPond context.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">context</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondContext</span><span class="p">(</span><span class="s1">'MensuralStaff'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">grob</span> <span class="ow">in</span> <span class="n">context</span><span class="o">.</span><span class="n">grobs</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">grob</span>
+<span class="gp">...</span>
+<span class="go">LilyPondGrob(name='Accidental')</span>
+<span class="go">LilyPondGrob(name='AccidentalCautionary')</span>
+<span class="go">LilyPondGrob(name='AccidentalPlacement')</span>
+<span class="go">LilyPondGrob(name='AccidentalSuggestion')</span>
+<span class="go">LilyPondGrob(name='BarLine')</span>
+<span class="go">LilyPondGrob(name='BassFigure')</span>
+<span class="go">LilyPondGrob(name='BassFigureAlignment')</span>
+<span class="go">LilyPondGrob(name='BassFigureAlignmentPositioning')</span>
+<span class="go">LilyPondGrob(name='BassFigureBracket')</span>
+<span class="go">LilyPondGrob(name='BassFigureContinuation')</span>
+<span class="go">LilyPondGrob(name='BassFigureLine')</span>
+<span class="go">LilyPondGrob(name='Clef')</span>
+<span class="go">LilyPondGrob(name='ClefModifier')</span>
+<span class="go">LilyPondGrob(name='CueClef')</span>
+<span class="go">LilyPondGrob(name='CueEndClef')</span>
+<span class="go">LilyPondGrob(name='Custos')</span>
+<span class="go">LilyPondGrob(name='DotColumn')</span>
+<span class="go">LilyPondGrob(name='FingeringColumn')</span>
+<span class="go">LilyPondGrob(name='InstrumentName')</span>
+<span class="go">LilyPondGrob(name='KeyCancellation')</span>
+<span class="go">LilyPondGrob(name='KeySignature')</span>
+<span class="go">LilyPondGrob(name='LedgerLineSpanner')</span>
+<span class="go">LilyPondGrob(name='NoteCollision')</span>
+<span class="go">LilyPondGrob(name='OttavaBracket')</span>
+<span class="go">LilyPondGrob(name='PianoPedalBracket')</span>
+<span class="go">LilyPondGrob(name='RestCollision')</span>
+<span class="go">LilyPondGrob(name='ScriptRow')</span>
+<span class="go">LilyPondGrob(name='SostenutoPedal')</span>
+<span class="go">LilyPondGrob(name='SostenutoPedalLineSpanner')</span>
+<span class="go">LilyPondGrob(name='StaffSpacing')</span>
+<span class="go">LilyPondGrob(name='StaffSymbol')</span>
+<span class="go">LilyPondGrob(name='SustainPedal')</span>
+<span class="go">LilyPondGrob(name='SustainPedalLineSpanner')</span>
+<span class="go">LilyPondGrob(name='TimeSignature')</span>
+<span class="go">LilyPondGrob(name='UnaCordaPedal')</span>
+<span class="go">LilyPondGrob(name='UnaCordaPedalLineSpanner')</span>
+<span class="go">LilyPondGrob(name='VerticalAxisGroup')</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<dl class="py attribute">
+<dt id="abjad.lyproxy.LilyPondContext.is_bottom_context">
+<code class="sig-name descname"><span class="pre">is_bottom_context</span></code><a class="headerlink" href="#abjad.lyproxy.LilyPondContext.is_bottom_context" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is true if LilyPond context is a bottom context.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">lilypond_context</span> <span class="ow">in</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondContext</span><span class="o">.</span><span class="n">list_all_contexts</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="n">is_bottom_context</span> <span class="o">=</span> <span class="s1">'X'</span> <span class="k">if</span> <span class="n">lilypond_context</span><span class="o">.</span><span class="n">is_bottom_context</span> <span class="k">else</span> <span class="s1">' '</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'[</span><span class="si">{</span><span class="n">is_bottom_context</span><span class="si">}</span><span class="s1">] </span><span class="si">{</span><span class="n">lilypond_context</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="go">[ ] ChoirStaff</span>
+<span class="go">[X] ChordNames</span>
+<span class="go">[X] CueVoice</span>
+<span class="go">[X] Devnull</span>
+<span class="go">[ ] DrumStaff</span>
+<span class="go">[X] DrumVoice</span>
+<span class="go">[X] Dynamics</span>
+<span class="go">[X] FiguredBass</span>
+<span class="go">[X] FretBoards</span>
+<span class="go">[ ] Global</span>
+<span class="go">[ ] GrandStaff</span>
+<span class="go">[ ] GregorianTranscriptionStaff</span>
+<span class="go">[X] GregorianTranscriptionVoice</span>
+<span class="go">[ ] KievanStaff</span>
+<span class="go">[X] KievanVoice</span>
+<span class="go">[X] Lyrics</span>
+<span class="go">[ ] MensuralStaff</span>
+<span class="go">[X] MensuralVoice</span>
+<span class="go">[X] NoteNames</span>
+<span class="go">[X] NullVoice</span>
+<span class="go">[ ] OneStaff</span>
+<span class="go">[ ] PetrucciStaff</span>
+<span class="go">[X] PetrucciVoice</span>
+<span class="go">[ ] PianoStaff</span>
+<span class="go">[ ] RhythmicStaff</span>
+<span class="go">[ ] Score</span>
+<span class="go">[ ] Staff</span>
+<span class="go">[ ] StaffGroup</span>
+<span class="go">[ ] TabStaff</span>
+<span class="go">[X] TabVoice</span>
+<span class="go">[ ] VaticanaStaff</span>
+<span class="go">[X] VaticanaVoice</span>
+<span class="go">[X] Voice</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<dl class="py attribute">
+<dt id="abjad.lyproxy.LilyPondContext.is_custom">
+<code class="sig-name descname"><span class="pre">is_custom</span></code><a class="headerlink" href="#abjad.lyproxy.LilyPondContext.is_custom" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is true if LilyPond context is user-created.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">context</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondContext</span><span class="p">(</span><span class="s1">'MensuralStaff'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">context</span><span class="o">.</span><span class="n">is_custom</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<dl class="py attribute">
+<dt id="abjad.lyproxy.LilyPondContext.is_global_context">
+<code class="sig-name descname"><span class="pre">is_global_context</span></code><a class="headerlink" href="#abjad.lyproxy.LilyPondContext.is_global_context" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is true if LilyPond context is a global context.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">lilypond_context</span> <span class="ow">in</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondContext</span><span class="o">.</span><span class="n">list_all_contexts</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="n">is_global_context</span> <span class="o">=</span> <span class="s1">'X'</span> <span class="k">if</span> <span class="n">lilypond_context</span><span class="o">.</span><span class="n">is_global_context</span> <span class="k">else</span> <span class="s1">' '</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'[</span><span class="si">{</span><span class="n">is_global_context</span><span class="si">}</span><span class="s1">] </span><span class="si">{</span><span class="n">lilypond_context</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="go">[ ] ChoirStaff</span>
+<span class="go">[ ] ChordNames</span>
+<span class="go">[ ] CueVoice</span>
+<span class="go">[ ] Devnull</span>
+<span class="go">[ ] DrumStaff</span>
+<span class="go">[ ] DrumVoice</span>
+<span class="go">[ ] Dynamics</span>
+<span class="go">[ ] FiguredBass</span>
+<span class="go">[ ] FretBoards</span>
+<span class="go">[X] Global</span>
+<span class="go">[ ] GrandStaff</span>
+<span class="go">[ ] GregorianTranscriptionStaff</span>
+<span class="go">[ ] GregorianTranscriptionVoice</span>
+<span class="go">[ ] KievanStaff</span>
+<span class="go">[ ] KievanVoice</span>
+<span class="go">[ ] Lyrics</span>
+<span class="go">[ ] MensuralStaff</span>
+<span class="go">[ ] MensuralVoice</span>
+<span class="go">[ ] NoteNames</span>
+<span class="go">[ ] NullVoice</span>
+<span class="go">[ ] OneStaff</span>
+<span class="go">[ ] PetrucciStaff</span>
+<span class="go">[ ] PetrucciVoice</span>
+<span class="go">[ ] PianoStaff</span>
+<span class="go">[ ] RhythmicStaff</span>
+<span class="go">[ ] Score</span>
+<span class="go">[ ] Staff</span>
+<span class="go">[ ] StaffGroup</span>
+<span class="go">[ ] TabStaff</span>
+<span class="go">[ ] TabVoice</span>
+<span class="go">[ ] VaticanaStaff</span>
+<span class="go">[ ] VaticanaVoice</span>
+<span class="go">[ ] Voice</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<dl class="py attribute">
+<dt id="abjad.lyproxy.LilyPondContext.is_score_context">
+<code class="sig-name descname"><span class="pre">is_score_context</span></code><a class="headerlink" href="#abjad.lyproxy.LilyPondContext.is_score_context" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is true if LilyPond context is a score context.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">lilypond_context</span> <span class="ow">in</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondContext</span><span class="o">.</span><span class="n">list_all_contexts</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="n">is_score_context</span> <span class="o">=</span> <span class="s1">'X'</span> <span class="k">if</span> <span class="n">lilypond_context</span><span class="o">.</span><span class="n">is_score_context</span> <span class="k">else</span> <span class="s1">' '</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'[</span><span class="si">{</span><span class="n">is_score_context</span><span class="si">}</span><span class="s1">] </span><span class="si">{</span><span class="n">lilypond_context</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="go">[ ] ChoirStaff</span>
+<span class="go">[ ] ChordNames</span>
+<span class="go">[ ] CueVoice</span>
+<span class="go">[ ] Devnull</span>
+<span class="go">[ ] DrumStaff</span>
+<span class="go">[ ] DrumVoice</span>
+<span class="go">[ ] Dynamics</span>
+<span class="go">[ ] FiguredBass</span>
+<span class="go">[ ] FretBoards</span>
+<span class="go">[ ] Global</span>
+<span class="go">[ ] GrandStaff</span>
+<span class="go">[ ] GregorianTranscriptionStaff</span>
+<span class="go">[ ] GregorianTranscriptionVoice</span>
+<span class="go">[ ] KievanStaff</span>
+<span class="go">[ ] KievanVoice</span>
+<span class="go">[ ] Lyrics</span>
+<span class="go">[ ] MensuralStaff</span>
+<span class="go">[ ] MensuralVoice</span>
+<span class="go">[ ] NoteNames</span>
+<span class="go">[ ] NullVoice</span>
+<span class="go">[ ] OneStaff</span>
+<span class="go">[ ] PetrucciStaff</span>
+<span class="go">[ ] PetrucciVoice</span>
+<span class="go">[ ] PianoStaff</span>
+<span class="go">[ ] RhythmicStaff</span>
+<span class="go">[X] Score</span>
+<span class="go">[ ] Staff</span>
+<span class="go">[ ] StaffGroup</span>
+<span class="go">[ ] TabStaff</span>
+<span class="go">[ ] TabVoice</span>
+<span class="go">[ ] VaticanaStaff</span>
+<span class="go">[ ] VaticanaVoice</span>
+<span class="go">[ ] Voice</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<dl class="py attribute">
+<dt id="abjad.lyproxy.LilyPondContext.is_staff_context">
+<code class="sig-name descname"><span class="pre">is_staff_context</span></code><a class="headerlink" href="#abjad.lyproxy.LilyPondContext.is_staff_context" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is true if LilyPond context is a staff context.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">lilypond_context</span> <span class="ow">in</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondContext</span><span class="o">.</span><span class="n">list_all_contexts</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="n">is_staff_context</span> <span class="o">=</span> <span class="s1">'X'</span> <span class="k">if</span> <span class="n">lilypond_context</span><span class="o">.</span><span class="n">is_staff_context</span> <span class="k">else</span> <span class="s1">' '</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'[</span><span class="si">{</span><span class="n">is_staff_context</span><span class="si">}</span><span class="s1">] </span><span class="si">{</span><span class="n">lilypond_context</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="go">[ ] ChoirStaff</span>
+<span class="go">[ ] ChordNames</span>
+<span class="go">[ ] CueVoice</span>
+<span class="go">[ ] Devnull</span>
+<span class="go">[X] DrumStaff</span>
+<span class="go">[ ] DrumVoice</span>
+<span class="go">[ ] Dynamics</span>
+<span class="go">[ ] FiguredBass</span>
+<span class="go">[ ] FretBoards</span>
+<span class="go">[ ] Global</span>
+<span class="go">[ ] GrandStaff</span>
+<span class="go">[X] GregorianTranscriptionStaff</span>
+<span class="go">[ ] GregorianTranscriptionVoice</span>
+<span class="go">[X] KievanStaff</span>
+<span class="go">[ ] KievanVoice</span>
+<span class="go">[ ] Lyrics</span>
+<span class="go">[X] MensuralStaff</span>
+<span class="go">[ ] MensuralVoice</span>
+<span class="go">[ ] NoteNames</span>
+<span class="go">[ ] NullVoice</span>
+<span class="go">[ ] OneStaff</span>
+<span class="go">[X] PetrucciStaff</span>
+<span class="go">[ ] PetrucciVoice</span>
+<span class="go">[ ] PianoStaff</span>
+<span class="go">[X] RhythmicStaff</span>
+<span class="go">[ ] Score</span>
+<span class="go">[X] Staff</span>
+<span class="go">[ ] StaffGroup</span>
+<span class="go">[X] TabStaff</span>
+<span class="go">[ ] TabVoice</span>
+<span class="go">[X] VaticanaStaff</span>
+<span class="go">[ ] VaticanaVoice</span>
+<span class="go">[ ] Voice</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<dl class="py attribute">
+<dt id="abjad.lyproxy.LilyPondContext.is_staff_group_context">
+<code class="sig-name descname"><span class="pre">is_staff_group_context</span></code><a class="headerlink" href="#abjad.lyproxy.LilyPondContext.is_staff_group_context" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is true if LilyPond context is a staff group context.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">lilypond_context</span> <span class="ow">in</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondContext</span><span class="o">.</span><span class="n">list_all_contexts</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="n">is_staff_group_context</span> <span class="o">=</span> <span class="s1">'X'</span> <span class="k">if</span> <span class="n">lilypond_context</span><span class="o">.</span><span class="n">is_staff_group_context</span> <span class="k">else</span> <span class="s1">' '</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'[</span><span class="si">{</span><span class="n">is_staff_group_context</span><span class="si">}</span><span class="s1">] </span><span class="si">{</span><span class="n">lilypond_context</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="go">[X] ChoirStaff</span>
+<span class="go">[ ] ChordNames</span>
+<span class="go">[ ] CueVoice</span>
+<span class="go">[ ] Devnull</span>
+<span class="go">[ ] DrumStaff</span>
+<span class="go">[ ] DrumVoice</span>
+<span class="go">[ ] Dynamics</span>
+<span class="go">[ ] FiguredBass</span>
+<span class="go">[ ] FretBoards</span>
+<span class="go">[ ] Global</span>
+<span class="go">[X] GrandStaff</span>
+<span class="go">[ ] GregorianTranscriptionStaff</span>
+<span class="go">[ ] GregorianTranscriptionVoice</span>
+<span class="go">[ ] KievanStaff</span>
+<span class="go">[ ] KievanVoice</span>
+<span class="go">[ ] Lyrics</span>
+<span class="go">[ ] MensuralStaff</span>
+<span class="go">[ ] MensuralVoice</span>
+<span class="go">[ ] NoteNames</span>
+<span class="go">[ ] NullVoice</span>
+<span class="go">[X] OneStaff</span>
+<span class="go">[ ] PetrucciStaff</span>
+<span class="go">[ ] PetrucciVoice</span>
+<span class="go">[X] PianoStaff</span>
+<span class="go">[ ] RhythmicStaff</span>
+<span class="go">[ ] Score</span>
+<span class="go">[ ] Staff</span>
+<span class="go">[X] StaffGroup</span>
+<span class="go">[ ] TabStaff</span>
+<span class="go">[ ] TabVoice</span>
+<span class="go">[ ] VaticanaStaff</span>
+<span class="go">[ ] VaticanaVoice</span>
+<span class="go">[ ] Voice</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<dl class="py attribute">
+<dt id="abjad.lyproxy.LilyPondContext.name">
+<code class="sig-name descname"><span class="pre">name</span></code><a class="headerlink" href="#abjad.lyproxy.LilyPondContext.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets name of LilyPond context.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">context</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondContext</span><span class="p">(</span><span class="s1">'MensuralStaff'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">context</span><span class="o">.</span><span class="n">name</span>
+<span class="go">'MensuralStaff'</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<dl class="py attribute">
+<dt id="abjad.lyproxy.LilyPondContext.property_names">
+<code class="sig-name descname"><span class="pre">property_names</span></code><a class="headerlink" href="#abjad.lyproxy.LilyPondContext.property_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets property names of LilyPond context.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">context</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondContext</span><span class="p">(</span><span class="s1">'MensuralStaff'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">property_name</span> <span class="ow">in</span> <span class="n">context</span><span class="o">.</span><span class="n">property_names</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">property_name</span>
+<span class="gp">...</span>
+<span class="go">'accidentalGrouping'</span>
+<span class="go">'autoAccidentals'</span>
+<span class="go">'autoCautionaries'</span>
+<span class="go">'busyGrobs'</span>
+<span class="go">'clefGlyph'</span>
+<span class="go">'clefPosition'</span>
+<span class="go">'clefTransposition'</span>
+<span class="go">'clefTranspositionStyle'</span>
+<span class="go">'createKeyOnClefChange'</span>
+<span class="go">'createSpacing'</span>
+<span class="go">'cueClefGlyph'</span>
+<span class="go">'cueClefPosition'</span>
+<span class="go">'cueClefTransposition'</span>
+<span class="go">'cueClefTranspositionStyle'</span>
+<span class="go">'currentCommandColumn'</span>
+<span class="go">'currentMusicalColumn'</span>
+<span class="go">'explicitClefVisibility'</span>
+<span class="go">'explicitCueClefVisibility'</span>
+<span class="go">'explicitKeySignatureVisibility'</span>
+<span class="go">'extraNatural'</span>
+<span class="go">'figuredBassAlterationDirection'</span>
+<span class="go">'figuredBassCenterContinuations'</span>
+<span class="go">'figuredBassFormatter'</span>
+<span class="go">'fontSize'</span>
+<span class="go">'forbidBreak'</span>
+<span class="go">'forceClef'</span>
+<span class="go">'harmonicAccidentals'</span>
+<span class="go">'hasAxisGroup'</span>
+<span class="go">'hasStaffSpacing'</span>
+<span class="go">'ignoreFiguredBassRest'</span>
+<span class="go">'implicitBassFigures'</span>
+<span class="go">'initialTimeSignatureVisibility'</span>
+<span class="go">'instrumentName'</span>
+<span class="go">'internalBarNumber'</span>
+<span class="go">'keepAliveInterfaces'</span>
+<span class="go">'keyAlterationOrder'</span>
+<span class="go">'keyAlterations'</span>
+<span class="go">'lastKeyAlterations'</span>
+<span class="go">'localAlterations'</span>
+<span class="go">'middleCClefPosition'</span>
+<span class="go">'middleCCuePosition'</span>
+<span class="go">'middleCOffset'</span>
+<span class="go">'ottavation'</span>
+<span class="go">'partialBusy'</span>
+<span class="go">'pedalSostenutoStrings'</span>
+<span class="go">'pedalSostenutoStyle'</span>
+<span class="go">'pedalSustainStrings'</span>
+<span class="go">'pedalSustainStyle'</span>
+<span class="go">'pedalUnaCordaStrings'</span>
+<span class="go">'pedalUnaCordaStyle'</span>
+<span class="go">'printKeyCancellation'</span>
+<span class="go">'shortInstrumentName'</span>
+<span class="go">'shortVocalName'</span>
+<span class="go">'stavesFound'</span>
+<span class="go">'timeSignatureFraction'</span>
+<span class="go">'tonic'</span>
+<span class="go">'useBassFigureExtenders'</span>
+<span class="go">'vocalName'</span>
+<span class="go">'whichBar'</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt id="abjad.lyproxy.LilyPondEngraver">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">abjad.lyproxy.</span></code><code class="sig-name descname"><span class="pre">LilyPondEngraver</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Note_heads_engraver'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.lyproxy.LilyPondEngraver" title="Permalink to this definition">¶</a></dt>
+<dd><p>LilyPond engraver.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">engraver</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondEngraver</span><span class="p">(</span><span class="s1">'Auto_beam_engraver'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">abjad</span><span class="o">.</span><span class="n">storage</span><span class="p">(</span><span class="n">engraver</span><span class="p">))</span>
+<span class="go">abjad.LilyPondEngraver(</span>
+<span class="go">    name='Auto_beam_engraver',</span>
+<span class="go">    )</span>
+</pre></div>
+</div>
+</div>
+<hr/><p class="class-header rubric">Attributes Summary</p>
+<hr/><p class="class-header rubric">Special methods</p>
+<dl class="py method">
+<dt id="abjad.lyproxy.LilyPondEngraver.__new__">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">__new__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">class_</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Note_heads_engraver'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.lyproxy.LilyPondEngraver.__new__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create and return a new object.  See help(type) for accurate signature.</p>
+</dd></dl>
+<dl class="py method">
+<dt id="abjad.lyproxy.LilyPondEngraver.__repr__">
+<code class="sig-name descname"><span class="pre">__repr__</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> → <span class="pre">str</span><a class="headerlink" href="#abjad.lyproxy.LilyPondEngraver.__repr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets interpreter representation.</p>
+</dd></dl>
+<hr/><p class="class-header rubric">Class &amp; static methods</p>
+<dl class="py method">
+<dt id="abjad.lyproxy.LilyPondEngraver.list_all_engravers">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">list_all_engravers</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> → <span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#abjad.lyproxy.LilyPondEngraver" title="abjad.lyproxy.LilyPondEngraver"><span class="pre">abjad.lyproxy.LilyPondEngraver</span></a><span class="p"><span class="pre">,</span> </span><span class="p"><span class="pre">…</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#abjad.lyproxy.LilyPondEngraver.list_all_engravers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lists all engravers.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">lilypond_engraver</span> <span class="ow">in</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondEngraver</span><span class="o">.</span><span class="n">list_all_engravers</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="n">lilypond_engraver</span>
+<span class="gp">...</span>
+<span class="go">LilyPondEngraver(name='Accidental_engraver')</span>
+<span class="go">LilyPondEngraver(name='Ambitus_engraver')</span>
+<span class="go">LilyPondEngraver(name='Arpeggio_engraver')</span>
+<span class="go">LilyPondEngraver(name='Auto_beam_engraver')</span>
+<span class="go">LilyPondEngraver(name='Axis_group_engraver')</span>
+<span class="go">LilyPondEngraver(name='Balloon_engraver')</span>
+<span class="go">LilyPondEngraver(name='Bar_engraver')</span>
+<span class="go">LilyPondEngraver(name='Bar_number_engraver')</span>
+<span class="go">LilyPondEngraver(name='Beam_collision_engraver')</span>
+<span class="go">LilyPondEngraver(name='Beam_engraver')</span>
+<span class="go">LilyPondEngraver(name='Beam_performer')</span>
+<span class="go">LilyPondEngraver(name='Bend_engraver')</span>
+<span class="go">LilyPondEngraver(name='Break_align_engraver')</span>
+<span class="go">LilyPondEngraver(name='Breathing_sign_engraver')</span>
+<span class="go">LilyPondEngraver(name='Chord_name_engraver')</span>
+<span class="go">LilyPondEngraver(name='Chord_tremolo_engraver')</span>
+<span class="go">LilyPondEngraver(name='Clef_engraver')</span>
+<span class="go">LilyPondEngraver(name='Cluster_spanner_engraver')</span>
+<span class="go">LilyPondEngraver(name='Collision_engraver')</span>
+<span class="go">LilyPondEngraver(name='Completion_heads_engraver')</span>
+<span class="go">LilyPondEngraver(name='Completion_rest_engraver')</span>
+<span class="go">LilyPondEngraver(name='Concurrent_hairpin_engraver')</span>
+<span class="go">LilyPondEngraver(name='Control_track_performer')</span>
+<span class="go">LilyPondEngraver(name='Cue_clef_engraver')</span>
+<span class="go">LilyPondEngraver(name='Custos_engraver')</span>
+<span class="go">LilyPondEngraver(name='Default_bar_line_engraver')</span>
+<span class="go">LilyPondEngraver(name='Dot_column_engraver')</span>
+<span class="go">LilyPondEngraver(name='Dots_engraver')</span>
+<span class="go">LilyPondEngraver(name='Double_percent_repeat_engraver')</span>
+<span class="go">LilyPondEngraver(name='Drum_note_performer')</span>
+<span class="go">LilyPondEngraver(name='Drum_notes_engraver')</span>
+<span class="go">LilyPondEngraver(name='Dynamic_align_engraver')</span>
+<span class="go">LilyPondEngraver(name='Dynamic_engraver')</span>
+<span class="go">LilyPondEngraver(name='Dynamic_performer')</span>
+<span class="go">LilyPondEngraver(name='Episema_engraver')</span>
+<span class="go">LilyPondEngraver(name='Extender_engraver')</span>
+<span class="go">LilyPondEngraver(name='Figured_bass_engraver')</span>
+<span class="go">LilyPondEngraver(name='Figured_bass_position_engraver')</span>
+<span class="go">LilyPondEngraver(name='Fingering_column_engraver')</span>
+<span class="go">LilyPondEngraver(name='Fingering_engraver')</span>
+<span class="go">LilyPondEngraver(name='Font_size_engraver')</span>
+<span class="go">LilyPondEngraver(name='Footnote_engraver')</span>
+<span class="go">LilyPondEngraver(name='Forbid_line_break_engraver')</span>
+<span class="go">LilyPondEngraver(name='Fretboard_engraver')</span>
+<span class="go">LilyPondEngraver(name='Glissando_engraver')</span>
+<span class="go">LilyPondEngraver(name='Grace_auto_beam_engraver')</span>
+<span class="go">LilyPondEngraver(name='Grace_beam_engraver')</span>
+<span class="go">LilyPondEngraver(name='Grace_engraver')</span>
+<span class="go">LilyPondEngraver(name='Grace_spacing_engraver')</span>
+<span class="go">LilyPondEngraver(name='Grid_line_span_engraver')</span>
+<span class="go">LilyPondEngraver(name='Grid_point_engraver')</span>
+<span class="go">LilyPondEngraver(name='Grob_pq_engraver')</span>
+<span class="go">LilyPondEngraver(name='Horizontal_bracket_engraver')</span>
+<span class="go">LilyPondEngraver(name='Hyphen_engraver')</span>
+<span class="go">LilyPondEngraver(name='Instrument_name_engraver')</span>
+<span class="go">LilyPondEngraver(name='Instrument_switch_engraver')</span>
+<span class="go">LilyPondEngraver(name='Keep_alive_together_engraver')</span>
+<span class="go">LilyPondEngraver(name='Key_engraver')</span>
+<span class="go">LilyPondEngraver(name='Key_performer')</span>
+<span class="go">LilyPondEngraver(name='Kievan_ligature_engraver')</span>
+<span class="go">LilyPondEngraver(name='Laissez_vibrer_engraver')</span>
+<span class="go">LilyPondEngraver(name='Ledger_line_engraver')</span>
+<span class="go">LilyPondEngraver(name='Ligature_bracket_engraver')</span>
+<span class="go">LilyPondEngraver(name='Lyric_engraver')</span>
+<span class="go">LilyPondEngraver(name='Lyric_performer')</span>
+<span class="go">LilyPondEngraver(name='Mark_engraver')</span>
+<span class="go">LilyPondEngraver(name='Measure_counter_engraver')</span>
+<span class="go">LilyPondEngraver(name='Measure_grouping_engraver')</span>
+<span class="go">LilyPondEngraver(name='Melody_engraver')</span>
+<span class="go">LilyPondEngraver(name='Mensural_ligature_engraver')</span>
+<span class="go">LilyPondEngraver(name='Merge_rests_engraver')</span>
+<span class="go">LilyPondEngraver(name='Metronome_mark_engraver')</span>
+<span class="go">LilyPondEngraver(name='Midi_control_change_performer')</span>
+<span class="go">LilyPondEngraver(name='Multi_measure_rest_engraver')</span>
+<span class="go">LilyPondEngraver(name='New_fingering_engraver')</span>
+<span class="go">LilyPondEngraver(name='Note_head_line_engraver')</span>
+<span class="go">LilyPondEngraver(name='Note_heads_engraver')</span>
+<span class="go">LilyPondEngraver(name='Note_name_engraver')</span>
+<span class="go">LilyPondEngraver(name='Note_performer')</span>
+<span class="go">LilyPondEngraver(name='Note_spacing_engraver')</span>
+<span class="go">LilyPondEngraver(name='Ottava_spanner_engraver')</span>
+<span class="go">LilyPondEngraver(name='Output_property_engraver')</span>
+<span class="go">LilyPondEngraver(name='Page_turn_engraver')</span>
+<span class="go">LilyPondEngraver(name='Paper_column_engraver')</span>
+<span class="go">LilyPondEngraver(name='Parenthesis_engraver')</span>
+<span class="go">LilyPondEngraver(name='Part_combine_engraver')</span>
+<span class="go">LilyPondEngraver(name='Percent_repeat_engraver')</span>
+<span class="go">LilyPondEngraver(name='Phrasing_slur_engraver')</span>
+<span class="go">LilyPondEngraver(name='Piano_pedal_align_engraver')</span>
+<span class="go">LilyPondEngraver(name='Piano_pedal_engraver')</span>
+<span class="go">LilyPondEngraver(name='Piano_pedal_performer')</span>
+<span class="go">LilyPondEngraver(name='Pitch_squash_engraver')</span>
+<span class="go">LilyPondEngraver(name='Pitched_trill_engraver')</span>
+<span class="go">LilyPondEngraver(name='Pure_from_neighbor_engraver')</span>
+<span class="go">LilyPondEngraver(name='Repeat_acknowledge_engraver')</span>
+<span class="go">LilyPondEngraver(name='Repeat_tie_engraver')</span>
+<span class="go">LilyPondEngraver(name='Rest_collision_engraver')</span>
+<span class="go">LilyPondEngraver(name='Rest_engraver')</span>
+<span class="go">LilyPondEngraver(name='Rhythmic_column_engraver')</span>
+<span class="go">LilyPondEngraver(name='Script_column_engraver')</span>
+<span class="go">LilyPondEngraver(name='Script_engraver')</span>
+<span class="go">LilyPondEngraver(name='Script_row_engraver')</span>
+<span class="go">LilyPondEngraver(name='Separating_line_group_engraver')</span>
+<span class="go">LilyPondEngraver(name='Slash_repeat_engraver')</span>
+<span class="go">LilyPondEngraver(name='Slur_engraver')</span>
+<span class="go">LilyPondEngraver(name='Slur_performer')</span>
+<span class="go">LilyPondEngraver(name='Spacing_engraver')</span>
+<span class="go">LilyPondEngraver(name='Span_arpeggio_engraver')</span>
+<span class="go">LilyPondEngraver(name='Span_bar_engraver')</span>
+<span class="go">LilyPondEngraver(name='Span_bar_stub_engraver')</span>
+<span class="go">LilyPondEngraver(name='Span_stem_engraver')</span>
+<span class="go">LilyPondEngraver(name='Spanner_break_forbid_engraver')</span>
+<span class="go">LilyPondEngraver(name='Staff_collecting_engraver')</span>
+<span class="go">LilyPondEngraver(name='Staff_performer')</span>
+<span class="go">LilyPondEngraver(name='Staff_symbol_engraver')</span>
+<span class="go">LilyPondEngraver(name='Stanza_number_align_engraver')</span>
+<span class="go">LilyPondEngraver(name='Stanza_number_engraver')</span>
+<span class="go">LilyPondEngraver(name='Stem_engraver')</span>
+<span class="go">LilyPondEngraver(name='System_start_delimiter_engraver')</span>
+<span class="go">LilyPondEngraver(name='Tab_note_heads_engraver')</span>
+<span class="go">LilyPondEngraver(name='Tab_staff_symbol_engraver')</span>
+<span class="go">LilyPondEngraver(name='Tab_tie_follow_engraver')</span>
+<span class="go">LilyPondEngraver(name='Tempo_performer')</span>
+<span class="go">LilyPondEngraver(name='Text_engraver')</span>
+<span class="go">LilyPondEngraver(name='Text_spanner_engraver')</span>
+<span class="go">LilyPondEngraver(name='Tie_engraver')</span>
+<span class="go">LilyPondEngraver(name='Tie_performer')</span>
+<span class="go">LilyPondEngraver(name='Time_signature_engraver')</span>
+<span class="go">LilyPondEngraver(name='Time_signature_performer')</span>
+<span class="go">LilyPondEngraver(name='Timing_translator')</span>
+<span class="go">LilyPondEngraver(name='Trill_spanner_engraver')</span>
+<span class="go">LilyPondEngraver(name='Tuplet_engraver')</span>
+<span class="go">LilyPondEngraver(name='Tweak_engraver')</span>
+<span class="go">LilyPondEngraver(name='Vaticana_ligature_engraver')</span>
+<span class="go">LilyPondEngraver(name='Vertical_align_engraver')</span>
+<span class="go">LilyPondEngraver(name='Volta_engraver')</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<hr/><p class="class-header rubric">Read-only properties</p>
+<dl class="py attribute">
+<dt id="abjad.lyproxy.LilyPondEngraver.grobs">
+<code class="sig-name descname"><span class="pre">grobs</span></code><a class="headerlink" href="#abjad.lyproxy.LilyPondEngraver.grobs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets LilyPond engraver’s created grobs.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">engraver</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondEngraver</span><span class="p">(</span><span class="s1">'Auto_beam_engraver'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">grob</span> <span class="ow">in</span> <span class="n">engraver</span><span class="o">.</span><span class="n">grobs</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">grob</span>
+<span class="gp">...</span>
+<span class="go">LilyPondGrob(name='Beam')</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<dl class="py attribute">
+<dt id="abjad.lyproxy.LilyPondEngraver.name">
+<code class="sig-name descname"><span class="pre">name</span></code><a class="headerlink" href="#abjad.lyproxy.LilyPondEngraver.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets name of LilyPond engraver.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">engraver</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondEngraver</span><span class="p">(</span><span class="s1">'Auto_beam_engraver'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">engraver</span><span class="o">.</span><span class="n">name</span>
+<span class="go">'Auto_beam_engraver'</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<dl class="py attribute">
+<dt id="abjad.lyproxy.LilyPondEngraver.property_names">
+<code class="sig-name descname"><span class="pre">property_names</span></code><a class="headerlink" href="#abjad.lyproxy.LilyPondEngraver.property_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets LilyPond engraver’s property names.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">engraver</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondEngraver</span><span class="p">(</span><span class="s1">'Auto_beam_engraver'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">property_name</span> <span class="ow">in</span> <span class="n">engraver</span><span class="o">.</span><span class="n">property_names</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">property_name</span>
+<span class="gp">...</span>
+<span class="go">'autoBeaming'</span>
+<span class="go">'baseMoment'</span>
+<span class="go">'beamExceptions'</span>
+<span class="go">'beamHalfMeasure'</span>
+<span class="go">'beatStructure'</span>
+<span class="go">'subdivideBeams'</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt id="abjad.lyproxy.LilyPondGrob">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">abjad.lyproxy.</span></code><code class="sig-name descname"><span class="pre">LilyPondGrob</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'NoteHead'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.lyproxy.LilyPondGrob" title="Permalink to this definition">¶</a></dt>
+<dd><p>LilyPond grob.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">grob</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondGrob</span><span class="p">(</span><span class="s1">'Beam'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">abjad</span><span class="o">.</span><span class="n">storage</span><span class="p">(</span><span class="n">grob</span><span class="p">))</span>
+<span class="go">abjad.LilyPondGrob(</span>
+<span class="go">    name='Beam',</span>
+<span class="go">    )</span>
+</pre></div>
+</div>
+</div>
+<hr/><p class="class-header rubric">Attributes Summary</p>
+<hr/><p class="class-header rubric">Special methods</p>
+<dl class="py method">
+<dt id="abjad.lyproxy.LilyPondGrob.__new__">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">__new__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">class_</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'NoteHead'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.lyproxy.LilyPondGrob.__new__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create and return a new object.  See help(type) for accurate signature.</p>
+</dd></dl>
+<dl class="py method">
+<dt id="abjad.lyproxy.LilyPondGrob.__repr__">
+<code class="sig-name descname"><span class="pre">__repr__</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> → <span class="pre">str</span><a class="headerlink" href="#abjad.lyproxy.LilyPondGrob.__repr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets interpreter representation.</p>
+</dd></dl>
+<hr/><p class="class-header rubric">Class &amp; static methods</p>
+<dl class="py method">
+<dt id="abjad.lyproxy.LilyPondGrob.list_all_grobs">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">list_all_grobs</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> → <span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#abjad.lyproxy.LilyPondGrob" title="abjad.lyproxy.LilyPondGrob"><span class="pre">abjad.lyproxy.LilyPondGrob</span></a><span class="p"><span class="pre">,</span> </span><span class="p"><span class="pre">…</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#abjad.lyproxy.LilyPondGrob.list_all_grobs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lists all grobs.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">lilypond_grob</span> <span class="ow">in</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondGrob</span><span class="o">.</span><span class="n">list_all_grobs</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="n">lilypond_grob</span>
+<span class="gp">...</span>
+<span class="go">LilyPondGrob(name='Accidental')</span>
+<span class="go">LilyPondGrob(name='AccidentalCautionary')</span>
+<span class="go">LilyPondGrob(name='AccidentalPlacement')</span>
+<span class="go">LilyPondGrob(name='AccidentalSuggestion')</span>
+<span class="go">LilyPondGrob(name='Ambitus')</span>
+<span class="go">LilyPondGrob(name='AmbitusAccidental')</span>
+<span class="go">LilyPondGrob(name='AmbitusLine')</span>
+<span class="go">LilyPondGrob(name='AmbitusNoteHead')</span>
+<span class="go">LilyPondGrob(name='Arpeggio')</span>
+<span class="go">LilyPondGrob(name='BalloonTextItem')</span>
+<span class="go">LilyPondGrob(name='BarLine')</span>
+<span class="go">LilyPondGrob(name='BarNumber')</span>
+<span class="go">LilyPondGrob(name='BassFigure')</span>
+<span class="go">LilyPondGrob(name='BassFigureAlignment')</span>
+<span class="go">LilyPondGrob(name='BassFigureAlignmentPositioning')</span>
+<span class="go">LilyPondGrob(name='BassFigureBracket')</span>
+<span class="go">LilyPondGrob(name='BassFigureContinuation')</span>
+<span class="go">LilyPondGrob(name='BassFigureLine')</span>
+<span class="go">LilyPondGrob(name='Beam')</span>
+<span class="go">LilyPondGrob(name='BendAfter')</span>
+<span class="go">LilyPondGrob(name='BreakAlignGroup')</span>
+<span class="go">LilyPondGrob(name='BreakAlignment')</span>
+<span class="go">LilyPondGrob(name='BreathingSign')</span>
+<span class="go">LilyPondGrob(name='ChordName')</span>
+<span class="go">LilyPondGrob(name='Clef')</span>
+<span class="go">LilyPondGrob(name='ClefModifier')</span>
+<span class="go">LilyPondGrob(name='ClusterSpanner')</span>
+<span class="go">LilyPondGrob(name='ClusterSpannerBeacon')</span>
+<span class="go">LilyPondGrob(name='CombineTextScript')</span>
+<span class="go">LilyPondGrob(name='CueClef')</span>
+<span class="go">LilyPondGrob(name='CueEndClef')</span>
+<span class="go">LilyPondGrob(name='Custos')</span>
+<span class="go">LilyPondGrob(name='DotColumn')</span>
+<span class="go">LilyPondGrob(name='Dots')</span>
+<span class="go">LilyPondGrob(name='DoublePercentRepeat')</span>
+<span class="go">LilyPondGrob(name='DoublePercentRepeatCounter')</span>
+<span class="go">LilyPondGrob(name='DoubleRepeatSlash')</span>
+<span class="go">LilyPondGrob(name='DynamicLineSpanner')</span>
+<span class="go">LilyPondGrob(name='DynamicText')</span>
+<span class="go">LilyPondGrob(name='DynamicTextSpanner')</span>
+<span class="go">LilyPondGrob(name='Episema')</span>
+<span class="go">LilyPondGrob(name='Fingering')</span>
+<span class="go">LilyPondGrob(name='FingeringColumn')</span>
+<span class="go">LilyPondGrob(name='Flag')</span>
+<span class="go">LilyPondGrob(name='FootnoteItem')</span>
+<span class="go">LilyPondGrob(name='FootnoteSpanner')</span>
+<span class="go">LilyPondGrob(name='FretBoard')</span>
+<span class="go">LilyPondGrob(name='Glissando')</span>
+<span class="go">LilyPondGrob(name='GraceSpacing')</span>
+<span class="go">LilyPondGrob(name='GridLine')</span>
+<span class="go">LilyPondGrob(name='GridPoint')</span>
+<span class="go">LilyPondGrob(name='Hairpin')</span>
+<span class="go">LilyPondGrob(name='HorizontalBracket')</span>
+<span class="go">LilyPondGrob(name='HorizontalBracketText')</span>
+<span class="go">LilyPondGrob(name='InstrumentName')</span>
+<span class="go">LilyPondGrob(name='InstrumentSwitch')</span>
+<span class="go">LilyPondGrob(name='KeyCancellation')</span>
+<span class="go">LilyPondGrob(name='KeySignature')</span>
+<span class="go">LilyPondGrob(name='KievanLigature')</span>
+<span class="go">LilyPondGrob(name='LaissezVibrerTie')</span>
+<span class="go">LilyPondGrob(name='LaissezVibrerTieColumn')</span>
+<span class="go">LilyPondGrob(name='LedgerLineSpanner')</span>
+<span class="go">LilyPondGrob(name='LeftEdge')</span>
+<span class="go">LilyPondGrob(name='LigatureBracket')</span>
+<span class="go">LilyPondGrob(name='LyricExtender')</span>
+<span class="go">LilyPondGrob(name='LyricHyphen')</span>
+<span class="go">LilyPondGrob(name='LyricSpace')</span>
+<span class="go">LilyPondGrob(name='LyricText')</span>
+<span class="go">LilyPondGrob(name='MeasureCounter')</span>
+<span class="go">LilyPondGrob(name='MeasureGrouping')</span>
+<span class="go">LilyPondGrob(name='MelodyItem')</span>
+<span class="go">LilyPondGrob(name='MensuralLigature')</span>
+<span class="go">LilyPondGrob(name='MetronomeMark')</span>
+<span class="go">LilyPondGrob(name='MultiMeasureRest')</span>
+<span class="go">LilyPondGrob(name='MultiMeasureRestNumber')</span>
+<span class="go">LilyPondGrob(name='MultiMeasureRestText')</span>
+<span class="go">LilyPondGrob(name='NonMusicalPaperColumn')</span>
+<span class="go">LilyPondGrob(name='NoteCollision')</span>
+<span class="go">LilyPondGrob(name='NoteColumn')</span>
+<span class="go">LilyPondGrob(name='NoteHead')</span>
+<span class="go">LilyPondGrob(name='NoteName')</span>
+<span class="go">LilyPondGrob(name='NoteSpacing')</span>
+<span class="go">LilyPondGrob(name='OttavaBracket')</span>
+<span class="go">LilyPondGrob(name='PaperColumn')</span>
+<span class="go">LilyPondGrob(name='ParenthesesItem')</span>
+<span class="go">LilyPondGrob(name='PercentRepeat')</span>
+<span class="go">LilyPondGrob(name='PercentRepeatCounter')</span>
+<span class="go">LilyPondGrob(name='PhrasingSlur')</span>
+<span class="go">LilyPondGrob(name='PianoPedalBracket')</span>
+<span class="go">LilyPondGrob(name='RehearsalMark')</span>
+<span class="go">LilyPondGrob(name='RepeatSlash')</span>
+<span class="go">LilyPondGrob(name='RepeatTie')</span>
+<span class="go">LilyPondGrob(name='RepeatTieColumn')</span>
+<span class="go">LilyPondGrob(name='Rest')</span>
+<span class="go">LilyPondGrob(name='RestCollision')</span>
+<span class="go">LilyPondGrob(name='Script')</span>
+<span class="go">LilyPondGrob(name='ScriptColumn')</span>
+<span class="go">LilyPondGrob(name='ScriptRow')</span>
+<span class="go">LilyPondGrob(name='Slur')</span>
+<span class="go">LilyPondGrob(name='SostenutoPedal')</span>
+<span class="go">LilyPondGrob(name='SostenutoPedalLineSpanner')</span>
+<span class="go">LilyPondGrob(name='SpacingSpanner')</span>
+<span class="go">LilyPondGrob(name='SpanBar')</span>
+<span class="go">LilyPondGrob(name='SpanBarStub')</span>
+<span class="go">LilyPondGrob(name='StaffGrouper')</span>
+<span class="go">LilyPondGrob(name='StaffSpacing')</span>
+<span class="go">LilyPondGrob(name='StaffSymbol')</span>
+<span class="go">LilyPondGrob(name='StanzaNumber')</span>
+<span class="go">LilyPondGrob(name='Stem')</span>
+<span class="go">LilyPondGrob(name='StemStub')</span>
+<span class="go">LilyPondGrob(name='StemTremolo')</span>
+<span class="go">LilyPondGrob(name='StringNumber')</span>
+<span class="go">LilyPondGrob(name='StrokeFinger')</span>
+<span class="go">LilyPondGrob(name='SustainPedal')</span>
+<span class="go">LilyPondGrob(name='SustainPedalLineSpanner')</span>
+<span class="go">LilyPondGrob(name='System')</span>
+<span class="go">LilyPondGrob(name='SystemStartBar')</span>
+<span class="go">LilyPondGrob(name='SystemStartBrace')</span>
+<span class="go">LilyPondGrob(name='SystemStartBracket')</span>
+<span class="go">LilyPondGrob(name='SystemStartSquare')</span>
+<span class="go">LilyPondGrob(name='TabNoteHead')</span>
+<span class="go">LilyPondGrob(name='TextScript')</span>
+<span class="go">LilyPondGrob(name='TextSpanner')</span>
+<span class="go">LilyPondGrob(name='Tie')</span>
+<span class="go">LilyPondGrob(name='TieColumn')</span>
+<span class="go">LilyPondGrob(name='TimeSignature')</span>
+<span class="go">LilyPondGrob(name='TrillPitchAccidental')</span>
+<span class="go">LilyPondGrob(name='TrillPitchGroup')</span>
+<span class="go">LilyPondGrob(name='TrillPitchHead')</span>
+<span class="go">LilyPondGrob(name='TrillSpanner')</span>
+<span class="go">LilyPondGrob(name='TupletBracket')</span>
+<span class="go">LilyPondGrob(name='TupletNumber')</span>
+<span class="go">LilyPondGrob(name='UnaCordaPedal')</span>
+<span class="go">LilyPondGrob(name='UnaCordaPedalLineSpanner')</span>
+<span class="go">LilyPondGrob(name='VaticanaLigature')</span>
+<span class="go">LilyPondGrob(name='VerticalAlignment')</span>
+<span class="go">LilyPondGrob(name='VerticalAxisGroup')</span>
+<span class="go">LilyPondGrob(name='VoiceFollower')</span>
+<span class="go">LilyPondGrob(name='VoltaBracket')</span>
+<span class="go">LilyPondGrob(name='VoltaBracketSpanner')</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<hr/><p class="class-header rubric">Read-only properties</p>
+<dl class="py attribute">
+<dt id="abjad.lyproxy.LilyPondGrob.interfaces">
+<code class="sig-name descname"><span class="pre">interfaces</span></code><a class="headerlink" href="#abjad.lyproxy.LilyPondGrob.interfaces" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets interfaces of LilyPond grob.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">grob</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondGrob</span><span class="p">(</span><span class="s1">'Beam'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">interface</span> <span class="ow">in</span> <span class="n">grob</span><span class="o">.</span><span class="n">interfaces</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">interface</span>
+<span class="gp">...</span>
+<span class="go">LilyPondGrobInterface(name='beam-interface')</span>
+<span class="go">LilyPondGrobInterface(name='font-interface')</span>
+<span class="go">LilyPondGrobInterface(name='grob-interface')</span>
+<span class="go">LilyPondGrobInterface(name='spanner-interface')</span>
+<span class="go">LilyPondGrobInterface(name='staff-symbol-referencer-interface')</span>
+<span class="go">LilyPondGrobInterface(name='unbreakable-spanner-interface')</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<dl class="py attribute">
+<dt id="abjad.lyproxy.LilyPondGrob.name">
+<code class="sig-name descname"><span class="pre">name</span></code><a class="headerlink" href="#abjad.lyproxy.LilyPondGrob.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets name of LilyPond grob.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">grob</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondGrob</span><span class="p">(</span><span class="s1">'Beam'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">grob</span><span class="o">.</span><span class="n">name</span>
+<span class="go">'Beam'</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<dl class="py attribute">
+<dt id="abjad.lyproxy.LilyPondGrob.property_names">
+<code class="sig-name descname"><span class="pre">property_names</span></code><a class="headerlink" href="#abjad.lyproxy.LilyPondGrob.property_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets property names of LilyPond grob.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">grob</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondGrob</span><span class="p">(</span><span class="s1">'Beam'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">property_name</span> <span class="ow">in</span> <span class="n">grob</span><span class="o">.</span><span class="n">property_names</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">property_name</span>
+<span class="gp">...</span>
+<span class="go">'X-extent'</span>
+<span class="go">'X-offset'</span>
+<span class="go">'X-positions'</span>
+<span class="go">'Y-extent'</span>
+<span class="go">'Y-offset'</span>
+<span class="go">'after-line-breaking'</span>
+<span class="go">'annotation'</span>
+<span class="go">'auto-knee-gap'</span>
+<span class="go">'avoid-slur'</span>
+<span class="go">'beam-thickness'</span>
+<span class="go">'beamed-stem-shorten'</span>
+<span class="go">'beaming'</span>
+<span class="go">'before-line-breaking'</span>
+<span class="go">'break-overshoot'</span>
+<span class="go">'breakable'</span>
+<span class="go">'clip-edges'</span>
+<span class="go">'collision-interfaces'</span>
+<span class="go">'collision-voice-only'</span>
+<span class="go">'color'</span>
+<span class="go">'concaveness'</span>
+<span class="go">'cross-staff'</span>
+<span class="go">'damping'</span>
+<span class="go">'details'</span>
+<span class="go">'direction'</span>
+<span class="go">'extra-offset'</span>
+<span class="go">'font-encoding'</span>
+<span class="go">'font-family'</span>
+<span class="go">'font-features'</span>
+<span class="go">'font-name'</span>
+<span class="go">'font-series'</span>
+<span class="go">'font-shape'</span>
+<span class="go">'font-size'</span>
+<span class="go">'footnote-music'</span>
+<span class="go">'forced-spacing'</span>
+<span class="go">'gap'</span>
+<span class="go">'gap-count'</span>
+<span class="go">'grow-direction'</span>
+<span class="go">'horizontal-skylines'</span>
+<span class="go">'id'</span>
+<span class="go">'inspect-quants'</span>
+<span class="go">'knee'</span>
+<span class="go">'layer'</span>
+<span class="go">'length-fraction'</span>
+<span class="go">'minimum-X-extent'</span>
+<span class="go">'minimum-Y-extent'</span>
+<span class="go">'minimum-length'</span>
+<span class="go">'minimum-length-after-break'</span>
+<span class="go">'neutral-direction'</span>
+<span class="go">'normalized-endpoints'</span>
+<span class="go">'output-attributes'</span>
+<span class="go">'parenthesis-friends'</span>
+<span class="go">'positions'</span>
+<span class="go">'rotation'</span>
+<span class="go">'skip-quanting'</span>
+<span class="go">'skyline-horizontal-padding'</span>
+<span class="go">'spanner-id'</span>
+<span class="go">'springs-and-rods'</span>
+<span class="go">'staff-position'</span>
+<span class="go">'stencil'</span>
+<span class="go">'to-barline'</span>
+<span class="go">'transparent'</span>
+<span class="go">'vertical-skylines'</span>
+<span class="go">'whiteout'</span>
+<span class="go">'whiteout-style'</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt id="abjad.lyproxy.LilyPondGrobInterface">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">abjad.lyproxy.</span></code><code class="sig-name descname"><span class="pre">LilyPondGrobInterface</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'grob-interface'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.lyproxy.LilyPondGrobInterface" title="Permalink to this definition">¶</a></dt>
+<dd><p>LilyPond grob interface.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">interface</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondGrobInterface</span><span class="p">(</span><span class="s1">'beam-interface'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">abjad</span><span class="o">.</span><span class="n">storage</span><span class="p">(</span><span class="n">interface</span><span class="p">))</span>
+<span class="go">abjad.LilyPondGrobInterface(</span>
+<span class="go">    name='beam-interface',</span>
+<span class="go">    )</span>
+</pre></div>
+</div>
+</div>
+<hr/><p class="class-header rubric">Attributes Summary</p>
+<hr/><p class="class-header rubric">Special methods</p>
+<dl class="py method">
+<dt id="abjad.lyproxy.LilyPondGrobInterface.__new__">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">__new__</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">class_</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'grob-interface'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#abjad.lyproxy.LilyPondGrobInterface.__new__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create and return a new object.  See help(type) for accurate signature.</p>
+</dd></dl>
+<dl class="py method">
+<dt id="abjad.lyproxy.LilyPondGrobInterface.__repr__">
+<code class="sig-name descname"><span class="pre">__repr__</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> → <span class="pre">str</span><a class="headerlink" href="#abjad.lyproxy.LilyPondGrobInterface.__repr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets interpreter representation.</p>
+</dd></dl>
+<hr/><p class="class-header rubric">Class &amp; static methods</p>
+<dl class="py method">
+<dt id="abjad.lyproxy.LilyPondGrobInterface.list_all_interfaces">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">list_all_interfaces</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> → <span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#abjad.lyproxy.LilyPondGrobInterface" title="abjad.lyproxy.LilyPondGrobInterface"><span class="pre">abjad.lyproxy.LilyPondGrobInterface</span></a><span class="p"><span class="pre">,</span> </span><span class="p"><span class="pre">…</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#abjad.lyproxy.LilyPondGrobInterface.list_all_interfaces" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lists all interfaces.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">grob_interface</span> <span class="ow">in</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondGrobInterface</span><span class="o">.</span><span class="n">list_all_interfaces</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="n">grob_interface</span>
+<span class="gp">...</span>
+<span class="go">LilyPondGrobInterface(name='accidental-interface')</span>
+<span class="go">LilyPondGrobInterface(name='accidental-placement-interface')</span>
+<span class="go">LilyPondGrobInterface(name='accidental-suggestion-interface')</span>
+<span class="go">LilyPondGrobInterface(name='align-interface')</span>
+<span class="go">LilyPondGrobInterface(name='ambitus-interface')</span>
+<span class="go">LilyPondGrobInterface(name='arpeggio-interface')</span>
+<span class="go">LilyPondGrobInterface(name='axis-group-interface')</span>
+<span class="go">LilyPondGrobInterface(name='balloon-interface')</span>
+<span class="go">LilyPondGrobInterface(name='bar-line-interface')</span>
+<span class="go">LilyPondGrobInterface(name='bass-figure-alignment-interface')</span>
+<span class="go">LilyPondGrobInterface(name='bass-figure-interface')</span>
+<span class="go">LilyPondGrobInterface(name='beam-interface')</span>
+<span class="go">LilyPondGrobInterface(name='bend-after-interface')</span>
+<span class="go">LilyPondGrobInterface(name='break-alignable-interface')</span>
+<span class="go">LilyPondGrobInterface(name='break-aligned-interface')</span>
+<span class="go">LilyPondGrobInterface(name='break-alignment-interface')</span>
+<span class="go">LilyPondGrobInterface(name='breathing-sign-interface')</span>
+<span class="go">LilyPondGrobInterface(name='chord-name-interface')</span>
+<span class="go">LilyPondGrobInterface(name='clef-interface')</span>
+<span class="go">LilyPondGrobInterface(name='clef-modifier-interface')</span>
+<span class="go">LilyPondGrobInterface(name='cluster-beacon-interface')</span>
+<span class="go">LilyPondGrobInterface(name='cluster-interface')</span>
+<span class="go">LilyPondGrobInterface(name='custos-interface')</span>
+<span class="go">LilyPondGrobInterface(name='dot-column-interface')</span>
+<span class="go">LilyPondGrobInterface(name='dots-interface')</span>
+<span class="go">LilyPondGrobInterface(name='dynamic-interface')</span>
+<span class="go">LilyPondGrobInterface(name='dynamic-line-spanner-interface')</span>
+<span class="go">LilyPondGrobInterface(name='dynamic-text-interface')</span>
+<span class="go">LilyPondGrobInterface(name='dynamic-text-spanner-interface')</span>
+<span class="go">LilyPondGrobInterface(name='enclosing-bracket-interface')</span>
+<span class="go">LilyPondGrobInterface(name='episema-interface')</span>
+<span class="go">LilyPondGrobInterface(name='figured-bass-continuation-interface')</span>
+<span class="go">LilyPondGrobInterface(name='finger-interface')</span>
+<span class="go">LilyPondGrobInterface(name='fingering-column-interface')</span>
+<span class="go">LilyPondGrobInterface(name='flag-interface')</span>
+<span class="go">LilyPondGrobInterface(name='font-interface')</span>
+<span class="go">LilyPondGrobInterface(name='footnote-interface')</span>
+<span class="go">LilyPondGrobInterface(name='footnote-spanner-interface')</span>
+<span class="go">LilyPondGrobInterface(name='fret-diagram-interface')</span>
+<span class="go">LilyPondGrobInterface(name='glissando-interface')</span>
+<span class="go">LilyPondGrobInterface(name='grace-spacing-interface')</span>
+<span class="go">LilyPondGrobInterface(name='gregorian-ligature-interface')</span>
+<span class="go">LilyPondGrobInterface(name='grid-line-interface')</span>
+<span class="go">LilyPondGrobInterface(name='grid-point-interface')</span>
+<span class="go">LilyPondGrobInterface(name='grob-interface')</span>
+<span class="go">LilyPondGrobInterface(name='hairpin-interface')</span>
+<span class="go">LilyPondGrobInterface(name='hara-kiri-group-spanner-interface')</span>
+<span class="go">LilyPondGrobInterface(name='horizontal-bracket-interface')</span>
+<span class="go">LilyPondGrobInterface(name='horizontal-bracket-text-interface')</span>
+<span class="go">LilyPondGrobInterface(name='inline-accidental-interface')</span>
+<span class="go">LilyPondGrobInterface(name='instrument-specific-markup-interface')</span>
+<span class="go">LilyPondGrobInterface(name='item-interface')</span>
+<span class="go">LilyPondGrobInterface(name='key-cancellation-interface')</span>
+<span class="go">LilyPondGrobInterface(name='key-signature-interface')</span>
+<span class="go">LilyPondGrobInterface(name='kievan-ligature-interface')</span>
+<span class="go">LilyPondGrobInterface(name='ledger-line-spanner-interface')</span>
+<span class="go">LilyPondGrobInterface(name='ledgered-interface')</span>
+<span class="go">LilyPondGrobInterface(name='ligature-bracket-interface')</span>
+<span class="go">LilyPondGrobInterface(name='ligature-head-interface')</span>
+<span class="go">LilyPondGrobInterface(name='ligature-interface')</span>
+<span class="go">LilyPondGrobInterface(name='line-interface')</span>
+<span class="go">LilyPondGrobInterface(name='line-spanner-interface')</span>
+<span class="go">LilyPondGrobInterface(name='lyric-extender-interface')</span>
+<span class="go">LilyPondGrobInterface(name='lyric-hyphen-interface')</span>
+<span class="go">LilyPondGrobInterface(name='lyric-interface')</span>
+<span class="go">LilyPondGrobInterface(name='lyric-syllable-interface')</span>
+<span class="go">LilyPondGrobInterface(name='mark-interface')</span>
+<span class="go">LilyPondGrobInterface(name='measure-counter-interface')</span>
+<span class="go">LilyPondGrobInterface(name='measure-grouping-interface')</span>
+<span class="go">LilyPondGrobInterface(name='melody-spanner-interface')</span>
+<span class="go">LilyPondGrobInterface(name='mensural-ligature-interface')</span>
+<span class="go">LilyPondGrobInterface(name='metronome-mark-interface')</span>
+<span class="go">LilyPondGrobInterface(name='multi-measure-interface')</span>
+<span class="go">LilyPondGrobInterface(name='multi-measure-rest-interface')</span>
+<span class="go">LilyPondGrobInterface(name='note-collision-interface')</span>
+<span class="go">LilyPondGrobInterface(name='note-column-interface')</span>
+<span class="go">LilyPondGrobInterface(name='note-head-interface')</span>
+<span class="go">LilyPondGrobInterface(name='note-name-interface')</span>
+<span class="go">LilyPondGrobInterface(name='note-spacing-interface')</span>
+<span class="go">LilyPondGrobInterface(name='number-interface')</span>
+<span class="go">LilyPondGrobInterface(name='only-prebreak-interface')</span>
+<span class="go">LilyPondGrobInterface(name='ottava-bracket-interface')</span>
+<span class="go">LilyPondGrobInterface(name='outside-staff-axis-group-interface')</span>
+<span class="go">LilyPondGrobInterface(name='outside-staff-interface')</span>
+<span class="go">LilyPondGrobInterface(name='paper-column-interface')</span>
+<span class="go">LilyPondGrobInterface(name='parentheses-interface')</span>
+<span class="go">LilyPondGrobInterface(name='percent-repeat-interface')</span>
+<span class="go">LilyPondGrobInterface(name='percent-repeat-item-interface')</span>
+<span class="go">LilyPondGrobInterface(name='piano-pedal-bracket-interface')</span>
+<span class="go">LilyPondGrobInterface(name='piano-pedal-interface')</span>
+<span class="go">LilyPondGrobInterface(name='piano-pedal-script-interface')</span>
+<span class="go">LilyPondGrobInterface(name='pitched-trill-interface')</span>
+<span class="go">LilyPondGrobInterface(name='pure-from-neighbor-interface')</span>
+<span class="go">LilyPondGrobInterface(name='rest-collision-interface')</span>
+<span class="go">LilyPondGrobInterface(name='rest-interface')</span>
+<span class="go">LilyPondGrobInterface(name='rhythmic-grob-interface')</span>
+<span class="go">LilyPondGrobInterface(name='rhythmic-head-interface')</span>
+<span class="go">LilyPondGrobInterface(name='script-column-interface')</span>
+<span class="go">LilyPondGrobInterface(name='script-interface')</span>
+<span class="go">LilyPondGrobInterface(name='self-alignment-interface')</span>
+<span class="go">LilyPondGrobInterface(name='semi-tie-column-interface')</span>
+<span class="go">LilyPondGrobInterface(name='semi-tie-interface')</span>
+<span class="go">LilyPondGrobInterface(name='separation-item-interface')</span>
+<span class="go">LilyPondGrobInterface(name='side-position-interface')</span>
+<span class="go">LilyPondGrobInterface(name='slur-interface')</span>
+<span class="go">LilyPondGrobInterface(name='spaceable-grob-interface')</span>
+<span class="go">LilyPondGrobInterface(name='spacing-interface')</span>
+<span class="go">LilyPondGrobInterface(name='spacing-options-interface')</span>
+<span class="go">LilyPondGrobInterface(name='spacing-spanner-interface')</span>
+<span class="go">LilyPondGrobInterface(name='span-bar-interface')</span>
+<span class="go">LilyPondGrobInterface(name='spanner-interface')</span>
+<span class="go">LilyPondGrobInterface(name='staff-grouper-interface')</span>
+<span class="go">LilyPondGrobInterface(name='staff-spacing-interface')</span>
+<span class="go">LilyPondGrobInterface(name='staff-symbol-interface')</span>
+<span class="go">LilyPondGrobInterface(name='staff-symbol-referencer-interface')</span>
+<span class="go">LilyPondGrobInterface(name='stanza-number-interface')</span>
+<span class="go">LilyPondGrobInterface(name='stem-interface')</span>
+<span class="go">LilyPondGrobInterface(name='stem-tremolo-interface')</span>
+<span class="go">LilyPondGrobInterface(name='string-number-interface')</span>
+<span class="go">LilyPondGrobInterface(name='stroke-finger-interface')</span>
+<span class="go">LilyPondGrobInterface(name='system-interface')</span>
+<span class="go">LilyPondGrobInterface(name='system-start-delimiter-interface')</span>
+<span class="go">LilyPondGrobInterface(name='system-start-text-interface')</span>
+<span class="go">LilyPondGrobInterface(name='tab-note-head-interface')</span>
+<span class="go">LilyPondGrobInterface(name='text-interface')</span>
+<span class="go">LilyPondGrobInterface(name='text-script-interface')</span>
+<span class="go">LilyPondGrobInterface(name='tie-column-interface')</span>
+<span class="go">LilyPondGrobInterface(name='tie-interface')</span>
+<span class="go">LilyPondGrobInterface(name='time-signature-interface')</span>
+<span class="go">LilyPondGrobInterface(name='trill-pitch-accidental-interface')</span>
+<span class="go">LilyPondGrobInterface(name='trill-spanner-interface')</span>
+<span class="go">LilyPondGrobInterface(name='tuplet-bracket-interface')</span>
+<span class="go">LilyPondGrobInterface(name='tuplet-number-interface')</span>
+<span class="go">LilyPondGrobInterface(name='unbreakable-spanner-interface')</span>
+<span class="go">LilyPondGrobInterface(name='vaticana-ligature-interface')</span>
+<span class="go">LilyPondGrobInterface(name='volta-bracket-interface')</span>
+<span class="go">LilyPondGrobInterface(name='volta-interface')</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<hr/><p class="class-header rubric">Read-only properties</p>
+<dl class="py attribute">
+<dt id="abjad.lyproxy.LilyPondGrobInterface.name">
+<code class="sig-name descname"><span class="pre">name</span></code><a class="headerlink" href="#abjad.lyproxy.LilyPondGrobInterface.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets name of LilyPond grob interface.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">interface</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondGrobInterface</span><span class="p">(</span><span class="s1">'beam-interface'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">interface</span><span class="o">.</span><span class="n">name</span>
+<span class="go">'beam-interface'</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+<dl class="py attribute">
+<dt id="abjad.lyproxy.LilyPondGrobInterface.property_names">
+<code class="sig-name descname"><span class="pre">property_names</span></code><a class="headerlink" href="#abjad.lyproxy.LilyPondGrobInterface.property_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets property names of LilyPond grob interface.</p>
+<div class="example docutils container">
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">interface</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondGrobInterface</span><span class="p">(</span><span class="s1">'beam-interface'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">property_name</span> <span class="ow">in</span> <span class="n">interface</span><span class="o">.</span><span class="n">property_names</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">property_name</span>
+<span class="gp">...</span>
+<span class="go">'X-positions'</span>
+<span class="go">'annotation'</span>
+<span class="go">'auto-knee-gap'</span>
+<span class="go">'beam-thickness'</span>
+<span class="go">'beamed-stem-shorten'</span>
+<span class="go">'beaming'</span>
+<span class="go">'break-overshoot'</span>
+<span class="go">'clip-edges'</span>
+<span class="go">'collision-interfaces'</span>
+<span class="go">'collision-voice-only'</span>
+<span class="go">'concaveness'</span>
+<span class="go">'damping'</span>
+<span class="go">'details'</span>
+<span class="go">'direction'</span>
+<span class="go">'gap'</span>
+<span class="go">'gap-count'</span>
+<span class="go">'grow-direction'</span>
+<span class="go">'inspect-quants'</span>
+<span class="go">'knee'</span>
+<span class="go">'length-fraction'</span>
+<span class="go">'neutral-direction'</span>
+<span class="go">'positions'</span>
+<span class="go">'skip-quanting'</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+</dd></dl>
+</div>
+
+      </article>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+
+        <div class="related-information">
+              Copyright &#169; 2021, Davi Raubach Tuchtenhagen
+            |
+            Built with <a href="https://www.sphinx-doc.org/">Sphinx</a>
+              and
+              <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+              <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
+            |
+            <a class="muted-link" href="../../_sources/api/abjad/lyproxy.rst.txt"
+               rel="nofollow">
+              Show Source
+            </a>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </main>
+</div>
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script defer="defer" src="../../_static/copybutton.js"></script>
+    <script src="../../_static/ga.js"></script>
+    <script src="../../_static/scripts/main.js?digest=e931d09b2a40c1bb82b542effe772014573baf67"></script></body>
+</html>

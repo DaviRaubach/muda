@@ -1,0 +1,30 @@
+.. _abjad--deprecated:
+
+deprecated
+==========
+
+.. automodule:: abjad.deprecated
+
+.. currentmodule:: abjad.deprecated
+
+.. container:: svg-container
+
+   .. inheritance-diagram:: abjad
+      :lineage: abjad.deprecated
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Functions
+   :class: section-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~add_final_bar_line
+   ~add_final_markup
+
+.. autofunction:: add_final_bar_line
+
+.. autofunction:: add_final_markup

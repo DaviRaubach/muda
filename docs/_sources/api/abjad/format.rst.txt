@@ -1,0 +1,78 @@
+.. _abjad--format:
+
+format
+======
+
+.. automodule:: abjad.format
+
+.. currentmodule:: abjad.format
+
+.. container:: svg-container
+
+   .. inheritance-diagram:: abjad
+      :lineage: abjad.format
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Functions
+   :class: section-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~remove_tags
+
+.. autofunction:: remove_tags
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: LilyPond formatting
+   :class: section-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~LilyPondFormatManager
+
+.. autoclass:: LilyPondFormatManager
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __repr__
+      align_tags
+      bundle_format_contributions
+      left_shift_tags
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: LilyPondFormatManager.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Class & static methods
+      :class: class-header
+
+   .. automethod:: LilyPondFormatManager.align_tags
+
+   .. automethod:: LilyPondFormatManager.bundle_format_contributions
+
+   .. automethod:: LilyPondFormatManager.left_shift_tags

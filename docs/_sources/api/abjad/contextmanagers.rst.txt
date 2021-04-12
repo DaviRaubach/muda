@@ -1,0 +1,446 @@
+.. _abjad--contextmanagers:
+
+contextmanagers
+===============
+
+.. automodule:: abjad.contextmanagers
+
+.. currentmodule:: abjad.contextmanagers
+
+.. container:: svg-container
+
+   .. inheritance-diagram:: abjad
+      :lineage: abjad.contextmanagers
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Classes
+   :class: section-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~ContextManager
+
+.. autoclass:: ContextManager
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __enter__
+      __exit__
+      __repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: ContextManager.__enter__
+
+   .. automethod:: ContextManager.__exit__
+
+   .. automethod:: ContextManager.__repr__
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Context managers
+   :class: section-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~FilesystemState
+   ~ForbidUpdate
+   ~NullContextManager
+   ~ProgressIndicator
+   ~RedirectedStreams
+   ~TemporaryDirectory
+   ~TemporaryDirectoryChange
+   ~Timer
+
+.. autoclass:: FilesystemState
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __enter__
+      __exit__
+      keep
+      remove
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: FilesystemState.__enter__
+
+   .. automethod:: FilesystemState.__exit__
+
+   .. container:: inherited
+
+      .. automethod:: FilesystemState.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: FilesystemState.keep
+
+   .. autoattribute:: FilesystemState.remove
+
+.. autoclass:: ForbidUpdate
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __enter__
+      __exit__
+      component
+      update_on_enter
+      update_on_exit
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: ForbidUpdate.__enter__
+
+   .. automethod:: ForbidUpdate.__exit__
+
+   .. container:: inherited
+
+      .. automethod:: ForbidUpdate.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: ForbidUpdate.component
+
+   .. autoattribute:: ForbidUpdate.update_on_enter
+
+   .. autoattribute:: ForbidUpdate.update_on_exit
+
+.. autoclass:: NullContextManager
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __enter__
+      __exit__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: NullContextManager.__enter__
+
+   .. automethod:: NullContextManager.__exit__
+
+   .. container:: inherited
+
+      .. automethod:: NullContextManager.__repr__
+
+.. autoclass:: ProgressIndicator
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      END
+      RED
+      __enter__
+      __exit__
+      __repr__
+      advance
+      is_warning
+      message
+      progress
+      total
+      verbose
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: ProgressIndicator.__enter__
+
+   .. automethod:: ProgressIndicator.__exit__
+
+   .. automethod:: ProgressIndicator.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Methods
+      :class: class-header
+
+   .. automethod:: ProgressIndicator.advance
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: ProgressIndicator.is_warning
+
+   .. autoattribute:: ProgressIndicator.message
+
+   .. autoattribute:: ProgressIndicator.progress
+
+   .. autoattribute:: ProgressIndicator.total
+
+   .. autoattribute:: ProgressIndicator.verbose
+
+.. autoclass:: RedirectedStreams
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __enter__
+      __exit__
+      __repr__
+      stderr
+      stdout
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: RedirectedStreams.__enter__
+
+   .. automethod:: RedirectedStreams.__exit__
+
+   .. automethod:: RedirectedStreams.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: RedirectedStreams.stderr
+
+   .. autoattribute:: RedirectedStreams.stdout
+
+.. autoclass:: TemporaryDirectory
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __enter__
+      __exit__
+      parent_directory
+      temporary_directory
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: TemporaryDirectory.__enter__
+
+   .. automethod:: TemporaryDirectory.__exit__
+
+   .. container:: inherited
+
+      .. automethod:: TemporaryDirectory.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: TemporaryDirectory.parent_directory
+
+   .. autoattribute:: TemporaryDirectory.temporary_directory
+
+.. autoclass:: TemporaryDirectoryChange
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __enter__
+      __exit__
+      __repr__
+      directory
+      original_directory
+      verbose
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: TemporaryDirectoryChange.__enter__
+
+   .. automethod:: TemporaryDirectoryChange.__exit__
+
+   .. automethod:: TemporaryDirectoryChange.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: TemporaryDirectoryChange.directory
+
+   .. autoattribute:: TemporaryDirectoryChange.original_directory
+
+   .. autoattribute:: TemporaryDirectoryChange.verbose
+
+.. autoclass:: Timer
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __enter__
+      __exit__
+      elapsed_time
+      enter_message
+      exit_message
+      print_continuously_from_background
+      start_time
+      stop_time
+      total_time_message
+      verbose
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: Timer.__enter__
+
+   .. automethod:: Timer.__exit__
+
+   .. container:: inherited
+
+      .. automethod:: Timer.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: Timer.elapsed_time
+
+   .. autoattribute:: Timer.enter_message
+
+   .. autoattribute:: Timer.exit_message
+
+   .. autoattribute:: Timer.print_continuously_from_background
+
+   .. autoattribute:: Timer.start_time
+
+   .. autoattribute:: Timer.stop_time
+
+   .. autoattribute:: Timer.total_time_message
+
+   .. autoattribute:: Timer.verbose

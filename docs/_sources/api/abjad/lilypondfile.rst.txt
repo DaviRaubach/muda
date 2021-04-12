@@ -1,0 +1,421 @@
+.. _abjad--lilypondfile:
+
+lilypondfile
+============
+
+.. automodule:: abjad.lilypondfile
+
+.. currentmodule:: abjad.lilypondfile
+
+.. container:: svg-container
+
+   .. inheritance-diagram:: abjad
+      :lineage: abjad.lilypondfile
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Classes
+   :class: section-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~Block
+   ~ContextBlock
+   ~DateTimeToken
+   ~LilyPondDimension
+   ~LilyPondFile
+   ~LilyPondLanguageToken
+   ~LilyPondVersionToken
+   ~PackageGitCommitToken
+
+.. autoclass:: Block
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __delattr__
+      __getitem__
+      __repr__
+      __setattr__
+      empty
+      items
+      name
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: Block.__delattr__
+
+   .. automethod:: Block.__getitem__
+
+   .. automethod:: Block.__repr__
+
+   .. automethod:: Block.__setattr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Methods
+      :class: class-header
+
+   .. automethod:: Block.empty
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: Block.items
+
+   .. autoattribute:: Block.name
+
+.. autoclass:: ContextBlock
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      accepts_commands
+      alias
+      consists_commands
+      items
+      name
+      remove_commands
+      source_lilypond_type
+      type_
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. container:: inherited
+
+      .. automethod:: ContextBlock.__delattr__
+
+   .. container:: inherited
+
+      .. automethod:: ContextBlock.__getitem__
+
+   .. container:: inherited
+
+      .. automethod:: ContextBlock.__repr__
+
+   .. container:: inherited
+
+      .. automethod:: ContextBlock.__setattr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Methods
+      :class: class-header
+
+   .. container:: inherited
+
+      .. automethod:: ContextBlock.empty
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: ContextBlock.accepts_commands
+
+   .. autoattribute:: ContextBlock.alias
+
+   .. autoattribute:: ContextBlock.consists_commands
+
+   .. autoattribute:: ContextBlock.items
+
+   .. autoattribute:: ContextBlock.name
+
+   .. autoattribute:: ContextBlock.remove_commands
+
+   .. autoattribute:: ContextBlock.source_lilypond_type
+
+   .. autoattribute:: ContextBlock.type_
+
+.. autoclass:: DateTimeToken
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __repr__
+      date_string
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: DateTimeToken.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: DateTimeToken.date_string
+
+.. autoclass:: LilyPondDimension
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __repr__
+      unit
+      value
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: LilyPondDimension.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: LilyPondDimension.unit
+
+   .. autoattribute:: LilyPondDimension.value
+
+.. autoclass:: LilyPondFile
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __contains__
+      __getitem__
+      __illustrate__
+      __repr__
+      comments
+      date_time_token
+      default_paper_size
+      get_tag
+      global_staff_size
+      header_block
+      includes
+      items
+      layout_block
+      lilypond_language_token
+      lilypond_version_token
+      paper_block
+      rhythm
+      score_block
+      use_relative_includes
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: LilyPondFile.__contains__
+
+   .. automethod:: LilyPondFile.__getitem__
+
+   .. automethod:: LilyPondFile.__illustrate__
+
+   .. automethod:: LilyPondFile.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Methods
+      :class: class-header
+
+   .. automethod:: LilyPondFile.get_tag
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Class & static methods
+      :class: class-header
+
+   .. automethod:: LilyPondFile.rhythm
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: LilyPondFile.comments
+
+   .. autoattribute:: LilyPondFile.date_time_token
+
+   .. autoattribute:: LilyPondFile.default_paper_size
+
+   .. autoattribute:: LilyPondFile.global_staff_size
+
+   .. autoattribute:: LilyPondFile.header_block
+
+   .. autoattribute:: LilyPondFile.includes
+
+   .. autoattribute:: LilyPondFile.items
+
+   .. autoattribute:: LilyPondFile.layout_block
+
+   .. autoattribute:: LilyPondFile.lilypond_language_token
+
+   .. autoattribute:: LilyPondFile.lilypond_version_token
+
+   .. autoattribute:: LilyPondFile.paper_block
+
+   .. autoattribute:: LilyPondFile.score_block
+
+   .. autoattribute:: LilyPondFile.use_relative_includes
+
+.. autoclass:: LilyPondLanguageToken
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: LilyPondLanguageToken.__repr__
+
+.. autoclass:: LilyPondVersionToken
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __repr__
+      version_string
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: LilyPondVersionToken.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: LilyPondVersionToken.version_string
+
+.. autoclass:: PackageGitCommitToken
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __repr__
+      package_name
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: PackageGitCommitToken.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: PackageGitCommitToken.package_name

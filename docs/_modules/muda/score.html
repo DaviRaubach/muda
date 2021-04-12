@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2D2D2D" />
+  
+  <title>muda :: muda.score</title>
+  
+
+  <link rel="icon" type="image/png" sizes="32x32" href="../../_static/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../_static/img/favicon-16x16.png">
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+
+  <link rel="stylesheet" href="../../_static/css/insegel.css"/>
+
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'',
+        VERSION:'0.1',
+        LANGUAGE:'None',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+    };
+  </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  <script src="https://email.tl.fortawesome.com/c/eJxNjUEOgyAQAF8jR7Kw6wIHDh7sP1Cw2mgxgmn6-3JsMqc5zEQfE8dkxOY1KKMUOI3ACFKRJpSW2AAp7ontYIaxI6i7XPJVwyeVfCQ550Os3jLrGSNOLgbdAy6s0PBk2TFNjEbsfq31LB0OnX407pJa5v2faRadwSW63mn5KuLyR9j2tgx3zecanl-55R_-jjPs"></script>
+
+</head>
+
+<body>
+  <div id="insegel-container">
+    <header>
+      <div id="logo-container">
+          
+          <a href="../../index.html"><img src="../../_static/img/logo.svg"></a>
+          
+
+      </div>
+      <div id="project-container">
+        <h1>muda Documentation</h1>
+      </div>
+    </header>
+
+    <div id="content-container">
+
+      <div id="main-content-container">
+        <div id="main-content-header">
+          <h1>muda.score</h1>
+        </div>
+        <div id="main-content">
+          
+  <h1>Source code for muda.score</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">abjad</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+
+<div class="viewcode-block" id="Instrument"><a class="viewcode-back" href="../../index.html#muda.score.Instrument">[docs]</a><span class="k">class</span> <span class="nc">Instrument</span><span class="p">():</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Creates instrument and returns ``abjad.Staff()`` of the instrument.</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; import muda</span>
+<span class="sd">    &gt;&gt;&gt; import abjad</span>
+<span class="sd">    &gt;&gt;&gt; myinst = muda.Instrument(</span>
+<span class="sd">    ...             abjad_instrument = abjad.Piano(),</span>
+<span class="sd">    ...             lilypond_name = &quot;My Piano&quot;,</span>
+<span class="sd">    ...             nstaffs = 2,</span>
+<span class="sd">    ...             nvoices = [2, 1],)</span>
+<span class="sd">    muda.score.Instrument()</span>
+<span class="sd">    My Piano</span>
+<span class="sd">        creating My Piano_Staff_1</span>
+<span class="sd">        creating My Piano_Staff_2</span>
+<span class="sd">            creating My Piano_Voice_1</span>
+<span class="sd">            creating My Piano_Voice_2</span>
+<span class="sd">            creating My Piano_Voice_3</span>
+<span class="sd">                attaching My Piano_Voice_1 to My Piano_Staff_1</span>
+<span class="sd">                attaching My Piano_Voice_2 to My Piano_Staff_1</span>
+<span class="sd">                attaching My Piano_Voice_3 to My Piano_Staff_2</span>
+<span class="sd">    &gt;&gt;&gt; print(abjad.lilypond(myinst.ready_staff))</span>
+<span class="sd">    \context PianoStaff = &quot;Piano_StaffGroup&quot;</span>
+<span class="sd">    &lt;&lt;</span>
+<span class="sd">        \context Staff = &quot;My Piano_Staff_1&quot;</span>
+<span class="sd">        &lt;&lt;</span>
+<span class="sd">            \context Voice = &quot;My Piano_Voice_1&quot;</span>
+<span class="sd">            {</span>
+<span class="sd">                \voiceOne</span>
+<span class="sd">            }</span>
+<span class="sd">            \context Voice = &quot;My Piano_Voice_2&quot;</span>
+<span class="sd">            {</span>
+<span class="sd">            }</span>
+<span class="sd">        &gt;&gt;</span>
+<span class="sd">        \context Staff = &quot;My Piano_Staff_2&quot;</span>
+<span class="sd">        &lt;&lt;</span>
+<span class="sd">            \context Voice = &quot;My Piano_Voice_3&quot;</span>
+<span class="sd">            {</span>
+<span class="sd">            }</span>
+<span class="sd">        &gt;&gt;</span>
+<span class="sd">    &gt;&gt;</span>
+
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">abjad_instrument</span><span class="p">,</span> <span class="n">lilypond_name</span><span class="p">,</span> <span class="n">nstaffs</span><span class="p">,</span> <span class="n">nvoices</span><span class="p">):</span>
+        <span class="n">site</span> <span class="o">=</span> <span class="s2">&quot;muda.score.Instrument()&quot;</span>
+        <span class="n">tag</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Tag</span><span class="p">(</span><span class="n">site</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">tag</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">lilypond_name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">abjad_instrument</span> <span class="o">=</span> <span class="n">abjad_instrument</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lilypond_name</span> <span class="o">=</span> <span class="n">lilypond_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nstaffs</span> <span class="o">=</span> <span class="n">nstaffs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nvoices</span> <span class="o">=</span> <span class="n">nvoices</span>
+        <span class="bp">self</span><span class="o">.</span><span class="fm">__call__</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">site</span> <span class="o">=</span> <span class="s2">&quot;muda.score.Instrument()&quot;</span>
+        <span class="n">tag</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Tag</span><span class="p">(</span><span class="n">site</span><span class="p">)</span>
+        <span class="n">abjad_instrument</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">abjad_instrument</span>
+        <span class="n">lilypond_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lilypond_name</span>
+        <span class="n">nstaffs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nstaffs</span>
+        <span class="n">nvoices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nvoices</span>
+        <span class="n">staffs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">voices</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nstaffs</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">nstaffs</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">staffs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">abjad</span><span class="o">.</span><span class="n">Staff</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">lilypond_name</span> <span class="o">+</span> <span class="s2">&quot;_Staff&quot;</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="n">tag</span><span class="p">))</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    creating &quot;</span> <span class="o">+</span> <span class="n">lilypond_name</span> <span class="o">+</span> <span class="s2">&quot;_Staff_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">staffs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="n">abjad</span><span class="o">.</span><span class="n">Staff</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">lilypond_name</span> <span class="o">+</span> <span class="s2">&quot;_Staff_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">tag</span><span class="o">=</span><span class="n">tag</span><span class="p">)</span>
+                <span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    creating &quot;</span> <span class="o">+</span> <span class="n">lilypond_name</span> <span class="o">+</span> <span class="s2">&quot;_Staff_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">nvoices</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">nvoices</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">voices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">abjad</span><span class="o">.</span><span class="n">Voice</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">lilypond_name</span> <span class="o">+</span> <span class="s2">&quot;_Voice&quot;</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="n">tag</span><span class="p">))</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;        creating &quot;</span> <span class="o">+</span> <span class="n">lilypond_name</span> <span class="o">+</span> <span class="s2">&quot;_Voice_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">voices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="n">abjad</span><span class="o">.</span><span class="n">Voice</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">lilypond_name</span> <span class="o">+</span> <span class="s2">&quot;_Voice_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">tag</span><span class="o">=</span><span class="n">tag</span><span class="p">)</span>
+                <span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;        creating &quot;</span> <span class="o">+</span> <span class="n">lilypond_name</span> <span class="o">+</span> <span class="s2">&quot;_Voice_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">number_of_voices_in_each_staff</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nvoices</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">number_of_voices_in_each_staff</span> <span class="o">&gt;=</span><span class="mi">1</span><span class="p">:</span>
+                <span class="n">staffs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">simultaneous</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">number_of_voices_in_each_staff</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">staffs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">voices</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
+                    <span class="nb">print</span><span class="p">(</span>
+                        <span class="s2">&quot;            attaching &quot;</span> <span class="o">+</span> <span class="n">voices</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot; to &quot;</span> <span class="o">+</span> <span class="n">staffs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">name</span>
+                    <span class="p">)</span>
+                <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">staffs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">voices</span><span class="p">[</span><span class="n">n</span> <span class="o">+</span> <span class="nb">sum</span><span class="p">(</span><span class="n">nvoices</span><span class="p">[:</span><span class="n">i</span><span class="p">])])</span>
+                    <span class="nb">print</span><span class="p">(</span>
+                        <span class="s2">&quot;            attaching &quot;</span>
+                        <span class="o">+</span> <span class="n">voices</span><span class="p">[</span><span class="n">n</span> <span class="o">+</span> <span class="nb">sum</span><span class="p">(</span><span class="n">nvoices</span><span class="p">[:</span><span class="n">i</span><span class="p">])]</span><span class="o">.</span><span class="n">name</span>
+                        <span class="o">+</span> <span class="s2">&quot; to &quot;</span>
+                        <span class="o">+</span> <span class="n">staffs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">name</span>
+                    <span class="p">)</span>
+                    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="n">abjad</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondLiteral</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\voiceOne&quot;</span><span class="p">),</span> <span class="n">voices</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
+                    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                        <span class="n">abjad</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondLiteral</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\voiceTwo&quot;</span><span class="p">),</span> <span class="n">voices</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
+                    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                        <span class="n">abjad</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondLiteral</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\voiceThree&quot;</span><span class="p">),</span> <span class="n">voices</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
+                    
+
+
+        <span class="k">if</span> <span class="n">nstaffs</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="c1"># abjad_instrument.markup = abjad.Markup(lilypond_name)</span>
+            <span class="n">abjad</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">staffs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;default_instrument&quot;</span><span class="p">,</span> <span class="n">abjad_instrument</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ready_staff</span> <span class="o">=</span> <span class="n">staffs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">abjad_instrument</span> <span class="o">==</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Piano</span><span class="p">():</span>
+                <span class="n">staffgroup</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">StaffGroup</span><span class="p">(</span>
+                    <span class="n">lilypond_type</span><span class="o">=</span><span class="s2">&quot;PianoStaff&quot;</span><span class="p">,</span>
+                    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Piano_StaffGroup&quot;</span><span class="p">,</span>
+                    <span class="n">tag</span><span class="o">=</span><span class="n">tag</span><span class="p">,</span>
+                    <span class="n">simultaneous</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="k">for</span> <span class="n">staff</span> <span class="ow">in</span> <span class="n">staffs</span><span class="p">:</span>
+                    <span class="n">staffgroup</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">staff</span><span class="p">)</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">staffgroup</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">StaffGroup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">lilypond_name</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="n">tag</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">staff</span> <span class="ow">in</span> <span class="n">staffs</span><span class="p">:</span>
+                    <span class="n">staffgroup</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">staff</span><span class="p">)</span>
+
+            <span class="n">abjad</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">staffgroup</span><span class="p">,</span> <span class="s2">&quot;default_instrument&quot;</span><span class="p">,</span> <span class="n">abjad_instrument</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">ready_staff</span> <span class="o">=</span> <span class="n">staffgroup</span>
+
+        <span class="c1"># Separate lilypond_name to have a markup for the instrument.</span>
+        <span class="c1"># separated_name = re.findall(&#39;[A-Z][^A-Z]*&#39;, lilypond_name)</span>
+        <span class="c1">#     if len(separated_name) &gt; 1:</span>
+        <span class="c1">#         separated_name = separated_name[0] + &quot; &quot; + separated_name[1]</span>
+        <span class="c1">#         instrumentName = abjad.LilyPondLiteral(</span>
+        <span class="c1">#             r&quot;\set &quot; + lilypond_name + &quot;.instrumentName = \markup{&quot; + separated_name + &quot;}&quot;</span>
+        <span class="c1">#             )</span>
+        <span class="c1">#         abjad.attach(instrumentName, ready_staff)</span>
+        <span class="c1">#     else:</span>
+        <span class="c1">#         instrumentName = abjad.LilyPondLiteral(</span>
+        <span class="c1">#             r&quot;\set &quot; + lilypond_name + &quot;.instrumentName = \markup{&quot; + lilypond_name + &quot;}&quot;</span>
+        <span class="c1">#             )</span>
+        <span class="c1">#         abjad.attach(instrumentName, ready_staff)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ready_staff</span></div>
+
+<div class="viewcode-block" id="Score"><a class="viewcode-back" href="../../index.html#muda.score.Score">[docs]</a><span class="k">class</span> <span class="nc">Score</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    &gt;&gt;&gt; import muda</span>
+<span class="sd">    &gt;&gt;&gt; import abjad</span>
+<span class="sd">    &gt;&gt;&gt; from abjadext import rmakers</span>
+<span class="sd">    &gt;&gt;&gt; myinst = muda.Instrument(</span>
+<span class="sd">    ...     abjad_instrument = abjad.Piano(),</span>
+<span class="sd">    ...     lilypond_name = &quot;Piano&quot;,</span>
+<span class="sd">    ...     nstaffs = 2,</span>
+<span class="sd">    ...     nvoices = [2, 1],</span>
+<span class="sd">    ...     piano = True)</span>
+<span class="sd">    muda.score.Instrument()</span>
+<span class="sd">    Piano</span>
+<span class="sd">        creating Piano_Staff_1</span>
+<span class="sd">        creating Piano_Staff_2</span>
+<span class="sd">            creating Piano_Voice_1</span>
+<span class="sd">            creating Piano_Voice_2</span>
+<span class="sd">            creating Piano_Voice_3</span>
+<span class="sd">                attaching Piano_Voice_1 to Piano_Staff_1</span>
+<span class="sd">                attaching Piano_Voice_2 to Piano_Staff_1</span>
+<span class="sd">                attaching Piano_Voice_3 to Piano_Staff_2</span>
+<span class="sd">    &gt;&gt;&gt; myscore = muda.Score()</span>
+<span class="sd">    muda.Score()</span>
+<span class="sd">    &gt;&gt;&gt; myscore.add_instrument(myinst)</span>
+<span class="sd">    muda.Score.add_instrument()</span>
+<span class="sd">    &gt;&gt;&gt; mydivisions = [(4, 4), (5, 4)]</span>
+<span class="sd">    &gt;&gt;&gt; myscore.make_skips(mydivisions)</span>
+<span class="sd">    muda.Score.make_skips()</span>
+<span class="sd">    &gt;&gt;&gt; mymaterial = muda.Material(&quot;Piano_Voice_1&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; mymaterial.silence_and_rhythm_maker(</span>
+<span class="sd">    ...     maker=rmakers.stack(rmakers.note()),</span>
+<span class="sd">    ...     annotated_divisions=[</span>
+<span class="sd">    ...         muda.AnnotatedDuration((1, 4)),</span>
+<span class="sd">    ...         muda.AnnotatedDuration((1, 4), annotation=&quot;Rest&quot;),</span>
+<span class="sd">    ...         muda.AnnotatedDuration((1, 4)),</span>
+<span class="sd">    ...         muda.AnnotatedDuration((1, 4)),</span>
+<span class="sd">    ...         muda.AnnotatedDuration((1, 4), annotation=&quot;Rest&quot;),</span>
+<span class="sd">    ...         muda.AnnotatedDuration((1, 4)),</span>
+<span class="sd">    ...         muda.AnnotatedDuration((1, 4)),</span>
+<span class="sd">    ...         muda.AnnotatedDuration((1, 4), annotation=&quot;Rest&quot;),</span>
+<span class="sd">    ...         muda.AnnotatedDuration((1, 4)),</span>
+<span class="sd">    ...         ]</span>
+<span class="sd">    ...     )</span>
+<span class="sd">    &gt;&gt;&gt; myscore.write_materials([mymaterial])</span>
+<span class="sd">    &gt;&gt;&gt; myscore.rewrite_meter(mydivisions)</span>
+<span class="sd">    rewriting meter: Piano_Voice_1</span>
+<span class="sd">    &lt;Score-&quot;Score&quot;&lt;&lt;2&gt;&gt;&gt;</span>
+<span class="sd">    &gt;&gt;&gt; abjad.show(myscore.score)</span>
+
+
+<span class="sd">    Use stylesheet to add markup names and hide or modify the time signatures (skips) staff.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">site</span> <span class="o">=</span> <span class="s2">&quot;muda.Score()&quot;</span>
+        <span class="n">tag</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Tag</span><span class="p">(</span><span class="n">site</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">score</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Score</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Score&quot;</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="n">tag</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">abjad</span><span class="o">.</span><span class="n">Staff</span><span class="p">(</span><span class="n">lilypond_type</span><span class="o">=</span><span class="s2">&quot;TimeSignatureContext&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Global_Context&quot;</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">tag</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">score</span>
+
+<div class="viewcode-block" id="Score.add_instrument"><a class="viewcode-back" href="../../index.html#muda.score.Score.add_instrument">[docs]</a>    <span class="k">def</span> <span class="nf">add_instrument</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instrument</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Adds ``muda.Instrument()`` to the score.   </span>
+<span class="sd">        &gt;&gt;&gt; myscore.add_instrument(myinst)</span>
+<span class="sd">        muda.Score.add_instrument()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">site</span> <span class="o">=</span> <span class="s2">&quot;muda.Score.add_instrument()&quot;</span>
+        <span class="n">tag</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Tag</span><span class="p">(</span><span class="n">site</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">tag</span><span class="p">))</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">instrument</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">inst</span> <span class="ow">in</span> <span class="n">instrument</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="n">lilypond_name</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="fm">__call__</span><span class="p">())</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">instrument</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Score.make_skips"><a class="viewcode-back" href="../../index.html#muda.score.Score.make_skips">[docs]</a>    <span class="k">def</span> <span class="nf">make_skips</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_signatures</span><span class="p">,</span> <span class="n">attach</span><span class="o">=</span><span class="p">()):</span>
+        <span class="sd">&quot;&quot;&quot;Create a &quot;Global_Context&quot; staff with skips and time signatures.</span>
+
+<span class="sd">        &gt;&gt;&gt; myscore.make_skips([(4, 4), (5, 4)])</span>
+<span class="sd">        muda.Score.make_skips()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">site</span> <span class="o">=</span> <span class="s2">&quot;muda.Score.make_skips()&quot;</span>
+        <span class="n">tag</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Tag</span><span class="p">(</span><span class="n">site</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">tag</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">time_signatures</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">abjad</span><span class="o">.</span><span class="n">TimeSignature</span><span class="p">):</span>
+            <span class="n">time_signatures_abjad</span> <span class="o">=</span> <span class="n">time_signatures</span>
+            <span class="n">in_time_signatures</span> <span class="o">=</span> <span class="p">[</span><span class="n">_</span><span class="o">.</span><span class="n">pair</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">time_signatures</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">in_time_signatures</span> <span class="o">=</span> <span class="n">time_signatures</span>
+            <span class="n">time_signatures_abjad</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">abjad</span><span class="o">.</span><span class="n">TimeSignature</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">in_time_signatures</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">time_sig</span> <span class="ow">in</span> <span class="n">time_signatures_abjad</span><span class="p">:</span>
+            <span class="n">skip</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Skip</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">multiplier</span><span class="o">=</span><span class="p">(</span><span class="n">time_sig</span><span class="o">.</span><span class="n">pair</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="p">[</span><span class="s2">&quot;Global_Context&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">skip</span><span class="p">)</span>
+
+        <span class="c1"># select skips to attach TIME SIGNATURES</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">element</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">in_time_signatures</span><span class="p">):</span>
+            <span class="c1"># previous_element = time_signatures[i - 1] if i &gt; 0 else None</span>
+            <span class="n">current_element</span> <span class="o">=</span> <span class="n">element</span>
+
+            <span class="c1"># if current_element != previous_element:</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">in_time_signatures</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">current_element</span><span class="p">)</span>
+            <span class="n">abjad</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span>
+                <span class="n">time_signatures_abjad</span><span class="p">[</span><span class="n">a</span><span class="p">],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="p">[</span><span class="s2">&quot;Global_Context&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span>
+                <span class="n">tag</span><span class="o">=</span><span class="n">tag</span><span class="p">)</span>
+
+        <span class="n">selection</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="p">[</span><span class="s2">&quot;Global_Context&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">leaves</span><span class="p">()</span>
+        <span class="c1"># attach</span>
+        <span class="k">if</span> <span class="n">attach</span><span class="p">:</span>
+            <span class="c1"># print(abjad.lilypond(self.container))</span>
+            <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">attach</span>
+            <span class="n">abjad</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">selection</span><span class="p">[</span><span class="n">b</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="Score.write_materials"><a class="viewcode-back" href="../../index.html#muda.score.Score.write_materials">[docs]</a>    <span class="k">def</span> <span class="nf">write_materials</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">materials_list</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Write materials to voices.</span>
+
+<span class="sd">        &gt;&gt;&gt; import muda</span>
+<span class="sd">        &gt;&gt;&gt; import abjad</span>
+<span class="sd">        &gt;&gt;&gt; from abjadext import rmakers</span>
+<span class="sd">        &gt;&gt;&gt;</span>
+<span class="sd">        &gt;&gt;&gt; myinst = muda.Instrument(</span>
+<span class="sd">        ...     abjad_instrument = abjad.Piano(),</span>
+<span class="sd">        ...     lilypond_name = &quot;Piano&quot;,</span>
+<span class="sd">        ...     nstaffs = 2,</span>
+<span class="sd">        ...     nvoices = [2, 1])</span>
+<span class="sd">        muda.score.Instrument()</span>
+<span class="sd">        Piano</span>
+<span class="sd">            creating Piano_Staff_1</span>
+<span class="sd">            creating Piano_Staff_2</span>
+<span class="sd">                creating Piano_Voice_1</span>
+<span class="sd">                creating Piano_Voice_2</span>
+<span class="sd">                creating Piano_Voice_3</span>
+<span class="sd">                    attaching Piano_Voice_1 to Piano_Staff_1</span>
+<span class="sd">                    attaching Piano_Voice_2 to Piano_Staff_1</span>
+<span class="sd">                    attaching Piano_Voice_3 to Piano_Staff_2</span>
+<span class="sd">        &gt;&gt;&gt; myscore = muda.Score()</span>
+<span class="sd">        muda.Score()</span>
+<span class="sd">        &gt;&gt;&gt; myscore.add_instrument(myinst)</span>
+<span class="sd">        muda.Score.add_instrument()</span>
+<span class="sd">        &gt;&gt;&gt; mydivisions = [(8, 4), (5, 4)]</span>
+<span class="sd">        &gt;&gt;&gt; myscore.make_skips(mydivisions)</span>
+<span class="sd">        muda.Score.make_skips()</span>
+<span class="sd">        &gt;&gt;&gt; </span>
+<span class="sd">        &gt;&gt;&gt; mymaterial1 = muda.Material(&quot;Piano_Voice_1&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; mymaterial1.silence_and_rhythm_maker(</span>
+<span class="sd">        ...     maker=rmakers.stack(</span>
+<span class="sd">        ...         rmakers.talea([1, -3, 1], 16),</span>
+<span class="sd">        ...         rmakers.extract_trivial(),</span>
+<span class="sd">        ...         rmakers.beam(),</span>
+<span class="sd">        ...         ),</span>
+<span class="sd">        ...     annotated_divisions=[</span>
+<span class="sd">        ...         muda.AnnotatedDuration((1, 4)),</span>
+<span class="sd">        ...         muda.AnnotatedDuration((2, 4), annotation=&quot;Rest&quot;),</span>
+<span class="sd">        ...         muda.AnnotatedDuration((2, 4)),</span>
+<span class="sd">        ...         muda.AnnotatedDuration((2, 4), annotation=&quot;Rest&quot;),</span>
+<span class="sd">        ...         muda.AnnotatedDuration((1, 4)),</span>
+<span class="sd">        ...         muda.AnnotatedDuration((2, 4), annotation=&quot;Rest&quot;),</span>
+<span class="sd">        ...         muda.AnnotatedDuration((3, 4)),</span>
+<span class="sd">        ...         ]</span>
+<span class="sd">        ...     )</span>
+<span class="sd">        &gt;&gt;&gt; mymaterial1.write_pitches([&quot;d&#39;&quot;])</span>
+<span class="sd">        &gt;&gt;&gt; </span>
+<span class="sd">        &gt;&gt;&gt; mymaterial2 = muda.Material(&quot;Piano_Voice_3&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; mymaterial2.silence_and_rhythm_maker(</span>
+<span class="sd">        ...     maker=rmakers.stack(</span>
+<span class="sd">        ...         rmakers.talea([-1, 1, 1, 1], 16),</span>
+<span class="sd">        ...         rmakers.extract_trivial(),</span>
+<span class="sd">        ...         rmakers.beam(),</span>
+<span class="sd">        ...         ),</span>
+<span class="sd">        ...     annotated_divisions=[</span>
+<span class="sd">        ...         muda.AnnotatedDuration((3, 8)),</span>
+<span class="sd">        ...         muda.AnnotatedDuration((3, 8), annotation=&quot;Rest&quot;),</span>
+<span class="sd">        ...         muda.AnnotatedDuration((3, 8)),</span>
+<span class="sd">        ...         muda.AnnotatedDuration((3, 8), annotation=&quot;Rest&quot;),</span>
+<span class="sd">        ...         muda.AnnotatedDuration((4, 8)),</span>
+<span class="sd">        ...         muda.AnnotatedDuration((3, 8)),</span>
+<span class="sd">        ...         muda.AnnotatedDuration((3, 8), annotation=&quot;Rest&quot;),</span>
+<span class="sd">        ...         muda.AnnotatedDuration((4, 8)),</span>
+<span class="sd">        ...         ]</span>
+<span class="sd">        ...     )</span>
+<span class="sd">        &gt;&gt;&gt; </span>
+<span class="sd">        &gt;&gt;&gt; </span>
+<span class="sd">        &gt;&gt;&gt; material_list = [mymaterial1, mymaterial2]</span>
+<span class="sd">        &gt;&gt;&gt; myscore.write_materials(material_list)</span>
+<span class="sd">        &gt;&gt;&gt; myscore.rewrite_meter(mydivisions)</span>
+<span class="sd">        rewriting meter: Piano_Voice_1</span>
+<span class="sd">        rewriting meter: Piano_Voice_3</span>
+<span class="sd">        &lt;Score-&quot;Score&quot;&lt;&lt;2&gt;&gt;&gt;</span>
+<span class="sd">        &gt;&gt;&gt; abjad.show(myscore.score)</span>
+
+<span class="sd">        .. lily::</span>
+<span class="sd">            :noedge:</span>
+<span class="sd">            :audio:</span>
+
+<span class="sd">            \version &quot;2.20.0&quot;</span>
+
+<span class="sd">            \context Score = &quot;Score&quot;</span>
+<span class="sd">            &lt;&lt;</span>
+<span class="sd">                \context TimeSignatureContext = &quot;Global_Context&quot;</span>
+<span class="sd">                {</span>
+<span class="sd">                    \time 8/4</span>
+<span class="sd">                    s1 * 2</span>
+<span class="sd">                    \time 5/4</span>
+<span class="sd">                    s1 * 5/4</span>
+<span class="sd">                }</span>
+<span class="sd">                \context PianoStaff = &quot;Piano_StaffGroup&quot;</span>
+<span class="sd">                &lt;&lt;</span>
+<span class="sd">                    \context Staff = &quot;Piano_Staff_1&quot;</span>
+<span class="sd">                    &lt;&lt;</span>
+<span class="sd">                        \context Voice = &quot;Piano_Voice_1&quot;</span>
+<span class="sd">                        {</span>
+<span class="sd">                            \voiceOne</span>
+<span class="sd">                            d&#39;16</span>
+<span class="sd">                            r8.</span>
+<span class="sd">                            r4</span>
+<span class="sd">                            r4</span>
+<span class="sd">                            d&#39;16</span>
+<span class="sd">                            r8.</span>
+<span class="sd">                            d&#39;16</span>
+<span class="sd">                            d&#39;16</span>
+<span class="sd">                            r4.</span>
+<span class="sd">                            r4</span>
+<span class="sd">                            d&#39;16</span>
+<span class="sd">                            r8.</span>
+<span class="sd">                            r2</span>
+<span class="sd">                            d&#39;16</span>
+<span class="sd">                            r8.</span>
+<span class="sd">                            d&#39;16</span>
+<span class="sd">                            d&#39;16</span>
+<span class="sd">                            r8</span>
+<span class="sd">                            r16</span>
+<span class="sd">                            d&#39;16</span>
+<span class="sd">                            d&#39;16</span>
+<span class="sd">                            r16</span>
+<span class="sd">                        }</span>
+<span class="sd">                        \context Voice = &quot;Piano_Voice_2&quot;</span>
+<span class="sd">                        {</span>
+<span class="sd">                        }</span>
+<span class="sd">                    &gt;&gt;</span>
+<span class="sd">                    \context Staff = &quot;Piano_Staff_2&quot;</span>
+<span class="sd">                    &lt;&lt;</span>
+<span class="sd">                        \context Voice = &quot;Piano_Voice_3&quot;</span>
+<span class="sd">                        {</span>
+<span class="sd">                            r16</span>
+<span class="sd">                            c&#39;16</span>
+<span class="sd">                            c&#39;16</span>
+<span class="sd">                            c&#39;16</span>
+<span class="sd">                            r16</span>
+<span class="sd">                            c&#39;16</span>
+<span class="sd">                            r8</span>
+<span class="sd">                            r4</span>
+<span class="sd">                            r16</span>
+<span class="sd">                            c&#39;16</span>
+<span class="sd">                            c&#39;16</span>
+<span class="sd">                            c&#39;16</span>
+<span class="sd">                            r16</span>
+<span class="sd">                            c&#39;16</span>
+<span class="sd">                            r4.</span>
+<span class="sd">                            r16</span>
+<span class="sd">                            c&#39;16</span>
+<span class="sd">                            c&#39;16</span>
+<span class="sd">                            c&#39;16</span>
+<span class="sd">                            r16</span>
+<span class="sd">                            c&#39;16</span>
+<span class="sd">                            c&#39;16</span>
+<span class="sd">                            c&#39;16</span>
+<span class="sd">                            r16</span>
+<span class="sd">                            c&#39;16</span>
+<span class="sd">                            c&#39;16</span>
+<span class="sd">                            c&#39;16</span>
+<span class="sd">                            r16</span>
+<span class="sd">                            c&#39;16</span>
+<span class="sd">                            r4.</span>
+<span class="sd">                            r16</span>
+<span class="sd">                            c&#39;16</span>
+<span class="sd">                            c&#39;16</span>
+<span class="sd">                            c&#39;16</span>
+<span class="sd">                            r16</span>
+<span class="sd">                            c&#39;16</span>
+<span class="sd">                            c&#39;16</span>
+<span class="sd">                            c&#39;16</span>
+<span class="sd">                        }</span>
+<span class="sd">                    &gt;&gt;</span>
+<span class="sd">                &gt;&gt;</span>
+<span class="sd">            &gt;&gt;</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">material</span> <span class="ow">in</span> <span class="n">materials_list</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="p">[</span><span class="n">material</span><span class="o">.</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">material</span><span class="o">.</span><span class="n">container</span><span class="p">)</span></div>
+
+    <span class="c1"># rewrite meter</span>
+    <span class="k">def</span> <span class="nf">rewrite_meter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_signatures</span><span class="p">):</span>
+        <span class="c1"># global_skips = [_ for _ in abjad.select(score[&quot;Global_Context&quot;]).leaves()]</span>
+        <span class="c1"># sigs = []</span>
+        <span class="c1"># for skip in global_skips:</span>
+        <span class="c1">#     for indicator in abjad.get.indicators(skip):</span>
+        <span class="c1">#         if isinstance(indicator, abjad.TimeSignature):</span>
+        <span class="c1">#             sigs.append(indicator)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">time_signatures</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">abjad</span><span class="o">.</span><span class="n">TimeSignature</span><span class="p">):</span>
+            <span class="n">time_signatures</span> <span class="o">=</span> <span class="n">time_signatures</span>
+            <span class="n">durations</span> <span class="o">=</span> <span class="p">[</span><span class="n">_</span><span class="o">.</span><span class="n">duration</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">time_signatures</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">time_signatures</span> <span class="o">=</span> <span class="p">[</span><span class="n">abjad</span><span class="o">.</span><span class="n">TimeSignature</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">time_signatures</span><span class="p">]</span>
+            <span class="n">durations</span> <span class="o">=</span> <span class="n">time_signatures</span>
+
+        
+        <span class="k">for</span> <span class="n">voice</span> <span class="ow">in</span> <span class="n">abjad</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="p">)</span><span class="o">.</span><span class="n">components</span><span class="p">(</span><span class="n">abjad</span><span class="o">.</span><span class="n">Voice</span><span class="p">):</span>
+            <span class="c1"># voice_dur = abjad.get.duration(voice)</span>
+            <span class="k">if</span> <span class="n">voice</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;rewriting meter:&quot;</span><span class="p">,</span> <span class="n">voice</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                <span class="c1"># sig_dur = sum(durations)</span>
+                <span class="c1"># assert voice_dur == sig_dur, (voice_dur, sig_dur)</span>
+                <span class="n">shards</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">mutate</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">voice</span><span class="p">[:],</span> <span class="n">durations</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">shard</span><span class="p">,</span> <span class="n">time_signature</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">shards</span><span class="p">,</span> <span class="n">time_signatures</span><span class="p">):</span>
+                    <span class="c1"># leaf = abjad.get.leaf(shard, 0)</span>
+                    <span class="c1"># time_signature = abjad.get.indicator(leaf, abjad.TimeSignature)</span>
+                    <span class="c1"># print(time_s)</span>
+                    <span class="c1"># print(time_signature)</span>
+                    <span class="n">abjad</span><span class="o">.</span><span class="n">Meter</span><span class="o">.</span><span class="n">rewrite_meter</span><span class="p">(</span>
+                        <span class="n">shard</span><span class="p">[:],</span>
+                        <span class="n">time_signature</span><span class="p">,</span>
+                        <span class="n">boundary_depth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                        <span class="n">rewrite_tuplets</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                        <span class="n">maximum_dot_count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                    <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">score</span>
+
+                <span class="c1"># for time_signature, shard in zip(time_signatures, shards):</span>
+                <span class="c1">#     abjad.Meter.rewrite_meter(shard, time_signature, boundary_depth=1)</span>
+
+                <span class="c1"># inventories = [</span>
+                <span class="c1">#     x</span>
+                <span class="c1">#     for x in enumerate(</span>
+                <span class="c1">#         abjad.Meter(time_signature.pair).depthwise_offset_inventory</span>
+                <span class="c1">#     )</span>
+                <span class="c1"># ]</span>
+                <span class="c1"># if time_signature.denominator == 4:</span>
+                <span class="c1">#     abjad.Meter.rewrite_meter(</span>
+                <span class="c1">#         shard,</span>
+                <span class="c1">#         time_signature,</span>
+                <span class="c1">#         boundary_depth=inventories[-1][0],</span>
+                <span class="c1">#         rewrite_tuplets=False,</span>
+                <span class="c1">#     )</span>
+                <span class="c1"># else:</span>
+                <span class="c1">#     abjad.Meter.rewrite_meter(</span>
+                <span class="c1">#         shard,</span>
+                <span class="c1">#         time_signature,</span>
+                <span class="c1">#         boundary_depth=inventories[-2][0],</span>
+                <span class="c1">#         rewrite_tuplets=False,</span>
+                <span class="c1">#     )</span>
+
+            <span class="c1"># abjad.mutate().split(voice, in_time_signature, cyclic=True)</span>
+
+        <span class="c1"># time_signatures = []</span>
+        <span class="c1"># for item in in_time_signatures:</span>
+        <span class="c1">#     time_signatures.append(abjad.Meter(item))</span>
+        <span class="c1"># abjad.mutate().split(music, in_time_signature, cyclic=True)</span>
+        <span class="c1"># # selection</span>
+        <span class="c1"># abjad.Meter.rewrite_meter(music[:], time_signatures)</span>
+        <span class="c1"># selector = abjad.select(music).leaves()</span>
+        <span class="c1"># measures = selector.group_by_measure()</span>
+        <span class="c1"># for time, measure in zip(time_signatures, measures):</span>
+        <span class="c1">#     abjad.mutate(measure).rewrite_meter(time)</span>
+        <span class="c1"># return measures</span>
+
+    <span class="k">def</span> <span class="nf">lilypond</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">lilypond</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">lilypond</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">lilypond</span>
+
+    <span class="k">def</span> <span class="nf">make_lilypond_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">includes</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">lilypond_file</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondFile</span><span class="p">(</span><span class="n">items</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="p">],</span> <span class="n">includes</span><span class="o">=</span><span class="n">includes</span><span class="p">,)</span>
+        <span class="k">return</span> <span class="n">lilypond_file</span></div>
+
+</pre></div>
+
+        </div>
+      </div>
+
+      <div id="side-menu-container">
+
+        <div id="search" role="search">
+        <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+            <input type="text" name="q" placeholder="Search..." />
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+        </form>
+</div>
+
+        <div id="side-menu" role="navigation">
+
+          
+  
+    
+  
+  
+    <div class="local-toc"></div>
+  
+
+
+        </div>
+
+        
+
+      </div>
+
+    </div>
+
+<footer>
+    <div id="footer-info">
+        <ul id="build-details">
+            
+
+            
+
+            
+        </ul>
+        <div id="credit">
+            created with <a href="http://sphinx-doc.org/">Sphinx</a> and <a href="https://github.com/Autophagy/insegel">Insegel</a>
+
+        </div>
+    </div>
+
+    <a id="menu-toggle" class="fa fa-bars" aria-hidden="true"></a>
+
+    <script type="text/javascript">
+      $("#menu-toggle").click(function() {
+        $("#menu-toggle").toggleClass("toggled");
+        $("#side-menu-container").slideToggle(300);
+      });
+    </script>
+
+</footer> 
+
+</div>
+
+</body>
+</html>
