@@ -1,0 +1,58 @@
+.. _abjad--indicators--StopBeam:
+
+StopBeam
+========
+
+.. automodule:: abjad.indicators.StopBeam
+
+.. currentmodule:: abjad.indicators.StopBeam
+
+.. container:: svg-container
+
+   .. inheritance-diagram:: abjad
+      :lineage: abjad.indicators.StopBeam
+
+.. autoclass:: StopBeam
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __repr__
+      context
+      leak
+      parameter
+      persistent
+      spanner_stop
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: StopBeam.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: StopBeam.context
+
+   .. autoattribute:: StopBeam.leak
+
+   .. autoattribute:: StopBeam.parameter
+
+   .. autoattribute:: StopBeam.persistent
+
+   .. autoattribute:: StopBeam.spanner_stop

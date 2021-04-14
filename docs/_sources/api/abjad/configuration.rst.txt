@@ -1,0 +1,142 @@
+.. _abjad--configuration:
+
+configuration
+=============
+
+.. automodule:: abjad.configuration
+
+.. currentmodule:: abjad.configuration
+
+.. container:: svg-container
+
+   .. inheritance-diagram:: abjad
+      :lineage: abjad.configuration
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Functions
+   :class: section-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~list_all_classes
+   ~list_all_functions
+   ~yield_all_modules
+
+.. autofunction:: list_all_classes
+
+.. autofunction:: list_all_functions
+
+.. autofunction:: yield_all_modules
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: System configuration
+   :class: section-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~Configuration
+
+.. autoclass:: Configuration
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __delitem__
+      __getitem__
+      __iter__
+      __repr__
+      __setitem__
+      abjad_directory
+      abjad_output_directory
+      boilerplate_directory
+      composer_email
+      composer_full_name
+      composer_github_username
+      composer_last_name
+      composer_scores_directory
+      composer_uppercase_name
+      composer_website
+      configuration_directory
+      configuration_file_path
+      get
+      get_lilypond_version_string
+      home_directory
+      lilypond_log_file_path
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: Configuration.__delitem__
+
+   .. automethod:: Configuration.__getitem__
+
+   .. automethod:: Configuration.__iter__
+
+   .. automethod:: Configuration.__repr__
+
+   .. automethod:: Configuration.__setitem__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Methods
+      :class: class-header
+
+   .. automethod:: Configuration.get
+
+   .. automethod:: Configuration.get_lilypond_version_string
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: Configuration.abjad_directory
+
+   .. autoattribute:: Configuration.abjad_output_directory
+
+   .. autoattribute:: Configuration.boilerplate_directory
+
+   .. autoattribute:: Configuration.composer_email
+
+   .. autoattribute:: Configuration.composer_full_name
+
+   .. autoattribute:: Configuration.composer_github_username
+
+   .. autoattribute:: Configuration.composer_last_name
+
+   .. autoattribute:: Configuration.composer_scores_directory
+
+   .. autoattribute:: Configuration.composer_uppercase_name
+
+   .. autoattribute:: Configuration.composer_website
+
+   .. autoattribute:: Configuration.configuration_directory
+
+   .. autoattribute:: Configuration.configuration_file_path
+
+   .. autoattribute:: Configuration.home_directory
+
+   .. autoattribute:: Configuration.lilypond_log_file_path

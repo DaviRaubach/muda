@@ -1,0 +1,30 @@
+.. _abjad--ext:
+
+ext
+===
+
+.. automodule:: abjad.ext
+
+.. currentmodule:: abjad.ext
+
+.. container:: svg-container
+
+   .. inheritance-diagram:: abjad
+      :lineage: abjad.ext
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Subpackages
+   :class: section-header
+
+.. toctree::
+   :hidden:
+
+   sphinx
+
+.. autosummary::
+   :nosignatures:
+
+   sphinx

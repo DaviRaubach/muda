@@ -1,0 +1,118 @@
+.. _abjad--attach:
+
+attach
+======
+
+.. automodule:: abjad.attach
+
+.. currentmodule:: abjad.attach
+
+.. container:: svg-container
+
+   .. inheritance-diagram:: abjad
+      :lineage: abjad.attach
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Functions
+   :class: section-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~annotate
+   ~attach
+   ~detach
+
+.. autofunction:: annotate
+
+.. autofunction:: attach
+
+.. autofunction:: detach
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Internals
+   :class: section-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~Wrapper
+
+.. autoclass:: Wrapper
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __copy__
+      __eq__
+      __hash__
+      __repr__
+      annotation
+      component
+      context
+      deactivate
+      indicator
+      leaked_start_offset
+      start_offset
+      synthetic_offset
+      tag
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: Wrapper.__copy__
+
+   .. automethod:: Wrapper.__eq__
+
+   .. automethod:: Wrapper.__hash__
+
+   .. automethod:: Wrapper.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read/write properties
+      :class: class-header
+
+   .. autoattribute:: Wrapper.deactivate
+
+   .. autoattribute:: Wrapper.tag
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: Wrapper.annotation
+
+   .. autoattribute:: Wrapper.component
+
+   .. autoattribute:: Wrapper.context
+
+   .. autoattribute:: Wrapper.indicator
+
+   .. autoattribute:: Wrapper.leaked_start_offset
+
+   .. autoattribute:: Wrapper.start_offset
+
+   .. autoattribute:: Wrapper.synthetic_offset

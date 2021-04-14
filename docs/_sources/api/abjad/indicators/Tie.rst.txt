@@ -1,0 +1,61 @@
+.. _abjad--indicators--Tie:
+
+Tie
+===
+
+.. automodule:: abjad.indicators.Tie
+
+.. currentmodule:: abjad.indicators.Tie
+
+.. container:: svg-container
+
+   .. inheritance-diagram:: abjad
+      :lineage: abjad.indicators.Tie
+
+.. autoclass:: Tie
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __eq__
+      __hash__
+      __repr__
+      context
+      direction
+      persistent
+      tweaks
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: Tie.__eq__
+
+   .. automethod:: Tie.__hash__
+
+   .. automethod:: Tie.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: Tie.context
+
+   .. autoattribute:: Tie.direction
+
+   .. autoattribute:: Tie.persistent
+
+   .. autoattribute:: Tie.tweaks

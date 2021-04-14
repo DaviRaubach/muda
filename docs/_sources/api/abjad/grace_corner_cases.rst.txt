@@ -1,0 +1,15 @@
+.. _abjad--grace-corner-cases:
+
+grace_corner_cases
+==================
+
+.. automodule:: abjad.grace_corner_cases
+
+.. currentmodule:: abjad.grace_corner_cases
+
+.. container:: svg-container
+
+   .. inheritance-diagram:: abjad
+      :lineage: abjad.grace_corner_cases
+
+.. autofunction:: grace_corner_cases

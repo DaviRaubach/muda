@@ -1,0 +1,52 @@
+.. _abjad--indicators--StopHairpin:
+
+StopHairpin
+===========
+
+.. automodule:: abjad.indicators.StopHairpin
+
+.. currentmodule:: abjad.indicators.StopHairpin
+
+.. container:: svg-container
+
+   .. inheritance-diagram:: abjad
+      :lineage: abjad.indicators.StopHairpin
+
+.. autoclass:: StopHairpin
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __repr__
+      context
+      leak
+      spanner_stop
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: StopHairpin.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: StopHairpin.context
+
+   .. autoattribute:: StopHairpin.leak
+
+   .. autoattribute:: StopHairpin.spanner_stop

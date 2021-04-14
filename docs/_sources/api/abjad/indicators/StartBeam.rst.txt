@@ -1,0 +1,67 @@
+.. _abjad--indicators--StartBeam:
+
+StartBeam
+=========
+
+.. automodule:: abjad.indicators.StartBeam
+
+.. currentmodule:: abjad.indicators.StartBeam
+
+.. container:: svg-container
+
+   .. inheritance-diagram:: abjad
+      :lineage: abjad.indicators.StartBeam
+
+.. autoclass:: StartBeam
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __eq__
+      __hash__
+      __repr__
+      context
+      direction
+      parameter
+      persistent
+      spanner_start
+      tweaks
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: StartBeam.__eq__
+
+   .. automethod:: StartBeam.__hash__
+
+   .. automethod:: StartBeam.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: StartBeam.context
+
+   .. autoattribute:: StartBeam.direction
+
+   .. autoattribute:: StartBeam.parameter
+
+   .. autoattribute:: StartBeam.persistent
+
+   .. autoattribute:: StartBeam.spanner_start
+
+   .. autoattribute:: StartBeam.tweaks

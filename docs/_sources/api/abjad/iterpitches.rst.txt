@@ -1,0 +1,42 @@
+.. _abjad--iterpitches:
+
+iterpitches
+===========
+
+.. automodule:: abjad.iterpitches
+
+.. currentmodule:: abjad.iterpitches
+
+.. container:: svg-container
+
+   .. inheritance-diagram:: abjad
+      :lineage: abjad.iterpitches
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Functions
+   :class: section-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~iterate_out_of_range
+   ~respell_with_flats
+   ~respell_with_sharps
+   ~sounding_pitches_are_in_range
+   ~transpose_from_sounding_pitch
+   ~transpose_from_written_pitch
+
+.. autofunction:: iterate_out_of_range
+
+.. autofunction:: respell_with_flats
+
+.. autofunction:: respell_with_sharps
+
+.. autofunction:: sounding_pitches_are_in_range
+
+.. autofunction:: transpose_from_sounding_pitch
+
+.. autofunction:: transpose_from_written_pitch

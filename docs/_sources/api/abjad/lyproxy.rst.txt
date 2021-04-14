@@ -1,0 +1,279 @@
+.. _abjad--lyproxy:
+
+lyproxy
+=======
+
+.. automodule:: abjad.lyproxy
+
+.. currentmodule:: abjad.lyproxy
+
+.. container:: svg-container
+
+   .. inheritance-diagram:: abjad
+      :lineage: abjad.lyproxy
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Classes
+   :class: section-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~LilyPondContext
+   ~LilyPondEngraver
+   ~LilyPondGrob
+   ~LilyPondGrobInterface
+
+.. autoclass:: LilyPondContext
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __new__
+      __repr__
+      accepted_by
+      accepts
+      alias
+      default_child
+      engravers
+      grobs
+      is_bottom_context
+      is_custom
+      is_global_context
+      is_score_context
+      is_staff_context
+      is_staff_group_context
+      list_all_contexts
+      name
+      property_names
+      register
+      unregister
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: LilyPondContext.__new__
+
+   .. automethod:: LilyPondContext.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Methods
+      :class: class-header
+
+   .. automethod:: LilyPondContext.unregister
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Class & static methods
+      :class: class-header
+
+   .. automethod:: LilyPondContext.list_all_contexts
+
+   .. automethod:: LilyPondContext.register
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: LilyPondContext.accepted_by
+
+   .. autoattribute:: LilyPondContext.accepts
+
+   .. autoattribute:: LilyPondContext.alias
+
+   .. autoattribute:: LilyPondContext.default_child
+
+   .. autoattribute:: LilyPondContext.engravers
+
+   .. autoattribute:: LilyPondContext.grobs
+
+   .. autoattribute:: LilyPondContext.is_bottom_context
+
+   .. autoattribute:: LilyPondContext.is_custom
+
+   .. autoattribute:: LilyPondContext.is_global_context
+
+   .. autoattribute:: LilyPondContext.is_score_context
+
+   .. autoattribute:: LilyPondContext.is_staff_context
+
+   .. autoattribute:: LilyPondContext.is_staff_group_context
+
+   .. autoattribute:: LilyPondContext.name
+
+   .. autoattribute:: LilyPondContext.property_names
+
+.. autoclass:: LilyPondEngraver
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __new__
+      __repr__
+      grobs
+      list_all_engravers
+      name
+      property_names
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: LilyPondEngraver.__new__
+
+   .. automethod:: LilyPondEngraver.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Class & static methods
+      :class: class-header
+
+   .. automethod:: LilyPondEngraver.list_all_engravers
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: LilyPondEngraver.grobs
+
+   .. autoattribute:: LilyPondEngraver.name
+
+   .. autoattribute:: LilyPondEngraver.property_names
+
+.. autoclass:: LilyPondGrob
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __new__
+      __repr__
+      interfaces
+      list_all_grobs
+      name
+      property_names
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: LilyPondGrob.__new__
+
+   .. automethod:: LilyPondGrob.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Class & static methods
+      :class: class-header
+
+   .. automethod:: LilyPondGrob.list_all_grobs
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: LilyPondGrob.interfaces
+
+   .. autoattribute:: LilyPondGrob.name
+
+   .. autoattribute:: LilyPondGrob.property_names
+
+.. autoclass:: LilyPondGrobInterface
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Attributes Summary
+      :class: class-header
+
+   .. autosummary::
+      :nosignatures:
+
+      __new__
+      __repr__
+      list_all_interfaces
+      name
+      property_names
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Special methods
+      :class: class-header
+
+   .. automethod:: LilyPondGrobInterface.__new__
+
+   .. automethod:: LilyPondGrobInterface.__repr__
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Class & static methods
+      :class: class-header
+
+   .. automethod:: LilyPondGrobInterface.list_all_interfaces
+
+   .. raw:: html
+
+      <hr/>
+
+   .. rubric:: Read-only properties
+      :class: class-header
+
+   .. autoattribute:: LilyPondGrobInterface.name
+
+   .. autoattribute:: LilyPondGrobInterface.property_names

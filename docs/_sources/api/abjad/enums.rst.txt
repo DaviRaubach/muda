@@ -1,0 +1,39 @@
+.. _abjad--enums:
+
+enums
+=====
+
+.. automodule:: abjad.enums
+
+.. currentmodule:: abjad.enums
+
+.. container:: svg-container
+
+   .. inheritance-diagram:: abjad
+      :lineage: abjad.enums
+
+.. raw:: html
+
+   <hr/>
+
+.. rubric:: Enumerations
+   :class: section-header
+
+.. autosummary::
+   :nosignatures:
+
+   ~Comparison
+   ~HorizontalAlignment
+   ~VerticalAlignment
+
+.. autoclass:: Comparison
+   :members:
+   :undoc-members:
+
+.. autoclass:: HorizontalAlignment
+   :members:
+   :undoc-members:
+
+.. autoclass:: VerticalAlignment
+   :members:
+   :undoc-members:
