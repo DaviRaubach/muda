@@ -58,7 +58,7 @@ class TimespanList(abjad.TimespanList):
         for span in self:
             append_lower = True
             append_higher = True
-            for a in range(2, 8):
+            for a in range(2, 16):
                 if span.duration < subdur * 2 and append_lower is True:
                     new_ts_list.append(span)
                     # print("menor:", span.duration)
@@ -86,24 +86,30 @@ class TimespanList(abjad.TimespanList):
                         newspan = newspan.set_duration(dim)
                         # print("newspan dur:", newspan.duration)
                         splited2 = newspan.divide_by_ratio(a - 1)
+                        # print("splited:", splited2)
                         for o, ts2 in enumerate(splited2):
                             # print("o", o)
                             if o == (len(splited2) - 1):
                                 nts2 = splited2[-1].set_duration(
                                     splited2[-1].duration + rest)
+                                nts2.annotation = span.annotation
                                 new_ts_list.append(nts2)
                                 # print("aquiiii", nts2.duration)
                             else:
+                                ts2.annotation = span.annotation
                                 new_ts_list.append(ts2)
                             # print("rest =! 0:", ts2.duration)
                     append_higher = False
 
         dur_list = []
         for span in new_ts_list:
-            dur = muda.rhythm.AnnotatedDuration(span.duration)
-            dur.annotation = span.annotation
+            dur = muda.rhythm.AnnotatedDuration(
+                span.duration,
+                annotation=span.annotation)
+            # print("mudadur:", dur)
+            # dur.annotation = span.annotation
             dur_list.append(dur)
-            # print(dur)
+            # print(span.annotation)
         return dur_list
 
 

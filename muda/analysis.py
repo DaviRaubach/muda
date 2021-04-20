@@ -9,6 +9,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import abjad
 import json
+import evans
+from abjadext import microtones
 
 
 class IracemaAnalysis():
@@ -82,6 +84,9 @@ class IracemaAnalysis():
 
     def abjad_container(self):
         """Return the container ``abjad.Container()`` with the result."""
+        def hz_to_midi(f, f_a4_in_hz=440):
+            return (69 + 12 * np.log2(f / f_a4_in_hz))
+
         audio = iracema.Audio(self.audioin)
         # specifying window and hop sizes
         window, hop = 2048, 1024
@@ -124,7 +129,10 @@ class IracemaAnalysis():
             chord_in_hertz = []
             for i, list_ in enumerate(freq_list):
                 chord_in_hertz.append(freq_list[i, n])
-                pitches.append(abjad.NamedPitch.from_hertz(freq_list[i, n]))
+                numberedp = (hz_to_midi(freq_list[i, n], 440) - 60)
+                roundedp = evans.to_nearest_twelfth_tone(numberedp)
+                pitches.append(roundedp)
+                # pitches.append(abjad.NamedPitch.from_hertz(freq_list[i, n]))
             chord = abjad.Chord("<e' g' c''>4")
             chord.written_duration = abjad.Duration(1, self.denominator)
             chord.written_pitches = pitches

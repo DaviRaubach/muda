@@ -534,3 +534,6 @@ class Score:
         lilypond_file = abjad.LilyPondFile(items=[self.score], includes=includes,)
         return lilypond_file
 
+    def show(self):
+        return abjad.show(self.score)
+

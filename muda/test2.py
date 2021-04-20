@@ -1,4 +1,4 @@
-import abjad
+# import abjad
 # from abjadext import rmakers
 # import muda
 
@@ -53,7 +53,56 @@ import abjad
 # print(ts.set_duration(dur1 + dur2))
 # print(ts)
 
-staff = abjad.Staff("s1 s1 s1")
-selection = abjad.select(staff).leaves(pitched=False)
-abjad.attach(abjad.MetronomeMark((1, 4), (45, 54), "Lento"), selection[0])
-print(abjad.lilypond(staff))
+# staff = abjad.Staff("s1 s1 s1")
+# selection = abjad.select(staff).leaves(pitched=False)
+# abjad.attach(abjad.MetronomeMark((1, 4), (45, 54), "Lento"), selection[0])
+# print(abjad.lilypond(staff))
+
+# MICROTONES
+# import evans
+# from abjadext import microtones
+# import abjad
+
+# l = [0, 1.111, 4.5, 2.23, 6.4, 7.3, 7.15]
+# l = [evans.to_nearest_eighth_tone(_, frac=True) for _ in l]
+# notes = [abjad.Note("c'4") for item in l]
+# for note, step in zip(notes, l):
+#     microtones.apply_alteration(note.note_head, step)
+# staff = abjad.Staff(notes)
+# score = abjad.Score([staff])
+# # moment = abjad.SchemeMoment((1, 25))
+# # abjad.setting(score).proportional_notation_duration = moment
+# lilypond_file = abjad.LilyPondFile(
+#     items=[score, abjad.Block(name="layout")],
+#     includes=[
+#         "/Users/Davi/github/evans/docs/source/_stylesheets/default.ily",
+#         "abjad.ily",
+#         "/Users/Davi/github/abjad-ext-microtones/abjadext/microtones/lilypond/ekmelos-edo-accidental-markups.ily ",
+#     ],
+#     global_staff_size=16,
+# )
+# style = '"dodecaphonic"'
+# lilypond_file.layout_block.items.append(fr"\accidentalStyle dodecaphonic")
+# abjad.show(lilypond_file)
+
+
+# import abjad
+
+# parent = abjad.Container()
+# child1 = abjad.Container("c'4", tag=abjad.Tag("mat01"))
+# child2 = abjad.Container("d'8", tag=abjad.Tag("mat02"))
+
+# parent.append(child1)
+# parent.append(child2)
+# selection = abjad.select(parent).components(abjad.Container)
+# print(selection)
+# for i, cont in enumerate(selection):
+#     if i == 0:
+#         pass
+#     else:
+#         print(cont.tag)
+#         print(cont)
+
+import muda
+dur = muda.AnnotatedDuration((1, 4), annotation="this")
+print(dur.annotation)

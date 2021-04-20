@@ -16,6 +16,31 @@ class Material:
         self.container = abjad.Container()
         self.container.name = name
 
+    def write(self, lilypond_string):
+        """Todo."""
+        pass
+
+    def alternating_materials(self, annotated_divisions, *makers):
+        """Todo."""
+        # maybe I should include *commands for rmaker.stack
+        for dur in annotated_divisions:
+            for maker in makers:
+                # if isinstance(maker, abjad.Container):
+                #     if maker.tag.string == dur.annotation:
+                #         # print("appending", maker.tag.string)
+                #         self.container.append(maker)
+                # print("maker", maker.tag.string)
+                # print("dur", dur.annotation)
+                if maker.tag.string == dur.annotation:
+                    selection = maker([dur])
+                    # print("appending", maker.tag.string)
+                    self.container.append(
+                        abjad.Container(selection, tag=maker.tag))
+                # else:
+                #     print('maker should be ``rmakers.stack`'
+                #           ' or dictionary containing a lilypond string'
+                #           ' such as: ``"mat01": ("c,4 d,4")`')
+
     def silence_and_rhythm_maker(self, maker, annotated_divisions, *commands):
         """Todo."""
         rest_maker = rmakers.stack(
@@ -45,7 +70,11 @@ class Material:
                 else:
                     note.written_pitch = pitch
 
-    def write_pitches_by_duration(self, annotated_pitches, annotated_durations):
+    def write_pitches_by_duration(
+        self,
+        annotated_pitches,
+        annotated_durations
+    ):
         """Todo."""
         abjad_durations = []
         for dur in annotated_durations:
@@ -68,11 +97,12 @@ class Material:
                 pitched=True
             )
             for i, logical_tie in enumerate(logical_ties):
-                pitches = annotated_pitches[duration.annotation]
-                index = i % len(pitches)
-                pitch = pitches[index]
-                for note in logical_tie:
-                    note.written_pitch = pitch
+                if duration.annotation in annotated_pitches:
+                    pitches = annotated_pitches[duration.annotation]
+                    index = i % len(pitches)
+                    pitch = pitches[index]
+                    for note in logical_tie:
+                        note.written_pitch = pitch
 
     def see_leaves_number(self, pitched=True):
         """Todo."""
@@ -158,11 +188,33 @@ class Material:
         """Todo."""
         return self.container
 
-    def alternating_materials(self, annotated_divisions, *makers):
+    def retrograde(self, material_name):
         """Todo."""
-        # maybe I should include *commands for rmaker.stack
-        for dur in annotated_divisions:
-            for maker in makers:
-                if maker.tag.string == dur.annotation:
-                    selection = maker([dur])
-                    self.container.extend(selection)
+        selection = abjad.select(self.container[:]).components(abjad.Container)
+        for container in selection:
+            if container.tag.string == material_name:
+                # print("cont", container)
+                l = len(container)
+                new_container = abjad.Container(tag=container.tag)
+                while l > 0:
+                    l -= 1
+                    new_container.append(container[l])
+
+                container.append(new_container)
+                # print("new cont", new_container)
+
+    def change(self, material_name, selection, change):
+        """Todo."""
+        selection1 = abjad.select(self.container).components(abjad.Container)
+        for container in selection1:
+            if container.tag.string == material_name:
+                container[selection] = change
+
+    def delete_material_leaves(self, material_name, leaves):
+        """Todo."""
+        selection = abjad.select(self.container).components(abjad.Container)
+        for container in selection:
+            print(container)
+            if container.tag == material_name:
+                for _ in leaves:
+                    del container[_]
