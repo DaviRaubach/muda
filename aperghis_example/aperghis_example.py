@@ -73,31 +73,31 @@ skips = rmakers.multiplied_duration(abjad.Skip, tag=abjad.Tag("skips"),)
 
 # Timespans
 alternations = [
-    [36, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [35, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
-    [34, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2],
-    [32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 2],
-    [28, 0, 0, 0, 0, 0, 0, 0, 0, 4, 2, 1, 2],
-    [24, 0, 0, 0, 0, 0, 0, 0, 4, 4, 2, 1, 2],
-    [22, 0, 0, 0, 0, 0, 0, 2, 4, 4, 2, 1, 2],
-    [15, 0, 0, 0, 0, 0, 7, 2, 4, 4, 2, 1, 2],
-    [13, 0, 0, 0, 0, 2, 7, 2, 4, 4, 2, 1, 2],
-    [12, 0, 0, 0, 0, 3, 7, 2, 4, 4, 2, 1, 2],
-    [11, 0, 0, 0, 0, 4, 7, 2, 4, 4, 2, 1, 2],
-    [11, 0, 0, 0, 0, 4, 7, 2, 4, 4, 2, 1, 2],
-    [10, 0, 0, 0, 1, 4, 7, 2, 4, 4, 2, 1, 2],
-    [6, 0, 0, 0, 5, 4, 7, 2, 4, 4, 2, 1, 2],
-    [6, 0, 0, 0, 5, 4, 7, 2, 4, 4, 2, 1, 2],
-    [6, 0, 0, 0, 5, 4, 7, 2, 4, 4, 2, 1, 2],
-    [5, 0, 0, 1, 5, 4, 7, 2, 4, 4, 2, 1, 2],
-    [4, 0, 1, 1, 5, 4, 7, 2, 4, 4, 2, 1, 2],
-    [0, 4, 1, 1, 5, 4, 7, 2, 4, 4, 2, 1, 2]]
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 2],
+    [0, 0, 0, 0, 0, 0, 0, 0, 4, 2, 1, 2],
+    [0, 0, 0, 0, 0, 0, 0, 4, 4, 2, 1, 2],
+    [0, 0, 0, 0, 0, 0, 2, 4, 4, 2, 1, 2],
+    [0, 0, 0, 0, 0, 7, 2, 4, 4, 2, 1, 2],
+    [0, 0, 0, 0, 2, 7, 2, 4, 4, 2, 1, 2],
+    [0, 0, 0, 0, 3, 7, 2, 4, 4, 2, 1, 2],
+    [0, 0, 0, 0, 4, 7, 2, 4, 4, 2, 1, 2],
+    [0, 0, 0, 0, 4, 7, 2, 4, 4, 2, 1, 2],
+    [0, 0, 0, 1, 4, 7, 2, 4, 4, 2, 1, 2],
+    [0, 0, 0, 5, 4, 7, 2, 4, 4, 2, 1, 2],
+    [0, 0, 0, 5, 4, 7, 2, 4, 4, 2, 1, 2],
+    [0, 0, 0, 5, 4, 7, 2, 4, 4, 2, 1, 2],
+    [0, 0, 1, 5, 4, 7, 2, 4, 4, 2, 1, 2],
+    [0, 1, 1, 5, 4, 7, 2, 4, 4, 2, 1, 2],
+    [4, 1, 1, 5, 4, 7, 2, 4, 4, 2, 1, 2]]
 timespans = muda.timespan.alternating_timespans(
-    n_annotations=13,
+    n_annotations=12,
     alternations=alternations,
     denominator=8,
     annotations=[
-        "skips",
+        # "skips",
         "mat00",
         "mat01",
         "mat02",
@@ -144,7 +144,8 @@ mats.alternating_materials(
     rmaker02,
     rmaker01,
     rmaker00,
-    skips,)
+    # skips,
+)
 
 """I had to write the retrograde in the rhythm maker because abjad
 would write the material in a given duration from left to right.
@@ -164,20 +165,28 @@ mats.write_pitches_by_duration(pitches, durations)
 
 # mats.see_leaves_number(pitched=False)
 
-mats.delete([243, 244, 285, 373], replace_with_rests=True)
-mats.delete([370, 371, 372, 419, 420, 421], replace_with_skips=True)
+# mats.delete([243, 244, 285, 373], replace_with_rests=True)
+# mats.delete([370, 371, 372, 419, 420, 421], replace_with_skips=True)
 mats.delete([1], material_name="mat05", replace_with_skips=True)
 mats.attach("mat07", abjad.BeforeGraceContainer("b'8"), 2)
 
 # BREAKS AND DIFFERENT STAFFS
 selection = abjad.select(mats.container).components(abjad.Container)
 selection2 = abjad.select(mats.container).leaves()
-abjad.attach(abjad.LilyPondLiteral(
-    [r"\override Score.BarLine.stencil = ##f",
-     r"\override Staff.NoteHead.no-ledgers = ##t",
-     r"\omit Clef"]), selection2[0])
-abjad.attach(abjad.LilyPondLiteral(
-    r"\override Staff.StaffSymbol.line-count = 1"), selection2[0])
+
+literal00 = [
+    r"\override Score.BarLine.stencil = ##f",
+    r"\override Staff.NoteHead.no-ledgers = ##t",
+    r"\override Staff.StaffSymbol.line-count = 1",
+    r"\omit Clef"]
+
+# when material_name is None attach to mats.container leaves pitched or not.
+mats.attach(
+    None,  # material_name
+    literal00,
+    0)
+
+mats.attach(None, r"\break", 1)
 
 for leaf, (i, leaf2) in zip(mats.container, enumerate(mats.container[1:])):
     if leaf.tag is not None:
@@ -186,17 +195,15 @@ for leaf, (i, leaf2) in zip(mats.container, enumerate(mats.container[1:])):
             abjad.attach(abjad.LilyPondLiteral(
                 r"\override Score.BarLine.stencil = ##f"), leaf2)
 
-five_lines = [r"\stopStaff \startStaff ",
-              r"\override Staff.StaffSymbol.line-count = 5"]
-one_line = [r'\stopStaff \startStaff '
-            r'\override Staff.StaffSymbol.line-count = 1']
+five_lines = r"\stopStaff \startStaff \revert Staff.StaffSymbol.line-count"
+one_line = r'\stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1'
 arrowdown_head = [
     r"\once \override Staff.Stem.X-offset  = #-0.07",
     r"\once \override Staff.Stem.Y-offset  = #0.3",
     r"\once \override Staff.Flag.Y-offset  = #1.5",
     r"\once \override Staff.NoteHead.stencil = #ly:text-interface::print",
     (r"\once \override Staff.NoteHead #'text = "
-     r"\markup { \arrow-head #Y #DOWN ##f}")]
+        r"\markup { \arrow-head #Y #DOWN ##f}")]
 arrowup_head = [
     r"\once \override Staff.Stem.Y-offset  = #-1.3",
     r"\once \override Staff.Stem.X-offset  = #-0.1",
@@ -207,7 +214,7 @@ arrowup_head = [
 mats.attach(["mat08", "mat10"], five_lines, 0)
 mats.attach(["mat09", "mat11"], one_line, 0)
 mats.attach("mat05", arrowdown_head, 0)
-mats.attach("mat05", arrowup_head, 2)
+# mats.attach("mat05", arrowup_head, 2)
 mats.attach("mat05", r"\stemUp", 0)
 mats.attach("mat05", r"\stemNeutral", -1)
 
@@ -222,22 +229,18 @@ mats.attach(
     r"\revert Score.BarLine.stencil",
     0)
 
-
 mats.note_heads("mat06", "#'cross")
 
-lyrics = muda.Material("Soprano_Lyrics")
+lyrics = muda.Lyrics("Soprano_Voice_1")
 lyrics.write_lyrics(r"""
-    _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
     Sir
-    _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-
+    Dé -- sir
     _ Dé -- sir
-    _ _ _ _ _ _ Dé -- sir
-    _ Ce _ _ _ _ _ _ _ Dé -- sir
-    _ _ _ _ Ce _ _ _ _ _ _ _ Dé -- sir
-    Porquoi _ _ _ _ Ce _ _ _ _ _ _ _ Dé -- sir
-    _ _ _ _ _ _ Porquoi _ _ _ _ Ce _ _ _ _ _ _ _ Dé -- sir
-    _ _ _ _ _ _ _ _ _ Porquoi _ _ _ _ Ce _ _ _ _ _ _ _ Dé -- sir
+    Ce _ Dé -- sir
+    _ Ce _  Dé -- sir
+    Porquoi  _ Ce _ Dé -- sir
+    _ _ _ _ _ _ Porquoi _ Ce _  Dé -- sir
+    _ _ _ _ _ _ _ Porquoi _ Ce _  Dé -- sir
     """)
 
 
@@ -248,24 +251,17 @@ inst = muda.Instrument(
     name="Soprano",
     nstaffs=1,
     nvoices=[1],
-    lyrics=True,
+    lyrics_target="Soprano_Voice_1",
 )
 score.append([inst])
-numerators = [4, 4, 4, 4, 4, 4, 4, 4, 4, 1] * 19
-time_signatures = [(_, 8) for _ in numerators]
-time_signatures = [abjad.TimeSignature(_) for _ in time_signatures]
+# numerators = [4, 4, 4, 4, 4, 4, 4, 4, 4, 1] * 19
+# time_signatures = [(_, 8) for _ in numerators]
+time_signatures = [abjad.TimeSignature(_) for _ in durations]
 score.make_skips(time_signatures)
 score.write_materials([mats, lyrics])
 score.rewrite_meter(time_signatures)
-block = abjad.Block(name="layout")
-block.ragged_right = True
-block.indent = 0
 lilypond_file = abjad.LilyPondFile(
-    includes=["aperghis_stylesheet.ily"],
+    items=[score.score],
 )
-lilypond_file.items.append(block)
-lilypond_file.items.append(score.score)
-abjad.persist.as_ly(lilypond_file, "test.ly")
-abjad.persist.as_pdf(lilypond_file, "test.pdf")
+abjad.persist.as_ly(lilypond_file, "aperghis_score.ly")
 
-# abjad.show(lilypond_file)

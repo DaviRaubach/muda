@@ -18,7 +18,10 @@ from .rhythm import (
 
 from .timespan import TimespanList, alternating_timespans
 
-from .material import Material
+from .material import (
+	Lyrics,
+	Material
+)
 
 from .analysis import IracemaAnalysis
 

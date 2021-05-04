@@ -103,6 +103,36 @@
 #         print(cont.tag)
 #         print(cont)
 
-import muda
-dur = muda.AnnotatedDuration((1, 4), annotation="this")
-print(dur.annotation)
+# import muda
+# dur = muda.AnnotatedDuration((1, 4), annotation="this")
+# print(dur.annotation)
+
+
+import abjad
+import muda  # my library
+from abjadext import rmakers
+
+rmaker01 = rmakers.stack(
+    rmakers.talea([2, -1], 16, extra_counts=[1]),
+    rmakers.extract_trivial(),
+    tag=abjad.Tag("mat01"),)
+rmaker02 = rmakers.stack(
+    rmakers.talea([1, -2], 16, extra_counts=[1]),
+    rmakers.extract_trivial(),
+    tag=abjad.Tag("mat02"),)
+makers = [rmaker01, rmaker02]
+
+annotated_divisions = [
+    muda.AnnotatedDuration((1, 2), annotation="mat01"),
+    muda.AnnotatedDuration((1, 2), annotation="mat02")
+]
+
+container = abjad.Container()
+for division in annotated_divisions:
+    for maker in makers:
+        if maker.tag.string == division.annotation:
+            selection = maker([division])
+            container.append(abjad.Container(selection, tag=maker.tag))
+lilypond_file = abjad.LilyPondFile(items=[container])
+abjad.persist.as_ly(lilypond_file, "example.ly")
+print(abjad.lilypond(lilypond_file))
