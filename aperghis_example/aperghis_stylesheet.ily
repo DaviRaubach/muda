@@ -2,7 +2,7 @@
 \language "english"
 
 #(set-default-paper-size "a4landscape")
-#(set-global-staff-size 9.5)
+#(set-global-staff-size 9)
 
 \header {
   tagline = ##f
@@ -29,10 +29,6 @@
     \override BarLine.thick-thickness = #8
     \override Stem.thickness = #0.5
     \override Staff.thickness = #0.5
-    % \override SpacingSpanner.strict-grace-spacing = ##t
-    % \override SpacingSpanner.strict-note-spacing = ##t
-    % \override SpacingSpanner.uniform-stretching = ##t
-    %         \override StaffGrouper.staff-staff-spacing = #'((basic-distance . 23) (minimum-distance . 23) (padding . 8))
     \override Stem.stemlet-length = #1.15
     \override TupletBracket.bracket-visibility = ##t
     \override TupletBracket.minimum-length = #3
@@ -44,22 +40,19 @@
     \override TupletNumber.text = #tuplet-number::calc-fraction-text
     \override SpacingSpanner.strict-note-spacing = ##t
     proportionalNotationDuration = #(ly:make-moment 1 28)
-    %tupletFullLength = ##t
+    tupletFullLength = ##t
   }
 
   \context {
     \Staff
     \remove Time_signature_engraver
     \remove Clef_engraver
-
   }
 }
 
 \paper {
   #(set-paper-size "b4landscape")
-
   indent = 0
-
   bottom-margin = 10\mm
   left-margin = 50\mm
   right-margin = 20\mm

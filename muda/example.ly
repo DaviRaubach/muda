@@ -15,11 +15,10 @@
     { %! mat02
         \times 8/9 { %! mat02
             c'16 %! mat02
-            r8 %! mat02
+            r8. %! mat02
             c'16 %! mat02
-            r8 %! mat02
+            r8. %! mat02
             c'16 %! mat02
-            r8 %! mat02
         } %! mat02
     } %! mat02
 }

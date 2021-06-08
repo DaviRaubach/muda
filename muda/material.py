@@ -39,6 +39,10 @@ class Material():
         self.lyrics = None
         self.container.name = name
 
+    def __call__(self):
+        """Todo."""
+        return self.container
+
     def write(self, lilypond_string):
         """Todo."""
         self.container.extend(lilypond_string)
@@ -47,27 +51,34 @@ class Material():
         """Todo."""
         # maybe I should include *commands for rmaker.stack
         for dur in annotated_divisions:
-            for maker in makers:
-                # if isinstance(maker, abjad.Container):
-                #     if maker.tag.string == dur.annotation:
-                #         # print("appending", maker.tag.string)
-                #         self.container.append(maker)
-                # print("maker", maker.tag.string)
-                # print("dur", dur.annotation)
-                if maker.tag.string == dur.annotation:
-                    selection = maker([dur])
-                    # print("appending", maker.tag.string)
-                    if isinstance(selection[0], abjad.Tuplet):
-                        # print("sou tup")
-                        # selection.tag = maker.tag
-                        self.container.append(selection)
-                    else:
-                        self.container.append(
-                            abjad.Container(selection, tag=maker.tag))
-                # else:
-                #     print('maker should be ``rmakers.stack`'
-                #           ' or dictionary containing a lilypond string'
-                #           ' such as: ``"mat01": ("c,4 d,4")`')
+            for item in makers:
+                if isinstance(item, dict):
+                    rhythm_makers = item
+                    for mat in rhythm_makers:
+                        if mat == dur.annotation:
+                            selection = rhythm_makers[mat]([dur])
+                            if isinstance(selection[0], abjad.Tuplet):
+                                sel = abjad.select(
+                                    selection).components(abjad.Container)
+                                for container in sel:
+                                    container.name = mat
+                                    container.identifier = "% " + mat
+                                self.container.append(selection)
+                            else:
+                                self.container.append(
+                                    abjad.Container(
+                                        selection,
+                                        name=mat,
+                                        identifier="% " + mat))
+                if isinstance(item, rmakers.Stack):
+                    maker = item
+                    if maker.tag.string == dur.annotation:
+                        selection = maker([dur])
+                        if isinstance(selection[0], abjad.Tuplet):
+                            self.container.append(selection)
+                        else:
+                            self.container.append(
+                                abjad.Container(selection, tag=maker.tag))
 
     def silence_and_rhythm_maker(self, maker, annotated_divisions, *commands):
         """Todo."""
@@ -138,7 +149,8 @@ class Material():
 
     def see_leaves_number(self, pitched=True):
         """Todo."""
-        selection = abjad.select(self.container).leaves(pitched=pitched)
+        selection = abjad.select(self.container).leaves(
+            pitched=pitched, grace=False)
         # see_leaves = selection._copy()
         for i, leaf in enumerate(selection):
             str_ = r"\tiny {\null { \raise #2 {%i}}}" % (i)
@@ -165,9 +177,9 @@ class Material():
             pass
             selection1 = abjad.select(self.container).components(abjad.Container)
             for container in selection1:
-                if container.tag is not None:
+                if container.name is not None:
                     if (isinstance(material_name, list) or
-                       container.tag.string == material_name):
+                       container.name == material_name):
                             selection2 = abjad.select(container).leaves(pitched=pitched)
                             if dynamics:
                                 for key in dynamics:
@@ -273,16 +285,20 @@ class Material():
     def attach(self, material_name, argument, leaf, pitched=False):
         """Todo."""
         selection = abjad.select(self.container[:]).components(abjad.Container)
-        if isinstance(argument, str):
+        if pitched is True:
+            grace = False
+        else:
+            grace = None
+        if isinstance(argument, str) or isinstance(argument, list):
             argument = abjad.LilyPondLiteral(argument)
 
         if material_name is not None:
             if isinstance(material_name, list):
                 for container in selection:
-                    if container.tag is not None:
-                        if container.tag.string in material_name:
+                    if container.name is not None:
+                        if container.name in material_name:
                             selection2 = abjad.select(
-                                container).leaves(pitched=pitched)
+                                container).leaves(pitched=pitched, grace=grace)
                             if isinstance(container[0], abjad.Container):
                                 pass
                             else:
@@ -291,16 +307,16 @@ class Material():
                                     selection2[leaf])
             else:
                 for container in selection:
-                    if container.tag is not None:
-                        if container.tag.string == material_name:
+                    if container.name is not None:
+                        if container.name == material_name:
                             selection2 = abjad.select(
-                                container).leaves(pitched=pitched)
+                                container).leaves(pitched=pitched, grace=grace)
                             abjad.attach(
                                 argument,
                                 selection2[leaf])
         else:
             selection2 = abjad.select(
-                self.container[:]).leaves(pitched=pitched)
+                self.container[:]).leaves(pitched=pitched, grace=grace)
             abjad.attach(
                 argument,
                 selection2[leaf])
@@ -309,8 +325,8 @@ class Material():
         """Todo."""
         selection = abjad.select(self.container[:]).components(abjad.Container)
         for container in selection:
-            if container.tag is not None:
-                if container.tag.string == material_name:
+            if container.name is not None:
+                if container.name == material_name:
                     abjad.override(container).NoteHead.style = argument
 
     def get_container(self):
@@ -321,10 +337,10 @@ class Material():
         """Todo."""
         selection = abjad.select(self.container[:]).components(abjad.Container)
         for container in selection:
-            if container.tag.string == material_name:
+            if container.name == material_name:
                 # print("cont", container)
                 l = len(container)
-                new_container = abjad.Container(tag=container.tag)
+                new_container = abjad.Container(name=container.name)
                 while l > 0:
                     l -= 1
                     new_container.append(container[l])
@@ -336,7 +352,7 @@ class Material():
         """Todo."""
         selection1 = abjad.select(self.container).components(abjad.Container)
         for container in selection1:
-            if container.tag.string == material_name:
+            if container.name == material_name:
                 container[selection] = change
 
     def delete_material_leaves(self, material_name, leaves):
@@ -344,7 +360,7 @@ class Material():
         selection = abjad.select(self.container).components(abjad.Container)
         for container in selection:
             print(container)
-            if container.tag == material_name:
+            if container.name == material_name:
                 for _ in leaves:
                     del container[_]
 
@@ -360,9 +376,9 @@ class Material():
             selection1 = abjad.select(
                 self.container).components(abjad.Container)
             for container in selection1:
-                if container.tag is not None:
+                if container.name is not None:
                     if (isinstance(material_name, list) or
-                       container.tag.string == material_name):
+                       container.name == material_name):
                             selection2 = abjad.select(container).leaves()
                             for l in leaves:
                                 if (replace_with_rests is False and
