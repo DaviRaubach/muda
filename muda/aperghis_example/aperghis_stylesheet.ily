@@ -1,7 +1,6 @@
 \version "2.20"
 \language "english"
 
-#(set-default-paper-size "a4landscape")
 #(set-global-staff-size 9)
 
 \header {

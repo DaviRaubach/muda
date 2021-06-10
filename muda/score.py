@@ -1,22 +1,22 @@
 """
-Classes to build a score.
+Score.
 
-Todo.
+These are classes to build a score.
 """
 import abjad
 
 
 class Instrument():
     r"""
-    Creates instrument and returns ``abjad.Staff()`` of the instrument.
+    Create an instrument staff ``abjad.Staff()``.
 
     >>> import muda
     >>> import abjad
     >>> myinst = muda.Instrument(
     ...             abjad_instrument = abjad.Piano(),
     ...             name = "My Piano",
-    ...             nstaffs = 2,
-    ...             nvoices = [2, 1],)
+    ...             nstaffs = 2,  # number of staffs for the instrument
+    ...             nvoices = [2, 1],  # number of voices for each staff)
     muda.score.Instrument()
     My Piano
         creating My Piano_Staff_1
@@ -127,7 +127,6 @@ class Instrument():
                     staffs[i].append(voices[n + sum(nvoices[:i])])
 
         if nstaffs == 1:
-            # abjad_instrument.markup = abjad.Markup(name)
             abjad.annotate(staffs[0], "default_instrument", abjad_instrument)
             self.ready_staff = staffs[0]
         else:
@@ -153,71 +152,20 @@ class Instrument():
         return self.ready_staff
 
 
-# class Lyrics():
-#     """Create lyrics context."""
-
-#     def __init__(self, name):
-#         """Initializer."""
-#         self.name = name
-#         self.context = abjad.Context(lilypond_type='Lyrics', name=name)
-#         self.__call__()
-
-#     def __call__(self):
-#         """Caller."""
-#         print("        creating " + self.name + "context")
-#         return self.context
-
-
 class Score():
-    """Make Score.
+    r"""Make Score.
 
     >>> import muda
     >>> import abjad
-    >>> from abjadext import rmakers
-    >>> myinst = muda.Instrument(
-    ...     abjad_instrument = abjad.Piano(),
-    ...     name = "Piano",
-    ...     nstaffs = 2,
-    ...     nvoices = [2, 1],
-    ...     piano = True)
-    muda.score.Instrument()
-    Piano
-        creating Piano_Staff_1
-        creating Piano_Staff_2
-            creating Piano_Voice_1
-            creating Piano_Voice_2
-            creating Piano_Voice_3
-                attaching Piano_Voice_1 to Piano_Staff_1
-                attaching Piano_Voice_2 to Piano_Staff_1
-                attaching Piano_Voice_3 to Piano_Staff_2
-    >>> myscore = muda.Score()
+    >>> my_score = muda.Score()
     muda.Score()
-    >>> myscore.add_instrument(myinst)
-    muda.Score.add_instrument()
-    >>> mydivisions = [(4, 4), (5, 4)]
-    >>> myscore.make_skips(mydivisions)
-    muda.Score.make_skips()
-    >>> mymaterial = muda.Material("Piano_Voice_1")
-    >>> mymaterial.silence_and_rhythm_maker(
-    ...     maker=rmakers.stack(rmakers.note()),
-    ...     annotated_divisions=[
-    ...         muda.AnnotatedDuration((1, 4)),
-    ...         muda.AnnotatedDuration((1, 4), annotation="Rest"),
-    ...         muda.AnnotatedDuration((1, 4)),
-    ...         muda.AnnotatedDuration((1, 4)),
-    ...         muda.AnnotatedDuration((1, 4), annotation="Rest"),
-    ...         muda.AnnotatedDuration((1, 4)),
-    ...         muda.AnnotatedDuration((1, 4)),
-    ...         muda.AnnotatedDuration((1, 4), annotation="Rest"),
-    ...         muda.AnnotatedDuration((1, 4)),
-    ...         ]
-    ...     )
-    >>> myscore.write_materials([mymaterial])
-    >>> myscore.rewrite_meter(mydivisions)
-    rewriting meter: Piano_Voice_1
-    <Score-"Score"<<2>>>
-    >>> abjad.show(myscore.score)
-
+    >>> print(abjad.lilypond(my_score.score))
+    \context Score = "Score"
+    <<
+        \context TimeSignatureContext = "Global_Context"
+        {
+        }
+    >>
 
     Use stylesheet to add markup names and hide or modify the time signatures (skips) staff.
     """
@@ -235,14 +183,52 @@ class Score():
         print(str(tag))
 
     def __call__(self):
-        """Todo."""
+        """Return ``self.score``."""
         return self.score
 
     def append(self, context):
-        """Add ``muda.Instrument.ready_staff`` and ``muda.Lyrics.context`` to the score.
+        r"""Add ``muda.Instrument.ready_staff`` to the score.
 
-        >>> myscore.add_instrument(myinst)
-        muda.Score.add_instrument()
+        >>> my_inst = muda.Instrument(
+        ...    abjad_instrument = abjad.Piano(),
+        ...    name = "Piano",
+        ...    nstaffs = 2,
+        ...    nvoices = [2, 1],)
+        muda.score.Instrument() Piano
+        creating Staff: Piano_Staff_1
+        creating Staff: Piano_Staff_2
+        creating Voice: Piano_Voice_1
+        creating Voice: Piano_Voice_2
+        creating Voice: Piano_Voice_3
+
+        >>> my_score.append([my_inst])
+        muda.Score.append() Piano
+        >>> print(abjad.lilypond(my_score.score)
+        ... )
+        \context Score = "Score"
+        <<
+            \context TimeSignatureContext = "Global_Context"
+            {
+            }
+            \context PianoStaff = "Piano_StaffGroup"
+            <<
+                \context Staff = "Piano_Staff_1"
+                <<
+                    \context Voice = "Piano_Voice_1"
+                    {
+                    }
+                    \context Voice = "Piano_Voice_2"
+                    {
+                    }
+                >>
+                \context Staff = "Piano_Staff_2"
+                <<
+                    \context Voice = "Piano_Voice_3"
+                    {
+                    }
+                >>
+            >>
+        >>
         """
         site = "muda.Score.append()"
         tag = abjad.Tag(site)
@@ -254,10 +240,39 @@ class Score():
             self.score.append(context)
 
     def make_skips(self, time_signatures, attach=()):
-        """Create a "Global_Context" staff with skips and time signatures.
+        r"""Create a "Global_Context" staff with skips and time signatures.
 
-        >>> myscore.make_skips([(4, 4), (5, 4)])
+        >>> my_score.make_skips([(4, 4), (5, 4)])
         muda.Score.make_skips()
+        >>> print(abjad.lilypond(my_score.score))
+        \context Score = "Score"
+        <<
+            \context TimeSignatureContext = "Global_Context"
+            {
+                \time 4/4
+                s1 * 1
+                \time 5/4
+                s1 * 5/4
+            }
+            \context PianoStaff = "Piano_StaffGroup"
+            <<
+                \context Staff = "Piano_Staff_1"
+                <<
+                    \context Voice = "Piano_Voice_1"
+                    {
+                    }
+                    \context Voice = "Piano_Voice_2"
+                    {
+                    }
+                >>
+                \context Staff = "Piano_Staff_2"
+                <<
+                    \context Voice = "Piano_Voice_3"
+                    {
+                    }
+                >>
+            >>
+        >>
         """
         site = "muda.Score.make_skips()"
         tag = abjad.Tag(site)
@@ -297,52 +312,23 @@ class Score():
     def write_materials(self, materials_list):
         r"""Write materials to voices.
 
-        >>> import muda
-        >>> import abjad
-        >>> from abjadext import rmakers
-        >>>
-        >>> myinst = muda.Instrument(
-        ...     abjad_instrument = abjad.Piano(),
-        ...     name = "Piano",
-        ...     nstaffs = 2,
-        ...     nvoices = [2, 1])
-        muda.score.Instrument()
-        Piano
-            creating Piano_Staff_1
-            creating Piano_Staff_2
-                creating Piano_Voice_1
-                creating Piano_Voice_2
-                creating Piano_Voice_3
-                    attaching Piano_Voice_1 to Piano_Staff_1
-                    attaching Piano_Voice_2 to Piano_Staff_1
-                    attaching Piano_Voice_3 to Piano_Staff_2
-        >>> myscore = muda.Score()
-        muda.Score()
-        >>> myscore.add_instrument(myinst)
-        muda.Score.add_instrument()
-        >>> mydivisions = [(8, 4), (5, 4)]
-        >>> myscore.make_skips(mydivisions)
-        muda.Score.make_skips()
-        >>> mymaterial1 = muda.Material("Piano_Voice_1")
-        >>> mymaterial1.silence_and_rhythm_maker(
+        >>> material_01 = muda.Material("Piano_Voice_1")
+        >>> material_01.silence_and_rhythm_maker(
         ...     maker=rmakers.stack(
-        ...         rmakers.talea([1, -3, 1], 16),
-        ...         rmakers.extract_trivial(),
-        ...         rmakers.beam(),
-        ...         ),
+        ...             rmakers.talea([1, -3, 1], 16),
+        ...             rmakers.extract_trivial(),
+        ...             rmakers.beam()),
         ...     annotated_divisions=[
-        ...         muda.AnnotatedDuration((1, 4)),
-        ...         muda.AnnotatedDuration((2, 4), annotation="Rest"),
-        ...         muda.AnnotatedDuration((2, 4)),
-        ...         muda.AnnotatedDuration((2, 4), annotation="Rest"),
-        ...         muda.AnnotatedDuration((1, 4)),
-        ...         muda.AnnotatedDuration((2, 4), annotation="Rest"),
-        ...         muda.AnnotatedDuration((3, 4)),
-        ...         ]
-        ...     )
-        >>> mymaterial1.write_pitches(["d'"])
-        >>> mymaterial2 = muda.Material("Piano_Voice_3")
-        >>> mymaterial2.silence_and_rhythm_maker(
+        ...             muda.AnnotatedDuration((1, 4)),
+        ...             muda.AnnotatedDuration((2, 4), annotation="Rest"),
+        ...             muda.AnnotatedDuration((1, 4)),
+        ...             muda.AnnotatedDuration((2, 4), annotation="Rest"),
+        ...             muda.AnnotatedDuration((3, 4)),]
+        ... )
+        >>> material_01.write_pitches(["d'"])
+
+        >>> material_02 = muda.Material("Piano_Voice_3")
+        >>> material_02.silence_and_rhythm_maker(
         ...     maker=rmakers.stack(
         ...         rmakers.talea([-1, 1, 1, 1], 16),
         ...         rmakers.extract_trivial(),
@@ -359,13 +345,97 @@ class Score():
         ...         muda.AnnotatedDuration((4, 8)),
         ...         ]
         ...     )
-        >>> material_list = [mymaterial1, mymaterial2]
-        >>> myscore.write_materials(material_list)
-        >>> myscore.rewrite_meter(mydivisions)
+
+        >>> material_list = [material_01, material_02]
+        >>> my_score.write_materials(material_list)
+        >>> my_score.rewrite_meter(my_divisions)
         rewriting meter: Piano_Voice_1
         rewriting meter: Piano_Voice_3
         <Score-"Score"<<2>>>
-        >>> abjad.show(myscore.score)
+        >>> print(abjad.lilypond(my_score.score))
+        \context Score = "Score"
+        <<
+            \context TimeSignatureContext = "Global_Context"
+            {
+                \time 4/4
+                s1 * 1
+                \time 5/4
+                s1 * 5/4
+            }
+            \context PianoStaff = "Piano_StaffGroup"
+            <<
+                \context Staff = "Piano_Staff_1"
+                <<
+                    \context Voice = "Piano_Voice_1"
+                    {
+                        d'16
+                        r8.
+                        r4
+                        r4
+                        d'16
+                        r8.
+                        r2
+                        d'16
+                        r8.
+                        d'16
+                        d'16
+                        r8
+                        r16
+                        d'16
+                        d'16
+                        r16
+                    }
+                    \context Voice = "Piano_Voice_2"
+                    {
+                    }
+                >>
+                \context Staff = "Piano_Staff_2"
+                <<
+                    \context Voice = "Piano_Voice_3"
+                    {
+                        r16
+                        c'16
+                        c'16
+                        c'16
+                        r16
+                        c'16
+                        r8
+                        r4
+                        r16
+                        c'16
+                        c'16
+                        c'16
+                        r16
+                        c'16
+                        r4.
+                        r16
+                        c'16
+                        c'16
+                        c'16
+                        r16
+                        c'16
+                        c'16
+                        c'16
+                        r16
+                        c'16
+                        c'16
+                        c'16
+                        r16
+                        c'16
+                        r4.
+                        r16
+                        c'16
+                        c'16
+                        c'16
+                        r16
+                        c'16
+                        c'16
+                        c'16
+                    }
+                >>
+            >>
+        >>
+
 
         .. lily::
             :noedge:
@@ -377,8 +447,8 @@ class Score():
             <<
                 \context TimeSignatureContext = "Global_Context"
                 {
-                    \time 8/4
-                    s1 * 2
+                    \time 4/4
+                    s1 * 1
                     \time 5/4
                     s1 * 5/4
                 }
@@ -388,16 +458,9 @@ class Score():
                     <<
                         \context Voice = "Piano_Voice_1"
                         {
-                            \voiceOne
                             d'16
                             r8.
                             r4
-                            r4
-                            d'16
-                            r8.
-                            d'16
-                            d'16
-                            r4.
                             r4
                             d'16
                             r8.
@@ -475,9 +538,15 @@ class Score():
             else:
                 self.score[material.name].extend(material.container)
 
-    # rewrite meter
     def rewrite_meter(self, time_signatures):
-        """Rewrite meter according to ``abjad.TimeSignature`` or ``tuple`` list."""
+        """Rewrite meter according to ``abjad.TimeSignature`` or ``tuple`` list.
+
+        >>> my_score.rewrite_meter(my_divisions)
+        rewriting meter: Piano_Voice_1
+        rewriting meter: Piano_Voice_3
+        <Score-"Score"<<2>>>
+
+        """
         # global_skips = [_ for _ in abjad.select(score["Global_Context"]).leaves()]
         # sigs = []
         # for skip in global_skips:
@@ -513,6 +582,7 @@ class Score():
                     )
         return self.score
 
+# Trash
 # for time_signature, shard in zip(time_signatures, shards):
 #     abjad.Meter.rewrite_meter(shard, time_signature, boundary_depth=1)
 
@@ -552,17 +622,30 @@ class Score():
 # return measures
 
     def lilypond(self):
-        """Todo."""
+        r"""Print ``self.score`` lilypond code.
+
+        >>> import muda
+        >>> my_score = muda.Score()
+        muda.Score()
+        >>> my_score.lilypond()
+        \context Score = "Score"
+            <<
+                \context TimeSignatureContext = "Global_Context"
+                {
+                }
+            >>
+        >>>
+        """
         lilypond = abjad.lilypond(self.score)
         print(lilypond)
         return lilypond
 
-    def make_lilypond_file(self, includes=None):
-        """Todo."""
-        lilypond_file = abjad.LilyPondFile(
-            items=[self.score], includes=includes)
-        return lilypond_file
+    # def make_lilypond_file(self, includes=None):
+    #     """Todo."""
+    #     lilypond_file = abjad.LilyPondFile(
+    #         items=[self.score], includes=includes)
+    #     return lilypond_file
 
     def show(self):
-        """Todo."""
+        """Show ``self.score``."""
         return abjad.show(self.score)
