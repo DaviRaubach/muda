@@ -1,17 +1,13 @@
-\version "2.20"
+\version "2.20.0"
 \language "english"
+#(set-global-staff-size 13)
+%#(set! paper-alist (cons '("my size" . (cons (* 150 in) (* 2 in))) paper-alist))
 
-#(set-global-staff-size 7)
-#(set-default-paper-size "a4landscape")
+\paper {
+  system-system-spacing = #'((basic-distance . 16) (minimum-distance . 16) (padding . 10))
 
-
-\header {
-  tagline = ##f
-  % breakbefore = ##t
-  title =  "Recitación 9"
-  poet = "Georges Aperghis (*1945)"
+  %#(set-paper-size "my size")
 }
-
 \layout {
   ragged-right = ##t
   \context {
@@ -51,15 +47,10 @@
   }
 }
 
-
-\paper {
-  system-system-spacing = #'((basic-distance . 15) (padding . 10))
-  indent = 0
-  bottom-margin = 10\mm
-  left-margin = 50\mm
-  right-margin = 20\mm
-  top-margin = 10\mm
-
+\score {
+  {
+    \include "/Users/Davi/github/muda/muda/aperghis_example/aperghis_score.ly"
+  }
+  \layout { }
+  \midi { }
 }
-
-

@@ -70,7 +70,6 @@ exclude_patterns = []
 # a list of builtin themes.
 #
 html_theme = "furo"
-
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
@@ -86,3 +85,5 @@ lilypond_preamble = ''
 lilypond_fontsize = [10, -3]
 lilypond_command = 'lilypond'
 lilypond_args = []
+lilypond_score_format = "png"
+

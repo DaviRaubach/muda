@@ -50,7 +50,9 @@ class Material():
     def alternating_materials(self, annotated_divisions, *makers):
         """Todo."""
         # maybe I should include *commands for rmaker.stack
+        material_names = []
         for dur in annotated_divisions:
+            material_names.append(dur.annotation)
             for item in makers:
                 if isinstance(item, dict):
                     rhythm_makers = item
@@ -79,6 +81,15 @@ class Material():
                         else:
                             self.container.append(
                                 abjad.Container(selection, tag=maker.tag))
+        containers = abjad.select(self.container).components(abjad.Container)
+        material_names = list(dict.fromkeys(material_names))
+        for i, name in enumerate(material_names):
+            j = 0
+            for container in containers:
+                if container.name == name:
+                    container.name = container.name + "_" + str(j)
+                    container.identifier = container.identifier + "_" + str(j)
+                    j += 1
 
     def silence_and_rhythm_maker(self, maker, annotated_divisions, *commands):
         """Todo."""
@@ -151,13 +162,55 @@ class Material():
         """Todo."""
         selection = abjad.select(self.container).leaves(
             pitched=pitched, grace=False)
-        # see_leaves = selection._copy()
         for i, leaf in enumerate(selection):
             str_ = r"\tiny {\null { \raise #2 {%i}}}" % (i)
             abjad.attach(
                 abjad.Markup(str_, direction=abjad.Up), leaf,
             )
         # abjad.show(abjad.Container(see_leaves))
+
+    def see_materials_leaves_number(self, pitched=True):
+        """Todo."""
+        selection1 = abjad.select(self.container).components(abjad.Container)
+
+        for container in selection1:
+            if container.name is not None:
+                if container.name is not self.name:
+                    if isinstance(container[0], abjad.Container):
+                        if container[0].name is not container.name:
+                            selection2 = abjad.select(container).leaves(
+                                pitched=pitched, grace=False)
+                            for i, leaf in enumerate(selection2):
+                                str_ = r"\tiny {\null { \raise #2 {%i}}}" % (i)
+                                abjad.attach(
+                                    abjad.Markup(
+                                        str(i), direction=abjad.Up), leaf,
+                                )
+                                if i == 0:
+                                    abjad.attach(
+                                        abjad.Markup(
+                                            container.name,
+                                            direction=abjad.Up
+                                        ),
+                                        leaf,
+                                    )
+                    else:
+                        selection2 = abjad.select(container).leaves(
+                            pitched=pitched, grace=False)
+                        for i, leaf in enumerate(selection2):
+                            str_ = r"\tiny {\null \null { \raise #2 {%i}}}" % (i)
+                            abjad.attach(
+                                abjad.Markup(str(i), direction=abjad.Up), leaf,
+                            )
+                            if i == 0:
+                                str_name = r"\tiny {\null \null \null { \raise #2 {" + container.name + r"}}}"
+                                abjad.attach(
+                                    abjad.Markup(
+                                        container.name,
+                                        direction=abjad.Up
+                                    ),
+                                    leaf,
+                                )
 
     def write_indicators(
         self,
@@ -179,7 +232,7 @@ class Material():
             for container in selection1:
                 if container.name is not None:
                     if (isinstance(material_name, list) or
-                       container.name == material_name):
+                       material_name in container.name):
                             selection2 = abjad.select(container).leaves(pitched=pitched)
                             if dynamics:
                                 for key in dynamics:
@@ -282,7 +335,13 @@ class Material():
     # abjad.attach(staff_change2, voice_four[-5])
     # abjad.attach(staff_change1, voice_four[-2])
 
-    def attach(self, material_name, argument, leaf, pitched=False):
+    def attach(
+        self,
+        argument,
+        leaf,
+        material_name=None,
+        pitched=False
+    ):
         """Todo."""
         selection = abjad.select(self.container[:]).components(abjad.Container)
         if pitched is True:
@@ -296,19 +355,20 @@ class Material():
             if isinstance(material_name, list):
                 for container in selection:
                     if container.name is not None:
-                        if container.name in material_name:
-                            selection2 = abjad.select(
-                                container).leaves(pitched=pitched, grace=grace)
-                            if isinstance(container[0], abjad.Container):
-                                pass
-                            else:
-                                abjad.attach(
-                                    argument,
-                                    selection2[leaf])
+                        for item in material_name:
+                            if item in container.name:
+                                selection2 = abjad.select(
+                                    container).leaves(pitched=pitched, grace=grace)
+                                if isinstance(container[0], abjad.Container):
+                                    pass
+                                else:
+                                    abjad.attach(
+                                        argument,
+                                        selection2[leaf])
             else:
                 for container in selection:
                     if container.name is not None:
-                        if container.name == material_name:
+                        if material_name in container.name:
                             selection2 = abjad.select(
                                 container).leaves(pitched=pitched, grace=grace)
                             abjad.attach(
@@ -321,13 +381,19 @@ class Material():
                 argument,
                 selection2[leaf])
 
-    def note_heads(self, material_name, argument):
+    def note_heads(self, material_name, argument, leaves=None):
         """Todo."""
         selection = abjad.select(self.container[:]).components(abjad.Container)
         for container in selection:
             if container.name is not None:
-                if container.name == material_name:
-                    abjad.override(container).NoteHead.style = argument
+                if material_name in container.name:
+                    if leaves is None:
+                        abjad.override(container).NoteHead.style = argument
+                    else:
+                        selection2 = abjad.select(container).leaves()
+                        for i, leaf in enumerate(selection2):
+                            if i in leaves:
+                                abjad.override(leaf).NoteHead.style = argument
 
     def get_container(self):
         """Todo."""
@@ -337,7 +403,7 @@ class Material():
         """Todo."""
         selection = abjad.select(self.container[:]).components(abjad.Container)
         for container in selection:
-            if container.name == material_name:
+            if material_name in container.name:
                 # print("cont", container)
                 l = len(container)
                 new_container = abjad.Container(name=container.name)
@@ -352,7 +418,7 @@ class Material():
         """Todo."""
         selection1 = abjad.select(self.container).components(abjad.Container)
         for container in selection1:
-            if container.name == material_name:
+            if material_name in container.name:
                 container[selection] = change
 
     def delete_material_leaves(self, material_name, leaves):
@@ -360,7 +426,7 @@ class Material():
         selection = abjad.select(self.container).components(abjad.Container)
         for container in selection:
             print(container)
-            if container.name == material_name:
+            if material_name in container.name:
                 for _ in leaves:
                     del container[_]
 
@@ -378,7 +444,7 @@ class Material():
             for container in selection1:
                 if container.name is not None:
                     if (isinstance(material_name, list) or
-                       container.name == material_name):
+                       material_name in container.name):
                             selection2 = abjad.select(container).leaves()
                             for l in leaves:
                                 if (replace_with_rests is False and

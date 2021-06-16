@@ -16,7 +16,8 @@ class Instrument():
     ...             abjad_instrument = abjad.Piano(),
     ...             name = "My Piano",
     ...             nstaffs = 2,  # number of staffs for the instrument
-    ...             nvoices = [2, 1],  # number of voices for each staff)
+    ...             nvoices = [2, 1],  # number of voices for each staff
+    ... )
     muda.score.Instrument()
     My Piano
         creating My Piano_Staff_1
