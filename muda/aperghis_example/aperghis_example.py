@@ -49,7 +49,8 @@ The number represents the material presence (duration).
 ...     [0, 0, 1, 5, 4, 7, 2, 4, 4, 2, 1, 2],
 ...     [4, 1, 1, 5, 4, 7, 2, 4, 4, 2, 1, 2]]
 
-Annotations are names for each material (column) in the list above:
+Annotations are names for each material and refer to each column in the list
+above:
 
 >>> annotations = [
 ...     "mat00", "mat01", "mat02", "mat03", "mat04", "mat05", "mat06",
@@ -62,7 +63,7 @@ Annotations are names for each material (column) in the list above:
 ...     annotations=annotations)
 
 The variable `timespans` is now a list of timespans that are associated with
-different materials. Then I transform it into a list of durations using the
+different materials. Then, I transform it into a list of durations using the
 method ``annotated_durations()``. It becomes a list of
 ``muda.AnnotatedDuration()`` each of which is annotated with the material
 name.
@@ -71,7 +72,7 @@ name.
 ...     subdivision=(2, 4)  # divide long durations
 ... )
 
-Pitch and rhythm are associated with different
+Pitch and rhythm are associated with the same
 materials through python dictionaries.
 
 Rhythms
@@ -222,10 +223,10 @@ Pitches will also be written according to that annotations.
 Changing Leaves
 ---------------
 
-To change any leaf then it is necessary to know the index.
-So, you can use ``muda.Material.see_leaves_number(pitched=False)`` to see
-the index upon the leaf in the score.
-Here, the process is to compile the score, see what leaf you want to change,
+To change any leaf then it is necessary to know the index. So, you can use
+``muda.Material.see_leaves_number(pitched=False)`` to illustrate
+``muda.Material.container`` and see the indices upon the leaves in the score.
+Here, the process is to compile, see what leaf you want to change,
 and use its index to make this alteration.
 
 Another method is possible because the name of each material container is
@@ -238,8 +239,8 @@ leaves inside this numbered container.
 Delete Leaves
 ^^^^^^^^^^^^^
 
-Below, I use the ``delete()`` method. It is possible to remove the leaf or to
-transform it into a rest or a skip.
+Below, I use the ``delete()`` method. It is possible to remove leaves or to
+transform them into rests or skips.
 
 First, let's see the leaves indexes:
 
@@ -276,8 +277,8 @@ You can attach things in a specific material like this:
 
 >>> mats.attach(abjad.BeforeGraceContainer("b'8"), 2, "mat07")
 
-In this case, all the containers named with "mat07" will receive a grace note
-before the second leaf.
+In this case, all the containers which name starts with "mat07" will receive a
+grace note before the second leaf.
 
 It is possible to attach literals:
 
@@ -287,7 +288,7 @@ It is possible to attach literals:
 ...     r"\override Staff.StaffSymbol.line-count = 1",
 ...     r"\omit Clef"]
 
-When material_name is None, it attaches to ``mats.container`` leaves, pitched
+When ``material_name`` is ``None``, it attaches to ``mats.container`` leaves, pitched
 or not.
 
 >>> mats.attach(
@@ -425,7 +426,8 @@ Note that the name "Soprano_Voice_1" that I predicted when wrote the
 ``muda.Material`` and ``muda.Lyrics`` is defined automatically. I just needed
 to put the name "Soprano".
 
-When creating the instrument is also necessary to add the ``lyrics_target``.
+In this case, when creating the instrument is also necessary to add the
+``lyrics_target``.
 
 Append the instrument in the score:
 
@@ -453,13 +455,6 @@ is behind the scenes is that ``mats.container`` is appended to
 ``score.score["Soprano_Voice_1"]``.
 
 >>> score.write_materials([mats, lyrics])
-
-Rewrite Meter
--------------
-
->>> score.rewrite_meter(time_signatures)
-rewriting meter: Soprano_Voice_1
-<Score-"Score"<<2>>>
 
 LilyPond File
 -------------
@@ -560,9 +555,7 @@ The sylesheet content:
 
 The result:
 
-.. lilyinclude:: /Users/Davi/github/muda/muda/aperghis_example/aperghis_example.ly
-    :noedge:
-
+:pdfembed:`src:_static/aperghis_example.pdf, height:580, width:800, align:middle`
 
 
 """
@@ -630,6 +623,7 @@ makers = {
     "mat08": rmakers.stack(
         rmakers.talea([1, 1, 1], 4, extra_counts=[1]),
         rmakers.extract_trivial()),
+    # "mat07": r"r8 \times 2/3 {r8 c16} r8 r8",)
     "mat07": rmakers.stack(
         rmakers.talea([-3, -2, 1, -3, -3], 16, extra_counts=[4]),
         rmakers.extract_trivial()),
@@ -689,6 +683,7 @@ I use the ``muda.Material.retrograde()`` to get it right."""
 #     if container.name is not None:  # ignore subcontainers
 #         print(container.name, container)
 
+
 mats.retrograde("mat11")
 mats.retrograde("mat04")
 mats.retrograde("mat03")
@@ -697,6 +692,8 @@ mats.retrograde("mat01")
 mats.retrograde("mat00")
 
 mats.write_pitches_by_duration(pitches, durations)
+
+# print(abjad.show(mats.container))
 
 # mats.see_materials_leaves_number(pitched=False)
 
@@ -710,7 +707,11 @@ mats.delete([3], material_name="mat03_1", replace_with_rests=True)
 mats.delete([343, 344, 345, 391, 392, 393], replace_with_skips=True)
 mats.delete([1], material_name="mat05", replace_with_skips=True)
 
-mats.attach(abjad.BeforeGraceContainer("b'8"), 2, "mat07")
+mats.attach(
+    argument=abjad.BeforeGraceContainer("b'8"),
+    leaf=2,
+    material_name="mat07")
+
 
 # LITERALS
 
@@ -845,6 +846,7 @@ time_signatures = [abjad.TimeSignature(_) for _ in durations]
 score.make_skips(time_signatures)
 score.write_materials([mats, lyrics])
 score.rewrite_meter(time_signatures)
+
 lilypond_file = abjad.LilyPondFile(
     items=[score.score],
 )

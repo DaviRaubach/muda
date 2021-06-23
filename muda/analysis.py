@@ -1,7 +1,7 @@
 """
-Todo.
+Analysis.
 
-Todo.
+Class to analyze audio and get music notation.
 """
 
 import iracema
@@ -10,7 +10,7 @@ import numpy as np
 import abjad
 import json
 import evans
-from abjadext import microtones
+# from abjadext import microtones
 
 
 class IracemaAnalysis():

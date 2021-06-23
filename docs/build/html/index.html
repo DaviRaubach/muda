@@ -123,16 +123,16 @@
         <div class="section" id="welcome-to-muda-s-documentation">
 <h1>Welcome to muda’s documentation.<a class="headerlink" href="#welcome-to-muda-s-documentation" title="Permalink to this headline">¶</a></h1>
 <p>Muda is an Abjad library.</p>
-<p>It requires Abjad 3.4 and Python 3.</p>
-<p>The idea is to have some resources to easily build scores, write and transform some music with Abjad and LilyPond. It is a little plant now that can bear some fruits in the future. It is not mute. It says, represents the way I make music, how I operate the transformations of musical material. Still, maybe it can be useful to someone else.</p>
-<p>Start with an example if you want: <a class="reference internal" href="#example"><span class="std std-ref">muda example</span></a>.</p>
+<p>It requires Abjad 3.4 and Python 3.6+.</p>
+<p>The idea is to have some resources to easily build scores, write and transform some music with Abjad and LilyPond. It represents the way I make music, how I operate the transformations of musical material. Still, perhaps it can be useful to someone else.</p>
+<p>This example shows how it works: <a class="reference internal" href="#example"><span class="std std-ref">muda example</span></a>.</p>
 <div class="toctree-wrapper compound">
 </div>
 </div>
 <div class="section" id="module-muda.score">
 <span id="muda-score"></span><h1>muda score<a class="headerlink" href="#module-muda.score" title="Permalink to this headline">¶</a></h1>
 <p>Score.</p>
-<p>These are classes to build a score.</p>
+<p>Classes to build a score.</p>
 <dl class="py class">
 <dt id="muda.score.Instrument">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">muda.score.</span></code><code class="sig-name descname"><span class="pre">Instrument</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">abjad_instrument</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nstaffs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nvoices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lyrics_target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.score.Instrument" title="Permalink to this definition">¶</a></dt>
@@ -537,12 +537,12 @@
 </div>
 <div class="section" id="module-muda.material">
 <span id="muda-material"></span><h1>muda material<a class="headerlink" href="#module-muda.material" title="Permalink to this headline">¶</a></h1>
-<p>Todo.</p>
-<p>Todo.</p>
+<p>Material.</p>
+<p>Classes to create and manage music materials and lyrics.</p>
 <dl class="py class">
 <dt id="muda.material.Lyrics">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">muda.material.</span></code><code class="sig-name descname"><span class="pre">Lyrics</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Lyrics" title="Permalink to this definition">¶</a></dt>
-<dd><p>Todo.</p>
+<dd><p>Lyrics.</p>
 <dl class="py method">
 <dt id="muda.material.Lyrics.write_lyrics">
 <code class="sig-name descname"><span class="pre">write_lyrics</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lyrics</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Lyrics.write_lyrics" title="Permalink to this definition">¶</a></dt>
@@ -552,93 +552,76 @@
 <dl class="py class">
 <dt id="muda.material.Material">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">muda.material.</span></code><code class="sig-name descname"><span class="pre">Material</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Material" title="Permalink to this definition">¶</a></dt>
-<dd><p>Todo.</p>
+<dd><p>Material.</p>
 <dl class="py method">
 <dt id="muda.material.Material.alternating_materials">
 <code class="sig-name descname"><span class="pre">alternating_materials</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">annotated_divisions</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">makers</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Material.alternating_materials" title="Permalink to this definition">¶</a></dt>
-<dd><p>Todo.</p>
+<dd><p>Create alternating materials according to a list of named durations.</p>
 </dd></dl>
 <dl class="py method">
 <dt id="muda.material.Material.attach">
 <code class="sig-name descname"><span class="pre">attach</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">argument</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">leaf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">material_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pitched</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Material.attach" title="Permalink to this definition">¶</a></dt>
-<dd><p>Todo.</p>
-</dd></dl>
-<dl class="py method">
-<dt id="muda.material.Material.change">
-<code class="sig-name descname"><span class="pre">change</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">material_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">selection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">change</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Material.change" title="Permalink to this definition">¶</a></dt>
-<dd><p>Todo.</p>
+<dd><p>Attach <code class="docutils literal notranslate"><span class="pre">argument</span></code> to leaves.</p>
 </dd></dl>
 <dl class="py method">
 <dt id="muda.material.Material.delete">
 <code class="sig-name descname"><span class="pre">delete</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">leaves</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">material_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replace_with_rests</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replace_with_skips</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Material.delete" title="Permalink to this definition">¶</a></dt>
 <dd><p>Delete leaves by index.</p>
-</dd></dl>
-<dl class="py method">
-<dt id="muda.material.Material.delete_material_leaves">
-<code class="sig-name descname"><span class="pre">delete_material_leaves</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">material_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">leaves</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Material.delete_material_leaves" title="Permalink to this definition">¶</a></dt>
-<dd><p>Todo.</p>
-</dd></dl>
-<dl class="py method">
-<dt id="muda.material.Material.get_container">
-<code class="sig-name descname"><span class="pre">get_container</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Material.get_container" title="Permalink to this definition">¶</a></dt>
-<dd><p>Todo.</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">material_name</span></code> to delete a leaf in a
+specific material. Use <code class="docutils literal notranslate"><span class="pre">replace_with_rests</span></code> or
+<code class="docutils literal notranslate"><span class="pre">replace_with_skips</span></code> to replace leaves by rests or skips.</p>
 </dd></dl>
 <dl class="py method">
 <dt id="muda.material.Material.note_heads">
 <code class="sig-name descname"><span class="pre">note_heads</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">material_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">argument</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">leaves</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Material.note_heads" title="Permalink to this definition">¶</a></dt>
-<dd><p>Todo.</p>
+<dd><p>Change leaves note heads.</p>
 </dd></dl>
 <dl class="py method">
 <dt id="muda.material.Material.retrograde">
 <code class="sig-name descname"><span class="pre">retrograde</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">material_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Material.retrograde" title="Permalink to this definition">¶</a></dt>
-<dd><p>Todo.</p>
+<dd><p>Retrograde components in container.</p>
 </dd></dl>
 <dl class="py method">
 <dt id="muda.material.Material.see_leaves_number">
 <code class="sig-name descname"><span class="pre">see_leaves_number</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pitched</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Material.see_leaves_number" title="Permalink to this definition">¶</a></dt>
-<dd><p>Todo.</p>
+<dd><p>Illustrate <code class="docutils literal notranslate"><span class="pre">muda.Material.container</span></code> with leaves number.</p>
 </dd></dl>
 <dl class="py method">
 <dt id="muda.material.Material.see_materials_leaves_number">
 <code class="sig-name descname"><span class="pre">see_materials_leaves_number</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pitched</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Material.see_materials_leaves_number" title="Permalink to this definition">¶</a></dt>
-<dd><p>Todo.</p>
+<dd><p>Illustrate <code class="docutils literal notranslate"><span class="pre">muda.Material.container</span></code> with materials leaves number.</p>
 </dd></dl>
 <dl class="py method">
 <dt id="muda.material.Material.silence_and_rhythm_maker">
 <code class="sig-name descname"><span class="pre">silence_and_rhythm_maker</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">maker</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotated_divisions</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">commands</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Material.silence_and_rhythm_maker" title="Permalink to this definition">¶</a></dt>
-<dd><p>Todo.</p>
+<dd><p>Create alternating rhythm and silence.</p>
 </dd></dl>
 <dl class="py method">
 <dt id="muda.material.Material.write">
 <code class="sig-name descname"><span class="pre">write</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lilypond_string</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Material.write" title="Permalink to this definition">¶</a></dt>
-<dd><p>Todo.</p>
+<dd><p>Create container from lilypond string and append to a <code class="docutils literal notranslate"><span class="pre">muda.Material()</span></code> instance.</p>
 </dd></dl>
 <dl class="py method">
 <dt id="muda.material.Material.write_indicators">
-<code class="sig-name descname"><span class="pre">write_indicators</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">material_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dynamics</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">articulations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slur_up</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slur_down</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">literal_indicators</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">literal_leaves</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">change_staffs_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attach</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pitched</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Material.write_indicators" title="Permalink to this definition">¶</a></dt>
-<dd><p>Todo.</p>
-</dd></dl>
-<dl class="py method">
-<dt id="muda.material.Material.write_lyrics">
-<code class="sig-name descname"><span class="pre">write_lyrics</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lyrics</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Material.write_lyrics" title="Permalink to this definition">¶</a></dt>
-<dd><p>Todo.</p>
+<code class="sig-name descname"><span class="pre">write_indicators</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">material_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dynamics</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">articulations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slur_up</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slur_down</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">change_staffs_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pitched</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Material.write_indicators" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write indicators to leaves.</p>
 </dd></dl>
 <dl class="py method">
 <dt id="muda.material.Material.write_pitches">
 <code class="sig-name descname"><span class="pre">write_pitches</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pitches</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Material.write_pitches" title="Permalink to this definition">¶</a></dt>
-<dd><p>Todo.</p>
+<dd><p>Write pitches to notes in the Material instance.</p>
 </dd></dl>
 <dl class="py method">
 <dt id="muda.material.Material.write_pitches_by_duration">
 <code class="sig-name descname"><span class="pre">write_pitches_by_duration</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">annotated_pitches</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotated_durations</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Material.write_pitches_by_duration" title="Permalink to this definition">¶</a></dt>
-<dd><p>Todo.</p>
+<dd><p>Write pitches to notes according to annotated durations.</p>
 </dd></dl>
 </dd></dl>
 </div>
 <div class="section" id="module-muda.timespan">
 <span id="muda-timespan"></span><h1>muda timespan<a class="headerlink" href="#module-muda.timespan" title="Permalink to this headline">¶</a></h1>
-<p>Todo.</p>
-<p>Todo.</p>
+<p>Timespans.</p>
+<p>Class and function to operate timespans.</p>
 <dl class="py class">
 <dt id="muda.timespan.TimespanList">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">muda.timespan.</span></code><code class="sig-name descname"><span class="pre">TimespanList</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">items</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item_class</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_sorted</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.timespan.TimespanList" title="Permalink to this definition">¶</a></dt>
@@ -646,11 +629,6 @@
 <dl class="py method">
 <dt id="muda.timespan.TimespanList.annotated_durations">
 <code class="sig-name descname"><span class="pre">annotated_durations</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subdivision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(2,</span> <span class="pre">4)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.timespan.TimespanList.annotated_durations" title="Permalink to this definition">¶</a></dt>
-<dd><p>Todo.</p>
-</dd></dl>
-<dl class="py method">
-<dt id="muda.timespan.TimespanList.durations_dict">
-<code class="sig-name descname"><span class="pre">durations_dict</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subdivision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(2,</span> <span class="pre">4)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.timespan.TimespanList.durations_dict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Todo.</p>
 </dd></dl>
 <dl class="py method">
@@ -672,8 +650,8 @@
 </div>
 <div class="section" id="module-muda.analysis">
 <span id="muda-analysis"></span><h1>muda analysis<a class="headerlink" href="#module-muda.analysis" title="Permalink to this headline">¶</a></h1>
-<p>Todo.</p>
-<p>Todo.</p>
+<p>Analysis.</p>
+<p>Class to analyze audio and get music notation.</p>
 <dl class="py class">
 <dt id="muda.analysis.IracemaAnalysis">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">muda.analysis.</span></code><code class="sig-name descname"><span class="pre">IracemaAnalysis</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">audioin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nharmonics</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">denominator</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minf0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">24</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxf0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4200</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.analysis.IracemaAnalysis" title="Permalink to this definition">¶</a></dt>
@@ -759,7 +737,7 @@ the result is always quarter note = 60BPM</p>
 <dl class="py function">
 <dt id="muda.pitch.see_pitches">
 <code class="sig-prename descclassname"><span class="pre">muda.pitch.</span></code><code class="sig-name descname"><span class="pre">see_pitches</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pitches</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.pitch.see_pitches" title="Permalink to this definition">¶</a></dt>
-<dd><p>Shows abjad.PitchSegment in two staffs</p>
+<dd><p>Show abjad.PitchSegment in two staffs.</p>
 </dd></dl>
 </div>
 <div class="section" id="module-muda.rhythm">
@@ -816,7 +794,8 @@ The number represents the material presence (duration).</p>
 <span class="gp">... </span>    <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span>
 </pre></div>
 </div>
-<p>Annotations are names for each material (column) in the list above:</p>
+<p>Annotations are names for each material and refer to each column in the list
+above:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">annotations</span> <span class="o">=</span> <span class="p">[</span>
 <span class="gp">... </span>    <span class="s2">"mat00"</span><span class="p">,</span> <span class="s2">"mat01"</span><span class="p">,</span> <span class="s2">"mat02"</span><span class="p">,</span> <span class="s2">"mat03"</span><span class="p">,</span> <span class="s2">"mat04"</span><span class="p">,</span> <span class="s2">"mat05"</span><span class="p">,</span> <span class="s2">"mat06"</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="s2">"mat07"</span><span class="p">,</span> <span class="s2">"mat08"</span><span class="p">,</span> <span class="s2">"mat09"</span><span class="p">,</span> <span class="s2">"mat10"</span><span class="p">,</span> <span class="s2">"mat11"</span><span class="p">]</span>
@@ -830,7 +809,7 @@ The number represents the material presence (duration).</p>
 </pre></div>
 </div>
 <p>The variable <cite>timespans</cite> is now a list of timespans that are associated with
-different materials. Then I transform it into a list of durations using the
+different materials. Then, I transform it into a list of durations using the
 method <code class="docutils literal notranslate"><span class="pre">annotated_durations()</span></code>. It becomes a list of
 <code class="docutils literal notranslate"><span class="pre">muda.AnnotatedDuration()</span></code> each of which is annotated with the material
 name.</p>
@@ -839,7 +818,7 @@ name.</p>
 <span class="gp">... </span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Pitch and rhythm are associated with different
+<p>Pitch and rhythm are associated with the same
 materials through python dictionaries.</p>
 </div>
 <div class="section" id="rhythms">
@@ -988,10 +967,10 @@ I use the <code class="docutils literal notranslate"><span class="pre">muda.Mate
 </div>
 <div class="section" id="changing-leaves">
 <h3>Changing Leaves<a class="headerlink" href="#changing-leaves" title="Permalink to this headline">¶</a></h3>
-<p>To change any leaf then it is necessary to know the index.
-So, you can use <code class="docutils literal notranslate"><span class="pre">muda.Material.see_leaves_number(pitched=False)</span></code> to see
-the index upon the leaf in the score.
-Here, the process is to compile the score, see what leaf you want to change,
+<p>To change any leaf then it is necessary to know the index. So, you can use
+<code class="docutils literal notranslate"><span class="pre">muda.Material.see_leaves_number(pitched=False)</span></code> to illustrate
+<code class="docutils literal notranslate"><span class="pre">muda.Material.container</span></code> and see the indices upon the leaves in the score.
+Here, the process is to compile, see what leaf you want to change,
 and use its index to make this alteration.</p>
 <p>Another method is possible because the name of each material container is
 completed with an index number. The first “mat11” container is actually
@@ -1001,8 +980,8 @@ these containers. Then, I can use this material name to modify specific
 leaves inside this numbered container.</p>
 <div class="section" id="delete-leaves">
 <h4>Delete Leaves<a class="headerlink" href="#delete-leaves" title="Permalink to this headline">¶</a></h4>
-<p>Below, I use the <code class="docutils literal notranslate"><span class="pre">delete()</span></code> method. It is possible to remove the leaf or to
-transform it into a rest or a skip.</p>
+<p>Below, I use the <code class="docutils literal notranslate"><span class="pre">delete()</span></code> method. It is possible to remove leaves or to
+transform them into rests or skips.</p>
 <p>First, let’s see the leaves indexes:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mats</span><span class="o">.</span><span class="n">see_materials_leaves_number</span><span class="p">()</span>
 </pre></div>
@@ -1280,8 +1259,8 @@ transform it into a rest or a skip.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mats</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">abjad</span><span class="o">.</span><span class="n">BeforeGraceContainer</span><span class="p">(</span><span class="s2">"b'8"</span><span class="p">),</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"mat07"</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>In this case, all the containers named with “mat07” will receive a grace note
-before the second leaf.</p>
+<p>In this case, all the containers which name starts with “mat07” will receive a
+grace note before the second leaf.</p>
 <p>It is possible to attach literals:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">literal00</span> <span class="o">=</span> <span class="p">[</span>
 <span class="gp">... </span>    <span class="sa">r</span><span class="s2">"\override Score.BarLine.stencil = ##f"</span><span class="p">,</span>
@@ -1290,7 +1269,7 @@ before the second leaf.</p>
 <span class="gp">... </span>    <span class="sa">r</span><span class="s2">"\omit Clef"</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>When material_name is None, it attaches to <code class="docutils literal notranslate"><span class="pre">mats.container</span></code> leaves, pitched
+<p>When <code class="docutils literal notranslate"><span class="pre">material_name</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>, it attaches to <code class="docutils literal notranslate"><span class="pre">mats.container</span></code> leaves, pitched
 or not.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mats</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">literal00</span><span class="p">,</span>  <span class="c1"># literal</span>
@@ -1431,7 +1410,8 @@ instance together with the materials in the score through the method
 <p>Note that the name “Soprano_Voice_1” that I predicted when wrote the
 <code class="docutils literal notranslate"><span class="pre">muda.Material</span></code> and <code class="docutils literal notranslate"><span class="pre">muda.Lyrics</span></code> is defined automatically. I just needed
 to put the name “Soprano”.</p>
-<p>When creating the instrument is also necessary to add the <code class="docutils literal notranslate"><span class="pre">lyrics_target</span></code>.</p>
+<p>In this case, when creating the instrument is also necessary to add the
+<code class="docutils literal notranslate"><span class="pre">lyrics_target</span></code>.</p>
 <p>Append the instrument in the score:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">score</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">inst</span><span class="p">])</span>
 <span class="go">muda.Score.append() Soprano</span>
@@ -1457,14 +1437,6 @@ signatures.</p>
 is behind the scenes is that <code class="docutils literal notranslate"><span class="pre">mats.container</span></code> is appended to
 <code class="docutils literal notranslate"><span class="pre">score.score["Soprano_Voice_1"]</span></code>.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">score</span><span class="o">.</span><span class="n">write_materials</span><span class="p">([</span><span class="n">mats</span><span class="p">,</span> <span class="n">lyrics</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="rewrite-meter">
-<h3>Rewrite Meter<a class="headerlink" href="#rewrite-meter" title="Permalink to this headline">¶</a></h3>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">score</span><span class="o">.</span><span class="n">rewrite_meter</span><span class="p">(</span><span class="n">time_signatures</span><span class="p">)</span>
-<span class="go">rewriting meter: Soprano_Voice_1</span>
-<span class="go">&lt;Score-"Score"&lt;&lt;2&gt;&gt;&gt;</span>
 </pre></div>
 </div>
 </div>
@@ -1562,22 +1534,11 @@ lilypond file:</p>
 </pre></div>
 </div>
 <p>The result:</p>
-<div class="lilypond">
-<p><img alt='\version "2.20.0"   %! abjad.LilyPondFile._get_format_pieces()
-\language "english" %! abjad.LilyPondFile._get_format_pieces()
-
-\include "/Users/Davi/github/muda/muda/aperghis_example/aperghis_stylesheet.ily" %! abjad.LilyPondFile._get_formatted_includes()
-
-
-\markuplist {
-  \right-column {
-    \pad-around #1
-    \score-lines {
-      \include "/Users/Davi/github/muda/muda/aperghis_example/aperghis_score.ly"
-    }
-  }
-}' class="lilypond-score" src="./_lilypond/9462870e27f0de1cbc52ac2e8fe3fe0b44136848/music.png"/>
-</p></div></div>
+<p>
+<iframe align="middle" frameborder="1" height="580" id="ID" scrolling="auto" src="_static/aperghis_example.pdf" style="border:1px solid #666CCC" title="PDF" width="800">
+</iframe>
+</p>
+</div>
 </div>
 </div>
 <div class="section" id="indices-and-tables">
@@ -1657,7 +1618,6 @@ lilypond file:</p>
 <li><a class="reference internal" href="#append-instrument">Append Instrument</a></li>
 <li><a class="reference internal" href="#make-skips">Make Skips</a></li>
 <li><a class="reference internal" href="#write-materials">Write Materials</a></li>
-<li><a class="reference internal" href="#rewrite-meter">Rewrite Meter</a></li>
 <li><a class="reference internal" href="#lilypond-file">LilyPond File</a></li>
 </ul>
 </li>

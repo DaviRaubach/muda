@@ -1,7 +1,7 @@
 """
 Score.
 
-These are classes to build a score.
+Classes to build a score.
 """
 import abjad
 
@@ -562,25 +562,18 @@ class Score():
             durations = time_signatures
 
         for voice in abjad.select(self.score).components(abjad.Voice):
-            # voice_dur = abjad.get.duration(voice)
             if voice:
                 print("rewriting meter:", voice.name)
-                # sig_dur = sum(durations)
-                # assert voice_dur == sig_dur, (voice_dur, sig_dur)
                 shards = abjad.mutate.split(voice[:], durations)
                 for shard, time_signature in zip(shards, time_signatures):
-                    # leaf = abjad.get.leaf(shard, 0)
-                    # time_signature = abjad.get.indicator(
-                    #    leaf, abjad.TimeSignature)
-                    # print(time_s)
-                    # print(time_signature)
                     abjad.Meter.rewrite_meter(
-                        shard[:],
+                        shard,
                         time_signature,
                         boundary_depth=1,
                         rewrite_tuplets=False,
                         maximum_dot_count=1,
                     )
+                    # print("reescreveu:", shard, time_signature)
         return self.score
 
 # Trash

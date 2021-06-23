@@ -285,6 +285,7 @@
             }   % mat11_1
             \times 4/5 {
                 \break
+                % mat10_0
                 \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                 e'''32
                 (
@@ -293,6 +294,7 @@
                 a'32
                 d'32
                 )
+                % mat10_0
             }
             {   % mat11_2
                 {
@@ -304,12 +306,15 @@
             }   % mat11_2
             \times 2/3 {
                 \break
+                % mat09_0
                 \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                 r8
                 b'8
                 r8
+                % mat09_0
             }
             \times 4/5 {
+                % mat10_1
                 \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                 e'''32
                 (
@@ -318,6 +323,7 @@
                 a'32
                 d'32
                 )
+                % mat10_1
             }
             {   % mat11_3
                 {
@@ -329,6 +335,7 @@
             }   % mat11_3
             \times 2/3 {
                 \break
+                % mat08_0
                 \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                 f''4
                 ^ \markup { (potrinaire) }
@@ -336,14 +343,18 @@
                 e''4
                 ef''4
                 )
+                % mat08_0
             }
             \times 2/3 {
+                % mat09_1
                 \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                 r8
                 b'8
                 r8
+                % mat09_1
             }
             \times 4/5 {
+                % mat10_2
                 \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                 e'''32
                 (
@@ -352,6 +363,7 @@
                 a'32
                 d'32
                 )
+                % mat10_2
             }
             {   % mat11_4
                 {
@@ -363,6 +375,7 @@
             }   % mat11_4
             \times 2/3 {
                 \break
+                % mat07_0
                 r8.
                 r8
                 \grace {
@@ -371,22 +384,28 @@
                 b'16
                 r8.
                 r8.
+                % mat07_0
             }
             \times 2/3 {
+                % mat08_1
                 \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                 f''4
                 (
                 e''4
                 ef''4
                 )
+                % mat08_1
             }
             \times 2/3 {
+                % mat09_2
                 \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                 r8
                 b'8
                 r8
+                % mat09_2
             }
             \times 4/5 {
+                % mat10_3
                 \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                 e'''32
                 (
@@ -395,6 +414,7 @@
                 a'32
                 d'32
                 )
+                % mat10_3
             }
             {   % mat11_5
                 {
@@ -418,6 +438,7 @@
                 \revert NoteHead.style
             }   % mat06_0
             \times 2/3 {
+                % mat07_1
                 r8.
                 r8
                 \grace {
@@ -426,22 +447,28 @@
                 b'16
                 r8.
                 r8.
+                % mat07_1
             }
             \times 2/3 {
+                % mat08_2
                 \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                 f''4
                 (
                 e''4
                 ef''4
                 )
+                % mat08_2
             }
             \times 2/3 {
+                % mat09_3
                 \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                 r8
                 b'8
                 r8
+                % mat09_3
             }
             \times 4/5 {
+                % mat10_4
                 \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                 e'''32
                 (
@@ -450,6 +477,7 @@
                 a'32
                 d'32
                 )
+                % mat10_4
             }
             {   % mat11_6
                 {
@@ -493,6 +521,7 @@
                 \revert NoteHead.style
             }   % mat06_1
             \times 2/3 {
+                % mat07_2
                 r8.
                 r8
                 \grace {
@@ -501,22 +530,28 @@
                 b'16
                 r8.
                 r8.
+                % mat07_2
             }
             \times 2/3 {
+                % mat08_3
                 \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                 f''4
                 (
                 e''4
                 ef''4
                 )
+                % mat08_3
             }
             \times 2/3 {
+                % mat09_4
                 \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                 r8
                 b'8
                 r8
+                % mat09_4
             }
             \times 4/5 {
+                % mat10_5
                 \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                 e'''32
                 (
@@ -525,6 +560,7 @@
                 a'32
                 d'32
                 )
+                % mat10_5
             }
             {   % mat11_7
                 {
@@ -574,6 +610,7 @@
                 \revert NoteHead.style
             }   % mat06_2
             \times 2/3 {
+                % mat07_3
                 r8.
                 r8
                 \grace {
@@ -582,22 +619,28 @@
                 b'16
                 r8.
                 r8.
+                % mat07_3
             }
             \times 2/3 {
+                % mat08_4
                 \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                 f''4
                 (
                 e''4
                 ef''4
                 )
+                % mat08_4
             }
             \times 2/3 {
+                % mat09_5
                 \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                 r8
                 b'8
                 r8
+                % mat09_5
             }
             \times 4/5 {
+                % mat10_6
                 \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                 e'''32
                 (
@@ -606,6 +649,7 @@
                 a'32
                 d'32
                 )
+                % mat10_6
             }
             {   % mat11_8
                 {
@@ -659,6 +703,7 @@
                 \revert NoteHead.style
             }   % mat06_3
             \times 2/3 {
+                % mat07_4
                 r8.
                 r8
                 \grace {
@@ -667,22 +712,28 @@
                 b'16
                 r8.
                 r8.
+                % mat07_4
             }
             \times 2/3 {
+                % mat08_5
                 \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                 f''4
                 (
                 e''4
                 ef''4
                 )
+                % mat08_5
             }
             \times 2/3 {
+                % mat09_6
                 \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                 r8
                 b'8
                 r8
+                % mat09_6
             }
             \times 4/5 {
+                % mat10_7
                 \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                 e'''32
                 (
@@ -691,6 +742,7 @@
                 a'32
                 d'32
                 )
+                % mat10_7
             }
             {   % mat11_9
                 {
@@ -746,6 +798,7 @@
                 \revert NoteHead.style
             }   % mat06_4
             \times 2/3 {
+                % mat07_5
                 r8.
                 r8
                 \grace {
@@ -754,22 +807,28 @@
                 b'16
                 r8.
                 r8.
+                % mat07_5
             }
             \times 2/3 {
+                % mat08_6
                 \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                 f''4
                 (
                 e''4
                 ef''4
                 )
+                % mat08_6
             }
             \times 2/3 {
+                % mat09_7
                 \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                 r8
                 b'8
                 r8
+                % mat09_7
             }
             \times 4/5 {
+                % mat10_8
                 \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                 e'''32
                 (
@@ -778,6 +837,7 @@
                 a'32
                 d'32
                 )
+                % mat10_8
             }
             {   % mat11_10
                 {
@@ -834,6 +894,7 @@
                 \revert NoteHead.style
             }   % mat06_5
             \times 2/3 {
+                % mat07_6
                 r8.
                 r8
                 \grace {
@@ -842,22 +903,28 @@
                 b'16
                 r8.
                 r8.
+                % mat07_6
             }
             \times 2/3 {
+                % mat08_7
                 \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                 f''4
                 (
                 e''4
                 ef''4
                 )
+                % mat08_7
             }
             \times 2/3 {
+                % mat09_8
                 \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                 r8
                 b'8
                 r8
+                % mat09_8
             }
             \times 4/5 {
+                % mat10_9
                 \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                 e'''32
                 (
@@ -866,6 +933,7 @@
                 a'32
                 d'32
                 )
+                % mat10_9
             }
             {   % mat11_11
                 {
@@ -922,6 +990,7 @@
                 \revert NoteHead.style
             }   % mat06_6
             \times 2/3 {
+                % mat07_7
                 r8.
                 r8
                 \grace {
@@ -930,22 +999,28 @@
                 b'16
                 r8.
                 r8.
+                % mat07_7
             }
             \times 2/3 {
+                % mat08_8
                 \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                 f''4
                 (
                 e''4
                 ef''4
                 )
+                % mat08_8
             }
             \times 2/3 {
+                % mat09_9
                 \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                 r8
                 b'8
                 r8
+                % mat09_9
             }
             \times 4/5 {
+                % mat10_10
                 \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                 e'''32
                 (
@@ -954,6 +1029,7 @@
                 a'32
                 d'32
                 )
+                % mat10_10
             }
             {   % mat11_12
                 {
@@ -967,6 +1043,8 @@
                 \break
                 {
                     r16
+                    % mat03_0
+                    % mat03_0
                     b'8
                 }
             }
@@ -1016,6 +1094,7 @@
                 \revert NoteHead.style
             }   % mat06_7
             \times 2/3 {
+                % mat07_8
                 r8.
                 r8
                 \grace {
@@ -1024,22 +1103,28 @@
                 b'16
                 r8.
                 r8.
+                % mat07_8
             }
             \times 2/3 {
+                % mat08_9
                 \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                 f''4
                 (
                 e''4
                 ef''4
                 )
+                % mat08_9
             }
             \times 2/3 {
+                % mat09_10
                 \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                 r8
                 b'8
                 r8
+                % mat09_10
             }
             \times 4/5 {
+                % mat10_11
                 \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                 e'''32
                 (
@@ -1048,6 +1133,7 @@
                 a'32
                 d'32
                 )
+                % mat10_11
             }
             {   % mat11_13
                 {
@@ -1067,6 +1153,7 @@
                     b'8
                     b'8
                     r16
+                    % mat03_1
                     b'8
                 }
             }
@@ -1116,6 +1203,7 @@
                 \revert NoteHead.style
             }   % mat06_8
             \times 2/3 {
+                % mat07_9
                 r8.
                 r8
                 \grace {
@@ -1124,22 +1212,28 @@
                 b'16
                 r8.
                 r8.
+                % mat07_9
             }
             \times 2/3 {
+                % mat08_10
                 \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                 f''4
                 (
                 e''4
                 ef''4
                 )
+                % mat08_10
             }
             \times 2/3 {
+                % mat09_11
                 \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                 r8
                 b'8
                 r8
+                % mat09_11
             }
             \times 4/5 {
+                % mat10_12
                 \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                 e'''32
                 (
@@ -1148,6 +1242,7 @@
                 a'32
                 d'32
                 )
+                % mat10_12
             }
             {   % mat11_14
                 {
@@ -1167,6 +1262,7 @@
                     b'8
                     b'8
                     r16
+                    % mat03_2
                     b'8
                 }
             }
@@ -1216,6 +1312,7 @@
                 \revert NoteHead.style
             }   % mat06_9
             \times 2/3 {
+                % mat07_10
                 r8.
                 r8
                 \grace {
@@ -1224,22 +1321,28 @@
                 b'16
                 r8.
                 r8.
+                % mat07_10
             }
             \times 2/3 {
+                % mat08_11
                 \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                 f''4
                 (
                 e''4
                 ef''4
                 )
+                % mat08_11
             }
             \times 2/3 {
+                % mat09_12
                 \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                 r8
                 b'8
                 r8
+                % mat09_12
             }
             \times 4/5 {
+                % mat10_13
                 \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                 e'''32
                 (
@@ -1248,6 +1351,7 @@
                 a'32
                 d'32
                 )
+                % mat10_13
             }
             {   % mat11_15
                 {
@@ -1261,12 +1365,14 @@
                 \break
                 {
                     r8
+                    % mat03_3
                     b'8
                     r8
                     b'8
                     b'8
                     b'8
                     r16
+                    % mat03_3
                     b'8
                 }
             }
@@ -1316,6 +1422,7 @@
                 \revert NoteHead.style
             }   % mat06_10
             \times 2/3 {
+                % mat07_11
                 r8.
                 r8
                 \grace {
@@ -1324,22 +1431,28 @@
                 b'16
                 r8.
                 r8.
+                % mat07_11
             }
             \times 2/3 {
+                % mat08_12
                 \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                 f''4
                 (
                 e''4
                 ef''4
                 )
+                % mat08_12
             }
             \times 2/3 {
+                % mat09_13
                 \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                 r8
                 b'8
                 r8
+                % mat09_13
             }
             \times 4/5 {
+                % mat10_14
                 \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                 e'''32
                 (
@@ -1348,6 +1461,7 @@
                 a'32
                 d'32
                 )
+                % mat10_14
             }
             {   % mat11_16
                 {
@@ -1369,12 +1483,14 @@
             \times 2/3 {
                 {
                     r8
+                    % mat03_4
                     b'8
                     r8
                     b'8
                     b'8
                     b'8
                     r16
+                    % mat03_4
                     b'8
                 }
             }
@@ -1424,6 +1540,7 @@
                 \revert NoteHead.style
             }   % mat06_11
             \times 2/3 {
+                % mat07_12
                 r8.
                 r8
                 \grace {
@@ -1432,22 +1549,28 @@
                 b'16
                 r8.
                 r8.
+                % mat07_12
             }
             \times 2/3 {
+                % mat08_13
                 \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                 f''4
                 (
                 e''4
                 ef''4
                 )
+                % mat08_13
             }
             \times 2/3 {
+                % mat09_14
                 \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                 r8
                 b'8
                 r8
+                % mat09_14
             }
             \times 4/5 {
+                % mat10_15
                 \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                 e'''32
                 (
@@ -1456,6 +1579,7 @@
                 a'32
                 d'32
                 )
+                % mat10_15
             }
             {   % mat11_17
                 {
@@ -1478,6 +1602,8 @@
             \times 2/3 {
                 {
                     r16
+                    % mat01_0
+                    % mat01_0
                     b'8
                 }
             }
@@ -1492,12 +1618,14 @@
             \times 2/3 {
                 {
                     r8
+                    % mat03_5
                     b'8
                     r8
                     b'8
                     b'8
                     b'8
                     r16
+                    % mat03_5
                     b'8
                 }
             }
@@ -1547,6 +1675,7 @@
                 \revert NoteHead.style
             }   % mat06_12
             \times 2/3 {
+                % mat07_13
                 r8.
                 r8
                 \grace {
@@ -1555,22 +1684,28 @@
                 b'16
                 r8.
                 r8.
+                % mat07_13
             }
             \times 2/3 {
+                % mat08_14
                 \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                 f''4
                 (
                 e''4
                 ef''4
                 )
+                % mat08_14
             }
             \times 2/3 {
+                % mat09_15
                 \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                 r8
                 b'8
                 r8
+                % mat09_15
             }
             \times 4/5 {
+                % mat10_16
                 \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                 e'''32
                 (
@@ -1579,6 +1714,7 @@
                 a'32
                 d'32
                 )
+                % mat10_16
             }
             {   % mat11_18
                 {

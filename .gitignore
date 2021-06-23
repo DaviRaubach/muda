@@ -45,6 +45,7 @@ sdist/
 var/
 wheels/
 share/python-wheels/
+tests/
 *.egg-info/
 .installed.cfg
 *.egg
@@ -59,6 +60,7 @@ MANIFEST
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
+pip-wheel-metadata
 
 # Unit test / coverage reports
 htmlcov/

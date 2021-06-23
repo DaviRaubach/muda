@@ -53,7 +53,7 @@
 
 
 \paper {
-  system-system-spacing = #'((basic-distance . 15) (padding . 10))
+  system-system-spacing = #'((basic-distance . 20) (padding . 15))
   indent = 0
   bottom-margin = 10\mm
   left-margin = 50\mm

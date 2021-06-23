@@ -44,6 +44,8 @@ extensions = [
     # "sphinx.ext.intersphinx",
     # "sphinx.ext.mathjax",
     # "sphinx.ext.viewcode",
+    'sphinxcontrib.pdfembed',
+
 ]
 
 doctest_global_setup = '''

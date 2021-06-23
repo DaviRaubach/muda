@@ -1,3 +1,9 @@
+\header { tagline = ##f }\paper {
+
+evenFooterMarkup = ##f
+
+oddFooterMarkup = ##f
+}
 \version "2.20.0"   %! abjad.LilyPondFile._get_format_pieces()
 \language "english" %! abjad.LilyPondFile._get_format_pieces()
 

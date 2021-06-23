@@ -2,7 +2,7 @@ import abjad
 
 
 def see_pitches(pitches):
-    """Shows abjad.PitchSegment in two staffs"""
+    """Show abjad.PitchSegment in two staffs."""
     G_staff = abjad.Staff()
     F_staff = abjad.Staff()
     staff_group = abjad.StaffGroup([G_staff, F_staff])
@@ -62,5 +62,3 @@ def see_pitches(pitches):
     abjad.show(staff_group)
 
     return staff_group
-
-
