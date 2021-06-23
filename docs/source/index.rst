@@ -10,7 +10,9 @@ Muda is an Abjad library.
 
 It requires Abjad 3.4 and Python 3.6+.
  
-The idea is to have some resources to easily build scores, write and transform some music with Abjad and LilyPond. It represents the way I make music, how I operate the transformations of musical material. Still, perhaps it can be useful to someone else.
+The idea is to have some resources to easily build scores, write and transform some music with Abjad and LilyPond. 
+
+It carries a particular conception of music, its materials, and some processes I am interested in. It is flexible, though.
 
 This example shows how it works: :ref:`example`.
 
