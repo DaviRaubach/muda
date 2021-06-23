@@ -6,15 +6,25 @@
 Welcome to muda's documentation.
 ================================
 
-Muda is an Abjad library. 
+**Davi Raubach's Abjad Library.**
 
-It requires Abjad 3.4 and Python 3.6+.
- 
-The idea is to have some resources to easily build scores, write and transform some music with Abjad and LilyPond. 
-
+Muda consists of some resources to easily build scores, write and transform music notation with Abjad and LilyPond. 
 It carries a particular conception of music, its materials, and some processes I am interested in. It is flexible, though.
 
 This example shows how it works: :ref:`example`.
+
+Python 3.6+
+
+Used libraries:
+
+abjad 3.3
+abjadext.rmakers
+iracema 0.1.7
+matplotlib 3.3.4
+numpy 1.20.1
+jsonschema 3.2.0 
+evans
+
 
 
 
