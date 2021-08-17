@@ -422,7 +422,7 @@ creating Staff: Soprano_Staff_1
 creating Voice: Soprano_Voice_1
 creating Context:  Soprano_Voice_1_Lyrics
 
-Note that the name "Soprano_Voice_1" that I predicted when wrote the
+Notice that the name "Soprano_Voice_1" I predicted when wrote the
 ``muda.Material`` and ``muda.Lyrics`` is defined automatically. I just needed
 to put the name "Soprano".
 
@@ -842,7 +842,17 @@ inst = muda.Instrument(
     lyrics_target="Soprano_Voice_1",
 )
 score.append([inst])
-time_signatures = [abjad.TimeSignature(_) for _ in durations]
+
+time_signatures = []
+for item in durations:
+    if isinstance(item, list):
+        for i in item:
+            time_signatures.append(abjad.TimeSignature(i))
+    else:
+        time_signatures.append(abjad.TimeSignature(item))
+
+
+# time_signatures = timespans.time_signatures()
 score.make_skips(time_signatures)
 score.write_materials([mats, lyrics])
 score.rewrite_meter(time_signatures)

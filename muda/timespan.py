@@ -56,11 +56,12 @@ class TimespanList(abjad.TimespanList):
         subdur = abjad.Duration(subdivision)
         new_ts_list = []
         for span in self:
+            sub_ts_list = []
             append_lower = True
             append_higher = True
             for a in range(2, 16):
                 if span.duration < subdur * 2 and append_lower is True:
-                    new_ts_list.append(span)
+                    sub_ts_list.append(span)
                     # print("menor:", span.duration)
                     append_lower = False
                 elif (span.duration >= subdur * (a - 1) and
@@ -75,7 +76,7 @@ class TimespanList(abjad.TimespanList):
                                 start_offset=ts.start_offset,
                                 stop_offset=ts.stop_offset,
                                 annotation=span.annotation)
-                            new_ts_list.append(newts)
+                            sub_ts_list.append(newts)
                             # print("rest = 0, span annotation:",
                             #       newts.annotation)
                     else:
@@ -93,24 +94,59 @@ class TimespanList(abjad.TimespanList):
                                 nts2 = splited2[-1].set_duration(
                                     splited2[-1].duration + rest)
                                 nts2.annotation = span.annotation
-                                new_ts_list.append(nts2)
+                                sub_ts_list.append(nts2)
                                 # print("aquiiii", nts2.duration)
                             else:
                                 ts2.annotation = span.annotation
-                                new_ts_list.append(ts2)
+                                sub_ts_list.append(ts2)
                             # print("rest =! 0:", ts2.duration)
                     append_higher = False
+            new_ts_list.append(sub_ts_list)
 
         dur_list = []
         for span in new_ts_list:
-            dur = muda.rhythm.AnnotatedDuration(
-                span.duration,
-                annotation=span.annotation)
+            if isinstance(span, list):
+                # print("is list")
+                dur_sub_list = []
+                for sp in span:
+                    dur = muda.rhythm.AnnotatedDuration(
+                        sp.duration,
+                        annotation=sp.annotation)
+                    dur_sub_list.append(dur)
+                dur_list.append(dur_sub_list)
+            else:
+                # print("is not a list")
+                dur = muda.rhythm.AnnotatedDuration(
+                    span.duration,
+                    annotation=span.annotation)
             # print("mudadur:", dur)
             # dur.annotation = span.annotation
-            dur_list.append(dur)
+                dur_list.append(dur)
             # print(span.annotation)
         return dur_list
+
+    def time_signatures(self):
+        """It returns time signatures based on timespan list."""
+        permitted_meters = abjad.MeterList(
+            [
+                (5, 4),
+                (9, 8),
+                (4, 4),
+                (7, 8),
+                (3, 4),
+                (5, 8),
+                (2, 4),
+                (3, 8),
+                # (5, 16),
+                # (1, 4),
+                # (3, 16),
+                # (1, 8),
+            ])
+        fitted_meters = abjad.Meter.fit_meters(
+            argument=self, meters=permitted_meters,  # maximum_run_length=1
+        )
+        time_signatures = [_.implied_time_signature for _ in fitted_meters]
+        return time_signatures
 
     # def durations_dict(self, subdivision=(2, 4)):
     #         """Todo."""
@@ -171,7 +207,6 @@ class TimespanList(abjad.TimespanList):
 
 
 def alternating_timespans(
-    n_annotations=3,  # different materials
     alternations=[
         [13, 5, 3],
         [8, 5, 3],
@@ -186,6 +221,7 @@ def alternating_timespans(
     annotations=["Mat_1", "Mat_2", "Rests"],
 ):
     """Make timespans to use with alternating materials."""
+    n_annotations = len(annotations)
     timespans = TimespanList()
     counter_1 = []
     for a, alt in enumerate(alternations):

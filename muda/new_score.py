@@ -4,9 +4,11 @@ Score.
 Classes to build a score.
 """
 import abjad
+import abc
+import collections
 
 
-class Instrument():
+class CustomScoreTemplate(abjad.ScoreTemplate):
     r"""
     Create an instrument staff ``abjad.Staff()``.
 
@@ -15,8 +17,8 @@ class Instrument():
     >>> myinst = muda.Instrument(
     ...             abjad_instrument = abjad.Piano(),
     ...             name = "My Piano",
-    ...             staff_count = 2,  # number of staves for the instrument
-    ...             voice_count = [2, 1],  # number of voices for each staff
+    ...             staffs_number = 2,  # number of staffs for the instrument
+    ...             voices_number = [2, 1],  # number of voices for each staff
     ... )
     muda.score.Instrument()
     My Piano
@@ -51,36 +53,58 @@ class Instrument():
 
 
     """
+    ### CLASS VARIABLES ###
+
+    __slots__ = ("_staff_count", "_voices_count")
+
+    ### INITIALIZER ###
+
+    def __init__(self, staff_count=2):
+        super().__init__()
+        assert isinstance(staff_count, (int, collections.abc.Iterable))
+        if isinstance(staff_count, collections.abc.Iterable):
+            staff_count = list(staff_count)
+        self._staff_count = staff_count
 
     def __init__(
         self,
-        abjad_instrument,
+        instrument,
         name,
         staff_count,
-        voice_count,
+        voices_count,
         lyrics_target=None
     ):
         """Initializer."""
+        super().__init__()
+        assert isinstance(staff_count, (int, collections.abc.Iterable))
+        if isinstance(staff_count, collections.abc.Iterable):
+            staff_count = list(staff_count)
+        self._staff_count = staff_count
+
         site = "muda.score.Instrument()"
         self.tag = abjad.Tag(site)
         print(str(self.tag), name)
         self.abjad_instrument = abjad_instrument
         self.name = name
-        self.staff_count = staff_count
-        self.voice_count = voice_count
+        self.staffs_number = staffs_number
+        self.voices_number = voices_number
         self.lyrics_target = lyrics_target
         self.__call__()
 
     def __call__(self):
         """Return ``self.ready_staff``."""
         abjad_instrument = self.abjad_instrument
-        staves = self.append_staves(self)
-        self.append_voices(self, staves)
-        staff_count = self.staff_count
+        name = self.name
+        staffs_number = self.staffs_number
+        voices_number = self.voices_number
+        staffs = self.append_staffs(self)
+        self.append_voices(self, staffs)
 
-        if staff_count == 1:
-            abjad.annotate(staves[0], "default_instrument", abjad_instrument)
-            self.ready_staff = staves[0]
+        
+
+        if staffs_number == 1:
+            abjad.annotate(staffs[0], "default_instrument", abjad_instrument)
+            self.ready_staff = staffs[0]
         else:
             if abjad_instrument == abjad.Piano():
                 staffgroup = abjad.StaffGroup(
@@ -89,12 +113,12 @@ class Instrument():
                     tag=self.tag,
                     simultaneous=True,
                 )
-                for staff in staves:
+                for staff in staffs:
                     staffgroup.append(staff)
 
             else:
-                staffgroup = abjad.StaffGroup(name=self.name, tag=self.tag)
-                for staff in staves:
+                staffgroup = abjad.StaffGroup(name=name, tag=self.tag)
+                for staff in staffs:
                     staffgroup.append(staff)
 
             abjad.annotate(staffgroup, "default_instrument", abjad_instrument)
@@ -104,29 +128,29 @@ class Instrument():
         return self.ready_staff
 
     @staticmethod
-    def append_staves(self):
-        """Method to create instrument staves."""
+    def append_staffs(self):
+        """Method to create instrument staffs."""
         name = self.name
-        staves = []
-        for i in range(self.staff_count):
-            if self.staff_count == 1:
+        staffs = []
+        for i in range(self.staffs_number):
+            if self.staffs_number == 1:
                 staff_name = name + "_Staff"
             else:
                 staff_name = name + "_Staff_" + str(i + 1)
 
-            staves.append(abjad.Staff(name=staff_name, tag=self.tag))
+            staffs.append(abjad.Staff(name=staff_name, tag=self.tag))
             print("creating Staff: ", staff_name)
-        return staves
+        return staffs
 
     @staticmethod
-    def append_voices(self, staves):
-        """Method to append voices to instrument staves."""
-        voice_count = self.voice_count
+    def append_voices(self, staffs):
+        """Method to append voices to instrument staffs."""
+        voices_number = self.voices_number
         voices = []
 
         # create voices
-        for i in range(sum(voice_count)):
-            if voice_count == 1:
+        for i in range(sum(voices_number)):
+            if voices_number == 1:
                 voice_name = self.name + "_Voice"
             else:
                 voice_name = self.name + "_Voice_" + str(i + 1)
@@ -144,15 +168,20 @@ class Instrument():
 
         # append voices
         if self.lyrics_target is not None:
-            voice_count[0] += 1
-        for i, number_of_voices_in_each_staff in enumerate(voice_count):
+            voices_number[0] += 1
+        for i, number_of_voices_in_each_staff in enumerate(voices_number):
             if number_of_voices_in_each_staff >= 1:
-                staves[i].simultaneous = True
+                staffs[i].simultaneous = True
             for n in range(number_of_voices_in_each_staff):
                 if i == 0:
-                    staves[i].append(voices[n])
+                    staffs[i].append(voices[n])
                 if i >= 1:
-                    staves[i].append(voices[n + sum(voice_count[:i])])
+                    staffs[i].append(voices[n + sum(voices_number[:i])])
+
+
+    def test():
+        Instrument(abjad.Piano(), "Piano", 2, [2, 2])
+
 
 
 class Score():
@@ -195,8 +224,8 @@ class Score():
         >>> my_inst = muda.Instrument(
         ...    abjad_instrument = abjad.Piano(),
         ...    name = "Piano",
-        ...    staff_count = 2,
-        ...    voice_count = [2, 1],)
+        ...    staffs_number = 2,
+        ...    voices_number = [2, 1],)
         muda.score.Instrument() Piano
         creating Staff: Piano_Staff_1
         creating Staff: Piano_Staff_2
@@ -243,7 +272,7 @@ class Score():
             self.score.append(context)
 
     def make_skips(self, time_signatures, attach=()):
-        r"""Write skips and time signatures to "Global_Context".
+        r"""Create a "Global_Context" staff with skips and time signatures.
 
         >>> my_score.make_skips([(4, 4), (5, 4)])
         muda.Score.make_skips()
@@ -294,20 +323,23 @@ class Score():
             self.score["Global_Context"].append(skip)
 
         # select skips to attach TIME SIGNATURES
-        for i, item in enumerate(in_time_signatures):
-            a = in_time_signatures.index(item)
+        for i, element in enumerate(in_time_signatures):
+            # previous_element = time_signatures[i - 1] if i > 0 else None
+            current_element = element
+
+            # if current_element != previous_element:
+            a = in_time_signatures.index(current_element)
             abjad.attach(
                 time_signatures_abjad[a],
                 self.score["Global_Context"][i],
                 tag=tag)
 
-        def attach(argument, select):
-            selection = select(self.score["Global_Context"])
-            if isinstance(selection, abjad.Leaf):
-                abjad.attach(argument, selection)
-            else:
-                for skip_ in selection:
-                    abjad.attach(argument, skip_)
+        selection = abjad.select(self.score["Global_Context"]).leaves()
+        # attach
+        if attach:
+            # print(abjad.lilypond(self.container))
+            a, b = attach
+            abjad.attach(a, selection[b])
 
     def write_materials(self, materials_list):
         r"""Write materials to voices.
@@ -547,7 +579,14 @@ class Score():
         <Score-"Score"<<2>>>
 
         """
+        # global_skips = [_ for _ in abjad.select(score["Global_Context"]).leaves()]
+        # sigs = []
+        # for skip in global_skips:
+        #     for indicator in abjad.get.indicators(skip):
+        #         if isinstance(indicator, abjad.TimeSignature):
+        #             sigs.append(indicator)
         if isinstance(time_signatures[0], abjad.TimeSignature):
+            time_signatures = time_signatures
             durations = [_.duration for _ in time_signatures]
         else:
             time_signatures = [abjad.TimeSignature(_) for _ in time_signatures]
@@ -561,11 +600,51 @@ class Score():
                     abjad.Meter.rewrite_meter(
                         shard,
                         time_signature,
-                        # boundary_depth=1,
-                        # rewrite_tuplets=True,
-                        # maximum_dot_count=1,
+                        boundary_depth=1,
+                        rewrite_tuplets=True,
+                        maximum_dot_count=1,
                     )
+                    # print("reescreveu:", shard, time_signature)
         return self.score
+
+# Trash
+# for time_signature, shard in zip(time_signatures, shards):
+#     abjad.Meter.rewrite_meter(shard, time_signature, boundary_depth=1)
+
+# inventories = [
+#     x
+#     for x in enumerate(
+#         abjad.Meter(time_signature.pair).depthwise_offset_inventory
+#     )
+# ]
+# if time_signature.denominator == 4:
+#     abjad.Meter.rewrite_meter(
+#         shard,
+#         time_signature,
+#         boundary_depth=inventories[-1][0],
+#         rewrite_tuplets=False,
+#     )
+# else:
+#     abjad.Meter.rewrite_meter(
+#         shard,
+#         time_signature,
+#         boundary_depth=inventories[-2][0],
+#         rewrite_tuplets=False,
+#     )
+
+# abjad.mutate().split(voice, in_time_signature, cyclic=True)
+
+# time_signatures = []
+# for item in in_time_signatures:
+#     time_signatures.append(abjad.Meter(item))
+# abjad.mutate().split(music, in_time_signature, cyclic=True)
+# # selection
+# abjad.Meter.rewrite_meter(music[:], time_signatures)
+# selector = abjad.select(music).leaves()
+# measures = selector.group_by_measure()
+# for time, measure in zip(time_signatures, measures):
+#     abjad.mutate(measure).rewrite_meter(time)
+# return measures
 
     def lilypond(self):
         r"""Print ``self.score`` lilypond code.
@@ -586,11 +665,15 @@ class Score():
         print(lilypond)
         return lilypond
 
+    # def make_lilypond_file(self, includes=None):
+    #     """Todo."""
+    #     lilypond_file = abjad.LilyPondFile(
+    #         items=[self.score], includes=includes)
+    #     return lilypond_file
+
     def show(self):
         """Show ``self.score``."""
         return abjad.show(self.score)
 
 if __name__ == "__main__":
-    inst = Instrument(abjad.Piano(), "Piano", 2, [2, 2])
-    score = Score()
-    score.append([inst])
+    Instrument.test()

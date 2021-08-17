@@ -188,7 +188,7 @@ class IracemaAnalysis():
         print("Saved in chords_in_hertz.txt")
         return self.chords_in_hertz
 
-    def assign_to_instruments(self, inst_names, inst_noten):
+    def assign_to_instruments(self, inst_names, inst_noten, round_=False):
         """Distribute analyzed pitches to different instruments.
 
         inst_noten: number of pitches assigned for each specified instrument
@@ -204,18 +204,36 @@ class IracemaAnalysis():
         for name in inst_names:
             result[name] = []
             save_dict[name] = []
+
         for chord in self.container:
             chord_ = []
             str_chord = []
             chord_notes = iter(chord.written_pitches)
-            # print(chord.written_pitches)
-            for name, number in zip(inst_names, inst_noten):
-                for n in range(number):
-                    note = next(chord_notes)
-                    chord_.append(note)
-                    str_chord.append(note.name)
-                result[name].append(chord_)
-                save_dict[name].append(str_chord)
+            if round_ is True:
+                num_pitches = [abjad.NamedPitch(_).number for _ in chord_notes]
+                # NO MICROTONAL
+                for item, i in zip(num_pitches, range(len(num_pitches))):
+                    if isinstance(item, float):
+                        item = item - 0.5
+                        num_pitches[i] = item
+                num_pitches = iter(num_pitches)
+                for name, number in zip(inst_names, inst_noten):
+                    for n in range(number):
+                        note = next(num_pitches)
+                        chord_.append(note)
+                        str_chord.append(abjad.NamedPitch(note).name)
+                    result[name].append(chord_)
+                    save_dict[name].append(str_chord)
+
+            else:
+                for name, number in zip(inst_names, inst_noten):
+                    for n in range(number):
+                        note = next(chord_notes)
+                        chord_.append(note)
+                        str_chord.append(note.name)
+                    result[name].append(chord_)
+                    save_dict[name].append(str_chord)
+
         file_str = ""
         for item in result:
             file_str = file_str + item + "_"
