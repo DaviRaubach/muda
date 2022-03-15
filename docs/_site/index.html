@@ -1,0 +1,1471 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" />
+
+    <meta name="generator" content="sphinx-4.4.0, furo 2022.03.04"/>
+        <title>Muda 0.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=935aa2abcc5c1da4283d1dc201fb1f0add16d23a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=25ceb02ed1c46dc30f2321ff83e92799f69dfdb9" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="#"><div class="brand">Muda 0.2 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="#">
+  
+  
+  <span class="sidebar-brand-text">Muda 0.2 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="welcome-to-muda-s-documentation">
+<h1>Welcome to muda’s documentation.<a class="headerlink" href="#welcome-to-muda-s-documentation" title="Permalink to this headline">#</a></h1>
+<p>Davi Raubach’s Abjad Library.</p>
+<p>Muda consists of some resources to easily build scores, write and transform music notation with Abjad and LilyPond.
+It carries personal musical conceptualizations regarding materials and some processes I am interested in. It is flexible, though.</p>
+<p>It requires Python 3.10+ and some libraries.
+abjad 3.6
+abjadext.rmakers
+iracema 0.1.7
+matplotlib 3.3.4
+numpy 1.20.1
+jsonschema 3.2.0
+evans</p>
+<p>The following example shows how it can be used.</p>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="module-muda.aperghis_example.aperghis_example">
+<span id="muda-example"></span><h1>muda example<a class="headerlink" href="#module-muda.aperghis_example.aperghis_example" title="Permalink to this headline">#</a></h1>
+<p>Rewriting Aperghis Recitación 9.</p>
+<blockquote>
+<div><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" height="315" src="https://www.youtube.com/embed/85CloE5kQLg" title="YouTube video player" width="560"></iframe> </div></blockquote>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">abjad</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">muda</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">abjadext</span> <span class="kn">import</span> <span class="n">rmakers</span>
+</pre></div>
+</div>
+<p>I have conceived three definition ambits using muda:</p>
+<ol class="arabic simple">
+<li><p><strong>Components</strong>: define timespans, rhythms, pitches;</p></li>
+<li><p><strong>Materials</strong>: generate materials with defined components and modify them;</p></li>
+<li><p><strong>Score</strong>: create staffs (instruments) and append generated materials;</p></li>
+</ol>
+<section id="components">
+<h2>Components<a class="headerlink" href="#components" title="Permalink to this headline">#</a></h2>
+<section id="timespans">
+<h3>Timespans<a class="headerlink" href="#timespans" title="Permalink to this headline">#</a></h3>
+<p>First, I create timespans using <code class="docutils literal notranslate"><span class="pre">muda.timespan.alternating_timespans()</span></code>.
+Timespans will be filled with different materials later. Each column in the list below refers to a material. The number represents the material presence (duration).</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">alternations</span> <span class="o">=</span> <span class="p">[</span>
+<span class="gp">... </span>    <span class="c1"># matA, matB, matC, ..., matL</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>Annotations are names for each material and refer to each column in the list
+above:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">annotations</span> <span class="o">=</span> <span class="p">[</span>
+<span class="gp">... </span>    <span class="s2">"matA"</span><span class="p">,</span> <span class="s2">"matB"</span><span class="p">,</span> <span class="s2">"matC"</span><span class="p">,</span> <span class="s2">"matD"</span><span class="p">,</span> <span class="s2">"matE"</span><span class="p">,</span> <span class="s2">"matF"</span><span class="p">,</span> <span class="s2">"matG"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s2">"matH"</span><span class="p">,</span> <span class="s2">"matI"</span><span class="p">,</span> <span class="s2">"matJ"</span><span class="p">,</span> <span class="s2">"matK"</span><span class="p">,</span> <span class="s2">"matL"</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">timespans</span> <span class="o">=</span> <span class="n">muda</span><span class="o">.</span><span class="n">timespan</span><span class="o">.</span><span class="n">alternating_timespans</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">n_annotations</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">alternations</span><span class="o">=</span><span class="n">alternations</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">denominator</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">annotations</span><span class="o">=</span><span class="n">annotations</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The variable <cite>timespans</cite> is now a list of timespans that are associated with
+different materials. Then, I transform it into a list of durations using the
+method <code class="docutils literal notranslate"><span class="pre">annotated_durations()</span></code>. It becomes a list of
+<code class="docutils literal notranslate"><span class="pre">muda.AnnotatedDuration()</span></code> each of which is annotated with the material
+name.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">durations</span> <span class="o">=</span> <span class="n">timespans</span><span class="o">.</span><span class="n">annotated_durations</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">subdivision</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>  <span class="c1"># divide long durations</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Pitch and rhythm are associated with the same
+materials through python dictionaries.</p>
+</section>
+<section id="rhythms">
+<h3>Rhythms<a class="headerlink" href="#rhythms" title="Permalink to this headline">#</a></h3>
+<p>These are the rhythms for each material:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">makers</span> <span class="o">=</span> <span class="p">{</span>
+<span class="gp">... </span>    <span class="s2">"matL"</span><span class="p">:</span> <span class="n">rmakers</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span>
+<span class="gp">... </span>        <span class="n">rmakers</span><span class="o">.</span><span class="n">talea</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">16</span><span class="p">),</span>
+<span class="gp">... </span>        <span class="n">rmakers</span><span class="o">.</span><span class="n">extract_trivial</span><span class="p">()),</span>
+<span class="gp">... </span>    <span class="s2">"matK"</span><span class="p">:</span> <span class="n">rmakers</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span>
+<span class="gp">... </span>        <span class="n">rmakers</span><span class="o">.</span><span class="n">talea</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">32</span><span class="p">,</span> <span class="n">extra_counts</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+<span class="gp">... </span>        <span class="n">rmakers</span><span class="o">.</span><span class="n">extract_trivial</span><span class="p">()),</span>
+<span class="gp">... </span>    <span class="s2">"matJ"</span><span class="p">:</span> <span class="n">rmakers</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span>
+<span class="gp">... </span>        <span class="n">rmakers</span><span class="o">.</span><span class="n">talea</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">8</span><span class="p">,</span> <span class="n">extra_counts</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+<span class="gp">... </span>        <span class="n">rmakers</span><span class="o">.</span><span class="n">extract_trivial</span><span class="p">()),</span>
+<span class="gp">... </span>    <span class="s2">"matI"</span><span class="p">:</span> <span class="n">rmakers</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span>
+<span class="gp">... </span>        <span class="n">rmakers</span><span class="o">.</span><span class="n">talea</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">4</span><span class="p">,</span> <span class="n">extra_counts</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+<span class="gp">... </span>        <span class="n">rmakers</span><span class="o">.</span><span class="n">extract_trivial</span><span class="p">()),</span>
+<span class="gp">... </span>    <span class="s2">"matH"</span><span class="p">:</span> <span class="n">rmakers</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span>
+<span class="gp">... </span>        <span class="n">rmakers</span><span class="o">.</span><span class="n">talea</span><span class="p">([</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">],</span> <span class="mi">16</span><span class="p">,</span> <span class="n">extra_counts</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">]),</span>
+<span class="gp">... </span>        <span class="n">rmakers</span><span class="o">.</span><span class="n">extract_trivial</span><span class="p">()),</span>
+<span class="gp">... </span>    <span class="s2">"matG"</span><span class="p">:</span> <span class="n">rmakers</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span>
+<span class="gp">... </span>        <span class="n">rmakers</span><span class="o">.</span><span class="n">talea</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">32</span><span class="p">),</span>
+<span class="gp">... </span>        <span class="n">rmakers</span><span class="o">.</span><span class="n">extract_trivial</span><span class="p">()),</span>
+<span class="gp">... </span>    <span class="s2">"matF"</span><span class="p">:</span> <span class="n">rmakers</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span>
+<span class="gp">... </span>        <span class="n">rmakers</span><span class="o">.</span><span class="n">talea</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="mi">8</span><span class="p">),</span>
+<span class="gp">... </span>        <span class="n">rmakers</span><span class="o">.</span><span class="n">extract_trivial</span><span class="p">()),</span>
+<span class="gp">... </span>    <span class="s2">"matE"</span><span class="p">:</span> <span class="n">rmakers</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span>
+<span class="gp">... </span>        <span class="n">rmakers</span><span class="o">.</span><span class="n">talea</span><span class="p">([</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">32</span><span class="p">),</span>
+<span class="gp">... </span>        <span class="n">rmakers</span><span class="o">.</span><span class="n">extract_trivial</span><span class="p">()),</span>
+<span class="gp">... </span>    <span class="s2">"matD"</span><span class="p">:</span> <span class="n">rmakers</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span>
+<span class="gp">... </span>        <span class="n">rmakers</span><span class="o">.</span><span class="n">talea</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="mi">16</span><span class="p">,</span> <span class="n">extra_counts</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">]),</span>
+<span class="gp">... </span>        <span class="n">rmakers</span><span class="o">.</span><span class="n">extract_trivial</span><span class="p">()),</span>
+<span class="gp">... </span>    <span class="s2">"matC"</span><span class="p">:</span> <span class="n">rmakers</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span>
+<span class="gp">... </span>        <span class="n">rmakers</span><span class="o">.</span><span class="n">talea</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">32</span><span class="p">),</span>
+<span class="gp">... </span>        <span class="n">rmakers</span><span class="o">.</span><span class="n">extract_trivial</span><span class="p">()),</span>
+<span class="gp">... </span>    <span class="s2">"matB"</span><span class="p">:</span> <span class="n">rmakers</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span>
+<span class="gp">... </span>        <span class="n">rmakers</span><span class="o">.</span><span class="n">talea</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">16</span><span class="p">,</span> <span class="n">extra_counts</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+<span class="gp">... </span>        <span class="n">rmakers</span><span class="o">.</span><span class="n">extract_trivial</span><span class="p">()),</span>
+<span class="gp">... </span>    <span class="s2">"matA"</span><span class="p">:</span> <span class="n">rmakers</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span>
+<span class="gp">... </span>        <span class="n">rmakers</span><span class="o">.</span><span class="n">talea</span><span class="p">([</span><span class="o">-</span><span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">],</span> <span class="mi">32</span><span class="p">),</span>
+<span class="gp">... </span>        <span class="n">rmakers</span><span class="o">.</span><span class="n">extract_trivial</span><span class="p">())</span>
+<span class="gp">... </span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="pitches">
+<h3>Pitches<a class="headerlink" href="#pitches" title="Permalink to this headline">#</a></h3>
+<p>Pitch is also different for each material and are also expressed in a python dictionary.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">annotated_pitches</span> <span class="o">=</span> <span class="p">{</span>
+<span class="gp">... </span>    <span class="s2">"matL"</span><span class="p">:</span> <span class="n">abjad</span><span class="o">.</span><span class="n">PitchSegment</span><span class="p">(</span><span class="s2">"a' b'"</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="s2">"matK"</span><span class="p">:</span> <span class="n">abjad</span><span class="o">.</span><span class="n">PitchSegment</span><span class="p">(</span><span class="s2">"e''' ef'' b'' a' d'"</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="s2">"matJ"</span><span class="p">:</span> <span class="n">abjad</span><span class="o">.</span><span class="n">PitchSegment</span><span class="p">(</span><span class="s2">"b'"</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="s2">"matI"</span><span class="p">:</span> <span class="n">abjad</span><span class="o">.</span><span class="n">PitchSegment</span><span class="p">(</span><span class="s2">"f'' e'' ef''"</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="s2">"matH"</span><span class="p">:</span> <span class="n">abjad</span><span class="o">.</span><span class="n">PitchSegment</span><span class="p">(</span><span class="s2">"b'"</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="s2">"matG"</span><span class="p">:</span> <span class="n">abjad</span><span class="o">.</span><span class="n">PitchSegment</span><span class="p">(</span><span class="s2">"e'' c'' e'' c'' g' b'"</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="s2">"matF"</span><span class="p">:</span> <span class="n">abjad</span><span class="o">.</span><span class="n">PitchSegment</span><span class="p">(</span><span class="s2">"e' e'' g''"</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="s2">"matE"</span><span class="p">:</span> <span class="n">abjad</span><span class="o">.</span><span class="n">PitchSegment</span><span class="p">(</span><span class="s2">"b' b' b' a' b' b' b'"</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="s2">"matD"</span><span class="p">:</span> <span class="n">abjad</span><span class="o">.</span><span class="n">PitchSegment</span><span class="p">(</span><span class="s2">"b'"</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="s2">"matC"</span><span class="p">:</span> <span class="n">abjad</span><span class="o">.</span><span class="n">PitchSegment</span><span class="p">(</span><span class="s2">"b'"</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="s2">"matB"</span><span class="p">:</span> <span class="n">abjad</span><span class="o">.</span><span class="n">PitchSegment</span><span class="p">(</span><span class="s2">"b'"</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="s2">"matA"</span><span class="p">:</span> <span class="n">abjad</span><span class="o">.</span><span class="n">PitchSegment</span><span class="p">(</span><span class="s2">"b'"</span><span class="p">),</span>
+<span class="gp">... </span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="materials">
+<h2>Materials<a class="headerlink" href="#materials" title="Permalink to this headline">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">muda.Material()</span></code> is used to put together the declared components.
+It creates an <code class="docutils literal notranslate"><span class="pre">abjad.Container()</span></code> that will be appended later in a voice.
+The voice name must be declared when creating the <code class="docutils literal notranslate"><span class="pre">muda.Material()</span></code> instance.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mats</span> <span class="o">=</span> <span class="n">muda</span><span class="o">.</span><span class="n">Material</span><span class="p">(</span><span class="s2">"Soprano_Voice_1"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now, I can use <code class="docutils literal notranslate"><span class="pre">muda.Material()</span></code> methods to write something to the
+<code class="docutils literal notranslate"><span class="pre">muda.Material.container</span></code>.</p>
+<section id="write-rhythms">
+<h3>Write Rhythms<a class="headerlink" href="#write-rhythms" title="Permalink to this headline">#</a></h3>
+<p>Here, I must use <code class="docutils literal notranslate"><span class="pre">alternating_materials()</span></code> method to manipulate that
+dictionary of rhythm makers according to the annotated durations.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mats</span><span class="o">.</span><span class="n">alternating_materials</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">durations</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">makers</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+<p>It will generate containers whose names will be the material names (annotated in durations) 
+plus an index number.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">containers</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">select</span><span class="o">.</span><span class="n">components</span><span class="p">(</span><span class="n">mats</span><span class="o">.</span><span class="n">container</span><span class="p">,</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Container</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">container</span> <span class="ow">in</span> <span class="n">containers</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">if</span> <span class="n">container</span><span class="o">.</span><span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># ignore subcontainers</span>
+<span class="gp">... </span>        <span class="nb">print</span><span class="p">(</span><span class="n">container</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">container</span><span class="p">)</span>
+<span class="go">matL_0 Container("c'8", name='mat11_0')</span>
+<span class="go">matL_1 Container("c'8 c'16 r16", name='mat11_1')</span>
+<span class="go">matK_0 Tuplet('5:4', "c'32 c'32 c'32 c'32 c'32")</span>
+<span class="go">matL_2 Container("c'8 c'16 r16", name='mat11_2')</span>
+<span class="go">matJ_0 Tuplet('3:2', "r8 c'8 r8")</span>
+<span class="go">matK_1 Tuplet('5:4', "c'32 c'32 c'32 c'32 c'32")</span>
+<span class="go">matL_3 Container("c'8 c'16 r16", name='mat11_3')</span>
+<span class="go">matI_0 Tuplet('3:2', "c'4 c'4 c'4")</span>
+<span class="go">matJ_1 Tuplet('3:2', "r8 c'8 r8")</span>
+<span class="go">matK_2 Tuplet('5:4', "c'32 c'32 c'32 c'32 c'32")</span>
+<span class="go">matL_4 Container("c'8 c'16 r16", name='mat11_4')</span>
+<span class="go">matH_0 Tuplet('3:2', "r8. r8 c'16 r8. r8.")</span>
+<span class="go">matI_1 Tuplet('3:2', "c'4 c'4 c'4")</span>
+<span class="go">matJ_2 Tuplet('3:2', "r8 c'8 r8")</span>
+<span class="go">matK_3 Tuplet('5:4', "c'32 c'32 c'32 c'32 c'32")</span>
+<span class="go">matL_5 Container("c'8 c'16 r16", name='mat11_5')</span>
+<span class="go">matG_0 Container("r16 c'32 c'32 c'32 c'32 c'32 c'32", name='mat06_0')</span>
+<span class="go">matH_1 Tuplet('3:2', "r8. r8 c'16 r8. r8.")</span>
+<span class="go">matI_2 Tuplet('3:2', "c'4 c'4 c'4")</span>
+<span class="go">matJ_3 Tuplet('3:2', "r8 c'8 r8")</span>
+<span class="go">matK_4 Tuplet('5:4', "c'32 c'32 c'32 c'32 c'32")</span>
+<span class="go">matL_6 Container("c'8 c'16 r16", name='mat11_6')</span>
+<span class="go">matF_0 Container("c'8 c'2 c'4", name='mat05_0')</span>
+<span class="go">matG_1 Container("r16 c'32 c'32 c'32 c'32 c'32 c'32", name='mat06_1')</span>
+<span class="go">matH_2 Tuplet('3:2', "r8. r8 c'16 r8. r8.")</span>
+<span class="go">matI_3 Tuplet('3:2', "c'4 c'4 c'4")</span>
+<span class="go">matJ_4 Tuplet('3:2', "r8 c'8 r8")</span>
+<span class="go">matK_5 Tuplet('5:4', "c'32 c'32 c'32 c'32 c'32")</span>
+<span class="go">matL_7 Container("c'8 c'16 r16", name='mat11_7')</span>
+<span class="go">matE_0 Container("r8 c'16 c'32 c'32", name='mat04_0')</span>
+<span class="go">etc...</span>
+</pre></div>
+</div>
+<p>I had to write the retrograde of some rhythms because abjad
+would write the material in a given duration from left to right.
+However, Aperghis’ piece expands from right to left. Below,
+I use the <code class="docutils literal notranslate"><span class="pre">muda.Material.retrograde()</span></code> method to get it right.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mats</span><span class="o">.</span><span class="n">retrograde</span><span class="p">(</span><span class="s2">"matL"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mats</span><span class="o">.</span><span class="n">retrograde</span><span class="p">(</span><span class="s2">"matE"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mats</span><span class="o">.</span><span class="n">retrograde</span><span class="p">(</span><span class="s2">"matD"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mats</span><span class="o">.</span><span class="n">retrograde</span><span class="p">(</span><span class="s2">"matC"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mats</span><span class="o">.</span><span class="n">retrograde</span><span class="p">(</span><span class="s2">"matB"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mats</span><span class="o">.</span><span class="n">retrograde</span><span class="p">(</span><span class="s2">"matA"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="write-pitches">
+<h3>Write Pitches<a class="headerlink" href="#write-pitches" title="Permalink to this headline">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">muda.Material.write_pitches_by_name()</span></code> method writes pitches according to materials.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mats</span><span class="o">.</span><span class="n">write_pitches_by_name</span><span class="p">(</span><span class="n">annotated_pitches</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="changing-leaves">
+<h3>Changing Leaves<a class="headerlink" href="#changing-leaves" title="Permalink to this headline">#</a></h3>
+<p>To change leaves and attach indicators on them I use their index in a specific material.
+Therefore, is important to vizualize materials and indices. For that I use the <code class="docutils literal notranslate"><span class="pre">muda.Material.annotate_material_names()</span></code> method. The only argument is a list of material names I want to annotate (here it is in the <code class="docutils literal notranslate"><span class="pre">annotations</span></code> variable.
+In this case, I also need to add time signatures to <code class="docutils literal notranslate"><span class="pre">mats.container</span></code> and I will also rewrite meter according to that time signatures.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">time_signatures</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">durations</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">item</span><span class="p">:</span>
+<span class="gp">... </span>            <span class="n">time_signatures</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">abjad</span><span class="o">.</span><span class="n">TimeSignature</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+<span class="gp">... </span>    <span class="k">else</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">time_signatures</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">abjad</span><span class="o">.</span><span class="n">TimeSignature</span><span class="p">(</span><span class="n">item</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mats</span><span class="o">.</span><span class="n">rewrite_meter</span><span class="p">(</span><span class="n">time_signatures</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mats</span><span class="o">.</span><span class="n">write_time_signatures</span><span class="p">(</span><span class="n">time_signatures</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mats</span><span class="o">.</span><span class="n">annotate_material_names</span><span class="p">(</span><span class="n">annotations</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The illustration is saved in muda’s directory. Once I had the illustration, I can comment the last two lines.</p>
+<p>Illustration:</p>
+<p>
+<iframe align="middle" frameborder="1" height="580" id="ID" scrolling="auto" src="_static/illustration.pdf" style="border:1px solid #666CCC" title="PDF" width="700">
+</iframe>
+</p>
+<section id="delete-leaves">
+<h4>Delete Leaves<a class="headerlink" href="#delete-leaves" title="Permalink to this headline">#</a></h4>
+<p>Below, I use the <code class="docutils literal notranslate"><span class="pre">delete()</span></code> method. It is possible to remove leaves or to
+transform them into rests or skips.</p>
+<p>To delete a leaf inside a material, use the <code class="docutils literal notranslate"><span class="pre">material_name</span></code> argument.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mats</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">muda</span><span class="o">.</span><span class="n">leaf_0</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">material_name</span><span class="o">=</span><span class="s2">"matE_2"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">replace_with_rests</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mats</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">muda</span><span class="o">.</span><span class="n">leaf_1</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">material_name</span><span class="o">=</span><span class="s2">"matE_2"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">replace_with_rests</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mats</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">muda</span><span class="o">.</span><span class="n">leaf_0</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">material_name</span><span class="o">=</span><span class="s2">"matE_3"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">replace_with_rests</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mats</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">muda</span><span class="o">.</span><span class="n">leaf_5</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">material_name</span><span class="o">=</span><span class="s2">"matD_1"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">replace_with_rests</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mats</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="k">lambda</span> <span class="n">_</span><span class="p">:</span> <span class="n">muda</span><span class="o">.</span><span class="n">leaves</span><span class="p">(</span><span class="n">_</span><span class="p">)[:</span><span class="mi">4</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="n">material_name</span><span class="o">=</span><span class="s2">"matD_1"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">replace_with_skips</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mats</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="k">lambda</span> <span class="n">_</span><span class="p">:</span> <span class="n">muda</span><span class="o">.</span><span class="n">leaves</span><span class="p">(</span><span class="n">_</span><span class="p">)[:</span><span class="mi">4</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="n">material_name</span><span class="o">=</span><span class="s2">"matD_2"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">replace_with_skips</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Modify all the “matF” containers:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mats</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">muda</span><span class="o">.</span><span class="n">leaf_1</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">material_name</span><span class="o">=</span><span class="s2">"matF"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">replace_with_skips</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="attach">
+<h4>Attach<a class="headerlink" href="#attach" title="Permalink to this headline">#</a></h4>
+<p>I can attach things in a specific material like this:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mats</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">argument</span><span class="o">=</span><span class="n">abjad</span><span class="o">.</span><span class="n">BeforeGraceContainer</span><span class="p">(</span><span class="s2">"b'8"</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="n">select</span><span class="o">=</span><span class="n">muda</span><span class="o">.</span><span class="n">leaf_2</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">material_name</span><span class="o">=</span><span class="s2">"matH"</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In this case, all the containers which name starts with “matH” will receive a
+grace note before the second leaf.</p>
+<p>It is possible to attach literals:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">literal00</span> <span class="o">=</span> <span class="p">[</span>
+<span class="gp">... </span>    <span class="sa">r</span><span class="s2">"\override Score.BarLine.stencil = ##f"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="sa">r</span><span class="s2">"\override Staff.NoteHead.no-ledgers = ##t"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="sa">r</span><span class="s2">"\override Staff.StaffSymbol.line-count = 1"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="sa">r</span><span class="s2">"\omit Clef"</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>When <code class="docutils literal notranslate"><span class="pre">material_name</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>, it attaches to <code class="docutils literal notranslate"><span class="pre">mats.container</span></code> leaves, pitched
+or not. Muda has also some predefined abjad selections. Here <code class="docutils literal notranslate"><span class="pre">muda.leaf_0</span></code> is actually <code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">_:</span> <span class="pre">abjad.select.leaf(_,</span> <span class="pre">0)</span></code>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mats</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">literal00</span><span class="p">,</span>  <span class="c1"># literal</span>
+<span class="gp">... </span>    <span class="n">muda</span><span class="o">.</span><span class="n">leaf_0</span><span class="p">)</span>  <span class="c1"># leaf</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mats</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\break"</span><span class="p">,</span> <span class="n">muda</span><span class="o">.</span><span class="n">leaf_1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>I will attach breaks after every “matL” containers:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">leaf</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">leaf2</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">mats</span><span class="o">.</span><span class="n">container</span><span class="p">,</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">mats</span><span class="o">.</span><span class="n">container</span><span class="p">[</span><span class="mi">1</span><span class="p">:])):</span>
+<span class="gp">... </span>    <span class="k">if</span> <span class="n">leaf</span><span class="o">.</span><span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">leaftest</span> <span class="o">=</span> <span class="n">leaf</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"matL"</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="n">leaf2test</span> <span class="o">=</span> <span class="n">leaf2</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"matL"</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="k">if</span> <span class="n">leaftest</span> <span class="ow">is</span> <span class="kc">True</span> <span class="ow">and</span> <span class="n">leaf2test</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+<span class="gp">... </span>            <span class="n">abjad</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondLiteral</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\break"</span><span class="p">),</span> <span class="n">leaf2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>I also need to change the line count in materials I, J, K, and L.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">five_lines</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">"\stopStaff \startStaff \revert Staff.StaffSymbol.line-count"</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">one_line</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">'\stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1'</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mats</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">five_lines</span><span class="p">,</span> <span class="n">muda</span><span class="o">.</span><span class="n">leaf_0</span><span class="p">,</span> <span class="p">[</span><span class="s2">"matI"</span><span class="p">,</span> <span class="s2">"matK"</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mats</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">one_line</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">[</span><span class="s2">"matJ"</span><span class="p">,</span> <span class="s2">"matL"</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+<section id="change-noteheads">
+<h4>Change Noteheads<a class="headerlink" href="#change-noteheads" title="Permalink to this headline">#</a></h4>
+<p>It is easy to change the noteheads of a particular material:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mats</span><span class="o">.</span><span class="n">note_heads</span><span class="p">(</span><span class="s2">"matG"</span><span class="p">,</span> <span class="s2">"#'cross"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To get arrows, I will need some more lilypond overrides.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">arrowdown_head</span> <span class="o">=</span> <span class="p">(</span>
+<span class="gp">... </span>    <span class="sa">r</span><span class="s2">"\stemUp"</span>
+<span class="gp">... </span>    <span class="o">+</span> <span class="sa">r</span><span class="s2">"\once \override Staff.Stem.X-offset  = #-0.07"</span>
+<span class="gp">... </span>    <span class="o">+</span> <span class="sa">r</span><span class="s2">"\once \override Staff.Stem.Y-offset  = #0.3"</span>
+<span class="gp">... </span>    <span class="o">+</span> <span class="sa">r</span><span class="s2">"\once \override Staff.Flag.Y-offset  = #1.5"</span>
+<span class="gp">... </span>    <span class="o">+</span> <span class="sa">r</span><span class="s2">"\once \override Staff.NoteHead.stencil = #ly:text-interface::print"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="o">+</span> <span class="sa">r</span><span class="s2">"\once \override Staff.NoteHead #'text = \markup{"</span> 
+<span class="gp">... </span>    <span class="o">+</span> <span class="sa">r</span><span class="s2">" \arrow-head #Y #DOWN ##f}"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">arrowup_head</span> <span class="o">=</span> <span class="p">(</span>
+<span class="gp">... </span>    <span class="o">+</span> <span class="sa">r</span><span class="s2">" \stemNeutral"</span>
+<span class="gp">... </span>    <span class="o">+</span> <span class="sa">r</span><span class="s2">" \once \override Staff.Stem.Y-offset  = #-1.3"</span>
+<span class="gp">... </span>    <span class="o">+</span> <span class="sa">r</span><span class="s2">" \once \override Staff.Stem.X-offset  = #-0.1"</span>
+<span class="gp">... </span>    <span class="o">+</span> <span class="sa">r</span><span class="s2">" \once \override Staff.NoteHead.stencil = #ly:text-interface::print"</span>
+<span class="gp">... </span>    <span class="o">+</span> <span class="sa">r</span><span class="s2">" \once \override Staff.NoteHead #'text = \markup{"</span> 
+<span class="gp">... </span>    <span class="o">+</span> <span class="sa">r</span><span class="s2">"  \arrow-head #Y #UP ##f}"</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mats</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">arrowdown_head</span><span class="p">,</span> <span class="n">muda</span><span class="o">.</span><span class="n">leaf_0</span><span class="p">,</span> <span class="s2">"matF"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mats</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">arrowup_head</span><span class="p">,</span> <span class="n">muda</span><span class="o">.</span><span class="n">leaf_r1</span><span class="p">,</span> <span class="s2">"matF"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Cross note heads in “matG”:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">matG</span> <span class="o">=</span> <span class="n">muda</span><span class="o">.</span><span class="n">select_material</span><span class="p">(</span><span class="n">mats</span><span class="o">.</span><span class="n">container</span><span class="p">,</span> <span class="s2">"matG"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">matG</span> <span class="o">=</span> <span class="n">muda</span><span class="o">.</span><span class="n">pitched_leaves</span><span class="p">(</span><span class="n">matG</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">leaf</span> <span class="ow">in</span> <span class="n">matG</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">abjad</span><span class="o">.</span><span class="n">override</span><span class="p">(</span><span class="n">leaf</span><span class="p">)</span><span class="o">.</span><span class="n">NoteHead</span><span class="o">.</span><span class="n">style</span> <span class="o">=</span> <span class="s2">"#'cross"</span>
+</pre></div>
+</div>
+</section>
+<section id="attach-texts">
+<h4>Attach Texts<a class="headerlink" href="#attach-texts" title="Permalink to this headline">#</a></h4>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mats</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">abjad</span><span class="o">.</span><span class="n">Markup</span><span class="p">(</span><span class="s1">'\markup "expirar"'</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="n">abjad</span><span class="o">.</span><span class="n">Up</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="n">muda</span><span class="o">.</span><span class="n">leaf_0</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s2">"matF_0"</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mats</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">abjad</span><span class="o">.</span><span class="n">Markup</span><span class="p">(</span><span class="s1">'\markup "inspirar"'</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="n">abjad</span><span class="o">.</span><span class="n">Up</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="n">muda</span><span class="o">.</span><span class="n">leaf_r1</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s2">"matF_0"</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mats</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">abjad</span><span class="o">.</span><span class="n">Markup</span><span class="p">(</span><span class="s1">'\markup "(potrinaire)"'</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="n">abjad</span><span class="o">.</span><span class="n">Up</span><span class="p">),</span> <span class="n">muda</span><span class="o">.</span><span class="n">leaf_0</span><span class="p">,</span> <span class="s2">"matI_0"</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mats</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">abjad</span><span class="o">.</span><span class="n">Markup</span><span class="p">(</span><span class="s1">'\markup "(souffle)"'</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="n">abjad</span><span class="o">.</span><span class="n">Up</span><span class="p">),</span> <span class="n">muda</span><span class="o">.</span><span class="n">leaf_0</span><span class="p">,</span> <span class="s2">"matG_0"</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="write-indicators">
+<h4>Write indicators<a class="headerlink" href="#write-indicators" title="Permalink to this headline">#</a></h4>
+<p>With <code class="docutils literal notranslate"><span class="pre">write_indicators</span></code> is easy to write slurs (I need to rewrite this method).</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mats</span><span class="o">.</span><span class="n">write_indicators</span><span class="p">(</span><span class="n">material_name</span><span class="o">=</span><span class="s2">"matF"</span><span class="p">,</span> <span class="n">slur_down</span><span class="o">=</span><span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mats</span><span class="o">.</span><span class="n">write_indicators</span><span class="p">(</span><span class="n">material_name</span><span class="o">=</span><span class="s2">"matI"</span><span class="p">,</span> <span class="n">slur_up</span><span class="o">=</span><span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mats</span><span class="o">.</span><span class="n">write_indicators</span><span class="p">(</span><span class="n">material_name</span><span class="o">=</span><span class="s2">"matK"</span><span class="p">,</span> <span class="n">slur_up</span><span class="o">=</span><span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">)])</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="lyrics">
+<h3>Lyrics<a class="headerlink" href="#lyrics" title="Permalink to this headline">#</a></h3>
+<p>Lyrics are written in a specific class: <code class="docutils literal notranslate"><span class="pre">muda.Lyrics</span></code>. It requires the
+target to which the lyrics will be added. Later, we put this <code class="docutils literal notranslate"><span class="pre">muda.Lyrics</span></code>
+instance together with the materials in the score through the method
+<code class="docutils literal notranslate"><span class="pre">muda.Score.write_mateirals</span></code>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lyrics</span> <span class="o">=</span> <span class="n">muda</span><span class="o">.</span><span class="n">Lyrics</span><span class="p">(</span><span class="s2">"Soprano_Voice_1"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lyrics</span><span class="o">.</span><span class="n">write_lyrics</span><span class="p">(</span><span class="sa">r</span><span class="s1">'''</span>
+<span class="gp">... </span><span class="s1">    sir</span>
+<span class="gp">... </span><span class="s1">    dé -- sir</span>
+<span class="gp">... </span><span class="s1">    _ dé -- sir</span>
+<span class="gp">... </span><span class="s1">    ce _ dé -- sir</span>
+<span class="gp">... </span><span class="s1">    donc __ ce _  dé -- sir</span>
+<span class="gp">... </span><span class="s1">    porquoi  donc __ ce _ dé -- sir</span>
+<span class="gp">... </span><span class="s1">    _ _ _ _ _ _ porquoi donc __ ce _  dé -- sir</span>
+<span class="gp">... </span><span class="s1">    _ _ _ _ _ _ _ porquoi donc __ ce _  dé -- sir</span>
+<span class="gp">... </span><span class="s1">    je lui cède _ _ _ _ _ _ _ porquoi donc __ ce _  dé -- sir</span>
+<span class="gp">... </span><span class="s1">    par -- fois je lui cède _ _ _ _ _ _ _ porquoi donc __ ce _  dé -- sir</span>
+<span class="gp">... </span><span class="s1">    jé par -- fois je lui cède _ _ _ _ _ _ _ porquoi donc __ ce _  dé -- sir</span>
+<span class="gp">... </span><span class="s1">    tu -- jé par -- fois je lui cède _ _ _ _ _ _ _</span>
+<span class="gp">... </span><span class="s1">        porquoi donc __ ce _  dé -- sir</span>
+<span class="gp">... </span><span class="s1">    san tu -- jé par -- fois je lui cède _ _ _ _ _ _ _</span>
+<span class="gp">... </span><span class="s1">        porquoi donc __ ce _  dé -- sir</span>
+<span class="gp">... </span><span class="s1">    vé san tu -- jé par -- fois je lui cède _ _ _ _ _ _ _</span>
+<span class="gp">... </span><span class="s1">        porquoi donc __ ce _  dé -- sir</span>
+<span class="gp">... </span><span class="s1">    en -- vie vé san tu -- jé par -- fois je lui cède _ _ _ _ _ _ _</span>
+<span class="gp">... </span><span class="s1">        porquoi donc __ ce _  dé -- sir</span>
+<span class="gp">... </span><span class="s1">    mon en -- vie vé san tu -- jé par -- fois je lui cède _ _ _ _ _ _ _</span>
+<span class="gp">... </span><span class="s1">        porquoi donc __ ce _  dé -- sir</span>
+<span class="gp">... </span><span class="s1">    à mon en -- vie vé san tu -- jé par -- fois je lui cède _ _ _ _ _ _ _</span>
+<span class="gp">... </span><span class="s1">        porquoi donc __ ce _  dé -- sir</span>
+<span class="gp">... </span><span class="s1">    ré -- siste à mon en -- vie vé san tu -- jé par -- fois je lui cède</span>
+<span class="gp">... </span><span class="s1">        _ _ _ _ _ _ _ porquoi donc __ ce _  dé -- sir</span>
+<span class="gp">... </span><span class="s1">    par -- fois je ré -- siste à mon en -- vie vé san tu -- jé</span>
+<span class="gp">... </span><span class="s1">        par -- fois je lui cède _ _ _ _ _ _ _ porquoi donc __ ce _  dé -- sir</span>
+<span class="gp">... </span><span class="s1">    '''</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Obs.: It would be necessary some adjusts to have a score nearer to the original (delete some rests, implement a different signatures, etc.). However, the objective here was only illustrate the possibilities of muda library.</p>
+</section>
+</section>
+<section id="score">
+<h2>Score<a class="headerlink" href="#score" title="Permalink to this headline">#</a></h2>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">score</span> <span class="o">=</span> <span class="n">muda</span><span class="o">.</span><span class="n">Score</span><span class="p">()</span>
+<span class="go">muda.Score()</span>
+</pre></div>
+</div>
+<section id="append-instrument">
+<h3>Append Instrument<a class="headerlink" href="#append-instrument" title="Permalink to this headline">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">inst</span> <span class="o">=</span> <span class="n">muda</span><span class="o">.</span><span class="n">Instrument</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">abjad_instrument</span><span class="o">=</span><span class="n">abjad</span><span class="o">.</span><span class="n">SopranoVoice</span><span class="p">(),</span>
+<span class="gp">... </span>    <span class="n">name</span><span class="o">=</span><span class="s2">"Soprano"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">nstaffs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">nvoices</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="n">lyrics_target</span><span class="o">=</span><span class="s2">"Soprano_Voice_1"</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="go">muda.score.Instrument() Soprano</span>
+<span class="go">creating Staff: Soprano_Staff_1</span>
+<span class="go">creating Voice: Soprano_Voice_1</span>
+<span class="go">creating Context:  Soprano_Voice_1_Lyrics</span>
+</pre></div>
+</div>
+<p>Notice that the name “Soprano_Voice_1” I predicted when wrote the
+<code class="docutils literal notranslate"><span class="pre">muda.Material</span></code> and <code class="docutils literal notranslate"><span class="pre">muda.Lyrics</span></code> is defined automatically. I just needed
+to put the name “Soprano”.</p>
+<p>In this case, when creating the instrument is also necessary to add the
+<code class="docutils literal notranslate"><span class="pre">lyrics_target</span></code>.</p>
+<p>Append the instrument in the score:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">score</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">inst</span><span class="p">])</span>
+<span class="go">muda.Score.append() Soprano</span>
+</pre></div>
+</div>
+</section>
+<section id="make-skips">
+<h3>Make Skips<a class="headerlink" href="#make-skips" title="Permalink to this headline">#</a></h3>
+<p>I use <code class="docutils literal notranslate"><span class="pre">muda.Material()</span></code> also to create a global context to time signatures:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">global_context</span> <span class="o">=</span> <span class="n">muda</span><span class="o">.</span><span class="n">Material</span><span class="p">(</span><span class="s2">"Global_Context"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">global_context</span><span class="o">.</span><span class="n">make_skips</span><span class="p">(</span><span class="n">time_signatures</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">global_context</span><span class="o">.</span><span class="n">write_time_signatures</span><span class="p">(</span><span class="n">time_signatures</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="write-materials">
+<h3>Write Materials<a class="headerlink" href="#write-materials" title="Permalink to this headline">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">write_materials()</span></code> will write the materials and lyrics to the score. What
+is behind the scenes is that <code class="docutils literal notranslate"><span class="pre">mats.container</span></code> is appended to
+<code class="docutils literal notranslate"><span class="pre">score.score["Soprano_Voice_1"]</span></code>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">score</span><span class="o">.</span><span class="n">write_materials</span><span class="p">([</span><span class="n">mats</span><span class="p">,</span> <span class="n">lyrics</span><span class="p">,</span> <span class="n">global_context</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+<section id="lilypond-file">
+<h3>LilyPond File<a class="headerlink" href="#lilypond-file" title="Permalink to this headline">#</a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lilypond_file</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">LilyPondFile</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">items</span><span class="o">=</span><span class="p">[</span><span class="n">score</span><span class="o">.</span><span class="n">score</span><span class="p">],</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">persist</span><span class="o">.</span><span class="n">as_ly</span><span class="p">(</span><span class="n">lilypond_file</span><span class="p">,</span> <span class="s2">"aperghis_score.ly"</span><span class="p">)</span>
+<span class="go">('aperghis_score.ly', 0.21055388450622559)</span>
+</pre></div>
+</div>
+<p>The generated score (“aperghis_score.ly”) is included in the following
+lilypond file:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>\version "2.20.0"   %! abjad.LilyPondFile._get_format_pieces()
+\language "english" %! abjad.LilyPondFile._get_format_pieces()
+
+\include "aperghis_stylesheet.ily"
+
+
+\markuplist {
+  \right-column {
+    \pad-around #1
+    \score-lines {
+      \include "aperghis_score.ly"
+    }
+  }
+}
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">abjad</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">run_lilypond</span><span class="p">(</span><span class="s2">"aperghis_example.ly"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The sylesheet content:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>\version "2.20"
+\language "english"
+
+#(set-global-staff-size 9)
+
+\header {
+  tagline = ##f
+  % breakbefore = ##t
+  title =  "Recitación 9"
+  poet = "Georges Aperghis (*1945)"
+}
+
+\layout {
+  ragged-right = ##t
+  \context {
+    \name TimeSignatureContext
+    \type Engraver_group
+    \numericTimeSignature
+  }
+  \context {
+    \Score
+    \numericTimeSignature
+    \remove Metronome_mark_engraver
+    \remove Bar_number_engraver
+    \remove Mark_engraver
+    \accepts TimeSignatureContext
+    \override BarLine.hair-thickness = #0.9
+    \override BarLine.thick-thickness = #8
+    \override Stem.thickness = #0.5
+    \override Staff.thickness = #0.5
+    \override Stem.stemlet-length = #1.15
+    \override TupletBracket.bracket-visibility = ##t
+    \override TupletBracket.minimum-length = #3
+    \override TupletBracket.padding = #2
+    \override TupletBracket.staff-padding = #2
+    \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
+    \override TupletBracket.direction = #down
+    \override TupletNumber.font-size = #1.2
+    \override TupletNumber.text = #tuplet-number::calc-fraction-text
+    \override SpacingSpanner.strict-note-spacing = ##t
+    proportionalNotationDuration = #(ly:make-moment 1 28)
+    tupletFullLength = ##t
+  }
+
+  \context {
+    \Staff
+    \remove Time_signature_engraver
+    \remove Clef_engraver
+  }
+}
+
+\paper {
+  #(set-paper-size "b4landscape")
+  indent = 0
+  bottom-margin = 10\mm
+  left-margin = 50\mm
+  right-margin = 20\mm
+  top-margin = 10\mm
+
+}
+</pre></div>
+</div>
+<p>The result:</p>
+<p>
+<iframe align="middle" frameborder="1" height="580" id="ID" scrolling="auto" src="_static/aperghis_example.pdf" style="border:1px solid #666CCC" title="PDF" width="700">
+</iframe>
+</p>
+</section>
+</section>
+</section>
+<section id="module-muda.score">
+<span id="muda-score"></span><h1>muda score<a class="headerlink" href="#module-muda.score" title="Permalink to this headline">#</a></h1>
+<p>Score.</p>
+<p>Classes to build a score.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="muda.score.Instrument">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">muda.score.</span></span><span class="sig-name descname"><span class="pre">Instrument</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">abjad_instrument</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">staff_count</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voice_count</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lyrics_target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.score.Instrument" title="Permalink to this definition">#</a></dt>
+<dd><p>Create an instrument staff <code class="docutils literal notranslate"><span class="pre">abjad.Staff()</span></code>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">muda</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">abjad</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">myinst</span> <span class="o">=</span> <span class="n">muda</span><span class="o">.</span><span class="n">Instrument</span><span class="p">(</span>
+<span class="gp">... </span>            <span class="n">abjad_instrument</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Piano</span><span class="p">(),</span>
+<span class="gp">... </span>            <span class="n">name</span> <span class="o">=</span> <span class="s2">"My Piano"</span><span class="p">,</span>
+<span class="gp">... </span>            <span class="n">staff_count</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>  <span class="c1"># number of staves for the instrument</span>
+<span class="gp">... </span>            <span class="n">voice_count</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>  <span class="c1"># number of voices for each staff</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="go">muda.score.Instrument()</span>
+<span class="go">My Piano</span>
+<span class="go">    creating My Piano_Staff_1</span>
+<span class="go">    creating My Piano_Staff_2</span>
+<span class="go">        creating My Piano_Voice_1</span>
+<span class="go">        creating My Piano_Voice_2</span>
+<span class="go">        creating My Piano_Voice_3</span>
+<span class="go">            attaching My Piano_Voice_1 to My Piano_Staff_1</span>
+<span class="go">            attaching My Piano_Voice_2 to My Piano_Staff_1</span>
+<span class="go">            attaching My Piano_Voice_3 to My Piano_Staff_2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">abjad</span><span class="o">.</span><span class="n">lilypond</span><span class="p">(</span><span class="n">myinst</span><span class="o">.</span><span class="n">ready_staff</span><span class="p">))</span>
+<span class="go">\context PianoStaff = "Piano_StaffGroup"</span>
+<span class="go">&lt;&lt;</span>
+<span class="go">    \context Staff = "My Piano_Staff_1"</span>
+<span class="go">    &lt;&lt;</span>
+<span class="go">        \context Voice = "My Piano_Voice_1"</span>
+<span class="go">        {</span>
+<span class="go">            \voiceOne</span>
+<span class="go">        }</span>
+<span class="go">        \context Voice = "My Piano_Voice_2"</span>
+<span class="go">        {</span>
+<span class="go">        }</span>
+<span class="go">    &gt;&gt;</span>
+<span class="go">    \context Staff = "My Piano_Staff_2"</span>
+<span class="go">    &lt;&lt;</span>
+<span class="go">        \context Voice = "My Piano_Voice_3"</span>
+<span class="go">        {</span>
+<span class="go">        }</span>
+<span class="go">    &gt;&gt;</span>
+<span class="go">&gt;&gt;</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="muda.score.Instrument.append_staves">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">append_staves</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.score.Instrument.append_staves" title="Permalink to this definition">#</a></dt>
+<dd><p>Method to create instrument staves.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="muda.score.Instrument.append_voices">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">append_voices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">staves</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.score.Instrument.append_voices" title="Permalink to this definition">#</a></dt>
+<dd><p>Method to append voices to instrument staves.</p>
+</dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="muda.score.Score">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">muda.score.</span></span><span class="sig-name descname"><span class="pre">Score</span></span><a class="headerlink" href="#muda.score.Score" title="Permalink to this definition">#</a></dt>
+<dd><p>Make Score.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">muda</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">abjad</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">my_score</span> <span class="o">=</span> <span class="n">muda</span><span class="o">.</span><span class="n">Score</span><span class="p">()</span>
+<span class="go">muda.Score()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">abjad</span><span class="o">.</span><span class="n">lilypond</span><span class="p">(</span><span class="n">my_score</span><span class="o">.</span><span class="n">score</span><span class="p">))</span>
+<span class="go">\context Score = "Score"</span>
+<span class="go">&lt;&lt;</span>
+<span class="go">    \context TimeSignatureContext = "Global_Context"</span>
+<span class="go">    {</span>
+<span class="go">    }</span>
+<span class="go">&gt;&gt;</span>
+</pre></div>
+</div>
+<p>Use stylesheet to add markup names and hide or modify the time signatures (skips) staff.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="muda.score.Score.append">
+<span class="sig-name descname"><span class="pre">append</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.score.Score.append" title="Permalink to this definition">#</a></dt>
+<dd><p>Add <code class="docutils literal notranslate"><span class="pre">muda.Instrument.ready_staff</span></code> to the score.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">my_inst</span> <span class="o">=</span> <span class="n">muda</span><span class="o">.</span><span class="n">Instrument</span><span class="p">(</span>
+<span class="gp">... </span>   <span class="n">abjad_instrument</span> <span class="o">=</span> <span class="n">abjad</span><span class="o">.</span><span class="n">Piano</span><span class="p">(),</span>
+<span class="gp">... </span>   <span class="n">name</span> <span class="o">=</span> <span class="s2">"Piano"</span><span class="p">,</span>
+<span class="gp">... </span>   <span class="n">staff_count</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+<span class="gp">... </span>   <span class="n">voice_count</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],)</span>
+<span class="go">muda.score.Instrument() Piano</span>
+<span class="go">creating Staff: Piano_Staff_1</span>
+<span class="go">creating Staff: Piano_Staff_2</span>
+<span class="go">creating Voice: Piano_Voice_1</span>
+<span class="go">creating Voice: Piano_Voice_2</span>
+<span class="go">creating Voice: Piano_Voice_3</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">my_score</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">my_inst</span><span class="p">])</span>
+<span class="go">muda.Score.append() Piano</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">abjad</span><span class="o">.</span><span class="n">lilypond</span><span class="p">(</span><span class="n">my_score</span><span class="o">.</span><span class="n">score</span><span class="p">)</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="go">\context Score = "Score"</span>
+<span class="go">&lt;&lt;</span>
+<span class="go">    \context TimeSignatureContext = "Global_Context"</span>
+<span class="go">    {</span>
+<span class="go">    }</span>
+<span class="go">    \context PianoStaff = "Piano_StaffGroup"</span>
+<span class="go">    &lt;&lt;</span>
+<span class="go">        \context Staff = "Piano_Staff_1"</span>
+<span class="go">        &lt;&lt;</span>
+<span class="go">            \context Voice = "Piano_Voice_1"</span>
+<span class="go">            {</span>
+<span class="go">            }</span>
+<span class="go">            \context Voice = "Piano_Voice_2"</span>
+<span class="go">            {</span>
+<span class="go">            }</span>
+<span class="go">        &gt;&gt;</span>
+<span class="go">        \context Staff = "Piano_Staff_2"</span>
+<span class="go">        &lt;&lt;</span>
+<span class="go">            \context Voice = "Piano_Voice_3"</span>
+<span class="go">            {</span>
+<span class="go">            }</span>
+<span class="go">        &gt;&gt;</span>
+<span class="go">    &gt;&gt;</span>
+<span class="go">&gt;&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="muda.score.Score.lilypond">
+<span class="sig-name descname"><span class="pre">lilypond</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#muda.score.Score.lilypond" title="Permalink to this definition">#</a></dt>
+<dd><p>Print <code class="docutils literal notranslate"><span class="pre">self.score</span></code> lilypond code.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">muda</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">my_score</span> <span class="o">=</span> <span class="n">muda</span><span class="o">.</span><span class="n">Score</span><span class="p">()</span>
+<span class="go">muda.Score()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">my_score</span><span class="o">.</span><span class="n">lilypond</span><span class="p">()</span>
+<span class="go">\context Score = "Score"</span>
+<span class="go">    &lt;&lt;</span>
+<span class="go">        \context TimeSignatureContext = "Global_Context"</span>
+<span class="go">        {</span>
+<span class="go">        }</span>
+<span class="go">    &gt;&gt;</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="muda.score.Score.make_skips">
+<span class="sig-name descname"><span class="pre">make_skips</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_signatures</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attach</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.score.Score.make_skips" title="Permalink to this definition">#</a></dt>
+<dd><p>Write skips and time signatures to “Global_Context”.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">my_score</span><span class="o">.</span><span class="n">make_skips</span><span class="p">([(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">)])</span>
+<span class="go">muda.Score.make_skips()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">abjad</span><span class="o">.</span><span class="n">lilypond</span><span class="p">(</span><span class="n">my_score</span><span class="o">.</span><span class="n">score</span><span class="p">))</span>
+<span class="go">\context Score = "Score"</span>
+<span class="go">&lt;&lt;</span>
+<span class="go">    \context TimeSignatureContext = "Global_Context"</span>
+<span class="go">    {</span>
+<span class="go">        \time 4/4</span>
+<span class="go">        s1 * 1</span>
+<span class="go">        \time 5/4</span>
+<span class="go">        s1 * 5/4</span>
+<span class="go">    }</span>
+<span class="go">    \context PianoStaff = "Piano_StaffGroup"</span>
+<span class="go">    &lt;&lt;</span>
+<span class="go">        \context Staff = "Piano_Staff_1"</span>
+<span class="go">        &lt;&lt;</span>
+<span class="go">            \context Voice = "Piano_Voice_1"</span>
+<span class="go">            {</span>
+<span class="go">            }</span>
+<span class="go">            \context Voice = "Piano_Voice_2"</span>
+<span class="go">            {</span>
+<span class="go">            }</span>
+<span class="go">        &gt;&gt;</span>
+<span class="go">        \context Staff = "Piano_Staff_2"</span>
+<span class="go">        &lt;&lt;</span>
+<span class="go">            \context Voice = "Piano_Voice_3"</span>
+<span class="go">            {</span>
+<span class="go">            }</span>
+<span class="go">        &gt;&gt;</span>
+<span class="go">    &gt;&gt;</span>
+<span class="go">&gt;&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="muda.score.Score.rewrite_meter">
+<span class="sig-name descname"><span class="pre">rewrite_meter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_signatures</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.score.Score.rewrite_meter" title="Permalink to this definition">#</a></dt>
+<dd><p>Rewrite meter according to <code class="docutils literal notranslate"><span class="pre">abjad.TimeSignature</span></code> or <code class="docutils literal notranslate"><span class="pre">tuple</span></code> list.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">my_score</span><span class="o">.</span><span class="n">rewrite_meter</span><span class="p">(</span><span class="n">my_divisions</span><span class="p">)</span>
+<span class="go">rewriting meter: Piano_Voice_1</span>
+<span class="go">rewriting meter: Piano_Voice_3</span>
+<span class="go">&lt;Score-"Score"&lt;&lt;2&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="muda.score.Score.show">
+<span class="sig-name descname"><span class="pre">show</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#muda.score.Score.show" title="Permalink to this definition">#</a></dt>
+<dd><p>Show <code class="docutils literal notranslate"><span class="pre">self.score</span></code>.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="muda.score.Score.write_materials">
+<span class="sig-name descname"><span class="pre">write_materials</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">materials_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.score.Score.write_materials" title="Permalink to this definition">#</a></dt>
+<dd><p>Write materials to voices. (TODO)</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">material_01</span> <span class="o">=</span> <span class="n">muda</span><span class="o">.</span><span class="n">Material</span><span class="p">(</span><span class="s2">"Piano_Voice_1"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">material_01</span><span class="o">.</span><span class="n">silence_and_rhythm_maker</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">maker</span><span class="o">=</span><span class="n">rmakers</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span>
+<span class="gp">... </span>            <span class="n">rmakers</span><span class="o">.</span><span class="n">talea</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">16</span><span class="p">),</span>
+<span class="gp">... </span>            <span class="n">rmakers</span><span class="o">.</span><span class="n">extract_trivial</span><span class="p">(),</span>
+<span class="gp">... </span>            <span class="n">rmakers</span><span class="o">.</span><span class="n">beam</span><span class="p">()),</span>
+<span class="gp">... </span>    <span class="n">annotated_divisions</span><span class="o">=</span><span class="p">[</span>
+<span class="gp">... </span>            <span class="n">muda</span><span class="o">.</span><span class="n">AnnotatedDuration</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)),</span>
+<span class="gp">... </span>            <span class="n">muda</span><span class="o">.</span><span class="n">AnnotatedDuration</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">annotation</span><span class="o">=</span><span class="s2">"Rest"</span><span class="p">),</span>
+<span class="gp">... </span>            <span class="n">muda</span><span class="o">.</span><span class="n">AnnotatedDuration</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)),</span>
+<span class="gp">... </span>            <span class="n">muda</span><span class="o">.</span><span class="n">AnnotatedDuration</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">annotation</span><span class="o">=</span><span class="s2">"Rest"</span><span class="p">),</span>
+<span class="gp">... </span>            <span class="n">muda</span><span class="o">.</span><span class="n">AnnotatedDuration</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)),]</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">material_01</span><span class="o">.</span><span class="n">write_pitches</span><span class="p">([</span><span class="s2">"d'"</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">material_02</span> <span class="o">=</span> <span class="n">muda</span><span class="o">.</span><span class="n">Material</span><span class="p">(</span><span class="s2">"Piano_Voice_3"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">material_02</span><span class="o">.</span><span class="n">silence_and_rhythm_maker</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">maker</span><span class="o">=</span><span class="n">rmakers</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span>
+<span class="gp">... </span>        <span class="n">rmakers</span><span class="o">.</span><span class="n">talea</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">16</span><span class="p">),</span>
+<span class="gp">... </span>        <span class="n">rmakers</span><span class="o">.</span><span class="n">extract_trivial</span><span class="p">(),</span>
+<span class="gp">... </span>        <span class="n">rmakers</span><span class="o">.</span><span class="n">beam</span><span class="p">(),</span>
+<span class="gp">... </span>        <span class="p">),</span>
+<span class="gp">... </span>    <span class="n">annotated_divisions</span><span class="o">=</span><span class="p">[</span>
+<span class="gp">... </span>        <span class="n">muda</span><span class="o">.</span><span class="n">AnnotatedDuration</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">)),</span>
+<span class="gp">... </span>        <span class="n">muda</span><span class="o">.</span><span class="n">AnnotatedDuration</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">annotation</span><span class="o">=</span><span class="s2">"Rest"</span><span class="p">),</span>
+<span class="gp">... </span>        <span class="n">muda</span><span class="o">.</span><span class="n">AnnotatedDuration</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">)),</span>
+<span class="gp">... </span>        <span class="n">muda</span><span class="o">.</span><span class="n">AnnotatedDuration</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">annotation</span><span class="o">=</span><span class="s2">"Rest"</span><span class="p">),</span>
+<span class="gp">... </span>        <span class="n">muda</span><span class="o">.</span><span class="n">AnnotatedDuration</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">)),</span>
+<span class="gp">... </span>        <span class="n">muda</span><span class="o">.</span><span class="n">AnnotatedDuration</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">)),</span>
+<span class="gp">... </span>        <span class="p">]</span>
+<span class="gp">... </span>    <span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">material_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">material_01</span><span class="p">,</span> <span class="n">material_02</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">my_score</span><span class="o">.</span><span class="n">write_materials</span><span class="p">(</span><span class="n">material_list</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">my_score</span><span class="o">.</span><span class="n">rewrite_meter</span><span class="p">(</span><span class="n">my_divisions</span><span class="p">)</span>
+<span class="go">rewriting meter: Piano_Voice_1</span>
+<span class="go">rewriting meter: Piano_Voice_3</span>
+<span class="go">&lt;Score-"Score"&lt;&lt;2&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">abjad</span><span class="o">.</span><span class="n">lilypond</span><span class="p">(</span><span class="n">my_score</span><span class="o">.</span><span class="n">score</span><span class="p">))</span>
+<span class="go">\context Score = "Score"</span>
+<span class="go">&lt;&lt;</span>
+<span class="go">    \context TimeSignatureContext = "Global_Context"</span>
+<span class="go">    {</span>
+<span class="go">        \time 4/4</span>
+<span class="go">        s1 * 1</span>
+<span class="go">        \time 5/4</span>
+<span class="go">        s1 * 5/4</span>
+<span class="go">    }</span>
+<span class="go">    \context PianoStaff = "Piano_StaffGroup"</span>
+<span class="go">    &lt;&lt;</span>
+<span class="go">        \context Staff = "Piano_Staff_1"</span>
+<span class="go">        &lt;&lt;</span>
+<span class="go">            \context Voice = "Piano_Voice_1"</span>
+<span class="go">            {</span>
+<span class="go">                d'16</span>
+<span class="go">                r8.</span>
+<span class="go">                r4</span>
+<span class="go">                r4</span>
+<span class="go">                d'16</span>
+<span class="go">                r8.</span>
+<span class="go">                r2</span>
+<span class="go">                d'16</span>
+<span class="go">                r8.</span>
+<span class="go">                d'16</span>
+<span class="go">                d'16</span>
+<span class="go">                r8</span>
+<span class="go">                r16</span>
+<span class="go">                d'16</span>
+<span class="go">                d'16</span>
+<span class="go">                r16</span>
+<span class="go">            }</span>
+<span class="go">            \context Voice = "Piano_Voice_2"</span>
+<span class="go">            {</span>
+<span class="go">            }</span>
+<span class="go">        &gt;&gt;</span>
+<span class="go">        \context Staff = "Piano_Staff_2"</span>
+<span class="go">        &lt;&lt;</span>
+<span class="go">            \context Voice = "Piano_Voice_3"</span>
+<span class="go">            {</span>
+<span class="go">                r16</span>
+<span class="go">                c'16</span>
+<span class="go">                c'16</span>
+<span class="go">                c'16</span>
+<span class="go">                r16</span>
+<span class="go">                c'16</span>
+<span class="go">                r8</span>
+<span class="go">                r4</span>
+<span class="go">                r16</span>
+<span class="go">                c'16</span>
+<span class="go">                c'16</span>
+<span class="go">                c'16</span>
+<span class="go">                r16</span>
+<span class="go">                c'16</span>
+<span class="go">                r4.</span>
+<span class="go">                r16</span>
+<span class="go">                c'16</span>
+<span class="go">                c'16</span>
+<span class="go">                c'16</span>
+<span class="go">                r16</span>
+<span class="go">                c'16</span>
+<span class="go">                c'16</span>
+<span class="go">                c'16</span>
+<span class="go">                r16</span>
+<span class="go">                c'16</span>
+<span class="go">                c'16</span>
+<span class="go">                c'16</span>
+<span class="go">           }</span>
+<span class="go">        &gt;&gt;</span>
+<span class="go">    &gt;&gt;</span>
+<span class="go">&gt;&gt;</span>
+</pre></div>
+</div>
+<div class="lilypond">
+<p><img alt="\version &quot;2.20.0&quot;
+
+\context Score = &quot;Score&quot;
+&lt;&lt;
+    \context TimeSignatureContext = &quot;Global_Context&quot;
+    {
+        \time 4/4
+        s1 * 1
+        \time 5/4
+        s1 * 5/4
+    }
+    \context PianoStaff = &quot;Piano_StaffGroup&quot;
+    &lt;&lt;
+        \context Staff = &quot;Piano_Staff_1&quot;
+        &lt;&lt;
+            \context Voice = &quot;Piano_Voice_1&quot;
+            {
+                d'16
+                r8.
+                r4
+                r4
+                d'16
+                r8.
+                r2
+                d'16
+                r8.
+                d'16
+                d'16
+                r8
+                r16
+                d'16
+                d'16
+                r16
+            }
+            \context Voice = &quot;Piano_Voice_2&quot;
+            {
+            }
+        &gt;&gt;
+        \context Staff = &quot;Piano_Staff_2&quot;
+        &lt;&lt;
+            \context Voice = &quot;Piano_Voice_3&quot;
+            {
+                r16
+                c'16
+                c'16
+                c'16
+                r16
+                c'16
+                r8
+                r4
+                r16
+                c'16
+                c'16
+                c'16
+                r16
+                c'16
+                r4.
+                r16
+                c'16
+                c'16
+                c'16
+                r16
+                c'16
+                c'16
+                c'16
+                r16
+                c'16
+                c'16
+                c'16
+                                     }
+        &gt;&gt;
+    &gt;&gt;
+&gt;&gt;" class="lilypond-score" src="./_lilypond/82ade75751b99da82aed102b6e57e87ba89b5bb7/music.png" style="width:100%;"/>
+</p></div></dd></dl>
+</dd></dl>
+</section>
+<section id="module-muda.material">
+<span id="muda-material"></span><h1>muda material<a class="headerlink" href="#module-muda.material" title="Permalink to this headline">#</a></h1>
+<p>Material.</p>
+<p>Classes to create and manage music materials and lyrics.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="muda.material.Lyrics">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">muda.material.</span></span><span class="sig-name descname"><span class="pre">Lyrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Lyrics" title="Permalink to this definition">#</a></dt>
+<dd><p>Lyrics.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="muda.material.Lyrics.write_lyrics">
+<span class="sig-name descname"><span class="pre">write_lyrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lyrics</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Lyrics.write_lyrics" title="Permalink to this definition">#</a></dt>
+<dd><p>Method to write lyrics attribute to a <code class="docutils literal notranslate"><span class="pre">muda.Lyrics</span></code> instance.</p>
+</dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="muda.material.Material">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">muda.material.</span></span><span class="sig-name descname"><span class="pre">Material</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Material" title="Permalink to this definition">#</a></dt>
+<dd><p>Material.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="muda.material.Material.alternating_materials">
+<span class="sig-name descname"><span class="pre">alternating_materials</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">annotated_durations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">makers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Material.alternating_materials" title="Permalink to this definition">#</a></dt>
+<dd><p>Create alternating materials according to a list of named durations.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="muda.material.Material.annotate_indices_on_selection">
+<span class="sig-name descname"><span class="pre">annotate_indices_on_selection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">select</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">material_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Material.annotate_indices_on_selection" title="Permalink to this definition">#</a></dt>
+<dd><p>Illustrate selection with numbers.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="muda.material.Material.annotate_material_names">
+<span class="sig-name descname"><span class="pre">annotate_material_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">material_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Material.annotate_material_names" title="Permalink to this definition">#</a></dt>
+<dd><p>Add markups to identify materials.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="muda.material.Material.attach">
+<span class="sig-name descname"><span class="pre">attach</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">argument</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">select</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">material_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Material.attach" title="Permalink to this definition">#</a></dt>
+<dd><p>Attach <code class="docutils literal notranslate"><span class="pre">argument</span></code> to leaves.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="muda.material.Material.automatic_clefs">
+<span class="sig-name descname"><span class="pre">automatic_clefs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">select</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">abjad.select.Selection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">material_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Material.automatic_clefs" title="Permalink to this definition">#</a></dt>
+<dd><p>Attach appropriate clef for selection.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="muda.material.Material.delete">
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">select</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">material_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replace_with_rests</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replace_with_skips</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Material.delete" title="Permalink to this definition">#</a></dt>
+<dd><p>Delete leaves by index.</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">material_name</span></code> to delete a leaf in a
+specific material. Use <code class="docutils literal notranslate"><span class="pre">replace_with_rests</span></code> or
+<code class="docutils literal notranslate"><span class="pre">replace_with_skips</span></code> to replace leaves by rests or skips.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="muda.material.Material.dynamics">
+<span class="sig-name descname"><span class="pre">dynamics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dynamics</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">material_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Material.dynamics" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dynamics</strong> – dict (key: str, value: abjad.Selection)</p></li>
+<li><p><strong>material_name</strong> – str</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="muda.material.Material.guitar_bitones">
+<span class="sig-name descname"><span class="pre">guitar_bitones</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">select</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">abjad.select.Selection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">material_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hammering</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parenthesized</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">playing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_midi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Material.guitar_bitones" title="Permalink to this definition">#</a></dt>
+<dd><p>Make guitar bi-notes chords using note + string informed in container.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="muda.material.Material.make_skips">
+<span class="sig-name descname"><span class="pre">make_skips</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">argument</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Material.make_skips" title="Permalink to this definition">#</a></dt>
+<dd><p>Write skips and time signatures to Context.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="muda.material.Material.print">
+<span class="sig-name descname"><span class="pre">print</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Material.print" title="Permalink to this definition">#</a></dt>
+<dd><p>Print <code class="docutils literal notranslate"><span class="pre">muda.Material.container</span></code> lilypond code.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="muda.material.Material.retrograde">
+<span class="sig-name descname"><span class="pre">retrograde</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">material_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Material.retrograde" title="Permalink to this definition">#</a></dt>
+<dd><p>Retrograde components in container.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="muda.material.Material.rewrite_meter">
+<span class="sig-name descname"><span class="pre">rewrite_meter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_signatures</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Material.rewrite_meter" title="Permalink to this definition">#</a></dt>
+<dd><p>Rewrite meter according to <code class="docutils literal notranslate"><span class="pre">abjad.TimeSignature</span></code> or <code class="docutils literal notranslate"><span class="pre">tuple</span></code> list.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="muda.material.Material.select_material">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">select_material</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">container</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">material_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Material.select_material" title="Permalink to this definition">#</a></dt>
+<dd><p>Select container by name.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="muda.material.Material.show">
+<span class="sig-name descname"><span class="pre">show</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Material.show" title="Permalink to this definition">#</a></dt>
+<dd><p>Illustrate <code class="docutils literal notranslate"><span class="pre">muda.Material.container</span></code>.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="muda.material.Material.write">
+<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lilypond_string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Material.write" title="Permalink to this definition">#</a></dt>
+<dd><p>It creates container from lilypond string and append to a
+<code class="docutils literal notranslate"><span class="pre">muda.Material()</span></code> instance.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="muda.material.Material.write_indicators">
+<span class="sig-name descname"><span class="pre">write_indicators</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">material_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dynamics</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">articulations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slur_up</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slur_down</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">change_staffs_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pitched</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Material.write_indicators" title="Permalink to this definition">#</a></dt>
+<dd><p>Write indicators to leaves.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="muda.material.Material.write_pitches">
+<span class="sig-name descname"><span class="pre">write_pitches</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pitches</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Material.write_pitches" title="Permalink to this definition">#</a></dt>
+<dd><p>Write pitches to notes in the Material instance.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="muda.material.Material.write_pitches_by_duration">
+<span class="sig-name descname"><span class="pre">write_pitches_by_duration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">annotated_pitches</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotated_durations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">randomize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Material.write_pitches_by_duration" title="Permalink to this definition">#</a></dt>
+<dd><p>write pitches to notes according to annotated durations.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="muda.material.Material.write_pitches_by_name">
+<span class="sig-name descname"><span class="pre">write_pitches_by_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">annotated_pitches</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Material.write_pitches_by_name" title="Permalink to this definition">#</a></dt>
+<dd><p>Write pitches to logical ties in named container.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="muda.material.Material.write_time_signatures">
+<span class="sig-name descname"><span class="pre">write_time_signatures</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_signatures</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.material.Material.write_time_signatures" title="Permalink to this definition">#</a></dt>
+<dd><p>Write time signatures.</p>
+</dd></dl>
+</dd></dl>
+</section>
+<section id="module-muda.timespan">
+<span id="muda-timespan"></span><h1>muda timespan<a class="headerlink" href="#module-muda.timespan" title="Permalink to this headline">#</a></h1>
+<p>Timespans.</p>
+<p>Class and function to operate timespans.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="muda.timespan.TimespanList">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">muda.timespan.</span></span><span class="sig-name descname"><span class="pre">TimespanList</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">items</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item_class</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_sorted</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.timespan.TimespanList" title="Permalink to this definition">#</a></dt>
+<dd><p>Add fuctions to abjad original TimespanList.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="muda.timespan.TimespanList.annotated_durations">
+<span class="sig-name descname"><span class="pre">annotated_durations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subdivision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(2,</span> <span class="pre">4)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.timespan.TimespanList.annotated_durations" title="Permalink to this definition">#</a></dt>
+<dd><p>Todo.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="muda.timespan.TimespanList.opposite_timespan_list">
+<span class="sig-name descname"><span class="pre">opposite_timespan_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#muda.timespan.TimespanList.opposite_timespan_list" title="Permalink to this definition">#</a></dt>
+<dd><p>Todo.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="muda.timespan.TimespanList.separate_timespans_by_annotation">
+<span class="sig-name descname"><span class="pre">separate_timespans_by_annotation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#muda.timespan.TimespanList.separate_timespans_by_annotation" title="Permalink to this definition">#</a></dt>
+<dd><p>Todo.</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="muda.timespan.TimespanList.time_signatures">
+<span class="sig-name descname"><span class="pre">time_signatures</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#muda.timespan.TimespanList.time_signatures" title="Permalink to this definition">#</a></dt>
+<dd><p>It returns time signatures based on timespan list.</p>
+</dd></dl>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="muda.timespan.alternating_timespans">
+<span class="sig-prename descclassname"><span class="pre">muda.timespan.</span></span><span class="sig-name descname"><span class="pre">alternating_timespans</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alternations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[[13,</span> <span class="pre">5,</span> <span class="pre">3],</span> <span class="pre">[8,</span> <span class="pre">5,</span> <span class="pre">3],</span> <span class="pre">[5,</span> <span class="pre">5,</span> <span class="pre">1],</span> <span class="pre">[3,</span> <span class="pre">8,</span> <span class="pre">1],</span> <span class="pre">[3,</span> <span class="pre">13,</span> <span class="pre">2],</span> <span class="pre">[2,</span> <span class="pre">13,</span> <span class="pre">8],</span> <span class="pre">[2,</span> <span class="pre">8,</span> <span class="pre">8],</span> <span class="pre">[1,</span> <span class="pre">3,</span> <span class="pre">13]]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">denominator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['Mat_1',</span> <span class="pre">'Mat_2',</span> <span class="pre">'Rests']</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.timespan.alternating_timespans" title="Permalink to this definition">#</a></dt>
+<dd><p>Make timespans to use with alternating materials.</p>
+</dd></dl>
+</section>
+<section id="muda-analysis">
+<h1>muda analysis<a class="headerlink" href="#muda-analysis" title="Permalink to this headline">#</a></h1>
+</section>
+<section id="module-muda.pitch">
+<span id="muda-pitch"></span><h1>muda pitch<a class="headerlink" href="#module-muda.pitch" title="Permalink to this headline">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="muda.pitch.see_pitches">
+<span class="sig-prename descclassname"><span class="pre">muda.pitch.</span></span><span class="sig-name descname"><span class="pre">see_pitches</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pitches</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.pitch.see_pitches" title="Permalink to this definition">#</a></dt>
+<dd><p>Show abjad.PitchSegment in two staffs.</p>
+</dd></dl>
+</section>
+<section id="module-muda.rhythm">
+<span id="muda-rhythm"></span><h1>muda rhythm<a class="headerlink" href="#module-muda.rhythm" title="Permalink to this headline">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="muda.rhythm.AnnotatedDuration">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">muda.rhythm.</span></span><span class="sig-name descname"><span class="pre">AnnotatedDuration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">arguments</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#muda.rhythm.AnnotatedDuration" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+</section>
+<section id="indices-and-tables">
+<span id="example"></span><h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">#</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2022, Davi Raubach Tuchtenhagen
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Welcome to muda’s documentation.</a></li>
+<li><a class="reference internal" href="#module-muda.aperghis_example.aperghis_example">muda example</a><ul>
+<li><a class="reference internal" href="#components">Components</a><ul>
+<li><a class="reference internal" href="#timespans">Timespans</a></li>
+<li><a class="reference internal" href="#rhythms">Rhythms</a></li>
+<li><a class="reference internal" href="#pitches">Pitches</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#materials">Materials</a><ul>
+<li><a class="reference internal" href="#write-rhythms">Write Rhythms</a></li>
+<li><a class="reference internal" href="#write-pitches">Write Pitches</a></li>
+<li><a class="reference internal" href="#changing-leaves">Changing Leaves</a><ul>
+<li><a class="reference internal" href="#delete-leaves">Delete Leaves</a></li>
+<li><a class="reference internal" href="#attach">Attach</a></li>
+<li><a class="reference internal" href="#change-noteheads">Change Noteheads</a></li>
+<li><a class="reference internal" href="#attach-texts">Attach Texts</a></li>
+<li><a class="reference internal" href="#write-indicators">Write indicators</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#lyrics">Lyrics</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#score">Score</a><ul>
+<li><a class="reference internal" href="#append-instrument">Append Instrument</a></li>
+<li><a class="reference internal" href="#make-skips">Make Skips</a></li>
+<li><a class="reference internal" href="#write-materials">Write Materials</a></li>
+<li><a class="reference internal" href="#lilypond-file">LilyPond File</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-muda.score">muda score</a></li>
+<li><a class="reference internal" href="#module-muda.material">muda material</a></li>
+<li><a class="reference internal" href="#module-muda.timespan">muda timespan</a></li>
+<li><a class="reference internal" href="#muda-analysis">muda analysis</a></li>
+<li><a class="reference internal" href="#module-muda.pitch">muda pitch</a></li>
+<li><a class="reference internal" href="#module-muda.rhythm">muda rhythm</a></li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    </body>
+</html>
