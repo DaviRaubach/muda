@@ -34,7 +34,7 @@ class TimespanList(abjad.TimespanList):
                 if span1.start_offset == 0:
                     pass
                 else:
-                    new_initial_span = abjad.AnnotatedTimespan(
+                    new_initial_span = abjad.Timespan(
                         start_offset=(0, 1),
                         stop_offset=span1.start_offset,
                         annotation="Rests " + self[0].annotation,
@@ -43,7 +43,7 @@ class TimespanList(abjad.TimespanList):
 
             timespans = abjad.TimespanList([span1, span2])
             if timespans.all_are_contiguous is False:
-                new_span = abjad.AnnotatedTimespan(
+                new_span = abjad.Timespan(
                     start_offset=span1.stop_offset,
                     stop_offset=span2.start_offset,
                     annotation="Rests " + self[i + 1].annotation,
@@ -72,7 +72,7 @@ class TimespanList(abjad.TimespanList):
                     if rest == 0:
                         splited1 = span.divide_by_ratio(a - 1)
                         for ts in splited1:
-                            newts = abjad.AnnotatedTimespan(
+                            newts = abjad.Timespan(
                                 start_offset=ts.start_offset,
                                 stop_offset=ts.stop_offset,
                                 annotation=span.annotation)
@@ -168,7 +168,7 @@ class TimespanList(abjad.TimespanList):
     #                     if rest == 0:
     #                         splited1 = span.divide_by_ratio(a - 1)
     #                         for ts in splited1:
-    #                             newts = abjad.AnnotatedTimespan(
+    #                             newts = abjad.Timespan(
     #                                 start_offset=ts.start_offset,
     #                                 stop_offset=ts.stop_offset,
     #                                 annotation=span.annotation)
@@ -231,7 +231,7 @@ def alternating_timespans(
             else:
                 if a == 0 and i == 0:
                     timespans.append(
-                        abjad.AnnotatedTimespan(
+                        abjad.Timespan(
                             annotation=annotations[i],
                             start_offset=(0, denominator),
                             stop_offset=(alt[0], denominator),
@@ -244,7 +244,7 @@ def alternating_timespans(
                     stop_offset_ = (sum(counter_1) + alt[i], denominator)
                     # print(start_offset_, stop_offset_)
                     timespans.append(
-                        abjad.AnnotatedTimespan(
+                        abjad.Timespan(
                             annotation=annotations[i],
                             start_offset=start_offset_,
                             stop_offset=stop_offset_,
@@ -262,7 +262,7 @@ def alternating_timespans(
 
 # t_list = abjad.TimespanList()
 # span1 =
-#     abjad.AnnotatedTimespan(
+#     abjad.Timespan(
 #         start_offset=(1, 4), stop_offset=(7, 8), annotation="Voice 1"
 #     )
 

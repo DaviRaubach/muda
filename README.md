@@ -2,6 +2,6 @@
 
 ## Davi Raubach Tuchtenhagen's Abjad library.
 
-- Requires Abjad 3.3 with Python 3.6+.
+- Requires Abjad 3.6 with Python 3.10+.
 
 - See [Muda's Documentation](https://www.daviraubach.com/muda)

@@ -265,14 +265,11 @@
         {
             {   % matL_0
                 {
-                    \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                     b'8
                 }
             }   % matL_0
             {   % matL_1
                 {
-                    \break
-                    \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                     r16
                     a'16
                     b'8
@@ -282,7 +279,6 @@
                 \break
                 \times 4/5
                 {
-                    \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                     e'''32
                     (
                     ef''32
@@ -294,7 +290,6 @@
             }   % matK_0
             {   % matL_2
                 {
-                    \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                     r16
                     a'16
                     b'8
@@ -304,7 +299,6 @@
                 \break
                 \times 2/3
                 {
-                    \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                     r8
                     b'8
                     r8
@@ -313,7 +307,6 @@
             {   % matK_1
                 \times 4/5
                 {
-                    \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                     e'''32
                     (
                     ef''32
@@ -325,7 +318,6 @@
             }   % matK_1
             {   % matL_3
                 {
-                    \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                     r16
                     a'16
                     b'8
@@ -335,9 +327,7 @@
                 \break
                 \times 2/3
                 {
-                    \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                     f''4
-                    ^ \markup "(potrinaire)"
                     (
                     e''4
                     ef''4
@@ -347,7 +337,6 @@
             {   % matJ_1
                 \times 2/3
                 {
-                    \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                     r8
                     b'8
                     r8
@@ -356,7 +345,6 @@
             {   % matK_2
                 \times 4/5
                 {
-                    \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                     e'''32
                     (
                     ef''32
@@ -368,7 +356,6 @@
             }   % matK_2
             {   % matL_4
                 {
-                    \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                     r16
                     a'16
                     b'8
@@ -380,9 +367,6 @@
                 {
                     r4
                     r16
-                    \grace {
-                        b'8
-                    }
                     b'16
                     r4.
                 }
@@ -390,7 +374,6 @@
             {   % matI_1
                 \times 2/3
                 {
-                    \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                     f''4
                     (
                     e''4
@@ -401,7 +384,6 @@
             {   % matJ_2
                 \times 2/3
                 {
-                    \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                     r8
                     b'8
                     r8
@@ -410,7 +392,6 @@
             {   % matK_3
                 \times 4/5
                 {
-                    \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                     e'''32
                     (
                     ef''32
@@ -422,7 +403,6 @@
             }   % matK_3
             {   % matL_5
                 {
-                    \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                     r16
                     a'16
                     b'8
@@ -431,7 +411,6 @@
             {   % matG_0
                 \break
                 r16
-                ^ \markup "(souffle)"
                 \once \override NoteHead.style = #'cross
                 e''32
                 \once \override NoteHead.style = #'cross
@@ -450,9 +429,6 @@
                 {
                     r4
                     r16
-                    \grace {
-                        b'8
-                    }
                     b'16
                     r4.
                 }
@@ -460,7 +436,6 @@
             {   % matI_2
                 \times 2/3
                 {
-                    \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                     f''4
                     (
                     e''4
@@ -471,7 +446,6 @@
             {   % matJ_3
                 \times 2/3
                 {
-                    \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                     r8
                     b'8
                     r8
@@ -480,7 +454,6 @@
             {   % matK_4
                 \times 4/5
                 {
-                    \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                     e'''32
                     (
                     ef''32
@@ -492,7 +465,6 @@
             }   % matK_4
             {   % matL_6
                 {
-                    \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                     r16
                     a'16
                     b'8
@@ -500,14 +472,10 @@
             }   % matL_6
             {   % matF_0
                 \break
-                \stemUp \once \override Staff.Stem.X-offset = #-0.07 \once \override Staff.Stem.Y-offset  = #0.3 \once \override Staff.Flag.Y-offset  = #1.5 \once \override Staff.NoteHead.stencil = #ly:text-interface::print \once \override Staff.NoteHead #'text = \markup{ \arrow-head #Y #DOWN ##f}
                 e'8
-                ^ \markup "expirar"
                 _ (
                 s2
-                 \stemNeutral \once \override Staff.Stem.Y-offset  = #-1.3 \once \override Staff.Stem.X-offset  = #-0.1 \once \override Staff.NoteHead.stencil = #ly:text-interface::print \once \override Staff.NoteHead #'text = \markup{ \arrow-head #Y #UP ##f}
                 g''4
-                ^ \markup "inspirar"
                 )
             }   % matF_0
             {   % matG_1
@@ -530,9 +498,6 @@
                 {
                     r4
                     r16
-                    \grace {
-                        b'8
-                    }
                     b'16
                     r4.
                 }
@@ -540,7 +505,6 @@
             {   % matI_3
                 \times 2/3
                 {
-                    \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                     f''4
                     (
                     e''4
@@ -551,7 +515,6 @@
             {   % matJ_4
                 \times 2/3
                 {
-                    \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                     r8
                     b'8
                     r8
@@ -560,7 +523,6 @@
             {   % matK_5
                 \times 4/5
                 {
-                    \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                     e'''32
                     (
                     ef''32
@@ -572,7 +534,6 @@
             }   % matK_5
             {   % matL_7
                 {
-                    \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                     r16
                     a'16
                     b'8
@@ -588,11 +549,9 @@
                 }
             }   % matE_0
             {   % matF_1
-                \stemUp \once \override Staff.Stem.X-offset = #-0.07 \once \override Staff.Stem.Y-offset  = #0.3 \once \override Staff.Flag.Y-offset  = #1.5 \once \override Staff.NoteHead.stencil = #ly:text-interface::print \once \override Staff.NoteHead #'text = \markup{ \arrow-head #Y #DOWN ##f}
                 e'8
                 _ (
                 s2
-                 \stemNeutral \once \override Staff.Stem.Y-offset  = #-1.3 \once \override Staff.Stem.X-offset  = #-0.1 \once \override Staff.NoteHead.stencil = #ly:text-interface::print \once \override Staff.NoteHead #'text = \markup{ \arrow-head #Y #UP ##f}
                 g''4
                 )
             }   % matF_1
@@ -616,9 +575,6 @@
                 {
                     r4
                     r16
-                    \grace {
-                        b'8
-                    }
                     b'16
                     r4.
                 }
@@ -626,7 +582,6 @@
             {   % matI_4
                 \times 2/3
                 {
-                    \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                     f''4
                     (
                     e''4
@@ -637,7 +592,6 @@
             {   % matJ_5
                 \times 2/3
                 {
-                    \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                     r8
                     b'8
                     r8
@@ -646,7 +600,6 @@
             {   % matK_6
                 \times 4/5
                 {
-                    \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                     e'''32
                     (
                     ef''32
@@ -658,7 +611,6 @@
             }   % matK_6
             {   % matL_8
                 {
-                    \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                     r16
                     a'16
                     b'8
@@ -678,11 +630,9 @@
                 }
             }   % matE_1
             {   % matF_2
-                \stemUp \once \override Staff.Stem.X-offset = #-0.07 \once \override Staff.Stem.Y-offset  = #0.3 \once \override Staff.Flag.Y-offset  = #1.5 \once \override Staff.NoteHead.stencil = #ly:text-interface::print \once \override Staff.NoteHead #'text = \markup{ \arrow-head #Y #DOWN ##f}
                 e'8
                 _ (
                 s2
-                 \stemNeutral \once \override Staff.Stem.Y-offset  = #-1.3 \once \override Staff.Stem.X-offset  = #-0.1 \once \override Staff.NoteHead.stencil = #ly:text-interface::print \once \override Staff.NoteHead #'text = \markup{ \arrow-head #Y #UP ##f}
                 g''4
                 )
             }   % matF_2
@@ -706,9 +656,6 @@
                 {
                     r4
                     r16
-                    \grace {
-                        b'8
-                    }
                     b'16
                     r4.
                 }
@@ -716,7 +663,6 @@
             {   % matI_5
                 \times 2/3
                 {
-                    \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                     f''4
                     (
                     e''4
@@ -727,7 +673,6 @@
             {   % matJ_6
                 \times 2/3
                 {
-                    \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                     r8
                     b'8
                     r8
@@ -736,7 +681,6 @@
             {   % matK_7
                 \times 4/5
                 {
-                    \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                     e'''32
                     (
                     ef''32
@@ -748,7 +692,6 @@
             }   % matK_7
             {   % matL_9
                 {
-                    \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                     r16
                     a'16
                     b'8
@@ -771,11 +714,9 @@
                 }
             }   % matE_2
             {   % matF_3
-                \stemUp \once \override Staff.Stem.X-offset = #-0.07 \once \override Staff.Stem.Y-offset  = #0.3 \once \override Staff.Flag.Y-offset  = #1.5 \once \override Staff.NoteHead.stencil = #ly:text-interface::print \once \override Staff.NoteHead #'text = \markup{ \arrow-head #Y #DOWN ##f}
                 e'8
                 _ (
                 s2
-                 \stemNeutral \once \override Staff.Stem.Y-offset  = #-1.3 \once \override Staff.Stem.X-offset  = #-0.1 \once \override Staff.NoteHead.stencil = #ly:text-interface::print \once \override Staff.NoteHead #'text = \markup{ \arrow-head #Y #UP ##f}
                 g''4
                 )
             }   % matF_3
@@ -799,9 +740,6 @@
                 {
                     r4
                     r16
-                    \grace {
-                        b'8
-                    }
                     b'16
                     r4.
                 }
@@ -809,7 +747,6 @@
             {   % matI_6
                 \times 2/3
                 {
-                    \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                     f''4
                     (
                     e''4
@@ -820,7 +757,6 @@
             {   % matJ_7
                 \times 2/3
                 {
-                    \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                     r8
                     b'8
                     r8
@@ -829,7 +765,6 @@
             {   % matK_8
                 \times 4/5
                 {
-                    \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                     e'''32
                     (
                     ef''32
@@ -841,7 +776,6 @@
             }   % matK_8
             {   % matL_10
                 {
-                    \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                     r16
                     a'16
                     b'8
@@ -864,11 +798,9 @@
                 }
             }   % matE_3
             {   % matF_4
-                \stemUp \once \override Staff.Stem.X-offset = #-0.07 \once \override Staff.Stem.Y-offset  = #0.3 \once \override Staff.Flag.Y-offset  = #1.5 \once \override Staff.NoteHead.stencil = #ly:text-interface::print \once \override Staff.NoteHead #'text = \markup{ \arrow-head #Y #DOWN ##f}
                 e'8
                 _ (
                 s2
-                 \stemNeutral \once \override Staff.Stem.Y-offset  = #-1.3 \once \override Staff.Stem.X-offset  = #-0.1 \once \override Staff.NoteHead.stencil = #ly:text-interface::print \once \override Staff.NoteHead #'text = \markup{ \arrow-head #Y #UP ##f}
                 g''4
                 )
             }   % matF_4
@@ -892,9 +824,6 @@
                 {
                     r4
                     r16
-                    \grace {
-                        b'8
-                    }
                     b'16
                     r4.
                 }
@@ -902,7 +831,6 @@
             {   % matI_7
                 \times 2/3
                 {
-                    \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                     f''4
                     (
                     e''4
@@ -913,7 +841,6 @@
             {   % matJ_8
                 \times 2/3
                 {
-                    \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                     r8
                     b'8
                     r8
@@ -922,7 +849,6 @@
             {   % matK_9
                 \times 4/5
                 {
-                    \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                     e'''32
                     (
                     ef''32
@@ -934,7 +860,6 @@
             }   % matK_9
             {   % matL_11
                 {
-                    \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                     r16
                     a'16
                     b'8
@@ -957,11 +882,9 @@
                 }
             }   % matE_4
             {   % matF_5
-                \stemUp \once \override Staff.Stem.X-offset = #-0.07 \once \override Staff.Stem.Y-offset  = #0.3 \once \override Staff.Flag.Y-offset  = #1.5 \once \override Staff.NoteHead.stencil = #ly:text-interface::print \once \override Staff.NoteHead #'text = \markup{ \arrow-head #Y #DOWN ##f}
                 e'8
                 _ (
                 s2
-                 \stemNeutral \once \override Staff.Stem.Y-offset  = #-1.3 \once \override Staff.Stem.X-offset  = #-0.1 \once \override Staff.NoteHead.stencil = #ly:text-interface::print \once \override Staff.NoteHead #'text = \markup{ \arrow-head #Y #UP ##f}
                 g''4
                 )
             }   % matF_5
@@ -985,9 +908,6 @@
                 {
                     r4
                     r16
-                    \grace {
-                        b'8
-                    }
                     b'16
                     r4.
                 }
@@ -995,7 +915,6 @@
             {   % matI_8
                 \times 2/3
                 {
-                    \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                     f''4
                     (
                     e''4
@@ -1006,7 +925,6 @@
             {   % matJ_9
                 \times 2/3
                 {
-                    \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                     r8
                     b'8
                     r8
@@ -1015,7 +933,6 @@
             {   % matK_10
                 \times 4/5
                 {
-                    \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                     e'''32
                     (
                     ef''32
@@ -1027,7 +944,6 @@
             }   % matK_10
             {   % matL_12
                 {
-                    \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                     r16
                     a'16
                     b'8
@@ -1059,11 +975,9 @@
                 }
             }   % matE_5
             {   % matF_6
-                \stemUp \once \override Staff.Stem.X-offset = #-0.07 \once \override Staff.Stem.Y-offset  = #0.3 \once \override Staff.Flag.Y-offset  = #1.5 \once \override Staff.NoteHead.stencil = #ly:text-interface::print \once \override Staff.NoteHead #'text = \markup{ \arrow-head #Y #DOWN ##f}
                 e'8
                 _ (
                 s2
-                 \stemNeutral \once \override Staff.Stem.Y-offset  = #-1.3 \once \override Staff.Stem.X-offset  = #-0.1 \once \override Staff.NoteHead.stencil = #ly:text-interface::print \once \override Staff.NoteHead #'text = \markup{ \arrow-head #Y #UP ##f}
                 g''4
                 )
             }   % matF_6
@@ -1087,9 +1001,6 @@
                 {
                     r4
                     r16
-                    \grace {
-                        b'8
-                    }
                     b'16
                     r4.
                 }
@@ -1097,7 +1008,6 @@
             {   % matI_9
                 \times 2/3
                 {
-                    \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                     f''4
                     (
                     e''4
@@ -1108,7 +1018,6 @@
             {   % matJ_10
                 \times 2/3
                 {
-                    \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                     r8
                     b'8
                     r8
@@ -1117,7 +1026,6 @@
             {   % matK_11
                 \times 4/5
                 {
-                    \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                     e'''32
                     (
                     ef''32
@@ -1129,7 +1037,6 @@
             }   % matK_11
             {   % matL_13
                 {
-                    \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                     r16
                     a'16
                     b'8
@@ -1169,11 +1076,9 @@
                 }
             }   % matE_6
             {   % matF_7
-                \stemUp \once \override Staff.Stem.X-offset = #-0.07 \once \override Staff.Stem.Y-offset  = #0.3 \once \override Staff.Flag.Y-offset  = #1.5 \once \override Staff.NoteHead.stencil = #ly:text-interface::print \once \override Staff.NoteHead #'text = \markup{ \arrow-head #Y #DOWN ##f}
                 e'8
                 _ (
                 s2
-                 \stemNeutral \once \override Staff.Stem.Y-offset  = #-1.3 \once \override Staff.Stem.X-offset  = #-0.1 \once \override Staff.NoteHead.stencil = #ly:text-interface::print \once \override Staff.NoteHead #'text = \markup{ \arrow-head #Y #UP ##f}
                 g''4
                 )
             }   % matF_7
@@ -1197,9 +1102,6 @@
                 {
                     r4
                     r16
-                    \grace {
-                        b'8
-                    }
                     b'16
                     r4.
                 }
@@ -1207,7 +1109,6 @@
             {   % matI_10
                 \times 2/3
                 {
-                    \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                     f''4
                     (
                     e''4
@@ -1218,7 +1119,6 @@
             {   % matJ_11
                 \times 2/3
                 {
-                    \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                     r8
                     b'8
                     r8
@@ -1227,7 +1127,6 @@
             {   % matK_12
                 \times 4/5
                 {
-                    \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                     e'''32
                     (
                     ef''32
@@ -1239,7 +1138,6 @@
             }   % matK_12
             {   % matL_14
                 {
-                    \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                     r16
                     a'16
                     b'8
@@ -1279,11 +1177,9 @@
                 }
             }   % matE_7
             {   % matF_8
-                \stemUp \once \override Staff.Stem.X-offset = #-0.07 \once \override Staff.Stem.Y-offset  = #0.3 \once \override Staff.Flag.Y-offset  = #1.5 \once \override Staff.NoteHead.stencil = #ly:text-interface::print \once \override Staff.NoteHead #'text = \markup{ \arrow-head #Y #DOWN ##f}
                 e'8
                 _ (
                 s2
-                 \stemNeutral \once \override Staff.Stem.Y-offset  = #-1.3 \once \override Staff.Stem.X-offset  = #-0.1 \once \override Staff.NoteHead.stencil = #ly:text-interface::print \once \override Staff.NoteHead #'text = \markup{ \arrow-head #Y #UP ##f}
                 g''4
                 )
             }   % matF_8
@@ -1307,9 +1203,6 @@
                 {
                     r4
                     r16
-                    \grace {
-                        b'8
-                    }
                     b'16
                     r4.
                 }
@@ -1317,7 +1210,6 @@
             {   % matI_11
                 \times 2/3
                 {
-                    \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                     f''4
                     (
                     e''4
@@ -1328,7 +1220,6 @@
             {   % matJ_12
                 \times 2/3
                 {
-                    \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                     r8
                     b'8
                     r8
@@ -1337,7 +1228,6 @@
             {   % matK_13
                 \times 4/5
                 {
-                    \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                     e'''32
                     (
                     ef''32
@@ -1349,7 +1239,6 @@
             }   % matK_13
             {   % matL_15
                 {
-                    \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                     r16
                     a'16
                     b'8
@@ -1390,11 +1279,9 @@
                 }
             }   % matE_8
             {   % matF_9
-                \stemUp \once \override Staff.Stem.X-offset = #-0.07 \once \override Staff.Stem.Y-offset  = #0.3 \once \override Staff.Flag.Y-offset  = #1.5 \once \override Staff.NoteHead.stencil = #ly:text-interface::print \once \override Staff.NoteHead #'text = \markup{ \arrow-head #Y #DOWN ##f}
                 e'8
                 _ (
                 s2
-                 \stemNeutral \once \override Staff.Stem.Y-offset  = #-1.3 \once \override Staff.Stem.X-offset  = #-0.1 \once \override Staff.NoteHead.stencil = #ly:text-interface::print \once \override Staff.NoteHead #'text = \markup{ \arrow-head #Y #UP ##f}
                 g''4
                 )
             }   % matF_9
@@ -1418,9 +1305,6 @@
                 {
                     r4
                     r16
-                    \grace {
-                        b'8
-                    }
                     b'16
                     r4.
                 }
@@ -1428,7 +1312,6 @@
             {   % matI_12
                 \times 2/3
                 {
-                    \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                     f''4
                     (
                     e''4
@@ -1439,7 +1322,6 @@
             {   % matJ_13
                 \times 2/3
                 {
-                    \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                     r8
                     b'8
                     r8
@@ -1448,7 +1330,6 @@
             {   % matK_14
                 \times 4/5
                 {
-                    \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                     e'''32
                     (
                     ef''32
@@ -1460,7 +1341,6 @@
             }   % matK_14
             {   % matL_16
                 {
-                    \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                     r16
                     a'16
                     b'8
@@ -1509,11 +1389,9 @@
                 }
             }   % matE_9
             {   % matF_10
-                \stemUp \once \override Staff.Stem.X-offset = #-0.07 \once \override Staff.Stem.Y-offset  = #0.3 \once \override Staff.Flag.Y-offset  = #1.5 \once \override Staff.NoteHead.stencil = #ly:text-interface::print \once \override Staff.NoteHead #'text = \markup{ \arrow-head #Y #DOWN ##f}
                 e'8
                 _ (
                 s2
-                 \stemNeutral \once \override Staff.Stem.Y-offset  = #-1.3 \once \override Staff.Stem.X-offset  = #-0.1 \once \override Staff.NoteHead.stencil = #ly:text-interface::print \once \override Staff.NoteHead #'text = \markup{ \arrow-head #Y #UP ##f}
                 g''4
                 )
             }   % matF_10
@@ -1537,9 +1415,6 @@
                 {
                     r4
                     r16
-                    \grace {
-                        b'8
-                    }
                     b'16
                     r4.
                 }
@@ -1547,7 +1422,6 @@
             {   % matI_13
                 \times 2/3
                 {
-                    \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                     f''4
                     (
                     e''4
@@ -1558,7 +1432,6 @@
             {   % matJ_14
                 \times 2/3
                 {
-                    \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                     r8
                     b'8
                     r8
@@ -1567,7 +1440,6 @@
             {   % matK_15
                 \times 4/5
                 {
-                    \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                     e'''32
                     (
                     ef''32
@@ -1579,7 +1451,6 @@
             }   % matK_15
             {   % matL_17
                 {
-                    \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                     r16
                     a'16
                     b'8
@@ -1646,11 +1517,9 @@
                 }
             }   % matE_10
             {   % matF_11
-                \stemUp \once \override Staff.Stem.X-offset = #-0.07 \once \override Staff.Stem.Y-offset  = #0.3 \once \override Staff.Flag.Y-offset  = #1.5 \once \override Staff.NoteHead.stencil = #ly:text-interface::print \once \override Staff.NoteHead #'text = \markup{ \arrow-head #Y #DOWN ##f}
                 e'8
                 _ (
                 s2
-                 \stemNeutral \once \override Staff.Stem.Y-offset  = #-1.3 \once \override Staff.Stem.X-offset  = #-0.1 \once \override Staff.NoteHead.stencil = #ly:text-interface::print \once \override Staff.NoteHead #'text = \markup{ \arrow-head #Y #UP ##f}
                 g''4
                 )
             }   % matF_11
@@ -1674,9 +1543,6 @@
                 {
                     r4
                     r16
-                    \grace {
-                        b'8
-                    }
                     b'16
                     r4.
                 }
@@ -1684,7 +1550,6 @@
             {   % matI_14
                 \times 2/3
                 {
-                    \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                     f''4
                     (
                     e''4
@@ -1695,7 +1560,6 @@
             {   % matJ_15
                 \times 2/3
                 {
-                    \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                     r8
                     b'8
                     r8
@@ -1704,7 +1568,6 @@
             {   % matK_16
                 \times 4/5
                 {
-                    \stopStaff \startStaff \revert Staff.StaffSymbol.line-count
                     e'''32
                     (
                     ef''32
@@ -1716,7 +1579,6 @@
             }   % matK_16
             {   % matL_18
                 {
-                    \stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1
                     r16
                     a'16
                     b'8

@@ -4,9 +4,10 @@ Score.
 Classes to build a score.
 """
 import abjad
+import os
 
 
-class Instrument():
+class Instrument:
     r"""
     Create an instrument staff ``abjad.Staff()``.
 
@@ -53,12 +54,7 @@ class Instrument():
     """
 
     def __init__(
-        self,
-        abjad_instrument,
-        name,
-        staff_count,
-        voice_count,
-        lyrics_target=None
+        self, abjad_instrument, name, staff_count, voice_count, lyrics_target=None
     ):
         """Initializer."""
         site = "muda.score.Instrument()"
@@ -114,7 +110,9 @@ class Instrument():
             else:
                 staff_name = name + "_Staff_" + str(i + 1)
 
-            staves.append(abjad.Staff(name=staff_name, tag=self.tag))
+            staff = abjad.Staff(name=staff_name, tag=self.tag)
+            staves.append(staff)
+
             print("creating Staff: ", staff_name)
         return staves
 
@@ -136,9 +134,10 @@ class Instrument():
             if self.lyrics_target is not None:
                 if voice_name == self.lyrics_target:
                     context = abjad.Context(
-                        lilypond_type='Lyrics',
+                        lilypond_type="Lyrics",
                         name=voice_name + "_Lyrics",
-                        tag=self.tag)
+                        tag=self.tag,
+                    )
                     voices.append(context)
                     print("creating Context: ", context.name)
 
@@ -155,7 +154,7 @@ class Instrument():
                     staves[i].append(voices[n + sum(voice_count[:i])])
 
 
-class Score():
+class Score:
     r"""Make Score.
 
     >>> import muda
@@ -179,9 +178,7 @@ class Score():
         tag = abjad.Tag(site)
         self.score = abjad.Score(name="Score", tag=tag)
         self.score.append(
-            abjad.Staff(
-                lilypond_type="TimeSignatureContext",
-                name="Global_Context")
+            abjad.Staff(lilypond_type="TimeSignatureContext", name="Global_Context")
         )
         print(str(tag))
 
@@ -286,8 +283,7 @@ class Score():
             in_time_signatures = [_.pair for _ in time_signatures]
         else:
             in_time_signatures = time_signatures
-            time_signatures_abjad = [
-                abjad.TimeSignature(_) for _ in in_time_signatures]
+            time_signatures_abjad = [abjad.TimeSignature(_) for _ in in_time_signatures]
 
         for time_sig in time_signatures_abjad:
             skip = abjad.Skip(1, multiplier=(time_sig.pair))
@@ -297,9 +293,8 @@ class Score():
         for i, item in enumerate(in_time_signatures):
             a = in_time_signatures.index(item)
             abjad.attach(
-                time_signatures_abjad[a],
-                self.score["Global_Context"][i],
-                tag=tag)
+                time_signatures_abjad[a], self.score["Global_Context"][i], tag=tag
+            )
 
         def attach(argument, select):
             selection = select(self.score["Global_Context"])
@@ -310,7 +305,7 @@ class Score():
                     abjad.attach(argument, skip_)
 
     def write_materials(self, materials_list):
-        r"""Write materials to voices.
+        r"""Write materials to voices. (TODO)
 
         >>> material_01 = muda.Material("Piano_Voice_1")
         >>> material_01.silence_and_rhythm_maker(
@@ -340,9 +335,7 @@ class Score():
         ...         muda.AnnotatedDuration((3, 8)),
         ...         muda.AnnotatedDuration((3, 8), annotation="Rest"),
         ...         muda.AnnotatedDuration((4, 8)),
-        ...         muda.AnnotatedDuration((3, 8)),
-        ...         muda.AnnotatedDuration((3, 8), annotation="Rest"),
-        ...         muda.AnnotatedDuration((4, 8)),
+        ...         muda.AnnotatedDuration((2, 8)),
         ...         ]
         ...     )
 
@@ -420,18 +413,7 @@ class Score():
                         c'16
                         c'16
                         c'16
-                        r16
-                        c'16
-                        r4.
-                        r16
-                        c'16
-                        c'16
-                        c'16
-                        r16
-                        c'16
-                        c'16
-                        c'16
-                    }
+                   }
                 >>
             >>
         >>
@@ -510,18 +492,7 @@ class Score():
                             c'16
                             c'16
                             c'16
-                            r16
-                            c'16
-                            r4.
-                            r16
-                            c'16
-                            c'16
-                            c'16
-                            r16
-                            c'16
-                            c'16
-                            c'16
-                        }
+                                                 }
                     >>
                 >>
             >>
@@ -530,11 +501,13 @@ class Score():
         for material in materials_list:
             if material.lyrics is not None:
                 lit = abjad.LilyPondLiteral(
-                    r'\lyricsto "' + material.target +
-                    r'" { \lyricmode {' + material.lyrics + '}}')
-                abjad.attach(
-                    lit,
-                    self.score[material.name])
+                    r'\lyricsto "'
+                    + material.target
+                    + r'" { \lyricmode {'
+                    + material.lyrics
+                    + "}}"
+                )
+                abjad.attach(lit, self.score[material.name])
             else:
                 self.score[material.name].extend(material.container)
 
@@ -553,7 +526,8 @@ class Score():
             time_signatures = [abjad.TimeSignature(_) for _ in time_signatures]
             durations = time_signatures
 
-        for voice in abjad.select(self.score).components(abjad.Voice):
+        # print([abjad.select.components(self.score, abjad.Voice)])
+        for voice in abjad.select.components(self.score, abjad.Voice):
             if voice:
                 print("rewriting meter:", voice.name)
                 shards = abjad.mutate.split(voice[:], durations)
@@ -589,6 +563,25 @@ class Score():
     def show(self):
         """Show ``self.score``."""
         return abjad.show(self.score)
+
+    def play(self):
+        pass
+
+    def save_ly(self, file_name: str):
+        lilypond_file = abjad.LilyPondFile(
+            items=[self.score],
+        )
+        abjad.persist.as_ly(lilypond_file, file_name)
+        print("Current working directory: {0}".format(os.getcwd()))
+
+
+
+def make_group(instruments: list, group_name: str):
+    group = abjad.StaffGroup(name=group_name)
+    for instrument in instruments:
+        group.append(instrument.ready_staff)
+    return group
+
 
 if __name__ == "__main__":
     inst = Instrument(abjad.Piano(), "Piano", 2, [2, 2])

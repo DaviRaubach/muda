@@ -22,13 +22,10 @@ Timespans
 ---------
 
 First, I create timespans using ``muda.timespan.alternating_timespans()``.
-The timespans will be filled with different materials.
-
-Each column in the list below refers to a material.
-The number represents the material presence (duration).
+Timespans will be filled with different materials later. Each column in the list below refers to a material. The number represents the material presence (duration).
 
 >>> alternations = [
-...     # mat00, mat01, mat02, ..., mat11
+...     # matA, matB, matC, ..., matL
 ...     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
 ...     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
 ...     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2],
@@ -53,8 +50,8 @@ Annotations are names for each material and refer to each column in the list
 above:
 
 >>> annotations = [
-...     "mat00", "mat01", "mat02", "mat03", "mat04", "mat05", "mat06",
-...     "mat07", "mat08", "mat09", "mat10", "mat11"]
+...     "matA", "matB", "matC", "matD", "matE", "matF", "matG",
+...     "matH", "matI", "matJ", "matK", "matL"]
 
 >>> timespans = muda.timespan.alternating_timespans(
 ...     n_annotations=12,
@@ -81,40 +78,40 @@ Rhythms
 These are the rhythms for each material:
 
 >>> makers = {
-...     "mat11": rmakers.stack(
+...     "matL": rmakers.stack(
 ...         rmakers.talea([2, 1, -1], 16),
 ...         rmakers.extract_trivial()),
-...     "mat10": rmakers.stack(
+...     "matK": rmakers.stack(
 ...         rmakers.talea([1, 1, 1, 1, 1], 32, extra_counts=[1]),
 ...         rmakers.extract_trivial()),
-...     "mat09": rmakers.stack(
+...     "matJ": rmakers.stack(
 ...         rmakers.talea([-1, 1, -1], 8, extra_counts=[1]),
 ...         rmakers.extract_trivial()),
-...     "mat08": rmakers.stack(
+...     "matI": rmakers.stack(
 ...         rmakers.talea([1, 1, 1], 4, extra_counts=[1]),
 ...         rmakers.extract_trivial()),
-...     "mat07": rmakers.stack(
+...     "matH": rmakers.stack(
 ...         rmakers.talea([-3, -2, 1, -3, -3], 16, extra_counts=[4]),
 ...         rmakers.extract_trivial()),
-...     "mat06": rmakers.stack(
+...     "matG": rmakers.stack(
 ...         rmakers.talea([-2, 1, 1, 1, 1, 1, 1], 32),
 ...         rmakers.extract_trivial()),
-...     "mat05": rmakers.stack(
+...     "matF": rmakers.stack(
 ...         rmakers.talea([1, 4, 2], 8),
 ...         rmakers.extract_trivial()),
-...     "mat04": rmakers.stack(
+...     "matE": rmakers.stack(
 ...         rmakers.talea([-4, 2, 1, 1, -1, 1, 1, -1, 2, 1, 1], 32),
 ...         rmakers.extract_trivial()),
-...     "mat03": rmakers.stack(
+...     "matD": rmakers.stack(
 ...         rmakers.talea([2, -1, 2, 2, 2, -2, 2, -2], 16, extra_counts=[5]),
 ...         rmakers.extract_trivial()),
-...     "mat02": rmakers.stack(
+...     "matC": rmakers.stack(
 ...         rmakers.talea([-1, 1, 1, -1], 32),
 ...         rmakers.extract_trivial()),
-...     "mat01": rmakers.stack(
+...     "matB": rmakers.stack(
 ...         rmakers.talea([2, -1], 16, extra_counts=[1]),
 ...         rmakers.extract_trivial()),
-...     "mat00": rmakers.stack(
+...     "matA": rmakers.stack(
 ...         rmakers.talea([-8, -2, 2, 1, -3], 32),
 ...         rmakers.extract_trivial())
 ... }
@@ -122,21 +119,21 @@ These are the rhythms for each material:
 Pitches
 -------
 
-These are the pitches for each material:
+Pitch is also different for each material and are also expressed in a python dictionary.
 
->>> pitches = {
-...     "mat11": abjad.PitchSegment("a' b'"),
-...     "mat10": abjad.PitchSegment("e''' ef'' b'' a' d'"),
-...     "mat09": abjad.PitchSegment("b'"),
-...     "mat08": abjad.PitchSegment("f'' e'' ef''"),
-...     "mat07": abjad.PitchSegment("b'"),
-...     "mat06": abjad.PitchSegment("e'' c'' e'' c'' g' b'"),
-...     "mat05": abjad.PitchSegment("e' e'' g''"),
-...     "mat04": abjad.PitchSegment("b' b' b' a' b' b' b'"),
-...     "mat03": abjad.PitchSegment("b'"),
-...     "mat02": abjad.PitchSegment("b'"),
-...     "mat01": abjad.PitchSegment("b'"),
-...     "mat00": abjad.PitchSegment("b'"),
+>>> annotated_pitches = {
+...     "matL": abjad.PitchSegment("a' b'"),
+...     "matK": abjad.PitchSegment("e''' ef'' b'' a' d'"),
+...     "matJ": abjad.PitchSegment("b'"),
+...     "matI": abjad.PitchSegment("f'' e'' ef''"),
+...     "matH": abjad.PitchSegment("b'"),
+...     "matG": abjad.PitchSegment("e'' c'' e'' c'' g' b'"),
+...     "matF": abjad.PitchSegment("e' e'' g''"),
+...     "matE": abjad.PitchSegment("b' b' b' a' b' b' b'"),
+...     "matD": abjad.PitchSegment("b'"),
+...     "matC": abjad.PitchSegment("b'"),
+...     "matB": abjad.PitchSegment("b'"),
+...     "matA": abjad.PitchSegment("b'"),
 ... }
 
 Materials
@@ -162,43 +159,43 @@ dictionary of rhythm makers according to the annotated durations.
 ...     makers,
 ... )
 
-It will generate containers whose names will be the durations annotations plus
-an index number.
+It will generate containers whose names will be the material names (annotated in durations) 
+plus an index number.
 
->>> containers = abjad.select(mats.container).components(abjad.Container)
+>>> containers = abjad.select.components(mats.container, abjad.Container)
 >>> for container in containers:
 ...     if container.name is not None:  # ignore subcontainers
 ...         print(container.name, container)
-mat11_0 Container("c'8", name='mat11_0')
-mat11_1 Container("c'8 c'16 r16", name='mat11_1')
-mat10_0 Tuplet('5:4', "c'32 c'32 c'32 c'32 c'32")
-mat11_2 Container("c'8 c'16 r16", name='mat11_2')
-mat09_0 Tuplet('3:2', "r8 c'8 r8")
-mat10_1 Tuplet('5:4', "c'32 c'32 c'32 c'32 c'32")
-mat11_3 Container("c'8 c'16 r16", name='mat11_3')
-mat08_0 Tuplet('3:2', "c'4 c'4 c'4")
-mat09_1 Tuplet('3:2', "r8 c'8 r8")
-mat10_2 Tuplet('5:4', "c'32 c'32 c'32 c'32 c'32")
-mat11_4 Container("c'8 c'16 r16", name='mat11_4')
-mat07_0 Tuplet('3:2', "r8. r8 c'16 r8. r8.")
-mat08_1 Tuplet('3:2', "c'4 c'4 c'4")
-mat09_2 Tuplet('3:2', "r8 c'8 r8")
-mat10_3 Tuplet('5:4', "c'32 c'32 c'32 c'32 c'32")
-mat11_5 Container("c'8 c'16 r16", name='mat11_5')
-mat06_0 Container("r16 c'32 c'32 c'32 c'32 c'32 c'32", name='mat06_0')
-mat07_1 Tuplet('3:2', "r8. r8 c'16 r8. r8.")
-mat08_2 Tuplet('3:2', "c'4 c'4 c'4")
-mat09_3 Tuplet('3:2', "r8 c'8 r8")
-mat10_4 Tuplet('5:4', "c'32 c'32 c'32 c'32 c'32")
-mat11_6 Container("c'8 c'16 r16", name='mat11_6')
-mat05_0 Container("c'8 c'2 c'4", name='mat05_0')
-mat06_1 Container("r16 c'32 c'32 c'32 c'32 c'32 c'32", name='mat06_1')
-mat07_2 Tuplet('3:2', "r8. r8 c'16 r8. r8.")
-mat08_3 Tuplet('3:2', "c'4 c'4 c'4")
-mat09_4 Tuplet('3:2', "r8 c'8 r8")
-mat10_5 Tuplet('5:4', "c'32 c'32 c'32 c'32 c'32")
-mat11_7 Container("c'8 c'16 r16", name='mat11_7')
-mat04_0 Container("r8 c'16 c'32 c'32", name='mat04_0')
+matL_0 Container("c'8", name='mat11_0')
+matL_1 Container("c'8 c'16 r16", name='mat11_1')
+matK_0 Tuplet('5:4', "c'32 c'32 c'32 c'32 c'32")
+matL_2 Container("c'8 c'16 r16", name='mat11_2')
+matJ_0 Tuplet('3:2', "r8 c'8 r8")
+matK_1 Tuplet('5:4', "c'32 c'32 c'32 c'32 c'32")
+matL_3 Container("c'8 c'16 r16", name='mat11_3')
+matI_0 Tuplet('3:2', "c'4 c'4 c'4")
+matJ_1 Tuplet('3:2', "r8 c'8 r8")
+matK_2 Tuplet('5:4', "c'32 c'32 c'32 c'32 c'32")
+matL_4 Container("c'8 c'16 r16", name='mat11_4')
+matH_0 Tuplet('3:2', "r8. r8 c'16 r8. r8.")
+matI_1 Tuplet('3:2', "c'4 c'4 c'4")
+matJ_2 Tuplet('3:2', "r8 c'8 r8")
+matK_3 Tuplet('5:4', "c'32 c'32 c'32 c'32 c'32")
+matL_5 Container("c'8 c'16 r16", name='mat11_5')
+matG_0 Container("r16 c'32 c'32 c'32 c'32 c'32 c'32", name='mat06_0')
+matH_1 Tuplet('3:2', "r8. r8 c'16 r8. r8.")
+matI_2 Tuplet('3:2', "c'4 c'4 c'4")
+matJ_3 Tuplet('3:2', "r8 c'8 r8")
+matK_4 Tuplet('5:4', "c'32 c'32 c'32 c'32 c'32")
+matL_6 Container("c'8 c'16 r16", name='mat11_6')
+matF_0 Container("c'8 c'2 c'4", name='mat05_0')
+matG_1 Container("r16 c'32 c'32 c'32 c'32 c'32 c'32", name='mat06_1')
+matH_2 Tuplet('3:2', "r8. r8 c'16 r8. r8.")
+matI_3 Tuplet('3:2', "c'4 c'4 c'4")
+matJ_4 Tuplet('3:2', "r8 c'8 r8")
+matK_5 Tuplet('5:4', "c'32 c'32 c'32 c'32 c'32")
+matL_7 Container("c'8 c'16 r16", name='mat11_7')
+matE_0 Container("r8 c'16 c'32 c'32", name='mat04_0')
 etc...
 
 I had to write the retrograde of some rhythms because abjad
@@ -206,35 +203,45 @@ would write the material in a given duration from left to right.
 However, Aperghis' piece expands from right to left. Below,
 I use the ``muda.Material.retrograde()`` method to get it right.
 
->>> mats.retrograde("mat11")
->>> mats.retrograde("mat04")
->>> mats.retrograde("mat03")
->>> mats.retrograde("mat02")
->>> mats.retrograde("mat01")
->>> mats.retrograde("mat00")
+>>> mats.retrograde("matL")
+>>> mats.retrograde("matE")
+>>> mats.retrograde("matD")
+>>> mats.retrograde("matC")
+>>> mats.retrograde("matB")
+>>> mats.retrograde("matA")
 
 Write Pitches
 -------------
 
-Pitches will also be written according to that annotations.
+The ``muda.Material.write_pitches_by_name()`` method writes pitches according to materials.
 
->>> mats.write_pitches_by_duration(pitches, durations)
+>>> mats.write_pitches_by_name(annotated_pitches)
 
 Changing Leaves
 ---------------
 
-To change any leaf then it is necessary to know the index. So, you can use
-``muda.Material.see_leaves_number(pitched=False)`` to illustrate
-``muda.Material.container`` and see the indices upon the leaves in the score.
-Here, the process is to compile, see what leaf you want to change,
-and use its index to make this alteration.
+To change leaves and attach indicators on them I use their index in a specific material.
+Therefore, is important to vizualize materials and indices. For that I use the ``muda.Material.annotate_material_names()`` method. The only argument is a list of material names I want to annotate (here it is in the ``annotations`` variable.
+In this case, I also need to add time signatures to ``mats.container`` and I will also rewrite meter according to that time signatures.
 
-Another method is possible because the name of each material container is
-completed with an index number. The first "mat11" container is actually
-named as "mat11_0", the second "mat11_1". So, I can use
-``muda.Material.see_materials_leaves_number()`` to see indexes inside each of
-these containers. Then, I can use this material name to modify specific
-leaves inside this numbered container.
+>>> time_signatures = []
+>>> for item in durations:
+...     if isinstance(item, list):
+...         for i in item:
+...             time_signatures.append(abjad.TimeSignature(i))
+...     else:
+...         time_signatures.append(abjad.TimeSignature(item))
+>>> mats.rewrite_meter(time_signatures)
+>>> mats.write_time_signatures(time_signatures)
+>>> mats.annotate_material_names(annotations)
+
+The illustration is saved in muda's directory. Once I had the illustration, I can comment the last two lines.
+
+Illustration:
+
+:pdfembed:`src:_static/illustration.pdf, height:580, width:700, align:middle`
+
+
 
 Delete Leaves
 ^^^^^^^^^^^^^
@@ -242,42 +249,59 @@ Delete Leaves
 Below, I use the ``delete()`` method. It is possible to remove leaves or to
 transform them into rests or skips.
 
-First, let's see the leaves indexes:
-
->>> mats.see_materials_leaves_number()
-
-.. lilyinclude:: /Users/Davi/github/muda/muda/aperghis_example/aperghis_see_mats.ly
-    :noedge:
-
 To delete a leaf inside a material, use the ``material_name`` argument.
 
 >>> mats.delete(
-...     [0, 1],  # leaves indices
-...     material_name="mat04_2",
-...     replace_with_rests=True)
->>> mats.delete([0], material_name="mat04_3", replace_with_rests=True)
->>> mats.delete([3], material_name="mat03_1", replace_with_rests=True)
+...     muda.leaf_0,
+...     material_name="matE_2",
+...     replace_with_rests=True,
+... )
+>>> mats.delete(
+...     muda.leaf_1,
+...     material_name="matE_2",
+...     replace_with_rests=True,
+... )
+>>> mats.delete(
+...     muda.leaf_0,
+...     material_name="matE_3",
+...     replace_with_rests=True,
+... )
+>>> mats.delete(
+...     muda.leaf_5,
+...     material_name="matD_1",
+...     replace_with_rests=True,
+... )
+>>> mats.delete(
+...     lambda _: muda.leaves(_)[:4],
+...     material_name="matD_1",
+...     replace_with_skips=True,
+... )
+>>> mats.delete(
+...     lambda _: muda.leaves(_)[:4],
+...     material_name="matD_2",
+...     replace_with_skips=True,
+... )
 
-Modify all the "mat05" containers:
+Modify all the "matF" containers:
 
->>> mats.delete(material_name="mat05", [1], replace_with_skips=True)
-
-It is also possible to use indexes of the whole ``mats.container`` leaves.
-
->>> mats.see_leaves_number()
-
-...
-
->>> mats.delete([343, 344, 345, 391, 392, 393], replace_with_skips=True)
+>>> mats.delete(
+...     muda.leaf_1,
+...     material_name="matF",
+...     replace_with_skips=True,
+... )
 
 Attach
 ^^^^^^
 
-You can attach things in a specific material like this:
+I can attach things in a specific material like this:
 
->>> mats.attach(abjad.BeforeGraceContainer("b'8"), 2, "mat07")
+>>> mats.attach(
+...     argument=abjad.BeforeGraceContainer("b'8"),
+...     select=muda.leaf_2,
+...     material_name="matH",
+... )
 
-In this case, all the containers which name starts with "mat07" will receive a
+In this case, all the containers which name starts with "matH" will receive a
 grace note before the second leaf.
 
 It is possible to attach literals:
@@ -289,78 +313,92 @@ It is possible to attach literals:
 ...     r"\omit Clef"]
 
 When ``material_name`` is ``None``, it attaches to ``mats.container`` leaves, pitched
-or not.
+or not. Muda has also some predefined abjad selections. Here ``muda.leaf_0`` is actually ``lambda _: abjad.select.leaf(_, 0)``.
 
 >>> mats.attach(
 ...     literal00,  # literal
-...     0)  # leaf
+...     muda.leaf_0)  # leaf
 
->>> mats.attach(r"\break", 1)
+>>> mats.attach(r"\break", muda.leaf_1)
 
-I will attach breaks after every "mat11" containers:
+I will attach breaks after every "matL" containers:
 
->>> for leaf, leaf2 in zip(mats.container, mats.container[1:]):
+>>> for leaf, (i, leaf2) in zip(mats.container, enumerate(mats.container[1:])):
 ...     if leaf.name is not None:
-...         if leaf.name == "mat11" and leaf2.name != "mat11":
+...         leaftest = leaf.name.startswith("matL")
+...         leaf2test = leaf2.name.startswith("matL")
+...         if leaftest is True and leaf2test is False:
 ...             abjad.attach(abjad.LilyPondLiteral(r"\break"), leaf2)
 
-I also need to change the line count in materials 08, 09, 10, and 11.
+I also need to change the line count in materials I, J, K, and L.
 
 >>> five_lines = r"\stopStaff \startStaff \revert Staff.StaffSymbol.line-count"
 >>> one_line = r'\stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1'
->>> mats.attach(five_lines, 0, ["mat08", "mat10"])
->>> mats.attach(one_line, 0, ["mat09", "mat11"])
+>>> mats.attach(five_lines, muda.leaf_0, ["matI", "matK"])
+>>> mats.attach(one_line, 0, ["matJ", "matL"])
 
 Change Noteheads
 ^^^^^^^^^^^^^^^^
 
 It is easy to change the noteheads of a particular material:
 
->>> mats.note_heads("mat06", "#'cross")
+>>> mats.note_heads("matG", "#'cross")
 
 To get arrows, I will need some more lilypond overrides.
 
->>> arrowdown_head = [
-...     r"\stemUp",
-...     r"\once \override Staff.Stem.X-offset  = #-0.07",
-...     r"\once \override Staff.Stem.Y-offset  = #0.3",
-...     r"\once \override Staff.Flag.Y-offset  = #1.5",
-...     r"\once \override Staff.NoteHead.stencil = #ly:text-interface::print",
-...     r"\once \override Staff.NoteHead #'text = \markup{" +
-...     r" \arrow-head #Y #DOWN ##f}"]
->>> arrowup_head = [
-...     r"\stemNeutral",
-...     r"\once \override Staff.Stem.Y-offset  = #-1.3",
-...     r"\once \override Staff.Stem.X-offset  = #-0.1",
-...     r"\once \override Staff.NoteHead.stencil = #ly:text-interface::print",
-...     r"\once \override Staff.NoteHead #'text = \markup{" +
-...     r" \arrow-head #Y #UP ##f}"]
->>> mats.attach("mat05", arrowdown_head, 0)
->>> mats.attach("mat05", arrowup_head, -1)
+>>> arrowdown_head = (
+...     r"\stemUp"
+...     + r"\once \override Staff.Stem.X-offset  = #-0.07"
+...     + r"\once \override Staff.Stem.Y-offset  = #0.3"
+...     + r"\once \override Staff.Flag.Y-offset  = #1.5"
+...     + r"\once \override Staff.NoteHead.stencil = #ly:text-interface::print",
+...     + r"\once \override Staff.NoteHead #'text = \markup{" 
+...     + r" \arrow-head #Y #DOWN ##f}")
+>>> arrowup_head = (
+...     + r" \stemNeutral"
+...     + r" \once \override Staff.Stem.Y-offset  = #-1.3"
+...     + r" \once \override Staff.Stem.X-offset  = #-0.1"
+...     + r" \once \override Staff.NoteHead.stencil = #ly:text-interface::print"
+...     + r" \once \override Staff.NoteHead #'text = \markup{" 
+...     + r"  \arrow-head #Y #UP ##f}")
+
+>>> mats.attach(arrowdown_head, muda.leaf_0, "matF")
+>>> mats.attach(arrowup_head, muda.leaf_r1, "matF")
+
+Cross note heads in "matG":
+
+>>> matG = muda.select_material(mats.container, "matG")
+>>> matG = muda.pitched_leaves(matG)
+>>> for leaf in matG:
+...     abjad.override(leaf).NoteHead.style = "#'cross"
 
 Attach Texts
 ^^^^^^^^^^^^
-
-I used ``mats.see_leaves_number(pitched=True)`` to get the leaves index again.
-And then I attached some text to them.
-
 >>> mats.attach(
-...     abjad.Markup("expirar", direction=abjad.Up), 59, pitched=True)
+...     abjad.Markup('\markup "expirar"', direction=abjad.Up),
+...     muda.leaf_0,
+...     "matF_0",
+... )
 >>> mats.attach(
-...     abjad.Markup("inspirar", direction=abjad.Up), 60, pitched=True)
+...     abjad.Markup('\markup "inspirar"', direction=abjad.Up),
+...     muda.leaf_r1,
+...     "matF_0",
+... )
 >>> mats.attach(
-...     abjad.Markup("(potrinaire)", direction=abjad.Up), 18, pitched=True)
+...     abjad.Markup('\markup "(potrinaire)"', direction=abjad.Up), muda.leaf_0, "matI_0"
+... )
 >>> mats.attach(
-...     abjad.Markup("(souffle)", direction=abjad.Up), 41, pitched=True)
+...     abjad.Markup('\markup "(souffle)"', direction=abjad.Up), muda.leaf_0, "matG_0"
+... )
 
 Write indicators
 ^^^^^^^^^^^^^^^^
 
-With ``write_indicators`` is easy to write slurs:
+With ``write_indicators`` is easy to write slurs (I need to rewrite this method).
 
->>> mats.write_indicators(material_name="mat05", slur_down=[(0, 1)])
->>> mats.write_indicators(material_name="mat08", slur_up=[(0, 2)])
->>> mats.write_indicators(material_name="mat10", slur_up=[(0, 4)])
+>>> mats.write_indicators(material_name="matF", slur_down=[(0, 1)])
+>>> mats.write_indicators(material_name="matI", slur_up=[(0, 2)])
+>>> mats.write_indicators(material_name="matK", slur_up=[(0, 4)])
 
 Lyrics
 ------
@@ -401,6 +439,8 @@ instance together with the materials in the score through the method
 ...         par -- fois je lui cède _ _ _ _ _ _ _ porquoi donc __ ce _  dé -- sir
 ...     ''')
 
+Obs.: It would be necessary some adjusts to have a score nearer to the original (delete some rests, implement a different signatures, etc.). However, the objective here was only illustrate the possibilities of muda library.
+
 Score
 =====
 
@@ -437,15 +477,11 @@ muda.Score.append() Soprano
 Make Skips
 ----------
 
-I will need some time signatures based on my durations.
+I use ``muda.Material()`` also to create a global context to time signatures:
 
->>> time_signatures = [abjad.TimeSignature(_) for _ in durations]
-
-``make_skips`` will create a "Global_Context" staff with skips and time
-signatures.
-
->>> score.make_skips(time_signatures)
-muda.Score.make_skips()
+>>> global_context = muda.Material("Global_Context")
+>>> global_context.make_skips(time_signatures)
+>>> global_context.write_time_signatures(time_signatures)
 
 Write Materials
 ---------------
@@ -454,7 +490,7 @@ Write Materials
 is behind the scenes is that ``mats.container`` is appended to
 ``score.score["Soprano_Voice_1"]``.
 
->>> score.write_materials([mats, lyrics])
+>>> score.write_materials([mats, lyrics, global_context])
 
 LilyPond File
 -------------
@@ -555,13 +591,17 @@ The sylesheet content:
 
 The result:
 
-:pdfembed:`src:_static/aperghis_example.pdf, height:580, width:800, align:middle`
+:pdfembed:`src:_static/aperghis_example.pdf, height:580, width:700, align:middle`
 
 
-"""
+    """
 import abjad
 import muda
+import os
 from abjadext import rmakers
+
+print("composing example")
+
 
 # COMPONENTS
 
@@ -572,7 +612,7 @@ It represents the material presence (duration).
 """
 
 alternations = [
-    # mat00, mat01, mat02, ..., mat11
+    # matA, matB, matC, ..., matL
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2],
@@ -591,79 +631,81 @@ alternations = [
     [0, 0, 0, 5, 4, 7, 2, 4, 4, 2, 1, 2],
     [0, 0, 0, 5, 4, 7, 2, 4, 4, 2, 1, 2],
     [0, 0, 1, 5, 4, 7, 2, 4, 4, 2, 1, 2],
-    [4, 1, 1, 5, 4, 7, 2, 4, 4, 2, 1, 2]]
+    [4, 1, 1, 5, 4, 7, 2, 4, 4, 2, 1, 2],
+]
 
 # names for the materials in the list above:
 annotations = [
-    "mat00", "mat01", "mat02", "mat03", "mat04", "mat05", "mat06",
-    "mat07", "mat08", "mat09", "mat10", "mat11"]
+    "matA",
+    "matB",
+    "matC",
+    "matD",
+    "matE",
+    "matF",
+    "matG",
+    "matH",
+    "matI",
+    "matJ",
+    "matK",
+    "matL",
+]
 
 timespans = muda.timespan.alternating_timespans(
-    n_annotations=12,
-    alternations=alternations,
-    denominator=8,
-    annotations=annotations)
+    alternations=alternations, denominator=8, annotations=annotations
+)
 
 # Transform it to a list of ``muda.AnnotatedDuration``
 durations = timespans.annotated_durations(subdivision=(2, 4))
-# It is a list of durations where each one is annotated with 
+
+time_signatures = []
+for item in durations:
+    if isinstance(item, list):
+        for i in item:
+            time_signatures.append(abjad.TimeSignature(i))
+    else:
+        time_signatures.append(abjad.TimeSignature(item))
+
+# time_signatures = timespans.time_signatures()
+
+# It is a list of durations where each one is annotated with
 # the material name.
 
 # Rhythms of each material
 makers = {
-    "mat11": rmakers.stack(
-        rmakers.talea([2, 1, -1], 16),
-        rmakers.extract_trivial()),
-    "mat10": rmakers.stack(
+    "matL": rmakers.stack(rmakers.talea([2, 1, -1], 16), rmakers.extract_trivial()),
+    "matK": rmakers.stack(
         rmakers.talea([1, 1, 1, 1, 1], 32, extra_counts=[1]),
-        rmakers.extract_trivial()),
-    "mat09": rmakers.stack(
-        rmakers.talea([-1, 1, -1], 8, extra_counts=[1]),
-        rmakers.extract_trivial()),
-    "mat08": rmakers.stack(
-        rmakers.talea([1, 1, 1], 4, extra_counts=[1]),
-        rmakers.extract_trivial()),
-    # "mat07": r"r8 \times 2/3 {r8 c16} r8 r8",)
-    "mat07": rmakers.stack(
+        rmakers.extract_trivial(),
+    ),
+    "matJ": rmakers.stack(
+        rmakers.talea([-1, 1, -1], 8, extra_counts=[1]), rmakers.extract_trivial()
+    ),
+    "matI": rmakers.stack(
+        rmakers.talea([1, 1, 1], 4, extra_counts=[1]), rmakers.extract_trivial()
+    ),
+    "matH": rmakers.stack(
         rmakers.talea([-3, -2, 1, -3, -3], 16, extra_counts=[4]),
-        rmakers.extract_trivial()),
-    "mat06": rmakers.stack(
-        rmakers.talea([-2, 1, 1, 1, 1, 1, 1], 32),
-        rmakers.extract_trivial()),
-    "mat05": rmakers.stack(
-        rmakers.talea([1, 4, 2], 8),
-        rmakers.extract_trivial()),
-    "mat04": rmakers.stack(
+        rmakers.extract_trivial(),
+    ),
+    "matG": rmakers.stack(
+        rmakers.talea([-2, 1, 1, 1, 1, 1, 1], 32), rmakers.extract_trivial()
+    ),
+    "matF": rmakers.stack(rmakers.talea([1, 4, 2], 8), rmakers.extract_trivial()),
+    "matE": rmakers.stack(
         rmakers.talea([-4, 2, 1, 1, -1, 1, 1, -1, 2, 1, 1], 32),
-        rmakers.extract_trivial()),
-    "mat03": rmakers.stack(
+        rmakers.extract_trivial(),
+    ),
+    "matD": rmakers.stack(
         rmakers.talea([2, -1, 2, 2, 2, -2, 2, -2], 16, extra_counts=[5]),
-        rmakers.extract_trivial()),
-    "mat02": rmakers.stack(
-        rmakers.talea([-1, 1, 1, -1], 32),
-        rmakers.extract_trivial()),
-    "mat01": rmakers.stack(
-        rmakers.talea([2, -1], 16, extra_counts=[1]),
-        rmakers.extract_trivial()),
-    "mat00": rmakers.stack(
-        rmakers.talea([-8, -2, 2, 1, -3], 32),
-        rmakers.extract_trivial())
-}
-
-# Pitches for each material
-pitches = {
-    "mat11": abjad.PitchSegment("a' b'"),
-    "mat10": abjad.PitchSegment("e''' ef'' b'' a' d'"),
-    "mat09": abjad.PitchSegment("b'"),
-    "mat08": abjad.PitchSegment("f'' e'' ef''"),
-    "mat07": abjad.PitchSegment("b'"),
-    "mat06": abjad.PitchSegment("e'' c'' e'' c'' g' b'"),
-    "mat05": abjad.PitchSegment("e' e'' g''"),
-    "mat04": abjad.PitchSegment("b' b' b' a' b' b' b'"),
-    "mat03": abjad.PitchSegment("b'"),
-    "mat02": abjad.PitchSegment("b'"),
-    "mat01": abjad.PitchSegment("b'"),
-    "mat00": abjad.PitchSegment("b'"),
+        rmakers.extract_trivial(),
+    ),
+    "matC": rmakers.stack(rmakers.talea([-1, 1, 1, -1], 32), rmakers.extract_trivial()),
+    "matB": rmakers.stack(
+        rmakers.talea([2, -1], 16, extra_counts=[1]), rmakers.extract_trivial()
+    ),
+    "matA": rmakers.stack(
+        rmakers.talea([-8, -2, 2, 1, -3], 32), rmakers.extract_trivial()
+    ),
 }
 
 # MATERIALS
@@ -673,118 +715,183 @@ mats.alternating_materials(
     makers,
 )
 
-"""I had to write the retrograde in some rhythm makers because abjad
-would write the material in a given duration from left to right.
-However, the Aperghis' piece expands from right to left. Below,
-I use the ``muda.Material.retrograde()`` to get it right."""
+mats.retrograde("matL")
+mats.retrograde("matE")
+mats.retrograde("matD")
+mats.retrograde("matC")
+mats.retrograde("matB")
+mats.retrograde("matA")
 
-# containers = abjad.select(mats.container).components(abjad.Container)
-# for container in containers:
-#     if container.name is not None:  # ignore subcontainers
-#         print(container.name, container)
-
-
-mats.retrograde("mat11")
-mats.retrograde("mat04")
-mats.retrograde("mat03")
-mats.retrograde("mat02")
-mats.retrograde("mat01")
-mats.retrograde("mat00")
-
-mats.write_pitches_by_duration(pitches, durations)
-
-# print(abjad.show(mats.container))
-
-# mats.see_materials_leaves_number(pitched=False)
+# mats.rewrite_meter(time_signatures)
 
 
-mats.delete([0, 1], material_name="mat04_2", replace_with_rests=True)
-mats.delete([0], material_name="mat04_3", replace_with_rests=True)
-mats.delete([3], material_name="mat03_1", replace_with_rests=True)
+# Pitches for each material
+annotated_pitches = {
+    "matL": abjad.PitchSegment("a' b'"),
+    "matK": abjad.PitchSegment("e''' ef'' b'' a' d'"),
+    "matJ": abjad.PitchSegment("b'"),
+    "matI": abjad.PitchSegment("f'' e'' ef''"),
+    "matH": abjad.PitchSegment("b'"),
+    "matG": abjad.PitchSegment("e'' c'' e'' c'' g' b'"),
+    "matF": abjad.PitchSegment("e' e'' g''"),
+    "matE": abjad.PitchSegment("b' b' b' a' b' b' b'"),
+    "matD": abjad.PitchSegment("b'"),
+    "matC": abjad.PitchSegment("b'"),
+    "matB": abjad.PitchSegment("b'"),
+    "matA": abjad.PitchSegment("b'"),
+}
 
-# mats.see_leaves_number(pitched=False)
+mats.write_pitches_by_name(annotated_pitches)
 
-mats.delete([343, 344, 345, 391, 392, 393], replace_with_skips=True)
-mats.delete([1], material_name="mat05", replace_with_skips=True)
+# Para vizualizar materiais e indices precisamos ajustar as fórmulas de compasso.
+
+# Incluímos um "material" apenas para adicionar as fórmulas de compasso chamado Global Context.
+
+
+# rewrite our Soprano material
+mats.rewrite_meter(time_signatures)
+
+# now we can illustrate it to see where the pitches are.
+
+# you can comment these lines later
+# mats.write_time_signatures(time_signatures)
+
+# mats.annotate_material_names(annotations)
+
+
+mats.delete(
+    muda.leaf_0,
+    material_name="matE_2",
+    replace_with_rests=True,
+)
+mats.delete(
+    muda.leaf_1,
+    material_name="matE_2",
+    replace_with_rests=True,
+)
+mats.delete(
+    muda.leaf_0,
+    material_name="matE_3",
+    replace_with_rests=True,
+)
+mats.delete(
+    muda.leaf_5,
+    material_name="matD_1",
+    replace_with_rests=True,
+)
+mats.delete(
+    lambda _: muda.leaves(_)[:4],
+    material_name="matD_1",
+    replace_with_skips=True,
+)
+mats.delete(
+    lambda _: muda.leaves(_)[:4],
+    material_name="matD_2",
+    replace_with_skips=True,
+)
+mats.delete(
+    muda.leaf_1,
+    material_name="matF",
+    replace_with_skips=True,
+)
+
+# print(abjad.lilypond(mats.container))
+# ATTACH
 
 mats.attach(
     argument=abjad.BeforeGraceContainer("b'8"),
-    leaf=2,
-    material_name="mat07")
-
+    select=muda.leaf_2,
+    material_name="matH",
+)
 
 # LITERALS
-
 literal00 = [
     r"\override Score.BarLine.stencil = ##f",
     r"\override Staff.NoteHead.no-ledgers = ##t",
     r"\override Staff.StaffSymbol.line-count = 1",
-    r"\omit Clef"]
+    r"\omit Clef",
+]
 
-# when material_name is None, it attaches to ``mats.container`` leaves,
-# pitched or not.
-mats.attach(
-    literal00,  # literal
-    0)  # leaf
+# # when material_name is None, it attaches to ``mats.container`` leaves,
+# # pitched or not.
+mats.attach(literal00, muda.leaf_0)  # literal  # leaf
 
-mats.attach(r"\break", 1)
+mats.attach(r"\break", muda.leaf_1)
 
-# breaks
+# # breaks
 for leaf, (i, leaf2) in zip(mats.container, enumerate(mats.container[1:])):
     if leaf.name is not None:
-        leaftest = leaf.name.startswith("mat11")
-        leaf2test = leaf2.name.startswith("mat11")
+        leaftest = leaf.name.startswith("matL")
+        leaf2test = leaf2.name.startswith("matL")
         if leaftest is True and leaf2test is False:
             abjad.attach(abjad.LilyPondLiteral(r"\break"), leaf2)
 
 # stop and start staff
 five_lines = r"\stopStaff \startStaff \revert Staff.StaffSymbol.line-count"
-one_line = r'\stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1'
-mats.attach(five_lines, 0, ["mat08", "mat10"])
-mats.attach(one_line, 0, ["mat09", "mat11"])
+one_line = r"\stopStaff \startStaff \override Staff.StaffSymbol.line-count = 1"
+mats.attach(five_lines, muda.leaf_0, ["matI", "matK"])
+mats.attach(one_line, muda.leaf_0, ["matJ", "matL"])
 
-# noteheads
-arrowdown_head = [
-    r"\stemUp",
-    r"\once \override Staff.Stem.X-offset  = #-0.07",
-    r"\once \override Staff.Stem.Y-offset  = #0.3",
-    r"\once \override Staff.Flag.Y-offset  = #1.5",
-    r"\once \override Staff.NoteHead.stencil = #ly:text-interface::print",
-    r"\once \override Staff.NoteHead #'text = \markup{" +
-    r" \arrow-head #Y #DOWN ##f}"]
-arrowup_head = [
-    r"\stemNeutral",
-    r"\once \override Staff.Stem.Y-offset  = #-1.3",
-    r"\once \override Staff.Stem.X-offset  = #-0.1",
-    r"\once \override Staff.NoteHead.stencil = #ly:text-interface::print",
-    r"\once \override Staff.NoteHead #'text = \markup{" +
-    r" \arrow-head #Y #UP ##f}"]
+# # noteheads
+arrowdown_head = (
+    r"\stemUp \once \override Staff.Stem.X-offset = #-0.07 \once \override Staff.Stem.Y-offset  = #0.3 \once \override Staff.Flag.Y-offset  = #1.5 \once \override Staff.NoteHead.stencil = #ly:text-interface::print \once \override Staff.NoteHead #'text = \markup{"
+    + r" \arrow-head #Y #DOWN ##f}"
+)
+# arrowdown_head = [
+#     r"\stemUp",
+#     r"\once \override Staff.Stem.X-offset  = #-0.07",
+#     r"\once \override Staff.Stem.Y-offset  = #0.3",
+#     r"\once \override Staff.Flag.Y-offset  = #1.5",
+#     r"\once \override Staff.NoteHead.stencil = #ly:text-interface::print",
+#     r"\once \override Staff.NoteHead #'text = \markup{" + r" \arrow-head #Y #DOWN ##f}",
+# ]
+arrowup_head = (
+    r" \stemNeutral"
+    + r" \once \override Staff.Stem.Y-offset  = #-1.3"
+    + r" \once \override Staff.Stem.X-offset  = #-0.1"
+    + r" \once \override Staff.NoteHead.stencil = #ly:text-interface::print"
+    + r" \once \override Staff.NoteHead #'text = \markup{" + r" \arrow-head #Y #UP ##f}"
+)
 
-mats.note_heads("mat06", "#'cross")
-mats.attach(arrowdown_head, 0, "mat05")
-mats.attach(arrowup_head, -1, "mat05")
+mats.attach(arrowdown_head, muda.leaf_0, "matF")
+mats.attach(arrowup_head, muda.leaf_r1, "matF")
 
-# mats.see_leaves_number(pitched=True)
 
+matG = muda.select_material(mats.container, "matG")
+matG = muda.pitched_leaves(matG)
+for leaf in matG:
+    abjad.override(leaf).NoteHead.style = "#'cross"
 # texts
-mats.attach(
-    abjad.Markup("expirar", direction=abjad.Up), 59, pitched=True)
-mats.attach(
-    abjad.Markup("inspirar", direction=abjad.Up), 60, pitched=True)
-mats.attach(
-    abjad.Markup("(potrinaire)", direction=abjad.Up), 18, pitched=True)
-mats.attach(
-    abjad.Markup("(souffle)", direction=abjad.Up), 41, pitched=True)
 
+mats.attach(
+    abjad.Markup('\markup "expirar"', direction=abjad.Up),
+    muda.leaf_0,
+    "matF_0",
+)
+mats.attach(
+    abjad.Markup('\markup "inspirar"', direction=abjad.Up),
+    muda.leaf_r1,
+    "matF_0",
+)
+mats.attach(
+    abjad.Markup('\markup "(potrinaire)"', direction=abjad.Up), muda.leaf_0, "matI_0"
+)
+mats.attach(
+    abjad.Markup('\markup "(souffle)"', direction=abjad.Up), muda.leaf_0, "matG_0"
+)
 # slurs
-mats.write_indicators(material_name="mat05", slur_down=[(0, 1)])
-mats.write_indicators(material_name="mat08", slur_up=[(0, 2)])
-mats.write_indicators(material_name="mat10", slur_up=[(0, 4)])
-# mats.see_materials_leaves_number(pitched=False)
+mats.write_indicators(material_name="matF", slur_down=[(0, 1)])
+mats.write_indicators(material_name="matI", slur_up=[(0, 2)])
+mats.write_indicators(material_name="matK", slur_up=[(0, 4)])
+
+
+# mats.annotate_material_names(annotations)
 
 # Lyrics
 lyrics = muda.Lyrics("Soprano_Voice_1")
-lyrics.write_lyrics(r"""
+
+lyrics.write_lyrics(
+    r"""
     sir
 
     dé -- sir
@@ -830,36 +937,40 @@ lyrics.write_lyrics(r"""
 
     par -- fois je ré -- siste à mon en -- vie vé san tu -- jé
     par -- fois je lui cède _ _ _ _ _ _ _ porquoi donc __ ce _  dé -- sir
-    """)
+    """
+)
 
+global_context = muda.Material("Global_Context")
+# add skips
+global_context.make_skips(time_signatures)
+# add time s
+global_context.write_time_signatures(time_signatures)
+
+
+# mats.material_name_markups()
 # SCORE
 score = muda.Score()
 inst = muda.Instrument(
     abjad_instrument=abjad.SopranoVoice(),
     name="Soprano",
-    nstaffs=1,
-    nvoices=[1],
+    staff_count=1,
+    voice_count=[1],
     lyrics_target="Soprano_Voice_1",
 )
 score.append([inst])
-
-time_signatures = []
-for item in durations:
-    if isinstance(item, list):
-        for i in item:
-            time_signatures.append(abjad.TimeSignature(i))
-    else:
-        time_signatures.append(abjad.TimeSignature(item))
-
-
-# time_signatures = timespans.time_signatures()
-score.make_skips(time_signatures)
-score.write_materials([mats, lyrics])
-score.rewrite_meter(time_signatures)
-
+score.write_materials([mats, lyrics, global_context])
+# print(abjad.lilypond(score.score))
+# score.make_skips(time_signatures)
+# score.rewrite_meter(time_signatures)
 lilypond_file = abjad.LilyPondFile(
     items=[score.score],
 )
+# print(abjad.lilypond(score.score))
+os.chdir(os.path.dirname(__file__))
 abjad.persist.as_ly(lilypond_file, "aperghis_score.ly")
-abjad.io.run_lilypond(
-    "/Users/Davi/github/muda/muda/aperghis_example/aperghis_example.ly")
+os.system("pwd")
+os.system("lilypond aperghis_example.ly")
+
+
+# if __name__ == '__main__':
+# aperghis_example()

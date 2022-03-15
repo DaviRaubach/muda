@@ -10,6 +10,11 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
+# import os
+# import sys
+# sys.path.insert(0, os.path.abspath('.'))
+
+#
 import os
 import sys
 import muda
@@ -21,12 +26,12 @@ sys.setrecursionlimit(2000)
 
 # -- Project information -----------------------------------------------------
 
-project = 'muda'
-copyright = '2021, Davi Raubach Tuchtenhagen'
-author = 'Davi Raubach Tuchtenhagen'
+project = 'Muda'
+copyright = '2022, Davi Raubach Tuchtenhagen'
+author = 'Davi Raubach'
 
 # The full version, including alpha/beta/rc tags
-release = '0.1'
+release = '0.2'
 
 
 # -- General configuration ---------------------------------------------------
@@ -37,7 +42,7 @@ release = '0.1'
 extensions = [
     'sphinxnotes.lilypond',
     # 'abjad.ext.sphinx',
-    'rinoh.frontend.sphinx',
+    # 'rinoh.frontend.sphinx',
     'sphinx.ext.autodoc',
     # 'sphinx.ext.graphviz',
     "sphinx.ext.doctest",

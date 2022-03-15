@@ -1,17 +1,13 @@
-\version "2.20"
+\version "2.23"
 \language "english"
-
 #(set-global-staff-size 7)
 #(set-default-paper-size "a4landscape")
-
-
 \header {
   tagline = ##f
   % breakbefore = ##t
   title =  "Recitación 9"
   poet = "Georges Aperghis (*1945)"
 }
-
 \layout {
   ragged-right = ##t
   \context {
@@ -43,15 +39,13 @@
     proportionalNotationDuration = #(ly:make-moment 1 28)
     tupletFullLength = ##t
   }
-
   \context {
     \Staff
     \remove Time_signature_engraver
     \remove Clef_engraver
+    \consists "Horizontal_bracket_engraver"
   }
 }
-
-
 \paper {
   system-system-spacing = #'((basic-distance . 20) (padding . 15))
   indent = 0
@@ -59,7 +53,4 @@
   left-margin = 50\mm
   right-margin = 20\mm
   top-margin = 10\mm
-
 }
-
-

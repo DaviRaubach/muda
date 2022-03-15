@@ -4,17 +4,15 @@
    contain the root `toctree` directive.
 
 Welcome to muda's documentation.
-================================
+=============================
 
 Davi Raubach's Abjad Library.
 
 Muda consists of some resources to easily build scores, write and transform music notation with Abjad and LilyPond. 
-It carries a particular conception of music, its materials, and some processes I am interested in. It is flexible, though.
+It carries personal musical conceptualizations regarding materials and some processes I am interested in. It is flexible, though.
 
-This example shows how it works: :ref:`example`.
-
-It requires Python 3.6+ and some libraries.
-abjad 3.3
+It requires Python 3.10+ and some libraries.
+abjad 3.6
 abjadext.rmakers
 iracema 0.1.7
 matplotlib 3.3.4
@@ -22,10 +20,16 @@ numpy 1.20.1
 jsonschema 3.2.0 
 evans
 
+The following example shows how it can be used.
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
+
+muda example
+===================
+.. automodule:: muda.aperghis_example.aperghis_example
+   :members:
 
 muda score
 ===================
@@ -59,10 +63,6 @@ muda rhythm
 
 .. _example:
 
-muda example
-===================
-.. automodule:: muda.aperghis_example.aperghis_example
-   :members:
 
 Indices and tables
 ==================

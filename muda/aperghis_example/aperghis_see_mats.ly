@@ -1,244 +1,195 @@
-\version "2.20.0"   %! abjad.LilyPondFile._get_format_pieces()
-\language "english" %! abjad.LilyPondFile._get_format_pieces()
+\version "2.23.3"
+\language "english"
 
-\context Score = "Score" %! muda.Score()
-<<                       %! muda.Score()
-    \context TimeSignatureContext = "Global_Context"
+% #(set-global-staff-size 7)
+% #(set-default-paper-size "a4landscape")
+
+
+%\header {
+%  tagline = ##f
+%  % breakbefore = ##t
+%  title =  "Recitación 9"
+%  poet = "Georges Aperghis (*1945)"
+%}
+
+\layout {
+ % ragged-right = ##t
+  % \context {
+  %   \name TimeSignatureContext
+  %   \type Engraver_group
+  %   \numericTimeSignature
+  % }
+  \context {
+    \Score
+    % \numericTimeSignature
+    % \remove Metronome_mark_engraver
+    % \remove Bar_number_engraver
+    % \remove Time_signature_engraver
+    % \remove Mark_engraver
+    % \consists "Horizontal_bracket_engraver"
+    % \accepts TimeSignatureContext
+    
+    % \override BarLine.hair-thickness = #0.9
+    % \override BarLine.thick-thickness = #8
+    % \override Stem.thickness = #0.5
+    % \override Staff.thickness = #0.5
+    % \override Stem.stemlet-length = #1.15
+    % \override TupletBracket.bracket-visibility = ##t
+    % \override TupletBracket.minimum-length = #3
+    % \override TupletBracket.padding = #2
+    % \override TupletBracket.staff-padding = #2
+    % \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
+    % \override TupletBracket.direction = #down
+    % \override TupletNumber.font-size = #1.2
+    % \override TupletNumber.text = #tuplet-number::calc-fraction-text
+    % % \override SpacingSpanner.strict-note-spacing = ##t
+    proportionalNotationDuration = #(ly:make-moment 1 28)
+    % % tupletFullLength = ##t
+    \override HorizontalBracket.direction = #DOWN
+    \override HorizontalBracket.Y-offset = #-10
+  }
+
+  \context {
+    \Voice
+				% \consists "Horizontal_bracket_engraver"
+    % \override HorizontalBracket.padding = #3
+  }
+
+}
+
+
+\paper {
+  system-system-spacing = #'((basic-distance . 20) (padding . 15))
+  indent = 0
+  bottom-margin = 10\mm
+  left-margin = 20\mm
+  right-margin = 20\mm
+  top-margin = 10\mm
+
+}
+
+\score{
+    \new Staff
     {
-        \time 1/8 %! muda.Score.make_skips()
-        s1 * 1/8
-        \time 1/4 %! muda.Score.make_skips()
-        s1 * 1/4
-        \time 1/8 %! muda.Score.make_skips()
-        s1 * 1/8
-        \time 1/4 %! muda.Score.make_skips()
-        s1 * 1/4
-        \time 1/4 %! muda.Score.make_skips()
-        s1 * 1/4
-        \time 1/8 %! muda.Score.make_skips()
-        s1 * 1/8
-        \time 1/4 %! muda.Score.make_skips()
-        s1 * 1/4
-        \time 1/2 %! muda.Score.make_skips()
-        s1 * 1/2
-        \time 1/4 %! muda.Score.make_skips()
-        s1 * 1/4
-        \time 1/8 %! muda.Score.make_skips()
-        s1 * 1/8
-        \time 1/4 %! muda.Score.make_skips()
-        s1 * 1/4
-        \time 1/2 %! muda.Score.make_skips()
-        s1 * 1/2
-        \time 1/2 %! muda.Score.make_skips()
-        s1 * 1/2
-        \time 1/4 %! muda.Score.make_skips()
-        s1 * 1/4
-        \time 1/8 %! muda.Score.make_skips()
-        s1 * 1/8
-        \time 1/4 %! muda.Score.make_skips()
-        s1 * 1/4
-        \time 1/4 %! muda.Score.make_skips()
-        s1 * 1/4
-    }
-    \context Staff = "Soprano_Staff" %! muda.score.Instrument()
-    <<                               %! muda.score.Instrument()
-        \context Voice = "Soprano_Voice_1" %! muda.score.Instrument()
-        {                                  %! muda.score.Instrument()
-            {   % mat11_0
-                {
-                    a'8
-                    ^ \markup { 0 }
-                    ^ \markup { mat11_0 }
-                }
-            }   % mat11_0
-            {   % mat11_1
-                {
-                    r16
-                    ^ \markup { 0 }
-                    ^ \markup { mat11_1 }
-                    a'16
-                    ^ \markup { 1 }
-                    b'8
-                    ^ \markup { 2 }
-                }
-            }   % mat11_1
-            \times 4/5 {
-                e'''32
-                ^ \markup { 0 }
-                ^ \markup { mat10_0 }
-                ef''32
-                ^ \markup { 1 }
-                b''32
-                ^ \markup { 2 }
-                a'32
-                ^ \markup { 3 }
-                d'32
-                ^ \markup { 4 }
-            }
-            {   % mat11_2
-                {
-                    r16
-                    ^ \markup { 0 }
-                    ^ \markup { mat11_2 }
-                    a'16
-                    ^ \markup { 1 }
-                    b'8
-                    ^ \markup { 2 }
-                }
-            }   % mat11_2
-            \times 2/3 {
-                r8
-                ^ \markup { 0 }
-                ^ \markup { mat09_0 }
-                b'8
-                ^ \markup { 1 }
-                r8
-                ^ \markup { 2 }
-            }
-            \times 4/5 {
-                e'''32
-                ^ \markup { 0 }
-                ^ \markup { mat10_1 }
-                ef''32
-                ^ \markup { 1 }
-                b''32
-                ^ \markup { 2 }
-                a'32
-                ^ \markup { 3 }
-                d'32
-                ^ \markup { 4 }
-            }
-            {   % mat11_3
-                {
-                    r16
-                    ^ \markup { 0 }
-                    ^ \markup { mat11_3 }
-                    a'16
-                    ^ \markup { 1 }
-                    b'8
-                    ^ \markup { 2 }
-                }
-            }   % mat11_3
-            \times 2/3 {
-                f''4
-                ^ \markup { 0 }
-                ^ \markup { mat08_0 }
-                e''4
-                ^ \markup { 1 }
-                ef''4
-                ^ \markup { 2 }
-            }
-            \times 2/3 {
-                r8
-                ^ \markup { 0 }
-                ^ \markup { mat09_1 }
-                b'8
-                ^ \markup { 1 }
-                r8
-                ^ \markup { 2 }
-            }
-            \times 4/5 {
-                e'''32
-                ^ \markup { 0 }
-                ^ \markup { mat10_2 }
-                ef''32
-                ^ \markup { 1 }
-                b''32
-                ^ \markup { 2 }
-                a'32
-                ^ \markup { 3 }
-                d'32
-                ^ \markup { 4 }
-            }
-            {   % mat11_4
-                {
-                    r16
-                    ^ \markup { 0 }
-                    ^ \markup { mat11_4 }
-                    a'16
-                    ^ \markup { 1 }
-                    b'8
-                    ^ \markup { 2 }
-                }
-            }   % mat11_4
-            \times 2/3 {
-                r8.
-                ^ \markup { 0 }
-                ^ \markup { mat07_0 }
-                r8
-                ^ \markup { 1 }
-                b'16
-                ^ \markup { 2 }
-                r8.
-                ^ \markup { 3 }
-                r8.
-                ^ \markup { 4 }
-            }
-            \times 2/3 {
-                f''4
-                ^ \markup { 0 }
-                ^ \markup { mat08_1 }
-                e''4
-                ^ \markup { 1 }
-                ef''4
-                ^ \markup { 2 }
-            }
-            \times 2/3 {
-                r8
-                ^ \markup { 0 }
-                ^ \markup { mat09_2 }
-                b'8
-                ^ \markup { 1 }
-                r8
-                ^ \markup { 2 }
-            }
-            \times 4/5 {
-                e'''32
-                ^ \markup { 0 }
-                ^ \markup { mat10_3 }
-                ef''32
-                ^ \markup { 1 }
-                b''32
-                ^ \markup { 2 }
-                a'32
-                ^ \markup { 3 }
-                d'32
-                ^ \markup { 4 }
-            }
-            {   % mat11_5
-                {
-                    r16
-                    ^ \markup { 0 }
-                    ^ \markup { mat11_5 }
-                    a'16
-                    ^ \markup { 1 }
-                    b'8
-                    ^ \markup { 2 }
-                }
-            }   % mat11_5
-            {   % mat06_0
-                r16
-                ^ \markup { 0 }
-                ^ \markup { mat06_0 }
-                e''32
-                ^ \markup { 1 }
-                c''32
-                ^ \markup { 2 }
-                e''32
-                ^ \markup { 3 }
-                c''32
-                ^ \markup { 4 }
-                g'32
-                ^ \markup { 5 }
-                b'32
-                ^ \markup { 6 }
-            }   % mat06_0
-            
-        } %! muda.score.Instrument()
-        \context Lyrics = "Soprano_Voice_1_Lyrics" %! muda.score.Instrument()
-        {                                          %! muda.score.Instrument()
-        } %! muda.score.Instrument()
-    >> %! muda.score.Instrument()
->> %! muda.Score()
+        \new Voice
+        \with
+        {
+            \consists Horizontal_bracket_engraver
+        }
+        {
+            {
+                {   % matL_0
+                    {
+                        \once \override HorizontalBracketText.text = "matL_0"
+                        \time 1/8
+                        b'8
+                        ^ \markup \tiny {\null { \raise #2 {0}}}
+                        \stopGroup
+                        \startGroup
+                    }
+                }   % matL_0
+                {   % matL_1
+                    {
+                        \once \override HorizontalBracketText.text = "matL_1"
+                        \time 1/4
+                        r16
+                        ^ \markup \tiny {\null { \raise #2 {0}}}
+                        \startGroup
+                        a'16
+                        ^ \markup \tiny {\null { \raise #2 {1}}}
+                        b'8
+                        ^ \markup \tiny {\null { \raise #2 {2}}}
+                        \stopGroup
+                    }
+                }   % matL_1
+                {   % matK_0
+                    \break
+                    \times 4/5
+                    {
+                        \once \override HorizontalBracketText.text = "matK_0"
+                        \time 1/8
+                        e'''32
+                        ^ \markup \tiny {\null { \raise #2 {0}}}
+                        (
+                        \startGroup
+                        ef''32
+                        ^ \markup \tiny {\null { \raise #2 {1}}}
+                        b''32
+                        ^ \markup \tiny {\null { \raise #2 {2}}}
+                        a'32
+                        ^ \markup \tiny {\null { \raise #2 {3}}}
+                        d'32
+                        ^ \markup \tiny {\null { \raise #2 {4}}}
+                        )
+                        \stopGroup
+                    }
+                }   % matK_0
+                {   % matL_2
+                    {
+                        \once \override HorizontalBracketText.text = "matL_2"
+                        \time 1/4
+                        r16
+                        ^ \markup \tiny {\null { \raise #2 {0}}}
+                        \startGroup
+                        a'16
+                        ^ \markup \tiny {\null { \raise #2 {1}}}
+                        b'8
+                        ^ \markup \tiny {\null { \raise #2 {2}}}
+                        \stopGroup
+                    }
+                }   % matL_2
+                {   % matJ_0
+                    \break
+                    \times 2/3
+                    {
+                        \once \override HorizontalBracketText.text = "matJ_0"
+                        \time 1/4
+                        r8
+                        ^ \markup \tiny {\null { \raise #2 {0}}}
+                        \startGroup
+                        b'8
+                        ^ \markup \tiny {\null { \raise #2 {1}}}
+                        r8
+                        ^ \markup \tiny {\null { \raise #2 {2}}}
+                        \stopGroup
+                    }
+                }   % matJ_0
+                {   % matK_1
+                    \times 4/5
+                    {
+                        \once \override HorizontalBracketText.text = "matK_1"
+                        \time 1/8
+                        e'''32
+                        ^ \markup \tiny {\null { \raise #2 {0}}}
+                        (
+                        \startGroup
+                        ef''32
+                        ^ \markup \tiny {\null { \raise #2 {1}}}
+                        b''32
+                        ^ \markup \tiny {\null { \raise #2 {2}}}
+                        a'32
+                        ^ \markup \tiny {\null { \raise #2 {3}}}
+                        d'32
+                        ^ \markup \tiny {\null { \raise #2 {4}}}
+                        )
+                        \stopGroup
+                    }
+                }   % matK_1
+                {   % matL_3
+                    {
+                        \once \override HorizontalBracketText.text = "matL_3"
+                        \time 1/4
+                        r16
+                        ^ \markup \tiny {\null { \raise #2 {0}}}
+                        \startGroup
+                        a'16
+                        ^ \markup \tiny {\null { \raise #2 {1}}}
+                        b'8
+                        ^ \markup \tiny {\null { \raise #2 {2}}}
+                        \stopGroup
+                    }
+                }   % matL_3
+}}}}
+
 
 \markup{etc.}

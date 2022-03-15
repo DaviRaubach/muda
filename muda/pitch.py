@@ -62,3 +62,16 @@ def see_pitches(pitches):
     abjad.show(staff_group)
 
     return staff_group
+
+def otoacoustic_derivation(f1, f2, iterations):
+    fs = [f1, f2]
+    for i in range(iterations):
+        inlist = []
+        for j in fs[:-1]:
+            # print(j)
+            inlist.append(abs(fs[-1] - j))
+            inlist.append(abs(2*fs[-1] - j))
+        fs.extend(inlist)
+    return fs
+
+# print(otoacoustic_derivation(800, 600, 2))

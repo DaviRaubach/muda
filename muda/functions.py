@@ -154,3 +154,19 @@ def opposite_timespans(one_voice_timespan_list):
             )
             one_voice_timespan_list.append(new_span)
 
+def select_material(container, material_name):
+        """Select container by name."""
+        selection = abjad.select.components(container, abjad.Container)
+        indices = [
+            i
+            for i, container in enumerate(selection)
+            if (
+                (isinstance(container, abjad.Tuplet or abjad.Voice or abjad.BeforeGraceContainer))
+                or (container.name is None)
+                or (material_name not in container.name)
+            )
+        ]
+
+        selection = abjad.select.exclude(selection, indices)
+
+        return selection
