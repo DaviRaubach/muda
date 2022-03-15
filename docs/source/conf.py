@@ -40,7 +40,7 @@ release = '0.2'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinxnotes.lilypond',
+    # 'sphinxnotes.lilypond',
     # 'abjad.ext.sphinx',
     # 'rinoh.frontend.sphinx',
     'sphinx.ext.autodoc',
