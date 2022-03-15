@@ -14,11 +14,6 @@ It carries personal musical conceptualizations regarding materials and some proc
 It requires Python 3.10+ and some libraries.
 abjad 3.6
 abjadext.rmakers
-iracema 0.1.7
-matplotlib 3.3.4
-numpy 1.20.1
-jsonschema 3.2.0 
-evans
 
 The following example shows how it can be used.
 

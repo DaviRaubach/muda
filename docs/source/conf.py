@@ -17,7 +17,7 @@
 #
 import os
 import sys
-# import muda
+import muda
 
 sys.path.insert(0, os.path.abspath('../../muda'))
 sys.setrecursionlimit(2000)
@@ -42,10 +42,10 @@ release = '0.2'
 extensions = [
     # 'sphinxnotes.lilypond',
     # 'abjad.ext.sphinx',
-    # 'rinoh.frontend.sphinx',
+    'rinoh.frontend.sphinx',
     'sphinx.ext.autodoc',
     # 'sphinx.ext.graphviz',
-    # "sphinx.ext.doctest",
+    "sphinx.ext.doctest",
     # "sphinx.ext.intersphinx",
     # "sphinx.ext.mathjax",
     # "sphinx.ext.viewcode",
