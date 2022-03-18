@@ -6,6 +6,10 @@
 Welcome to muda's documentation.
 =============================
 
+`github`_
+
+.. _github: https://github.com/DaviRaubach/muda
+
 Davi Raubach's Abjad Library.
 
 Muda consists of some resources to easily build scores, write and transform music notation with Abjad and LilyPond. 
