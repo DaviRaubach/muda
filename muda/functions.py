@@ -10,7 +10,8 @@ def make_measures(
         measures = abjad.Container(measures)
 
     if pitches is not None:
-        logical_ties = abjad.select(measures).leaves().logical_ties(pitched=True)
+        logical_ties = abjad.select(
+            measures).leaves().logical_ties(pitched=True)
         for i, logical_tie in enumerate(logical_ties):
             index = i % len(pitches)
             pitch = pitches[index]
@@ -22,6 +23,7 @@ def make_measures(
 
     return measures
 
+
 def make_skips(score, time_signatures):
     site = "muda.functions.MakeSkips()"
     tag = abjad.Tag(site)
@@ -32,7 +34,8 @@ def make_skips(score, time_signatures):
         in_time_signatures = [_.pair for _ in time_signatures]
     else:
         in_time_signatures = time_signatures
-        time_signatures_abjad = [abjad.TimeSignature(_) for _ in in_time_signatures]
+        time_signatures_abjad = [
+            abjad.TimeSignature(_) for _ in in_time_signatures]
 
     for time_sig in time_signatures_abjad:
         skip = abjad.Skip(1, multiplier=(time_sig.pair))
@@ -45,10 +48,13 @@ def make_skips(score, time_signatures):
 
         # if current_element != previous_element:
         a = in_time_signatures.index(current_element)
-        abjad.attach(time_signatures_abjad[a], score["Global_Context"][i], tag=tag)
+        abjad.attach(time_signatures_abjad[a],
+                     score["Global_Context"][i], tag=tag)
 
 # rewrite meter
-def rewrite_meter(score, time_signatures):
+
+
+def rewrite_meter(container, time_signatures):
     # global_skips = [_ for _ in abjad.select(score["Global_Context"]).leaves()]
     # sigs = []
     # for skip in global_skips:
@@ -56,49 +62,49 @@ def rewrite_meter(score, time_signatures):
     #         if isinstance(indicator, abjad.TimeSignature):
     #             sigs.append(indicator)
     durations = [_.duration for _ in time_signatures]
-    for voice in abjad.select(score).components(abjad.Voice):
-        # voice_dur = abjad.get.duration(voice)
-        if voice:
-            print("rewriting meter:", voice.name)
-            # sig_dur = sum(durations)
-            # assert voice_dur == sig_dur, (voice_dur, sig_dur)
-            shards = abjad.mutate.split(voice[:], durations)
-            for shard, time_signature in zip(shards, time_signatures):
-                # leaf = abjad.get.leaf(shard, 0)
-                # time_signature = abjad.get.indicator(leaf, abjad.TimeSignature)
-                # print(time_s)
-                # print(time_signature)
-                abjad.Meter.rewrite_meter(
-                    shard[:],
-                    time_signature,
-                    boundary_depth=1,
-                    rewrite_tuplets=False,
-                    maximum_dot_count=1,
-                )
+    # for voice in abjad.select.components(score, abjad.Voice):
+    # voice_dur = abjad.get.duration(voice)
+    # if voice:
+    # print("rewriting meter:", voice.name)
+    # sig_dur = sum(durations)
+    # assert voice_dur == sig_dur, (voice_dur, sig_dur)
+    shards = abjad.mutate.split(container, durations)
+    for shard, time_signature in zip(shards, time_signatures):
+        # leaf = abjad.get.leaf(shard, 0)
+        # time_signature = abjad.get.indicator(leaf, abjad.TimeSignature)
+        # print(time_s)
+        # print(time_signature)
+        abjad.Meter.rewrite_meter(
+            shard[:],
+            time_signature,
+            boundary_depth=1,
+            rewrite_tuplets=False,
+            maximum_dot_count=1,
+        )
 
-            # for time_signature, shard in zip(time_signatures, shards):
-            #     abjad.Meter.rewrite_meter(shard, time_signature, boundary_depth=1)
+        # for time_signature, shard in zip(time_signatures, shards):
+        #     abjad.Meter.rewrite_meter(shard, time_signature, boundary_depth=1)
 
-            # inventories = [
-            #     x
-            #     for x in enumerate(
-            #         abjad.Meter(time_signature.pair).depthwise_offset_inventory
-            #     )
-            # ]
-            # if time_signature.denominator == 4:
-            #     abjad.Meter.rewrite_meter(
-            #         shard,
-            #         time_signature,
-            #         boundary_depth=inventories[-1][0],
-            #         rewrite_tuplets=False,
-            #     )
-            # else:
-            #     abjad.Meter.rewrite_meter(
-            #         shard,
-            #         time_signature,
-            #         boundary_depth=inventories[-2][0],
-            #         rewrite_tuplets=False,
-            #     )
+        # inventories = [
+        #     x
+        #     for x in enumerate(
+        #         abjad.Meter(time_signature.pair).depthwise_offset_inventory
+        #     )
+        # ]
+        # if time_signature.denominator == 4:
+        #     abjad.Meter.rewrite_meter(
+        #         shard,
+        #         time_signature,
+        #         boundary_depth=inventories[-1][0],
+        #         rewrite_tuplets=False,
+        #     )
+        # else:
+        #     abjad.Meter.rewrite_meter(
+        #         shard,
+        #         time_signature,
+        #         boundary_depth=inventories[-2][0],
+        #         rewrite_tuplets=False,
+        #     )
 
         # abjad.mutate().split(voice, in_time_signature, cyclic=True)
 
@@ -141,7 +147,8 @@ def opposite_timespans(one_voice_timespan_list):
                 new_initial_span = abjad.AnnotatedTimespan(
                     start_offset=(0, 1),
                     stop_offset=span1.start_offset,
-                    annotation="Silence " + one_voice_timespan_list[0].annotation,
+                    annotation="Silence " +
+                    one_voice_timespan_list[0].annotation,
                 )
                 one_voice_timespan_list.append(new_initial_span)
 
@@ -150,23 +157,25 @@ def opposite_timespans(one_voice_timespan_list):
             new_span = abjad.AnnotatedTimespan(
                 start_offset=span1.stop_offset,
                 stop_offset=span2.start_offset,
-                annotation="Silence " + one_voice_timespan_list[i + 1].annotation,
+                annotation="Silence " +
+                one_voice_timespan_list[i + 1].annotation,
             )
             one_voice_timespan_list.append(new_span)
 
+
 def select_material(container, material_name):
-        """Select container by name."""
-        selection = abjad.select.components(container, abjad.Container)
-        indices = [
-            i
-            for i, container in enumerate(selection)
-            if (
-                (isinstance(container, abjad.Tuplet or abjad.Voice or abjad.BeforeGraceContainer))
-                or (container.name is None)
-                or (material_name not in container.name)
-            )
-        ]
+    """Select container by name."""
+    selection = abjad.select.components(container, abjad.Container)
+    indices = [
+        i
+        for i, container in enumerate(selection)
+        if (
+            (isinstance(container, abjad.Tuplet or abjad.Voice or abjad.BeforeGraceContainer))
+            or (container.name is None)
+            or (material_name not in container.name)
+        )
+    ]
 
-        selection = abjad.select.exclude(selection, indices)
+    selection = abjad.select.exclude(selection, indices)
 
-        return selection
+    return selection

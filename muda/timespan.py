@@ -3,6 +3,7 @@ Timespans.
 
 Class and function to operate timespans.
 """
+from itertools import cycle
 import abjad
 import muda
 from copy import copy
@@ -51,9 +52,63 @@ class TimespanList(abjad.TimespanList):
                 self.append(new_span)
         return self
 
-    def annotated_durations(self, subdivision=(2, 4)):
+    def subdivide(self, subdivisions: dict = None):
+        """Method for subdivide spans according to divisions."""
+        new_ts_list = []
+
+        for span in self:
+            sub_ts_list = []
+            # print(annotation)
+            print(span)
+            if hasattr(span, "annotation") and span.annotation is not None:
+                print(subdivisions[span.annotation])
+                splitted = span.divide_by_ratio(subdivisions[span.annotation])
+                # for ts in splitted:
+                # new_ts_list.append(ts)
+                self.remove(span)
+                for ts in splitted:
+                    newts = abjad.Timespan(
+                        start_offset=ts.start_offset,
+                        stop_offset=ts.stop_offset,
+                        annotation=span.annotation)
+                    sub_ts_list.append(newts)
+            new_ts_list.append(sub_ts_list)
+            # ts.annotation = annotation
+            # self.append(ts)
+        print(new_ts_list)
+        return new_ts_list
+
+    def pure_annotated_durations(self):
+        dur_list = []
+        for span in self:
+            if isinstance(span, list):
+                # print("is list")
+                dur_sub_list = []
+                for sp in span:
+                    dur = muda.rhythm.AnnotatedDuration(
+                        sp.duration,
+                        annotation=sp.annotation)
+                    dur_sub_list.append(dur)
+                if dur_sub_list:
+                    dur_list.append(dur_sub_list)
+            else:
+                # print("is not a list")
+                dur = muda.rhythm.AnnotatedDuration(
+                    span.duration,
+                    annotation=span.annotation)
+            # print("mudadur:", dur)
+            # dur.annotation = span.annotation
+                dur_list.append(dur)
+            # print(span.annotation)
+        print(dur_list)
+        return dur_list
+
+    def annotated_durations(self, subdivision: tuple = None):
         """Todo."""
+        if subdivision == None:
+            subdivision = (2, 4)
         subdur = abjad.Duration(subdivision)
+
         new_ts_list = []
         for span in self:
             sub_ts_list = []
@@ -113,7 +168,8 @@ class TimespanList(abjad.TimespanList):
                         sp.duration,
                         annotation=sp.annotation)
                     dur_sub_list.append(dur)
-                dur_list.append(dur_sub_list)
+                if dur_sub_list:
+                    dur_list.append(dur_sub_list)
             else:
                 # print("is not a list")
                 dur = muda.rhythm.AnnotatedDuration(
@@ -127,21 +183,21 @@ class TimespanList(abjad.TimespanList):
 
     def time_signatures(self):
         """It returns time signatures based on timespan list."""
-        permitted_meters = abjad.MeterList(
-            [
-                (5, 4),
-                (9, 8),
-                (4, 4),
-                (7, 8),
-                (3, 4),
-                (5, 8),
-                (2, 4),
-                (3, 8),
-                # (5, 16),
-                # (1, 4),
-                # (3, 16),
-                # (1, 8),
-            ])
+        permitted_meters = [
+            (5, 4),
+            (9, 8),
+            (4, 4),
+            (7, 8),
+            (3, 4),
+            (5, 8),
+            (2, 4),
+            (3, 8),
+            # (5, 16),
+            # (1, 4),
+            # (3, 16),
+            # (1, 8),
+        ]
+        permitted_meters = [abjad.Meter(_) for _ in permitted_meters]
         fitted_meters = abjad.Meter.fit_meters(
             argument=self, meters=permitted_meters,  # maximum_run_length=1
         )
@@ -224,7 +280,10 @@ def alternating_timespans(
     n_annotations = len(annotations)
     timespans = TimespanList()
     counter_1 = []
+    if len(annotations) != len(alternations[0]):
+        raise Exception("Annotations counts != alternations counts")
     for a, alt in enumerate(alternations):
+        # print(a, alt)
         for i in range(n_annotations):
             if alt[i] == 0:
                 pass
@@ -253,7 +312,6 @@ def alternating_timespans(
                     counter_1.append(alt[i])
     return timespans
 
-
     # print(timespans)
     # abjad.show(timespans, scale=0.8, key="annotation")
 
@@ -271,3 +329,53 @@ def alternating_timespans(
 # print(t_list)
 # list_with_voices = t_list.SeparateTimespansByAnnotation()
 # print(list_with_voices)
+
+
+def make_alternations(total_duration: abjad.Duration, numerator_lists: list[list], denominator: int):
+    current_duration = 0
+    remaining_duration = 0
+    alternations = []
+    durations = []
+    while current_duration < total_duration:
+        numerator_lists = [cycle(_) for _ in numerator_lists]
+        sublist = []
+        for i in range(len(numerator_lists)):
+            if current_duration == total_duration:
+                break
+            # print("i", i)
+            n = next(numerator_lists[i])
+
+            n_dur = abjad.Duration(n, denominator)
+            if remaining_duration > 0:
+                # print("remaining > 0")
+                if remaining_duration < n_dur:
+                    r_dur = remaining_duration.with_denominator(denominator)
+                    # print("aqui", r_dur)
+                    n = r_dur.numerator
+                    # print("adjusting final duration")
+            # print("n =", n)
+            sublist.append(n)
+            if n != 0:
+                durations.append(abjad.Duration(n, denominator))
+            # print(sublist)
+            # print(i, len(numerator_lists))
+            # durations = [abjad.Duration(_, denominator) for _ in durations if _ != 0]
+            current_duration = sum(durations)
+            # print("current =", current_duration)
+            remaining_duration = total_duration - current_duration
+            j = i + 1
+            # if remaining_duration == 0 and remaining_duration < n_dur and i < len(numerator_lists):
+            if remaining_duration == 0:
+                while len(sublist) < len(numerator_lists):
+                    # for a in numerator_lists[i:]:
+                    sublist.append(0)
+        assert len(sublist) == len(numerator_lists)
+        alternations.append(sublist)
+        # print("denominator =", denominator)
+        # print("durations =", durations)
+        # print("current =", current_duration)
+        # print("remaining =", remaining_duration)
+        # if total_duration == current_duration:
+        # print("END")
+    # print(alternations)
+    return alternations

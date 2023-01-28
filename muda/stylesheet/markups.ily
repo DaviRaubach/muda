@@ -1,4 +1,5 @@
 subito = \markup { \fontsize #-2 \italic \center-align "subito"}
+Ppossibile = \markup { \dynamic p possibile }
 half = \markup {\fontsize #-3 \note-by-number #1 #0 #0.9 }
 quarter = \markup {\fontsize #-3 \note-by-number #2 #0 #0.9 }
 dottedQuarter = \markup {\fontsize #-3 \note-by-number #2 #1 #-0.9 }

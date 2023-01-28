@@ -83,26 +83,43 @@ aeolAndOrd= {
 %        -2.5))))
 % }
 
-slap =
-#(define-music-function (music) (ly:music?)
-  #{
-  \temporary \override NoteHead.stencil =
-  #(lambda (grob)
-    (grob-interpret-markup grob
-     (markup #:musicglyph "scripts.sforzato")))
-  \temporary \override NoteHead.stem-attachment =
-  #(lambda (grob)
-    (let* ((thickness (ly:staff-symbol-line-thickness grob))
-	   (stem (ly:grob-object grob 'stem))
-	   (dir (ly:grob-property stem 'direction UP)))
-     (cons 1 (+ (if (= dir DOWN)
-		 0.5
-		 0)
-	      (/ thickness 2)))))
-  #music
-  \revert NoteHead.stencil
-  \revert NoteHead.stem-attachment
-  #})
+% slap =
+% #(define-music-function (music) (ly:music?)
+%   #{
+%   \temporary \override NoteHead.stencil =
+%   #(lambda (grob)
+%     (grob-interpret-markup grob
+%      (markup #:musicglyph "scripts.sforzato")))
+%   \temporary \override NoteHead.stem-attachment =
+%   #(lambda (grob)
+%     (let* ((thickness (ly:staff-symbol-line-thickness grob))
+% 	   (stem (ly:grob-object grob 'stem))
+% 	   (dir (ly:grob-property stem 'direction UP)))
+%      (cons 1 (+ (if (= dir DOWN)
+% 		 0.5
+% 		 0)
+% 	      (/ thickness 2)))))
+%   #music
+%   \revert NoteHead.stencil
+%   \revert NoteHead.stem-attachment
+%   #})
+slap = { \once \override NoteHead.stencil = #ly:text-interface::print
+	 \once \override NoteHead.text =
+	 \markup 
+	 \translate #'(1 . 0) 
+	 \override #'(thickness . 1.4) 
+	 \overlay {
+	   \draw-line #'(-1.2 . 0.4)
+	   \draw-line #'(-1.2 . -0.4)
+	 }
+	 \once \override NoteHead.stem-attachment =
+	 #(lambda (grob)
+	   (let* ((stem (ly:grob-object grob 'stem))
+		  (dir (ly:grob-property stem 'direction UP))
+		  (is-up (eqv? dir UP)))
+	    (cons dir (if is-up 0 -0.8))))
+       }
+   % #music
 
 % aeol =
 % #(define-music-function (music) (ly:music?)

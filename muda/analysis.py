@@ -9,9 +9,28 @@ import matplotlib.pyplot as plt
 import numpy as np
 import abjad
 import json
-import evans
+import quicktions
 # from abjadext import microtones
 
+
+def to_nearest_twelfth_tone(number):
+    """
+    Copied from Evans abjad library because it was not available.
+
+    Rounds number to nearest twelfth
+
+    ..  container:: example
+
+        >>> l = [0, 1.111, 4.5, 2.23, 6.4, 7.3, 7.15]
+        >>> l = [evans.to_nearest_twelfth_tone(_) for _ in l]
+        >>> l
+        [Fraction(0, 1), Fraction(7, 6), Fraction(9, 2), Fraction(9, 4), Fraction(19, 3), Fraction(22, 3), Fraction(43, 6)]
+
+    """
+    semitones = quicktions.Fraction(int(round(12 * number)), 12)
+    if semitones.denominator == 12:
+        semitones = quicktions.Fraction(int(round(6 * number)), 6)
+    return semitones
 
 class IracemaAnalysis():
     r"""Gets the frequencies of a spectrum and notate them.
@@ -130,7 +149,7 @@ class IracemaAnalysis():
             for i, list_ in enumerate(freq_list):
                 chord_in_hertz.append(freq_list[i, n])
                 numberedp = (hz_to_midi(freq_list[i, n], 440) - 60)
-                roundedp = evans.to_nearest_twelfth_tone(numberedp)
+                roundedp = to_nearest_twelfth_tone(numberedp)
                 pitches.append(roundedp)
                 # pitches.append(abjad.NamedPitch.from_hertz(freq_list[i, n]))
             chord = abjad.Chord("<e' g' c''>4")
@@ -140,10 +159,10 @@ class IracemaAnalysis():
             chords_in_hertz.append(chord_in_hertz)
         abjad.attach(abjad.MetronomeMark((1, 4), 60), container[0])
         abjad.attach(abjad.LilyPondLiteral(r'\autoBeamOff'), container[0])
-        selection = abjad.select(container).leaves()
+        selection = abjad.select.leaves(container)
         for i, leaf in enumerate(selection):
             abjad.attach(
-                abjad.Markup(str(i), direction=abjad.Up), leaf,
+                abjad.Markup(str(i)), leaf,
             )
         self.container = container
         self.chords_in_hertz = chords_in_hertz
@@ -151,7 +170,7 @@ class IracemaAnalysis():
 
     def select_chords(self, chords_list):
         """Todo."""
-        selection = abjad.select(self.container).leaves()
+        selection = abjad.select.leaves(self.container)
         new_container = abjad.Container()
         new_hertz_list = []
         for i in chords_list:

@@ -8,6 +8,7 @@
 \include "noteheads.ily"
 \include "wind-diagrams.ily"
 \include "wind-techniques.ily"
+\include "fancy-glissando.ily"
 \include "generics.ily"
 \include "string-techniques.ily"
 \include "voice.ily"

@@ -55,19 +55,30 @@ def text_rule_override_old(material: Material):
 
 
 def text_rule_override(selection):
+    # voice colisions
+    abjad.attach(
+        abjad.LilyPondLiteral(
+            [r" \hideNotes",
+             r" \mergeDifferentlyHeadedOn \mergeDifferentlyDottedOn \shiftOn"]
+        ),
+        abjad.select.leaf(selection, 0)
+    )
+
     hide_rule = [
         # r" \voiceTwo",
         # r" \stemDown",
-        r" \override Voice.NoteHead.stencil = ##f",
-        r" \override Voice.Rest.stencil = ##f",
-        r" \override Voice.Stem.stencil = ##f",
-        r" \override Voice.Flag.stencil = ##f",
-        r" \omit TupletNumber",
-        r" \omit Voice.Dots",
+        # r" \hide Voice.NoteHead",
+        # r" \override Voice.Rest.stencil = ##f",
+        # r" \override Voice.NoteHead.no_ledgers = ##t",
+        # r" \override Voice.Stem.stencil = ##f",
+        # r" \override Voice.Flag.stencil = ##f",
+        r" \omit Voice.TupletNumber",
+        # r" \omit Voice.Dots",
         r" \override Voice.TupletBracket.stencil = ##f",
-        r" \override Voice.Beam.stencil = ##f",
-        r" \omit Voice.Accidental",
-        r" \override LyricText.self-alignment-X = #LEFT",
+        # r" \override Voice.Beam.stencil = ##f",
+        r" \override Voice.Tie.stencil = ##f",
+        # r" \omit Voice.Accidental",
+        # r" \override LyricText.self-alignment-X = #LEFT",
     ]
 
     abjad.attach(abjad.LilyPondLiteral(hide_rule),
@@ -76,17 +87,28 @@ def text_rule_override(selection):
     revert_rule = [
         # r" \voiceTwo",
         # r" \stemDown",
-        r" \revert Voice.NoteHead.stencil",
-        r" \revert Voice.Rest.stencil",
-        r" \revert Voice.Stem.stencil",
-        r" \revert Voice.Flag.stencil",
-        r" \revert Voice.Dots.stencil",
+        # r" \undo \hide Voice.NoteHead",
+        # r" \revert Voice.NoteHead.no_ledgers",
+        # r" \revert Voice.Rest.stencil",
+        # r" \revert Voice.Stem.stencil",
+        # r" \revert Voice.Flag.stencil",
+        # r" \revert Voice.Dots.stencil",
         r" \undo \omit Voice.TupletNumber",
-        r" \undo \omit Voice.Dots",
+        # r" \undo \omit Voice.Dots",
         r" \revert Voice.TupletBracket.stencil",
-        r" \revert Voice.Beam.stencil",
-        r" \undo \omit Voice.Accidental",
+        # r" \revert Voice.Beam.stencil",
+        r" \revert Voice.Tie.stencil",
+        # r" \undo \omit Voice.Accidental",
     ]
+
+    abjad.attach(
+        abjad.LilyPondLiteral(
+            [r" \unHideNotes",
+             r" \mergeDifferentlyHeadedOff \mergeDifferentlyDottedOff \shiftOff"],
+            'after'
+        ),
+        abjad.select.leaf(selection, -1)
+    )
 
     abjad.attach(abjad.LilyPondLiteral(
         revert_rule, "after"), abjad.select.leaf(selection, -1))
@@ -156,18 +178,37 @@ def text_rule_override(selection):
 #     #     lambda _: abjad.select.leaf(_, -1))
 def hide_bar_line(selection):
     abjad.attach(abjad.LilyPondLiteral(
-        r" \omit Staff.BarLine", "after"), selection[0])
+        r' \bar " " \omit BarLine \omit StaffGroup.SpanBar', "after"), selection[0])
 
     abjad.attach(abjad.LilyPondLiteral(
-        r" \undo \omit Staff.BarLine", "after"), selection[-1])
+        r' \bar " " \undo \omit BarLine \undo \omit StaffGroup.SpanBar', "after"), selection[-1])
 
 
-def hide_engravers_for_text(selection):
+def hide_bar_line_before(selection):
+    abjad.attach(abjad.LilyPondLiteral(
+        r' \bar "" \omit BarLine \omit StaffGroup.SpanBar'), selection[0])
+
+    abjad.attach(abjad.LilyPondLiteral(
+        r' \undo \omit BarLine \undo \omit StaffGroup.SpanBar', "after"), selection[-1])
+
+
+def hide_last_bar_line(selection):
+    abjad.attach(abjad.LilyPondLiteral(
+        r" \omit Staff.BarLine \omit StaffGroup.SpanBar", "after"), selection[0])
+
+    abjad.attach(abjad.LilyPondLiteral(
+        r" \undo \omit Staff.BarLine \undo \omit StaffGroup.SpanBar", "after"), selection[-1])
+
+
+def hide_engravers_for_text(selection, no_bar_lines=False):
     # voice colisions
     abjad.attach(
         r" \mergeDifferentlyHeadedOn \mergeDifferentlyDottedOn \shiftOn",
         selection[0]
     )
+    if no_bar_lines:
+        abjad.attach(abjad.LilyPondLiteral(
+            r" \omit Staff.BarLine \omit StaffGroup.SpanBar"), selection[0])
 
     overrides = [
         # r" \override Voice.Stem.length = #15",
@@ -177,6 +218,7 @@ def hide_engravers_for_text(selection):
         r" \omit Voice.Flag",
         r" \omit StaffGroup.SpanBar",
         r" \hide Voice.Beam",
+        r" \omit Voice.Rest",
         r" \omit Voice.TupletNumber",
         r" \omit Voice.TupletBracket",
         r" \omit Voice.Dots",
@@ -208,6 +250,7 @@ def hide_engravers_for_text(selection):
         r" \undo \omit Voice.Flag",
         r" \undo \omit Staff.SpanBar",
         r" \undo \hide Voice.Beam",
+        r" \undo \omit Voice.Rest",
         r" \undo \omit Voice.TupletNumber",
         r" \undo \omit Voice.TupletBracket",
         r" \undo \omit Voice.Dots",
@@ -220,6 +263,15 @@ def hide_engravers_for_text(selection):
     ]
     abjad.attach(abjad.LilyPondLiteral(
         revert, 'after'), selection[-1])
+
+    if no_bar_lines:
+        abjad.attach(abjad.LilyPondLiteral(
+            [
+                r" \undo \omit Staff.BarLine",
+                r" \undo \omit StaffGroup.SpanBar"
+            ],
+            "after"
+        ), selection[-1])
 
     # material.attach(
     #     abjad.BarLine("||"),
