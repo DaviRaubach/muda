@@ -1,39 +1,4 @@
-from .override import(
-    hide_engravers_for_text,
-    stems_for_text,
-    replace_rest_by_skip,
-    text_rule_override,
-    hide_bar_line,
-    hide_bar_line_before,
-    hide_last_bar_line,
-)
-from .score import (
-    Instrument,
-    Score,
-    make_group,
-)
-from .pitch import (
-    ftom,
-    mtof,
-    filter_pitches,
-    write_pitches,
-    pitches_in_staff,
-    otoacoustic_derivation,
-    permut_thirds,
-    ring_modulation,
-)
-from .functions import (
-    make_measures,
-    make_skips,
-    rewrite_meter,
-    select_material,
-)
-from .rhythm import (
-    AnnotatedDuration,
-    silence_and_rhythm_maker,
-)
-from .timespan import TimespanList, alternating_timespans, make_alternations
-from .material import Lyrics, Material, Box, TimespanRhythmBox, Segment
+from .literals import fancy_glissando, slap_tongue, p_possibile
 from .selections import (
     leaves,
     pitched_leaves,
@@ -54,6 +19,85 @@ from .selections import (
     leaf_r1,
     leaves_get,
 )
+from .material import Lyrics, Material, Segment
+from .indicators import best_clef_for_logical_ties, any_clef_from_pitches, clef_for_logical_ties, ottava
+from .timespan import TimespanList, alternating_timespans, make_alternations
+from .override import (
+    hide_engravers_for_text,
+    stems_for_text,
+    replace_rest_by_skip,
+    text_rule_override,
+    hide_bar_line,
+    hide_bar_line_before,
+    hide_last_bar_line,
+)
+from .score import (
+    Instrument,
+    Group,
+    Score,
+    make_group,
+)
+from .pitch import (
+    ftom,
+    mtof,
+    filter_pitches,
+    write_pitches,
+    make_art_harmonic_from_target,
+    make_nat_harmonic,
+    make_possible_nat_harmonics,
+    get_harmonic_fundamental,
+    art_to_nat_harmonics,
+    pitches_in_staff,
+    illustrate_pitches_in_staff,
+    otoacoustic_derivation,
+    permut_thirds,
+    ring_modulation,
+    new_ring_modulation,
+    transpose_outside_pitches,
+    art_harmonic_for_longer_notes,
+    art_harmonics_sounding_pitch,
+    transpose_note_before_chord_to_the_same_octave,
+)
+from .functions import (
+    make_measures,
+    make_skips,
+    rewrite_meter,
+    select_material,
+)
+from .rhythm import (
+    AnnotatedDuration,
+    silence_and_rhythm_maker,
+    rest_maker,
+    note_maker,
+    make_sync_alternations,
+    make_in_out_alternations,
+    rmaker,
+)
+from .spanners import (
+    dashed_right_arrow_text_spanner,
+    spanner_after,
+)
+
+from .attach import (
+    attach_to_leaves,
+    attach_to_logical_tie,
+)
+from .dynamics import (
+    dynamics,
+    make_dynamics,
+    dynamics_after,
+)
+
+from .select import (
+    select_contiguous_containers_by_name,
+    select_not_contiguous_containers_by_name,
+    select_contiguous_materials,
+    select_not_contiguous_materials,
+    call_function_on_leaf_in_selection,
+)
+
+from .markups import markup
+
 # import time
 
 # startTime = time.time()
@@ -69,4 +113,3 @@ from .selections import (
 # elapsed_time = round(time.time() - startTime, 2)
 # print('\033[95m', "Initialize Muda took",
 # elapsed_time, "seconds\033[0;0m")
-from .literals import fancy_glissando, slap_tongue, p_possibile

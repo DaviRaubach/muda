@@ -1,4 +1,4 @@
-\version "2.23.9"
+\version "2.23.6"
 \language "english"
 #(ly:set-option 'relative-includes #t)
 

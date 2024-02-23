@@ -1,4 +1,4 @@
-\version "2.23.9"
+\version "2.23.6"
 #(define-markup-command (strikethrough layout props arg)
    (markup?)
    #:category font

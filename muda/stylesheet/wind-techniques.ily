@@ -156,8 +156,8 @@ upT = {
   \once \override Stem.X-offset = #0.622
   \once \override Stem.Y-offset  = #-0.2
   \once \override Stem.length-fraction  = #1.12
-  \once \override NoteHead  #'stencil = #ly:text-interface::print
-  \once \override NoteHead #'text =
+  \once \override NoteHead.stencil = #ly:text-interface::print
+  \once \override NoteHead.text =
   \markup {
     \path #0.13
     #'((moveto -.1775 -.43)8
@@ -173,8 +173,8 @@ dT = {
   \once \override Stem.X-offset = #0.64
   \once \override Stem.Y-offset  = #0.2
   \once \override Stem.length-fraction  = #1.12
-  \once \override NoteHead  #'stencil = #ly:text-interface::print
-  \once \override NoteHead #'text = \markup {
+  \once \override NoteHead.stencil = #ly:text-interface::print
+  \once \override NoteHead.text = \markup {
     \path #0.13
     #'((moveto  -.0775 .43)
        (lineto  .65625 -.43 )
@@ -187,8 +187,8 @@ upTg = {
   \once \override Stem.direction = #down
   \once \override Stem.X-offset = #0.622
   \once \override Stem.Y-offset  = #-0.2
-  \once \override NoteHead  #'stencil = #ly:text-interface::print
-  \once \override NoteHead #'text =
+  \once \override NoteHead.stencil = #ly:text-interface::print
+  \once \override NoteHead.text =
   \markup {
     \path #0.13
     #'((moveto -.1775 -.43)
@@ -202,8 +202,8 @@ dTg = {
   \once \override Stem.direction = #up
   \once \override Stem.X-offset = #0.64
   \once \override Stem.Y-offset  = #0.2
-  \once \override NoteHead  #'stencil = #ly:text-interface::print
-  \once \override NoteHead #'text = \markup {
+  \once \override NoteHead.stencil = #ly:text-interface::print
+  \once \override NoteHead.text = \markup {
     \path #0.13
     #'((moveto  -.0775 .43)
        (lineto  .65625 -.43 )

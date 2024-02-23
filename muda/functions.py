@@ -54,59 +54,47 @@ def make_skips(score, time_signatures):
 # rewrite meter
 
 
-def rewrite_meter(container, time_signatures):
-    # global_skips = [_ for _ in abjad.select(score["Global_Context"]).leaves()]
-    # sigs = []
-    # for skip in global_skips:
-    #     for indicator in abjad.get.indicators(skip):
-    #         if isinstance(indicator, abjad.TimeSignature):
-    #             sigs.append(indicator)
-    durations = [_.duration for _ in time_signatures]
-    # for voice in abjad.select.components(score, abjad.Voice):
-    # voice_dur = abjad.get.duration(voice)
-    # if voice:
-    # print("rewriting meter:", voice.name)
-    # sig_dur = sum(durations)
-    # assert voice_dur == sig_dur, (voice_dur, sig_dur)
+def rewrite_meter(container, time_signatures, boundary_depth=0, rewrite_tuplets=True, maximum_dot_count=1):
+    if isinstance(time_signatures[0], abjad.Duration):
+        durations = time_signatures
+    else:
+        durations = [_.duration for _ in time_signatures]
     shards = abjad.mutate.split(container, durations)
     for shard, time_signature in zip(shards, time_signatures):
-        # leaf = abjad.get.leaf(shard, 0)
-        # time_signature = abjad.get.indicator(leaf, abjad.TimeSignature)
-        # print(time_s)
-        # print(time_signature)
         abjad.Meter.rewrite_meter(
             shard[:],
             time_signature,
-            boundary_depth=1,
-            rewrite_tuplets=False,
-            maximum_dot_count=1,
+            boundary_depth=boundary_depth,
+            rewrite_tuplets=rewrite_tuplets,
+            maximum_dot_count=maximum_dot_count,
         )
+    return shards
 
-        # for time_signature, shard in zip(time_signatures, shards):
-        #     abjad.Meter.rewrite_meter(shard, time_signature, boundary_depth=1)
+    # for time_signature, shard in zip(time_signatures, shards):
+    #     abjad.Meter.rewrite_meter(shard, time_signature, boundary_depth=1)
 
-        # inventories = [
-        #     x
-        #     for x in enumerate(
-        #         abjad.Meter(time_signature.pair).depthwise_offset_inventory
-        #     )
-        # ]
-        # if time_signature.denominator == 4:
-        #     abjad.Meter.rewrite_meter(
-        #         shard,
-        #         time_signature,
-        #         boundary_depth=inventories[-1][0],
-        #         rewrite_tuplets=False,
-        #     )
-        # else:
-        #     abjad.Meter.rewrite_meter(
-        #         shard,
-        #         time_signature,
-        #         boundary_depth=inventories[-2][0],
-        #         rewrite_tuplets=False,
-        #     )
+    # inventories = [
+    #     x
+    #     for x in enumerate(
+    #         abjad.Meter(time_signature.pair).depthwise_offset_inventory
+    #     )
+    # ]
+    # if time_signature.denominator == 4:
+    #     abjad.Meter.rewrite_meter(
+    #         shard,
+    #         time_signature,
+    #         boundary_depth=inventories[-1][0],
+    #         rewrite_tuplets=False,
+    #     )
+    # else:
+    #     abjad.Meter.rewrite_meter(
+    #         shard,
+    #         time_signature,
+    #         boundary_depth=inventories[-2][0],
+    #         rewrite_tuplets=False,
+    #     )
 
-        # abjad.mutate().split(voice, in_time_signature, cyclic=True)
+    # abjad.mutate().split(voice, in_time_signature, cyclic=True)
 
     # time_signatures = []
     # for item in in_time_signatures:

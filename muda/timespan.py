@@ -105,6 +105,7 @@ class TimespanList(abjad.TimespanList):
 
     def annotated_durations(self, subdivision: tuple = None):
         """Todo."""
+
         if subdivision == None:
             subdivision = (2, 4)
         subdur = abjad.Duration(subdivision)
@@ -164,6 +165,7 @@ class TimespanList(abjad.TimespanList):
                 # print("is list")
                 dur_sub_list = []
                 for sp in span:
+                    # print(sp.annotation)
                     dur = muda.rhythm.AnnotatedDuration(
                         sp.duration,
                         annotation=sp.annotation)
@@ -180,6 +182,102 @@ class TimespanList(abjad.TimespanList):
                 dur_list.append(dur)
             # print(span.annotation)
         return dur_list
+
+    def nannotated_durations(self, subdivision: tuple | None = None, subdivisions: dict | None = None):
+        """Todo."""
+
+        if subdivisions == None:
+            subdivisions = {}
+            for name in self.annotations:
+                subdivisions[name] = abjad.Duration(subdivision)
+
+        else:
+            for k, v in subdivisions.items():
+                subdivisions[k] = abjad.Duration(v)
+        # subdur = abjad.Duration(subdivision)
+
+        new_ts_list = []
+        for span in self:
+            sub_ts_list = []
+            append_lower = True
+            append_higher = True
+            for a in range(2, 56):
+                if span.duration < subdivisions[span.annotation] * 2 and append_lower is True:
+                    sub_ts_list.append(span)
+                    # print("menor:", span.duration)
+                    append_lower = False
+                elif (span.duration >= subdivisions[span.annotation] * (a - 1) and
+                      span.duration < subdivisions[span.annotation] * a) and append_higher is True:
+                    # print("maior:", span.duration)
+                    rest = span.duration % subdivisions[span.annotation]
+                    # print("rest", rest)
+                    if rest == 0:
+                        splited1 = span.divide_by_ratio(a - 1)
+                        for ts in splited1:
+                            newts = abjad.Timespan(
+                                start_offset=ts.start_offset,
+                                stop_offset=ts.stop_offset,
+                                annotation=span.annotation)
+                            sub_ts_list.append(newts)
+                            # print("rest = 0, span annotation:",
+                                  # newts.annotation)
+                    else:
+                        newspan = copy(span)
+                        # print("rest =!0, span duration: ", span.duration)
+                        dim = span.duration - rest
+                        # print("dur dim", dim)
+                        newspan = newspan.set_duration(dim)
+                        # print("newspan dur:", newspan.duration)
+                        splited2 = newspan.divide_by_ratio(a - 1)
+                        # print("splited:", splited2)
+                        for o, ts2 in enumerate(splited2):
+                            # print("o", o)
+                            if o == (len(splited2) - 1):
+                                nts2 = splited2[-1].set_duration(
+                                    splited2[-1].duration + rest)
+                                nts2.annotation = span.annotation
+                                sub_ts_list.append(nts2)
+                                # print("aquiiii", nts2.duration)
+                            else:
+                                ts2.annotation = span.annotation
+                                sub_ts_list.append(ts2)
+                            # print("rest =! 0:", ts2.duration)
+                    append_higher = False
+            new_ts_list.append(sub_ts_list)
+
+        dur_list = []
+        for span in new_ts_list:
+            if isinstance(span, list):
+                # print("is list")
+                dur_sub_list = []
+                for sp in span:
+                    # print(sp.annotation)
+                    dur = muda.rhythm.AnnotatedDuration(
+                        sp.duration,
+                        annotation=sp.annotation)
+                    dur_sub_list.append(dur)
+                if dur_sub_list:
+                    dur_list.append(dur_sub_list)
+            else:
+                # print("is not a list")
+                dur = muda.rhythm.AnnotatedDuration(
+                    span.duration,
+                    annotation=span.annotation)
+            # print("mudadur:", dur)
+            # dur.annotation = span.annotation
+                dur_list.append(dur)
+            # print(span.annotation)
+        return dur_list
+    from abjadext import rmakers
+
+    def rests(self):
+        divisions = self.annotated_durations()
+        nested_music = rmakers.note(divisions)
+        container = abjad.Container(nested_music)
+        logical_ties = abjad.select.logical_ties(container)
+        rmakers.force_rest(logical_ties)
+        _rests = abjad.mutate.eject_contents(container)
+        return _rests
 
     def time_signatures(self):
         """It returns time signatures based on timespan list."""
@@ -263,18 +361,9 @@ class TimespanList(abjad.TimespanList):
 
 
 def alternating_timespans(
-    alternations=[
-        [13, 5, 3],
-        [8, 5, 3],
-        [5, 5, 1],
-        [3, 8, 1],
-        [3, 13, 2],
-        [2, 13, 8],
-        [2, 8, 8],
-        [1, 3, 13],
-    ],
-    denominator=4,
-    annotations=["Mat_1", "Mat_2", "Rests"],
+    alternations: list[list],
+    denominator: int,
+    annotations: list[str],
 ):
     """Make timespans to use with alternating materials."""
     n_annotations = len(annotations)
@@ -283,8 +372,8 @@ def alternating_timespans(
     if len(annotations) != len(alternations[0]):
         raise Exception("Annotations counts != alternations counts")
     for a, alt in enumerate(alternations):
-        # print(a, alt)
         for i in range(n_annotations):
+            # print(annotations[i])
             if alt[i] == 0:
                 pass
             else:
@@ -302,14 +391,16 @@ def alternating_timespans(
                     start_offset_ = (sum(counter_1), denominator)
                     stop_offset_ = (sum(counter_1) + alt[i], denominator)
                     # print(start_offset_, stop_offset_)
-                    timespans.append(
-                        abjad.Timespan(
+                    ts = abjad.Timespan(
                             annotation=annotations[i],
                             start_offset=start_offset_,
                             stop_offset=stop_offset_,
                         )
-                    )
+
+                    timespans.append(ts)
                     counter_1.append(alt[i])
+                    # print(alt[i], ts)
+    timespans.annotations = annotations
     return timespans
 
     # print(timespans)
@@ -349,7 +440,9 @@ def make_alternations(total_duration: abjad.Duration, numerator_lists: list[list
             if remaining_duration > 0:
                 # print("remaining > 0")
                 if remaining_duration < n_dur:
-                    r_dur = remaining_duration.with_denominator(denominator)
+                    r_dur = abjad.duration.with_denominator(remaining_duration, denominator)
+                    r_dur = abjad.Duration(r_dur)
+                    # OLD r_dur = remaining_duration.with_denominator(denominator)
                     # print("aqui", r_dur)
                     n = r_dur.numerator
                     # print("adjusting final duration")

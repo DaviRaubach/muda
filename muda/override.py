@@ -5,18 +5,10 @@ s = abjad.select
 
 
 def glcontext_hide_time_signature(glcontext: Material):
+    glcontext.attach(r" \omit TimeSignature", lambda _: s.leaf(_, 0))
     glcontext.attach(
-        r" \omit TimeSignature",
-        lambda _: s.leaf(_, 0)
-    )
-    glcontext.attach(
-        abjad.LilyPondLiteral(
-            r" \undo \omit TimeSignature",
-            "after"
-        ),
+        abjad.LilyPondLiteral(r" \undo \omit TimeSignature", "after"),
         lambda _: s.leaf(_, -1),
-
-
     )
 
 
@@ -50,18 +42,21 @@ def text_rule_override_old(material: Material):
         r" \undo \omit Voice.Accidental",
     ]
 
-    material.attach(abjad.LilyPondLiteral(
-        revert_rule, "after"), lambda _: s.leaf(_, -1))
+    material.attach(
+        abjad.LilyPondLiteral(revert_rule, "after"), lambda _: s.leaf(_, -1)
+    )
 
 
 def text_rule_override(selection):
     # voice colisions
     abjad.attach(
         abjad.LilyPondLiteral(
-            [r" \hideNotes",
-             r" \mergeDifferentlyHeadedOn \mergeDifferentlyDottedOn \shiftOn"]
+            [
+                r" \hideNotes",
+                r" \mergeDifferentlyHeadedOn \mergeDifferentlyDottedOn \shiftOn",
+            ]
         ),
-        abjad.select.leaf(selection, 0)
+        abjad.select.leaf(selection, 0),
     )
 
     hide_rule = [
@@ -81,8 +76,7 @@ def text_rule_override(selection):
         # r" \override LyricText.self-alignment-X = #LEFT",
     ]
 
-    abjad.attach(abjad.LilyPondLiteral(hide_rule),
-                 abjad.select.leaf(selection, 0))
+    abjad.attach(abjad.LilyPondLiteral(hide_rule), abjad.select.leaf(selection, 0))
 
     revert_rule = [
         # r" \voiceTwo",
@@ -103,15 +97,18 @@ def text_rule_override(selection):
 
     abjad.attach(
         abjad.LilyPondLiteral(
-            [r" \unHideNotes",
-             r" \mergeDifferentlyHeadedOff \mergeDifferentlyDottedOff \shiftOff"],
-            'after'
+            [
+                r" \unHideNotes",
+                r" \mergeDifferentlyHeadedOff \mergeDifferentlyDottedOff \shiftOff",
+            ],
+            "after",
         ),
-        abjad.select.leaf(selection, -1)
+        abjad.select.leaf(selection, -1),
     )
 
-    abjad.attach(abjad.LilyPondLiteral(
-        revert_rule, "after"), abjad.select.leaf(selection, -1))
+    abjad.attach(
+        abjad.LilyPondLiteral(revert_rule, "after"), abjad.select.leaf(selection, -1)
+    )
 
 
 # def hide_engravers_for_text(material: Material):
@@ -173,46 +170,69 @@ def text_rule_override(selection):
 #     material.attach(abjad.LilyPondLiteral(
 #         revert, 'after'), lambda _: s.leaf(_, -1))
 
+
 #     # material.attach(
 #     #     abjad.BarLine("||"),
 #     #     lambda _: abjad.select.leaf(_, -1))
 def hide_bar_line(selection):
-    abjad.attach(abjad.LilyPondLiteral(
-        r' \bar " " \omit BarLine \omit StaffGroup.SpanBar', "after"), selection[0])
+    abjad.attach(
+        abjad.LilyPondLiteral(
+            r' \bar " " \omit BarLine \omit StaffGroup.SpanBar', "after"
+        ),
+        selection[0],
+    )
 
-    abjad.attach(abjad.LilyPondLiteral(
-        r' \bar " " \undo \omit BarLine \undo \omit StaffGroup.SpanBar', "after"), selection[-1])
+    abjad.attach(
+        abjad.LilyPondLiteral(
+            r' \bar " " \undo \omit BarLine \undo \omit StaffGroup.SpanBar', "after"
+        ),
+        selection[-1],
+    )
 
 
 def hide_bar_line_before(selection):
-    abjad.attach(abjad.LilyPondLiteral(
-        r' \bar "" \omit BarLine \omit StaffGroup.SpanBar'), selection[0])
+    abjad.attach(
+        abjad.LilyPondLiteral(r' \bar "" \omit BarLine \omit StaffGroup.SpanBar'),
+        selection[0],
+    )
 
-    abjad.attach(abjad.LilyPondLiteral(
-        r' \undo \omit BarLine \undo \omit StaffGroup.SpanBar', "after"), selection[-1])
+    abjad.attach(
+        abjad.LilyPondLiteral(
+            r" \undo \omit BarLine \undo \omit StaffGroup.SpanBar", "after"
+        ),
+        selection[-1],
+    )
 
 
 def hide_last_bar_line(selection):
-    abjad.attach(abjad.LilyPondLiteral(
-        r" \omit Staff.BarLine \omit StaffGroup.SpanBar", "after"), selection[0])
+    abjad.attach(
+        abjad.LilyPondLiteral(
+            r" \omit Staff.BarLine \omit StaffGroup.SpanBar", "after"
+        ),
+        selection[0],
+    )
 
-    abjad.attach(abjad.LilyPondLiteral(
-        r" \undo \omit Staff.BarLine \undo \omit StaffGroup.SpanBar", "after"), selection[-1])
+    abjad.attach(
+        abjad.LilyPondLiteral(
+            r" \undo \omit Staff.BarLine \undo \omit StaffGroup.SpanBar", "after"
+        ),
+        selection[-1],
+    )
 
 
 def hide_engravers_for_text(selection, no_bar_lines=False):
     # voice colisions
     abjad.attach(
-        r" \mergeDifferentlyHeadedOn \mergeDifferentlyDottedOn \shiftOn",
-        selection[0]
+        r" \mergeDifferentlyHeadedOn \mergeDifferentlyDottedOn \shiftOn", selection[0]
     )
     if no_bar_lines:
-        abjad.attach(abjad.LilyPondLiteral(
-            r" \omit Staff.BarLine \omit StaffGroup.SpanBar"), selection[0])
+        abjad.attach(
+            abjad.LilyPondLiteral(r" \omit Staff.BarLine \omit StaffGroup.SpanBar"),
+            selection[0],
+        )
 
     overrides = [
         # r" \override Voice.Stem.length = #15",
-
         # r" \override Voice.Beam.stencil = #ly:text-interface::print",
         # r' \override Voice.Beam.text = " "',
         r" \omit Voice.Flag",
@@ -229,24 +249,22 @@ def hide_engravers_for_text(selection, no_bar_lines=False):
         # r" \override TextScript.self-alignment-X = #CENTER",
         # r" \override TextScript.Y-offset = # -6",
     ]
-    abjad.attach(abjad.LilyPondLiteral(
-        overrides), selection[0])
+    abjad.attach(abjad.LilyPondLiteral(overrides), selection[0])
     # print(s.leaf(material.container, 0))
     # abjad.attach(abjad.LilyPondLiteral(
     #     r" \omit Staff.BarLine", "after"), selection[0])
     # REVERT
-    abjad.attach(
-        abjad.LilyPondLiteral(
-            r" \mergeDifferentlyHeadedOff \mergeDifferentlyDottedOff \shiftOff",
-            'after'
-        ),
-        selection[-1]
+    rev = abjad.LilyPondLiteral(
+        r" \mergeDifferentlyHeadedOff \mergeDifferentlyDottedOff \shiftOff",
+        site="after",
     )
+
+    abjad.attach(rev, selection[-1])
 
     revert = [
         # r" \undo \omit Staff.BarLine",
         r" \revert Voice.Beam.stencil",
-        r' \revert Voice.Beam.text',
+        r" \revert Voice.Beam.text",
         r" \undo \omit Voice.Flag",
         r" \undo \omit Staff.SpanBar",
         r" \undo \hide Voice.Beam",
@@ -261,17 +279,19 @@ def hide_engravers_for_text(selection, no_bar_lines=False):
         # r" \override TextScript.self-alignment-X = #CENTER",
         # r" \override TextScript.Y-offset = # -6",
     ]
-    abjad.attach(abjad.LilyPondLiteral(
-        revert, 'after'), selection[-1])
+    rev3 = abjad.LilyPondLiteral(revert, site="after")
+    abjad.attach(rev3, selection[-1])
 
     if no_bar_lines:
-        abjad.attach(abjad.LilyPondLiteral(
-            [
-                r" \undo \omit Staff.BarLine",
-                r" \undo \omit StaffGroup.SpanBar"
-            ],
-            "after"
-        ), selection[-1])
+        rev2 =             abjad.LilyPondLiteral(
+                [r" \undo \omit Staff.BarLine", r" \undo \omit StaffGroup.SpanBar"],
+                "after",
+            )
+
+        abjad.attach(
+            rev2,
+            selection[-1],
+        )
 
     # material.attach(
     #     abjad.BarLine("||"),
@@ -280,39 +300,33 @@ def hide_engravers_for_text(selection, no_bar_lines=False):
 
 def stems_for_text(material: Material, pivot):
     material.attach(
-        r" \stemUp \override Beam.positions = #'(5 . 5)",
-        lambda _: s.leaf(_, 0)
+        r" \stemUp \override Beam.positions = #'(5 . 5)", lambda _: s.leaf(_, 0)
     )
     lts = s.logical_ties(material.container, pitched=True)
     # inverte a direção do stem para notas muito agudas
     # beam em cada nota para alinhar o final do stem no limite do text
     for lt in lts:
         if lt[0].written_pitch > abjad.NamedPitch(pivot):
-            string = abjad.LilyPondLiteral(
-                r" \once \override Stem.direction = #DOWN")
+            string = abjad.LilyPondLiteral(r" \once \override Stem.direction = #DOWN")
             for note in lt:
                 abjad.attach(string, note)
         else:
             for note in lt:
-                abjad.attach(abjad.LilyPondLiteral(
-                    r"[] ", site="after"), note)
+                abjad.attach(abjad.LilyPondLiteral(r"[] ", site="after"), note)
 
 
 def voice_overrides(material: Material):
     material.attach(
         r" \once \override Voice.NoteHead.no-ledgers = ##t",
-        lambda _: s.leaves(_, pitched=True)
+        lambda _: s.leaves(_, pitched=True),
     )
     material.attach(
-        abjad.Markup(
-            r'\markup {"voice" \italic "ad libitum"}'),
+        abjad.Markup(r'\markup {"voice" \italic "ad libitum"}'),
         lambda _: s.leaf(_, 0, pitched=True),
-        direction=abjad.UP
+        direction=abjad.UP,
     )
 
-    material.attach(
-        r" \stemDown \tieDown",
-        lambda _: s.leaf(_, 0))
+    material.attach(r" \stemDown \tieDown", lambda _: s.leaf(_, 0))
 
 
 # def replace_rest_by_skip_old(mat: Material):
