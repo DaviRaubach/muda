@@ -4,7 +4,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 install_requires = [
-    "abjad 3.19",
+    "abjad",
 ]
 
 keywords = [
