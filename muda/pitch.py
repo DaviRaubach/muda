@@ -1,6 +1,7 @@
 import abjad
 import os
-import numpy as np
+
+# import numpy as np
 import roman
 from .score import Instrument as _Instrument
 
