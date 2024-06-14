@@ -19,9 +19,25 @@ from .selections import (
     leaf_r1,
     leaves_get,
 )
-from .material import Lyrics, Material, Segment
-from .indicators import best_clef_for_logical_ties, any_clef_from_pitches, clef_for_logical_ties, ottava
-from .timespan import TimespanList, alternating_timespans, make_alternations
+from .material import (
+    Lyrics,
+    Material,
+    Segment,
+    apply_to,
+    select_named_containers,
+)
+from .indicators import (
+    best_clef_for_logical_ties,
+    any_clef_from_pitches,
+    clef_for_logical_ties,
+    ottava,
+)
+from .timespan import (
+    TimespanList,
+    alternating_timespans,
+    make_alternations,
+    illustrate_timespans,
+)
 from .override import (
     hide_engravers_for_text,
     stems_for_text,
@@ -57,12 +73,16 @@ from .pitch import (
     art_harmonic_for_longer_notes,
     art_harmonics_sounding_pitch,
     transpose_note_before_chord_to_the_same_octave,
+    macro_pitches,
+    outline_pitches,
 )
 from .functions import (
+    operation_in_nested_lists,
     make_measures,
     make_skips,
     rewrite_meter,
-    select_material,
+    auto_change,
+    voice_number,
 )
 from .rhythm import (
     AnnotatedDuration,
@@ -72,6 +92,7 @@ from .rhythm import (
     make_sync_alternations,
     make_in_out_alternations,
     rmaker,
+    delete,
 )
 from .spanners import (
     dashed_right_arrow_text_spanner,
@@ -86,6 +107,9 @@ from .dynamics import (
     dynamics,
     make_dynamics,
     dynamics_after,
+    make_velocity,
+    make_arc_velocities,
+    # Velocity
 )
 
 from .select import (

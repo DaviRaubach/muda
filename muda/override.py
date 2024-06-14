@@ -76,7 +76,9 @@ def text_rule_override(selection):
         # r" \override LyricText.self-alignment-X = #LEFT",
     ]
 
-    abjad.attach(abjad.LilyPondLiteral(hide_rule), abjad.select.leaf(selection, 0))
+    abjad.attach(
+        abjad.LilyPondLiteral(hide_rule), abjad.select.leaf(selection, 0)
+    )
 
     revert_rule = [
         # r" \voiceTwo",
@@ -107,7 +109,8 @@ def text_rule_override(selection):
     )
 
     abjad.attach(
-        abjad.LilyPondLiteral(revert_rule, "after"), abjad.select.leaf(selection, -1)
+        abjad.LilyPondLiteral(revert_rule, "after"),
+        abjad.select.leaf(selection, -1),
     )
 
 
@@ -184,7 +187,8 @@ def hide_bar_line(selection):
 
     abjad.attach(
         abjad.LilyPondLiteral(
-            r' \bar " " \undo \omit BarLine \undo \omit StaffGroup.SpanBar', "after"
+            r' \bar " " \undo \omit BarLine \undo \omit StaffGroup.SpanBar',
+            "after",
         ),
         selection[-1],
     )
@@ -192,7 +196,9 @@ def hide_bar_line(selection):
 
 def hide_bar_line_before(selection):
     abjad.attach(
-        abjad.LilyPondLiteral(r' \bar "" \omit BarLine \omit StaffGroup.SpanBar'),
+        abjad.LilyPondLiteral(
+            r' \bar "" \omit BarLine \omit StaffGroup.SpanBar'
+        ),
         selection[0],
     )
 
@@ -214,7 +220,8 @@ def hide_last_bar_line(selection):
 
     abjad.attach(
         abjad.LilyPondLiteral(
-            r" \undo \omit Staff.BarLine \undo \omit StaffGroup.SpanBar", "after"
+            r" \undo \omit Staff.BarLine \undo \omit StaffGroup.SpanBar",
+            "after",
         ),
         selection[-1],
     )
@@ -223,11 +230,14 @@ def hide_last_bar_line(selection):
 def hide_engravers_for_text(selection, no_bar_lines=False):
     # voice colisions
     abjad.attach(
-        r" \mergeDifferentlyHeadedOn \mergeDifferentlyDottedOn \shiftOn", selection[0]
+        r" \mergeDifferentlyHeadedOn \mergeDifferentlyDottedOn \shiftOn",
+        selection[0],
     )
     if no_bar_lines:
         abjad.attach(
-            abjad.LilyPondLiteral(r" \omit Staff.BarLine \omit StaffGroup.SpanBar"),
+            abjad.LilyPondLiteral(
+                r" \omit Staff.BarLine \omit StaffGroup.SpanBar"
+            ),
             selection[0],
         )
 
@@ -283,10 +293,10 @@ def hide_engravers_for_text(selection, no_bar_lines=False):
     abjad.attach(rev3, selection[-1])
 
     if no_bar_lines:
-        rev2 =             abjad.LilyPondLiteral(
-                [r" \undo \omit Staff.BarLine", r" \undo \omit StaffGroup.SpanBar"],
-                "after",
-            )
+        rev2 = abjad.LilyPondLiteral(
+            [r" \undo \omit Staff.BarLine", r" \undo \omit StaffGroup.SpanBar"],
+            site="after",
+        )
 
         abjad.attach(
             rev2,
@@ -307,7 +317,9 @@ def stems_for_text(material: Material, pivot):
     # beam em cada nota para alinhar o final do stem no limite do text
     for lt in lts:
         if lt[0].written_pitch > abjad.NamedPitch(pivot):
-            string = abjad.LilyPondLiteral(r" \once \override Stem.direction = #DOWN")
+            string = abjad.LilyPondLiteral(
+                r" \once \override Stem.direction = #DOWN"
+            )
             for note in lt:
                 abjad.attach(string, note)
         else:

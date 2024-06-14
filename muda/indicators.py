@@ -72,7 +72,7 @@ def clef_for_logical_ties(
         "treble^8": ["E5", "F6"],
         "treble": ["E4", "F5"],
         "alto": ["F4", "G5"],
-        "tenor": ["D4", "E5"],
+        "tenor": ["A3", "E5"],
         "bass": ["G2", "A3"],
         "bass_8": ["C1", "A2"],
         "bass_15": ["C0", "A1"],
@@ -140,27 +140,35 @@ def any_clef_from_pitches(
     return clef
 
 
-def ottava(pitched_logical_ties, clef: abjad.Clef):
+def ottava(
+    pitched_logical_ties, clef: abjad.Clef = None, higher_than=22, lower_than=-10
+):
     for lt in pitched_logical_ties:
         if isinstance(lt[0], abjad.Chord):
             pitch = lt[0].written_pitches[-1]
         elif isinstance(lt[0], abjad.Note):
             pitch = lt[0].written_pitch
-        if clef.to_staff_position(pitch).number > 22:
-            abjad.attach(
-                abjad.Ottava(1),
-                lt[0],
-            )
-            abjad.attach(
-                abjad.Ottava(0, site="after"),
-                lt[-1],
-            )
-        elif clef.to_staff_position(pitch).number < -10:
-            abjad.attach(
-                abjad.Ottava(-1),
-                lt[0],
-            )
-            abjad.attach(
-                abjad.Ottava(0, site="after"),
-                lt[-1],
-            )
+        if clef is None:
+            clef = abjad.get.indicator(lt[0], abjad.Clef)
+
+        if clef:
+            if clef.to_staff_position(pitch).number > higher_than:
+                abjad.attach(
+                    abjad.Ottava(1),
+                    lt[0],
+                )
+                abjad.attach(
+                    abjad.Ottava(0, site="after"),
+                    lt[-1],
+                )
+            elif clef.to_staff_position(pitch).number < lower_than:
+                abjad.attach(
+                    abjad.Ottava(-1),
+                    lt[0],
+                )
+                abjad.attach(
+                    abjad.Ottava(0, site="after"),
+                    lt[-1],
+                )
+        else:
+            print(" Warning: No clef to adjust ottavas")

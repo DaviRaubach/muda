@@ -3,6 +3,7 @@ Score.
 
 Classes to build a score.
 """
+
 import os
 import time
 from dataclasses import dataclass
@@ -56,6 +57,7 @@ class Instrument:
 
 
     """
+
     abjad_instrument: abjad.Instrument
     name: str
     staff_count: int
@@ -74,7 +76,7 @@ class Instrument:
     def __post_init__(self):
         self.__call__()
         if self.verbose is True:
-            print('\033[1;95m', self.tag.string, '\033[0;0m', self.name)
+            print("\033[1;95m", self.tag.string, "\033[0;0m", self.name)
 
     # def __init__(
     #     self, abjad_instrument,  name, staff_count, voice_count, lyrics_target=None,  markup=None
@@ -97,18 +99,24 @@ class Instrument:
         if self.markup is None:
             string = type(self.abjad_instrument).__name__
 
-            glue = ' '
-            result = ''.join(glue + x if x.isupper()
-                             else x for x in string).strip(glue).split(glue)
-            self.markup = ' '.join(result)
+            glue = " "
+            result = (
+                "".join(glue + x if x.isupper() else x for x in string)
+                .strip(glue)
+                .split(glue)
+            )
+            self.markup = " ".join(result)
 
         if self.short_markup is None:
             string = type(self.abjad_instrument).__name__
 
-            glue = ' '
-            result = ''.join(glue + x if x.isupper()
-                             else x for x in string).strip(glue).split(glue)
-            self.short_markup = ' '.join(result)[:4] + "."
+            glue = " "
+            result = (
+                "".join(glue + x if x.isupper() else x for x in string)
+                .strip(glue)
+                .split(glue)
+            )
+            self.short_markup = " ".join(result)[:4] + "."
 
         # abjad_instrument = self.abjad_instrument
         staves = self.append_staves()
@@ -138,9 +146,7 @@ class Instrument:
             self.staff = staffgroup
 
         abjad.setting(self.staff).instrumentName = f'"{self.markup}"'
-        abjad.setting(
-            self.staff
-        ).shortInstrumentName = f'"{self.short_markup}"'
+        abjad.setting(self.staff).shortInstrumentName = f'"{self.short_markup}"'
 
         abjad.setting(self.staff).midiInstrument = f'"{self.midi_instrument}"'
 
@@ -157,7 +163,8 @@ class Instrument:
                 staff_name = name + "_Staff_" + str(i + 1)
             if self.rhythmic is True:
                 staff = abjad.Staff(
-                    name=staff_name, lilypond_type='RhythmicStaff', tag=self.tag)
+                    name=staff_name, lilypond_type="RhythmicStaff", tag=self.tag
+                )
             else:
                 staff = abjad.Staff(name=staff_name, tag=self.tag)
             staves.append(staff)
@@ -182,7 +189,8 @@ class Instrument:
                     ly_type = "NullVoice"
 
             voice = abjad.Voice(
-                name=voice_name, lilypond_type=ly_type, tag=self.tag)
+                name=voice_name, lilypond_type=ly_type, tag=self.tag
+            )
             # if self.lyrics_target is not None:
             # if voice_name == self.lyrics_target:
             # literal = abjad.LilyPondLiteral(r"\voiceThree")
@@ -232,6 +240,7 @@ class Instrument:
 @dataclass
 class Group:
     r"""Group of instruments."""
+
     instruments: list[Instrument]
     name: str
     verbose = False
@@ -244,7 +253,7 @@ class Group:
         site = "muda.score.Group()"
         tag = abjad.Tag(site)
         if self.verbose is True:
-            print('\033[1;95m', tag.string, '\033[0;0m',  self.name)
+            print("\033[1;95m", tag.string, "\033[0;0m", self.name)
 
     def __call__(self):
         """Create group of instruments."""
@@ -278,18 +287,20 @@ class Score:
         self.name = name
         self.verbose = verbose
         if verbose is True:
-            print('\033[1;95m', tag.string, '\033[0;0m')
+            print("\033[1;95m", tag.string, "\033[0;0m")
         self.materials_list = []
         self.instruments = []
         self.instruments_dict = {}
-        
+
         if self.global_context is True:
             self.score.append(
-                abjad.Staff(lilypond_type="TimeSignatureContext",
-                            name="Global_Context")
+                abjad.Staff(
+                    lilypond_type="TimeSignatureContext", name="Global_Context"
+                )
             )
             self.materials_list.append(
-                material_module.Material("Global_Context"))
+                material_module.Material("Global_Context")
+            )
         # print(self.score)
 
     def __call__(self):
@@ -364,7 +375,6 @@ class Score:
         for _ in self.instruments:
             self.instruments_dict[_.name] = _
 
-
     def make_materials_list(self):
         """Creates a `muda.Material` instance for each voice in `self.score`."""
         # voices = abjad.select.components(self.score, abjad.Voice)
@@ -380,7 +390,7 @@ class Score:
                     material_module.Material(context.name),
                 )
         # for item in self.materials_list:
-            # print(item.name)
+        # print(item.name)
         # print(self.materials_list)
         return self.materials_list
 
@@ -429,7 +439,8 @@ class Score:
         else:
             in_time_signatures = time_signatures
             time_signatures_abjad = [
-                abjad.TimeSignature(_) for _ in in_time_signatures]
+                abjad.TimeSignature(_) for _ in in_time_signatures
+            ]
 
         for time_sig in time_signatures_abjad:
             skip = abjad.Skip(1, multiplier=(time_sig.pair))
@@ -439,7 +450,9 @@ class Score:
         for i, item in enumerate(in_time_signatures):
             index = in_time_signatures.index(item)
             abjad.attach(
-                time_signatures_abjad[index], self.score["Global_Context"][i], tag=tag
+                time_signatures_abjad[index],
+                self.score["Global_Context"][i],
+                tag=tag,
             )
 
         def attach(argument, select):
@@ -457,7 +470,9 @@ class Score:
     #             if material.name in fn_dict.keys:
     #                 fn_dict[material.name](material)
 
-    def write_materials(self, materials_list=None, fn_dict_list: list[dict] = None):
+    def write_materials(
+        self, materials_list=None, fn_dict_list: list[dict] = None
+    ):
         """Writes materials to voices in score."""
         if materials_list is None:
             materials_list = self.materials_list
@@ -669,8 +684,16 @@ class Score:
                 self.score[material.name].append(material.container)
             else:
                 if material.lyrics is not None:
-                    align_str = r" \override LyricText.self-alignment-X = #" + material.align
+                    align_str = (
+                        r" \override LyricText.self-alignment-X = #"
+                        + material.align
+                    )
                     lit = abjad.LilyPondLiteral(
+                        #             rf"""
+                        #              \context Lyrics = "{material_target}"
+                        #              \lyricsto "{material_target}
+                        #             r' \context Lyrics = "pno_Voice_2_Lyrics"
+                        # {
                         r'\lyricsto "'
                         + material.target
                         + r'" { \lyricmode {'
@@ -678,18 +701,20 @@ class Score:
                         + material.lyrics
                         + "}}"
                     )
-                    abjad.attach(lit, self.score[material.name])
+
+                    self.score[material.name].append("s4")
+                    abjad.attach(lit, self.score[material.name][0])
 
     def attach_instruments(self):
         """Attaches abjad instruments defined in muda.Instrument instance for each voice."""
         for instrument in self.instruments:
-            for i in range(sum(instrument.voice_count)-1):
+            for i in range(sum(instrument.voice_count) - 1):
                 j = i + 1
                 string = instrument.name + "_Voice_" + str(j)
                 if self.score[string]:
                     abjad.attach(
                         instrument.abjad_instrument,
-                        abjad.select.leaf(self.score[string], 0)
+                        abjad.select.leaf(self.score[string], 0),
                     )
 
     def attach_clefs(self):
@@ -703,38 +728,43 @@ class Score:
                     string = instrument.name + "_Staff_" + str(a)
 
                 voices = abjad.select.components(
-                    self.score[string], abjad.Voice)
-                containers = abjad.select.components(
-                    voices, abjad.Container)[0]
+                    self.score[string], abjad.Voice
+                )
+                containers = abjad.select.components(voices, abjad.Container)[0]
 
                 if abjad.select.components(self.score[string], abjad.Leaf):
                     # print(self.score[string])
-                    leaf = abjad.select.leaf(
-                        self.score[string],
-                        0
-                    )
+                    leaf = abjad.select.leaf(self.score[string], 0)
                     has_clef = abjad.get.indicator(leaf, abjad.Clef)
                     if instrument.clefs is not None and has_clef is None:
                         leaf = abjad.select.leaf(self.score[string], 0)
                         if leaf._has_indicator(abjad.Clef):
                             abjad.detach(abjad.Clef, leaf)
-                        abjad.attach(
-                            abjad.Clef(
-                                instrument.clefs[i]
-                            ),
-                            leaf
-                        )
+                        abjad.attach(abjad.Clef(instrument.clefs[i]), leaf)
                         if self.verbose is True:
                             string = "muda.Score.attach_clefs(): " + string
-                            print('\033[96m', string.ljust(80, '-'), '\033[0;0m')
+                            print(
+                                "\033[96m", string.ljust(80, "-"), "\033[0;0m"
+                            )
                     else:
                         if self.verbose is True:
-                            string = "muda.Score.attach_clefs(): " + string + "it already has a clef"
-                            print('\033[96m', string.ljust(80, '-'), '\033[0;0m')
+                            string = (
+                                "muda.Score.attach_clefs(): "
+                                + string
+                                + "it already has a clef"
+                            )
+                            print(
+                                "\033[96m", string.ljust(80, "-"), "\033[0;0m"
+                            )
 
                 else:
                     if self.verbose is True:
-                        print('\033[1;93m', "muda.Score.attach_clefs(): no clef or leaf", '\033[0;0m', self.score[string].name)
+                        print(
+                            "\033[1;93m",
+                            "muda.Score.attach_clefs(): no clef or leaf",
+                            "\033[0;0m",
+                            self.score[string].name,
+                        )
                     # print("attached",
                     #       instrument.clefs[i], self.score[string])
 
@@ -792,7 +822,7 @@ class Score:
         return abjad.show(self.score)
 
     def play(self):
-        """plays the score."""
+        """Plays the score."""
         current_dir = os.path.dirname(__file__)
         midi_path = current_dir + "/illustration.midi"
         midi_block = abjad.Block("midi")
@@ -803,10 +833,58 @@ class Score:
         abjad.persist.as_midi(lilypond_file, midi_path)
         abjad.io.open_file(midi_path)
 
-    def save_ly(self, file_name: str = None, output_dir: str = None):
+    def lilypond_file(
+        self,
+        file_name: str = None,
+        includes: str = None,
+        header_items: str = None,
+        paper_items: str = None,
+        midi: bool = False,
+    ):
+        """Compile pdf file."""
+        items = []
+        if includes is not None:
+            items.append(includes)
+        if header_items:
+            items.append(abjad.Block("header", items=[header_items]))
+        if paper_items:
+            items.append(abjad.Block("paper", items=[paper_items]))
+        items.append(self.score)
+        if midi:
+
+            midi_block = abjad.Block(
+                "midi",
+                items=[
+                    r""" \context {
+                        \Score 
+                        dynamicAbsoluteVolumeFunction = #extended-dynamic-absolute-volume
+                     }
+                """
+                ],
+            )
+            midi_score = self.score._copy_with_children()
+            midi_score.name = "midi_score"
+            staves = abjad.select.components(midi_score, abjad.Staff)
+            voices = abjad.select.components(midi_score, abjad.Voice)
+            for staff in staves + voices:
+                staff.name = rf"midi_{staff.name}"
+
+            score_block = abjad.Block(
+                "score", items=[r" \unfoldRepeats ", midi_score, midi_block]
+            )
+            items.append(score_block)
+
+        lilypond_file = abjad.LilyPondFile(
+            items=items,
+        )
+        return lilypond_file
+
+    def save_ly(
+        self, file_name: str = None, output_dir: str = None, midi=False
+    ):
         """Save score in lilypond file."""
         if file_name is None:
-            file_name = f'{output_dir}{self.score.name}.ly'
+            file_name = f"{output_dir}{self.score.name}.ly"
         lilypond_file = abjad.LilyPondFile(
             items=[self.score],
         )
@@ -815,57 +893,82 @@ class Score:
         if self.verbose is True:
             print(f"muda.Score.save_ly() working directory: {os.getcwd()}")
 
-    def save_pdf(self, file_name: str, includes=None, output_dir=None):
-        """Compile pdf file."""
-
+    def save_pdf(
+        self,
+        file_name: str = None,
+        includes: str = None,
+        header_items: str = None,
+        paper_items: str = None,
+        midi: bool = False,
+    ):
         minutes = fiveround(int(time.strftime("%M")))
+        print(time.strftime("%M"))
         minutes = str(minutes)
         if len(minutes) < 2:
             minutes = "0" + minutes
-        file_path = "score/" + \
-            time.strftime("%Y%m%d_%H") + minutes + "_" + file_name
-        # if file_name is None:
-        # file_name = f'{output_dir}{self.score.name}.pdf'
-        items = []
-        if includes is not None:
-            items.append(includes)
-        items.append(self.score)
-        lilypond_file = abjad.LilyPondFile(
-            items=items,
+        if file_name is None:
+            file_name = f"{self.score.name}"
+        file_path = (
+            "score/"
+            + time.strftime("%Y%m%d_%H")
+            + minutes
+            + "_"
+            + file_name
+            + ".pdf"
         )
-        abjad.persist.as_pdf(lilypond_file, file_path)  # backup
-        abjad.persist.as_pdf(lilypond_file, "score/" +
-                             file_name)  # view
-        if self.verbose is True:
+        ly = self.lilypond_file(
+            file_name=file_name,
+            includes=includes,
+            header_items=header_items,
+            paper_items=paper_items,
+            midi=midi,
+        )
+        abjad.persist.as_pdf(ly, file_path)  # backup
+        abjad.persist.as_pdf(ly, "score/" + file_name + ".pdf")  # view
+        # abjad.persist.as_ly(lilypond_file, "score/" + file_name + ".ly")
+        if self.verbose:
             print(f"muda.Score.save_pdf() working directory: {os.getcwd()}")
 
-    def save_midi(self, file_name: str):
+    def save_midi(self, file_name: str, alternative_path: str = None):
         """Save .midi files."""
-        minutes = fiveround(int(time.strftime("%M")))
-        minutes = str(minutes)
-        if len(minutes) < 2:
-            minutes = "0" + minutes
-        file_path = "score/" + \
-            time.strftime("%Y%m%d_%H") + minutes + "_" + file_name
-        midi_block = abjad.Block("midi")
+        # minutes = fiveround(int(time.strftime("%M")))
+        # minutes = str(minutes)
+        # if len(minutes) < 2:
+        # minutes = "0" + minutes
+        # file_path = "score/" + \
+        # time.strftime("%Y%m%d_%H") + minutes + "_" + file_name
+        midi_block = abjad.Block(
+            "midi",
+            items=[
+                r""" \context {
+                        \Score 
+                        dynamicAbsoluteVolumeFunction = #extended-dynamic-absolute-volume
+                     }
+                """
+            ],
+        )
         score_block = abjad.Block(
-            "score",
-            items=[r"\unfoldRepeats ", self.score, midi_block])
+            "score", items=[r" \unfoldRepeats ", self.score, midi_block]
+        )
         lilypond_file = abjad.LilyPondFile(
             items=[score_block],
         )
         # print(abjad.lilypond(lilypond_file))
-        abjad.persist.as_midi(lilypond_file, file_path)
-        abjad.persist.as_midi(lilypond_file, "score/" +
-                              file_name)  # view
+        # abjad.persist.as_midi(lilypond_file, file_path)
+        abjad.persist.as_midi(
+            lilypond_file, "score/" + file_name + ".midi"
+        )  # view
+        if alternative_path:
+            abjad.persist.as_midi(lilypond_file, alternative_path)
         if self.verbose is True:
             print(f"muda.Score.save_midi() working directory: {os.getcwd()}")
 
-    def save_parts_ly(self, ly_file_path: str = None, staff_names: list[str] = None):
+    def save_parts_ly(
+        self, ly_file_path: str = None, staff_names: list[str] = None
+    ):
         """Save lilypond file of parts."""
         if staff_names is None:
-            staff_groups = abjad.select.components(
-                self.score, abjad.StaffGroup)
+            staff_groups = abjad.select.components(self.score, abjad.StaffGroup)
             staffs = abjad.select.components(self.score, abjad.Staff)
             # new_staff_list = []
             # for staff in staffs:
@@ -900,22 +1003,82 @@ class Score:
     def pluri_lyrics(
         self,
         names=[
-                    ("Fl_Staff", "Fl_Voice_1_Lyrics"),
-                    ("Cl_Staff", "Cl_Voice_1_Lyrics"),
-                    ("Pno_Staff_1", "Pno_Voice_1_Lyrics"),
-                    ("Gtr_Staff", "Gtr_Voice_1_Lyrics"),
-                    ("Vn_Staff", "Vn_Voice_1_Lyrics"),
-                    ("Vc_Staff", "Vc_Voice_1_Lyrics")
-        ]
+            ("Fl_Staff", "Fl_Voice_1_Lyrics"),
+            ("Cl_Staff", "Cl_Voice_1_Lyrics"),
+            ("Pno_Staff_1", "Pno_Voice_1_Lyrics"),
+            ("Gtr_Staff", "Gtr_Voice_1_Lyrics"),
+            ("Vn_Staff", "Vn_Voice_1_Lyrics"),
+            ("Vc_Staff", "Vc_Voice_1_Lyrics"),
+        ],
     ):
         """Specific for As Vozes das Páginas piece."""
         for name in names:
             abjad.attach(
                 abjad.LilyPondLiteral(
-                    rf'\context Lyrics = "{name[1]}"',
-                    "absolute_before"
+                    rf'\context Lyrics = "{name[1]}"', "absolute_before"
                 ),
-                self.score[name[0]])
+                self.score[name[0]],
+            )
+
+    def check_crossings(self, transpose=abjad.DOWN):
+
+        for vertical_moment in abjad.iterate_vertical_moments(self.score):
+            # print(vertical_moment.leaves)
+            leaf1 = vertical_moment.leaves[0]
+            leaf2 = vertical_moment.leaves[1]
+
+            if not isinstance(
+                leaf1, abjad.Rest or abjad.Skip
+            ) and not isinstance(leaf2, abjad.Rest or abjad.Skip):
+                # print(leaf1.written_pitches, leaf2.written_pitches)
+                l1_lower = min(leaf1.written_pitches)
+                l2_higher = max(leaf2.written_pitches)
+                if l2_higher >= l1_lower:
+                    if transpose == abjad.DOWN:
+                        # print(l2, l2 - 12)
+                        # pitches = list(leaf2.written_pitches)
+                        # pitches.remove(l2)
+                        # print(l2, pitches)
+                        # leaf2.written_pitches = pitches
+                        # leaf2.written_pitches
+                        abjad.mutate.transpose(leaf2, -12)
+                        # print("diff", diff)
+
+    # def
+    # def select_measures(self, n: int or tuple):
+    #     voices = abjad.select.components(self.score, abjad.Voice)
+    #     # new_material_dictionary = {}
+    #     for v in voices:
+    #         result = abjad.select.leaves(v)
+    #         if result:
+    #             result = abjad.select.group_by_measure(result)
+    #             remove = abjad.select.leaves(result[0:2])
+    #             for item in remove:
+    #                 v.remove(item)
+    # remove =
+    # if result:
+    #     result = abjad.select.group_by_measure(result)
+    #     if isinstance(n, int):
+    #         pass
+    #         result = result[n]
+    #     elif len(n) > 1:
+    #         result = result[n[0] : n[1]]
+    #         if n[0] == 0:
+    #             remove = result[n[1] :]
+    #         elif n[1] < len(result):
+    #             remove = result[0 : n[0]] + result[n[1] :]
+
+    #     # for i in range(len(v)):
+    #     #     v.pop(i)
+    #     # v.clear()
+    #     print(result)
+    #     for item in result:
+    #         v.extend(item)
+    # print(remove)
+    # del remove
+    # for item in remove:
+    #     for i in item:
+    #         self.score[v.name].remove(i)
 
 
 def make_group(instruments: list, group_name: str) -> (abjad.StaffGroup, list):
@@ -927,7 +1090,7 @@ def make_group(instruments: list, group_name: str) -> (abjad.StaffGroup, list):
 
 
 def fiveround(x, base=5):
-    return base * round(x/base)
+    return base * round(x / base)
 
 
 if __name__ == "__main__":

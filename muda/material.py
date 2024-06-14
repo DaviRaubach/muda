@@ -3,6 +3,7 @@ Material.
 
 Classes to create and manage music materials and lyrics.
 """
+
 import abjad
 import inspect
 import time
@@ -10,6 +11,7 @@ from itertools import cycle
 from .data.guitar_bitones_dict import binotes
 from . import score as _score
 from . import functions
+from .rhythm import fit_in_duration
 
 
 def flatten(lst: list):
@@ -21,6 +23,14 @@ def flatten(lst: list):
             yield lst
 
     return lst
+
+
+def apply_to(mat_names: list):
+    def wrapper(f):
+        f.apply_to = mat_names
+        return f
+
+    return wrapper
 
 
 class Lyrics:
@@ -87,7 +97,14 @@ class Material:
         """Select chords in self.container"""
         return abjad.select.chords(self.container)
 
-    def logical_ties(self, material_name=None, argument=None, pitched=False, submaterials=False, exclude_material: list[str] | None = None):
+    def logical_ties(
+        self,
+        material_name=None,
+        argument=None,
+        pitched=False,
+        submaterials=False,
+        exclude_material: list[str] | None = None,
+    ):
         """Select logical ties in self.container"""
         if argument is None:
             argument = self.container
@@ -107,11 +124,29 @@ class Material:
         """Select logical tie in self.container"""
         return abjad.select.logical_tie(self.container, n, pitched=pitched)
 
-    def plogical_ties(self, material_name=None, argument=None, submaterials=False):
-        """Select pitched leaves in self.container"""
-        return self.logical_ties(material_name, argument, pitched=True, submaterials=submaterials)
+    def rests(self):
+        return abjad.select.rests(self.container)
 
-    def leaves(self, material_name=None, argument=None, pitched=False, submaterials=False, exclude_material: list[str] | None = None):
+    def runs(self):
+        return abjad.select.runs(self.container)
+
+    def plogical_ties(
+        self, material_name=None, argument=None, submaterials=False
+    ):
+        """Select pitched leaves in self.container"""
+        return self.logical_ties(
+            material_name, argument, pitched=True, submaterials=submaterials
+        )
+
+    def leaves(
+        self,
+        material_name=None,
+        argument=None,
+        pitched=False,
+        submaterials=False,
+        exclude_material: list[str] | None = None,
+        grace=None,
+    ):
         """Select leaves in self.container"""
         if argument is None:
             argument = self.container
@@ -125,13 +160,35 @@ class Material:
             )
         else:
             selection = argument
-        return abjad.select.leaves(selection, pitched=pitched)
+        return abjad.select.leaves(selection, grace=grace, pitched=pitched)
 
-    def pleaves(self, material_name=None, argument=None, submaterials=False, exclude_material: list[str] | None = None):
+    def pleaves(
+        self,
+        material_name=None,
+        argument=None,
+        submaterials=False,
+        exclude_material: list[str] | None = None,
+        grace=None,
+    ):
         """Select pitched leaves in self.container"""
-        return self.leaves(material_name, argument, pitched=True, submaterials=submaterials)
+        return self.leaves(
+            material_name,
+            argument,
+            pitched=True,
+            submaterials=submaterials,
+            grace=grace,
+        )
 
-    def leaf(self, i: int, material_name=None, argument=None, pitched=False, submaterials=False, exclude_material: list[str] | None = None) -> abjad.Leaf | list:
+    def leaf(
+        self,
+        i: int,
+        material_name=None,
+        argument=None,
+        pitched=False,
+        submaterials=False,
+        exclude_material: list[str] | None = None,
+        grace=False,
+    ) -> abjad.Leaf | list:
         """Select leaf in self.container"""
         if argument is None:
             argument = self.container
@@ -150,19 +207,41 @@ class Material:
             result = []
             for submaterial in selection:
                 try:
-                    leaf = abjad.select.leaf(submaterial, i, pitched=pitched)
+                    leaf = abjad.select.leaf(
+                        submaterial, i, pitched=pitched, grace=grace
+                    )
                     result.append(leaf)
                 except:
-                    print("Warning: could not select leaf in submaterial:", submaterial)
+                    print(
+                        "Warning: could not select leaf in submaterial:",
+                        submaterial,
+                    )
 
         else:
-            result = abjad.select.leaf(selection, i, pitched=pitched)
+            result = abjad.select.leaf(
+                selection, i, pitched=pitched, grace=grace
+            )
 
         return result
 
-    def pleaf(self, i: int, material_name=None, argument=None, submaterials=False, exclude_material: list[str] | None = None) -> abjad.Leaf | list:
+    def pleaf(
+        self,
+        i: int,
+        material_name=None,
+        argument=None,
+        submaterials=False,
+        exclude_material: list[str] | None = None,
+        grace=False,
+    ) -> abjad.Leaf | list:
         """Select pitched leaf in self.container"""
-        return self.leaf(i, material_name=material_name, argument=argument, pitched=True, submaterials=submaterials)
+        return self.leaf(
+            i,
+            material_name=material_name,
+            argument=argument,
+            pitched=True,
+            submaterials=submaterials,
+            grace=grace,
+        )
 
     def note(self, i: int, argument=None):
         """Select leaf in self.container"""
@@ -170,12 +249,61 @@ class Material:
             argument = self.container
         return abjad.select.note(self.container, i)
 
+    def m(self):
+        """Select measures in self.container"""
+        leaves = abjad.select.leaves(self.container)
+        measures = abjad.select.group_by_measure(leaves)
+        return measures
+
     def tie_last_leaf(self):
         """Ties the last leaf of self.container. (used to connect segments)"""
         abjad.attach(abjad.Tie(), self.leaf(-1))
 
     def alternating_materials(self, annotated_durations: list, makers: dict):
-        """Create alternating materials according to a list of named durations."""
+        """Append containers in mat.container generated by makers according to a list of named durations."""
+
+        def parse(string, durations, name):
+            parser = abjad.parser.LilyPondParser()
+            container = abjad.Container(name=name, identifier="% " + name)
+            # internal = abjad.Container([contents])
+            # cont_dur = internal._get_duration()
+            contents = parser(string)
+            string_duration = abjad.get.duration(contents)
+            total_duration = sum(durations)
+            # container.append(contents)
+            for dur in durations:
+                if string_duration >= dur:
+                    contents = parser(string)
+                    print("string > dur")
+                    if string_duration > dur:
+                        fit_in_duration(contents, dur)
+                    container.extend(contents)
+
+                elif string_duration < dur:
+                    contents = parser(string)
+                    fit_in_duration(contents, dur)
+                    container.extend(contents)
+                    difference = dur - string_duration
+
+                    # keep adding the same until it reaches the duration
+                    while difference > 0:
+                        contents = parser(string)
+                        fit_in_duration(contents, difference)
+                        container.extend(contents)
+                        difference -= string_duration
+                self.container.append(container)
+
+                # elif string_duration < dur:
+                #     difference = dur - string_duration
+
+                #     # keep adding the same until it reaches the duration
+                #     while difference > 0:
+                #         contents = parser(string)
+                #         fit_in_duration(contents, difference)
+                #         container.extend(contents)
+                #         difference -= string_duration
+                # self.container.append(container)
+
         # print(annotated_durations)
         assert annotated_durations
         assert isinstance(
@@ -192,24 +320,7 @@ class Material:
                 # print(maker, value)
                 if maker == dur[0].annotation:
                     if isinstance(value, str):
-                        parser = abjad.parser.LilyPondParser()
-                        contents = parser(makers[maker])
-                        container = abjad.Container(
-                            name=maker, identifier="% " + maker)
-                        internal = abjad.Container(makers[maker])
-                        cont_dur = internal._get_duration()
-                        container.append(contents)
-                        self.container.append(container)
-                        difference = sum(dur) - cont_dur
-                        # keep adding the same until it reaches the duration
-                        while difference >= cont_dur:
-                            copy = abjad.mutate.copy(contents)
-                            new_container = abjad.Container(
-                                name=maker, identifier="% " + maker
-                            )
-                            new_container.append(copy)
-                            self.container.append(new_container)
-                            difference = difference - cont_dur
+                        parse(makers[maker], dur, maker)
                     else:
                         selection = makers[maker](dur)
                         appendice = abjad.Container(
@@ -237,8 +348,9 @@ class Material:
                             print("Warning: maybe improve material names")
                         container.name = container.name + "_" + str(j)
 
-                        container.identifier = container.identifier + \
-                            "_" + str(j)
+                        container.identifier = (
+                            container.identifier + "_" + str(j)
+                        )
                         if isinstance(container, abjad.Tuplet):
                             string = container.name
                             comment1 = abjad.LilyPondComment(string)
@@ -270,26 +382,49 @@ class Material:
 
     def write_pitches_by_name(self, annotated_pitches):
         """Write pitches to logical ties in named container."""
+
         for material_name, pitches in annotated_pitches.items():
             selectable = self.select_material(self.container, material_name)
             selection = abjad.select.logical_ties(selectable, pitched=True)
 
-            for i, logical_tie in enumerate(selection):
+            for i, lt in enumerate(selection):
                 index = i % len(pitches)
                 pitch = pitches[index]
                 if isinstance(pitch, list):
-                    for chord in logical_tie:
+                    for note in lt:
+                        chord = abjad.Chord("<c' e'>4")
+                        chord.written_duration = note.written_duration
                         chord.written_pitches = pitch
+                        abjad.mutate.replace(note, chord)
                 else:
-                    for note in logical_tie:
+                    for note in lt:
                         note.written_pitch = pitch
+                # if isinstance(pitch, list):
+                #     for note in logical_tie:
+                #         chord = abjad.Chord("<c' e'>4")
+                #         chord.written_duration = note.written_duration
+                #         abjad.mutate.replace(note, chord)
+
+                # for item in logical_tie:
+                #     if isinstance(item, abjad.Chord) and isinstance(pitch, list):
+                #         item.written_pitches = pitch
+                #     if isinstance(item, abjad.Note) and not isinstance(pitch, list):
+                #         item.written_pitch = pitch
+                #     else:
+                #         print(
+                #             "Could not assign pitch to: ",
+                #             material_name,
+                #             logical_tie,
+                #             item,
+                #             pitch,
+                #         )
 
     def write_pitches_by_duration(
         self,
         annotated_pitches: dict,
         annotated_durations: list,
         randomize=0,
-        print_last_pitch=False
+        print_last_pitch=False,
     ):
         """write pitches to notes according to annotated durations."""
         assert isinstance(
@@ -298,9 +433,10 @@ class Material:
 
         chords_test = False
         for key, pitches in annotated_pitches.items():
-            for item in pitches:
-                if isinstance(item, list):
-                    chords_test = True
+            if pitches is not None:
+                for item in pitches:
+                    if isinstance(item, list):
+                        chords_test = True
 
         if chords_test:
             # convert notes to chords
@@ -328,47 +464,46 @@ class Material:
         selections = selector(self.container)
 
         for key in annotated_pitches:
-            pitches = cycle(annotated_pitches[key])
-            for selection, duration in zip(selections, annotated_durations):
-                logical_ties = abjad.select.logical_ties(
-                    selection, pitched=True)
-                for a, logical_tie in enumerate(logical_ties):
-                    for item in duration:
-                        if item.annotation == key:
-                            pitch = next(pitches)
-                            # print(pitch)
-                            if print_last_pitch is True and a == len(logical_ties) - 1:
-                                print(self.name, pitch)
-                            for b, chord in enumerate(logical_tie):
-                                if isinstance(chord, abjad.Chord):
-                                    chord.written_pitches = pitch
-                                else:
-                                    chord.written_pitch = pitch
+            if annotated_pitches[key] is not None:
+                pitches = cycle(annotated_pitches[key])
+                for selection, duration in zip(selections, annotated_durations):
+                    logical_ties = abjad.select.logical_ties(
+                        selection, pitched=True
+                    )
+                    for a, logical_tie in enumerate(logical_ties):
+                        for item in duration:
+                            if item.annotation == key:
+                                pitch = next(pitches)
+                                # print(pitch)
+                                if (
+                                    print_last_pitch is True
+                                    and a == len(logical_ties) - 1
+                                ):
+                                    print(self.name, pitch)
+                                for b, chord in enumerate(logical_tie):
+                                    if isinstance(chord, abjad.Chord):
+                                        chord.written_pitches = pitch
+                                    else:
+                                        chord.written_pitch = pitch
 
-    def write_notes_and_chords(self, pitches):
-
-        chords_test = False
-        for item in pitches:
-            if isinstance(item, list):
-                chords_test = True
-
-        if chords_test:
-            # convert notes to chords
-            conversion = abjad.select.leaves(self.container, pitched=True)
-            for note in conversion:
-                chord = abjad.Chord("c'", note.written_duration)
-                abjad.mutate.replace(note, chord)
-
+    def write_notes_and_chords(self, pitches, cyclic=True):
         logical_ties = abjad.select.logical_ties(self.container, pitched=True)
-        for i, logical_tie in enumerate(logical_ties):
+        for i, lt in enumerate(logical_ties):
             index = i % len(pitches)
             pitch = pitches[index]
             if isinstance(pitch, list):
-                for note in logical_tie:
-                    note.written_pitches = pitch
+                for note in lt:
+                    chord = abjad.Chord("<c' e'>4")
+                    chord.written_duration = note.written_duration
+                    chord.written_pitches = pitch
+
+                    for indicator in abjad.get.indicators(note):
+                        abjad.attach(indicator, chord)
+                    abjad.mutate.replace(note, chord)
+
             else:
-                for note in logical_tie:
-                    note.written_pitches = [pitch]
+                for note in lt:
+                    note.written_pitch = pitch
 
     def write_chords_pitches(self, pitches, container=None):
         if container is None:
@@ -385,7 +520,6 @@ class Material:
                 for note in lt:
                     chord = abjad.Chord("c'", note.written_duration)
                     for indicator in abjad.get.indicators(note):
-
                         abjad.attach(indicator, chord)
                     abjad.mutate.replace(note, chord)
 
@@ -426,14 +560,17 @@ class Material:
             selectables = []
             for mat_name in material_name:
                 selectable = self.select_material(
-                    copied_container, material_name=mat_name, submaterials=submaterials
+                    copied_container,
+                    material_name=mat_name,
+                    submaterials=submaterials,
                 )
                 selectables.append(selectable)
 
         for material in selectables:
             for submaterial in material:
                 container = abjad.select.components(
-                    submaterial, abjad.Container)
+                    submaterial, abjad.Container
+                )
                 s = container[0].name
                 leaves = abjad.select.leaves(submaterial)
                 if len(leaves) == 1:
@@ -444,10 +581,13 @@ class Material:
                         direction=abjad.UP,
                     )
                 else:
-                    lit = r'''
+                    lit = (
+                        r'''
                     \once \override HorizontalBracketText.color = #(x11-color 'red)
                     \once \override HorizontalBracket.color = #(x11-color 'red)
-                    \once \override HorizontalBracketText.text = "%s"''' % s
+                    \once \override HorizontalBracketText.text = "%s"'''
+                        % s
+                    )
 
                     try:
                         abjad.attach(
@@ -459,17 +599,19 @@ class Material:
                         continue
                 if select is not None:
                     for i, item in enumerate(select(submaterial)):
-                        print(i, item)
+                        # print(i, item)
                         if isinstance(item, abjad.LogicalTie):
                             item = item[0]
-                        str_ = r'\markup \with-color "red" \tiny {\null { \raise #2 {%i}}}' % i
+                        str_ = (
+                            r'\markup \with-color "red" \tiny {\null { \raise #2 {%i}}}'
+                            % i
+                        )
                         abjad.attach(
                             abjad.Markup(str_),  # direction=abjad.Up),
                             item,
                         )
 
     def material_spanner(self, material_name: str or list = None):
-
         if isinstance(material_name, str):
             material_name = [material_name]
 
@@ -479,18 +621,15 @@ class Material:
         names = []
         for mat_name in material_name:
             selectable = (
-                self.select_material(
-                    self.container, material_name=mat_name
-                ),
-                mat_name
+                self.select_material(self.container, material_name=mat_name),
+                mat_name,
             )
             selectables.append(selectable)
             names.append(mat_name)
         # print(selectables)
         for selectable, name in selectables:
             # try:
-            containers = abjad.select.components(
-                selectable, abjad.Container)
+            containers = abjad.select.components(selectable, abjad.Container)
 
             # print(containers)
             try:
@@ -502,12 +641,11 @@ class Material:
                 abjad.attach(
                     abjad.LilyPondLiteral(
                         [
-                            r'\once \override HorizontalBracketText.text = ' +
-                            f'"{name}"',
+                            r"\once \override HorizontalBracketText.text = "
+                            + f'"{name}"',
                             r"\once \override HorizontalBracketText.color = #(x11-color 'red)",
                             r"\once \override HorizontalBracket.color = #(x11-color 'red)",
-                            r'\startGroup',
-
+                            r"\startGroup",
                             # r'\tweak text' + f'"{name}"',
                             # r'\tweak direction #DOWN',
                             # r'\startMeasureSpanner',
@@ -516,10 +654,7 @@ class Material:
                     abjad.select.leaf(selectable, 0),
                 )
                 abjad.attach(
-                    abjad.LilyPondLiteral(
-                        r'\stopGroup',
-                        "after"
-                    ),
+                    abjad.LilyPondLiteral(r"\stopGroup", "after"),
                     abjad.select.leaf(selectable, -1),
                 )
             except:
@@ -555,7 +690,13 @@ class Material:
                         leaf,
                     )
 
-    def dynamics(self, dynamics: list[tuple], submaterials=False, exclude_material=None, leak=False):
+    def dynamics(
+        self,
+        dynamics: list[tuple],
+        submaterials=False,
+        exclude_material=None,
+        leak=False,
+    ):
         """Example:
         >>> wind1.dynamics(
         >>>     [
@@ -585,12 +726,10 @@ class Material:
         def _dyn_for_materials():
             if abjad.Dynamic.is_dynamic_name(dyn):
                 if isinstance(selection, abjad.Leaf):
-                    abjad.attach(abjad.Dynamic(
-                        dyn, leak=leak), selection)
+                    abjad.attach(abjad.Dynamic(dyn, leak=leak), selection)
                 else:
                     for _ in selection:
-                        abjad.attach(abjad.Dynamic(
-                            dyn, leak=leak), _)
+                        abjad.attach(abjad.Dynamic(dyn, leak=leak), _)
             else:
                 if isinstance(selection[0], list):
                     for sel in selection:
@@ -607,8 +746,7 @@ class Material:
                 selection = select(selectables)
                 if abjad.Dynamic.is_dynamic_name(dyn):
                     if isinstance(selection, abjad.Leaf):
-                        abjad.attach(abjad.Dynamic(
-                            dyn, leak=leak), selection)
+                        abjad.attach(abjad.Dynamic(dyn, leak=leak), selection)
                     else:
                         for _ in selection:
                             abjad.attach(abjad.Dynamic(dyn), _)
@@ -624,7 +762,10 @@ class Material:
                     material_name = [material_name]
                 for i, name in enumerate(material_name):
                     selectables = self.select_material(
-                        self.container, name, submaterials=submaterials, exclude_material=exclude_material
+                        self.container,
+                        name,
+                        submaterials=submaterials,
+                        exclude_material=exclude_material,
                     )
                     # print(selectables)
                     if submaterials is True:
@@ -634,7 +775,7 @@ class Material:
                                 _dyn_for_materials()
                             except IndexError:
                                 print("Warning:")
-                                print("Selection for dynamics failed")
+                                print(f"Selection for dynamics failed")
                                 print(self.name, material_name, dyn)
                     else:
                         selection = select(selectables)
@@ -673,14 +814,16 @@ class Material:
         """Write indicators to leaves."""
         if material_name is not None:
             selection1 = abjad.select.components(
-                self.container, abjad.Container)
+                self.container, abjad.Container
+            )
             for container in selection1:
                 if container.name is not None and (
-                    (isinstance(material_name, list)
-                     or material_name in container.name)
+                    (
+                        isinstance(material_name, list)
+                        or material_name in container.name
+                    )
                 ):
-                    selection2 = abjad.select.leaves(
-                        container, pitched=pitched)
+                    selection2 = abjad.select.leaves(container, pitched=pitched)
                     if dynamics:
                         for key in dynamics:
                             if dynamics[key] == "all":
@@ -709,16 +852,17 @@ class Material:
                         for n in slur_down:
                             a, b = n
                             abjad.attach(
-                                abjad.StartSlur(
-                                    direction=abjad.Down), selection2[a]
+                                abjad.StartSlur(direction=abjad.Down),
+                                selection2[a],
                             )
                             abjad.attach(abjad.StopSlur(), selection2[b])
 
                     if articulations:
                         for key in articulations:
                             for i in articulations[key]:
-                                abjad.attach(abjad.Articulation(
-                                    key), selection2[i])
+                                abjad.attach(
+                                    abjad.Articulation(key), selection2[i]
+                                )
         else:
             selection = abjad.select.leaves(self.container, pitched=pitched)
 
@@ -743,8 +887,9 @@ class Material:
             if slur_down:
                 for n in slur_down:
                     a, b = n
-                    abjad.attach(abjad.StartSlur(
-                        direction=abjad.Down), selection[a])
+                    abjad.attach(
+                        abjad.StartSlur(direction=abjad.Down), selection[a]
+                    )
                     abjad.attach(abjad.StopSlur(), selection[b])
 
             if articulations:
@@ -763,6 +908,7 @@ class Material:
         submaterials=False,
     ):
         """Attach ``argument`` to leaves."""
+
         #     techniques = {
         #         "pizz_bartok": abjad.LilyPondLiteral(r"\snappizzicato"),
         #     "pizz_sec": abjad.Markup(r'\markup "pizz."'),
@@ -801,7 +947,8 @@ class Material:
                 for leaf in selection:
                     if isinstance(leaf, abjad.LogicalTie):
                         _attach_argument_conditions(
-                            argument, leaf[logical_tie_index])
+                            argument, leaf[logical_tie_index]
+                        )
                     elif isinstance(leaf, abjad.Leaf):
                         _attach_argument_conditions(argument, leaf)
                     elif isinstance(leaf, list):
@@ -898,7 +1045,8 @@ class Material:
                     for comp in reversed(item.components):
                         if isinstance(comp, abjad.Tuplet):
                             new_tuplet = abjad.Tuplet(
-                                multiplier=comp.multiplier, denominator=comp.denominator
+                                multiplier=comp.multiplier,
+                                denominator=comp.denominator,
                             )
                             for it in reversed(comp.components):
                                 new_tuplet.append(it)
@@ -1003,92 +1151,107 @@ class Material:
         if pitch_ranges is None:
             pitch_ranges = [
                 abjad.PitchRange("[C4, +inf]"),
-                abjad.PitchRange("[-inf, B3]"),
+                abjad.PitchRange("[-inf, C4]"),
             ]
         staff1 = staves_names[0]
         range1 = pitch_ranges[0]
         staff2 = staves_names[1]
 
-        staves = {name: range_ for name, range_ in zip(staves_names, pitch_ranges)}
+        staves = {
+            name: range_ for name, range_ in zip(staves_names, pitch_ranges)
+        }
         # range2 = pitch_ranges[1]
         if material_name is None:
             selectable = self.container
         else:
             selectable = self.select_material(
-                self.container, material_name=material_name, submaterials=submaterials
+                self.container,
+                material_name=material_name,
+                submaterials=submaterials,
             )
 
         selection = abjad.select.notes(selectable)  # pitched=True, grace=True)
 
+        current_staff = None
         for leaf in selection:
             if isinstance(leaf, abjad.Note):
                 for staff, range_ in staves.items():
-                    if leaf.written_pitch in range_:
+                    if leaf.written_pitch in range_ and staff != current_staff:
                         change_to_staff = staff
-                        
-                # if leaf.written_pitch in range1:
-                #     change_to_staff = staff1
-                # else:
-                #     change_to_staff = staff2
+                        literal = abjad.LilyPondLiteral(
+                            rf'\change Staff = "{change_to_staff}"',
+                            site="absolute_before",
+                        )
+                        abjad.attach(literal, leaf)
+                        current_staff = staff
             elif isinstance(leaf, abjad.Chord):
                 chord_notes = leaf.note_heads
                 for note in chord_notes:
                     for staff, range_ in staves.items():
-                        if leaf.written_pitch in range_:
+                        if (
+                            leaf.written_pitch in range_
+                            and staff != current_staff
+                        ):
                             change_to_staff = staff
-                    # if note.written_pitch in range1:
-                    #     change_to_staff = staff1
-                    # else:
-                    #     change_to_staff = staff2
-            literal = abjad.LilyPondLiteral(
-                r'\change Staff = "' + change_to_staff + '"', site="absolute_before"
-            )
-            abjad.attach(literal, leaf)
+                            literal = abjad.LilyPondLiteral(
+                                r'\change Staff = "' + change_to_staff + '"',
+                                site="absolute_before",
+                            )
+                            abjad.attach(literal, leaf)
+                        current_staff = staff
 
-    def change_staffs(self, staves_names_and_leaves: dict, material_name=None, show_staff_switch=True, submaterials=True, self_staff_name="Staff", selectables=None, return_after=True):
-        self_staff_name = self.name.split("_")[0]+"_Staff"
+    def change_staffs(
+        self,
+        staves_names_and_leaves: dict,
+        material_name=None,
+        show_staff_switch=True,
+        submaterials=True,
+        self_staff_name="Staff",
+        selectables=None,
+        return_after=True,
+    ):
+        self_staff_name = self.name.split("_")[0] + "_Staff"
         if material_name is None and selectables is None:
             selectables = self.container
 
         elif selectables is None:
             selectables = self.select_material(
-                self.container, material_name=material_name, submaterials=submaterials
+                self.container,
+                material_name=material_name,
+                submaterials=submaterials,
             )
 
         if show_staff_switch is True:
-            show_staff_switch = r'''
+            show_staff_switch = r"""
             \override VoiceFollower.style = #'dashed-line
             \override VoiceFollower.breakable = ##t
             \override VoiceFollower.after-line-breaking = ##t
             # '((right (attach-dir . 0) (padding . 8)) (left (attach-dir . 0) (padding . 11)))
             \override VoiceFollower.bound-details =
             \override VoiceFollower.bound-details.right.arrow = ##t
-            \showStaffSwitch '''
-            after_staff_switch = r'''
+            \showStaffSwitch """
+            after_staff_switch = r"""
             \revert VoiceFollower.style
             \revert VoiceFollower.arrow
             \revert VoiceFollower.bound-details
 
-            \hideStaffSwitch '''
+            \hideStaffSwitch """
         else:
-            show_staff_switch = r''
-            after_staff_switch = r''
+            show_staff_switch = r""
+            after_staff_switch = r""
 
         for staff_name, select in staves_names_and_leaves.items():
             selection = select(selectables)
             literal = abjad.LilyPondLiteral(
-                [
-                    show_staff_switch,
-                    r'\change Staff = "' + staff_name + '"'
-                ],
-                "absolute_before"
+                [show_staff_switch, r'\change Staff = "' + staff_name + '"'],
+                site="absolute_before",
             )
             after = abjad.LilyPondLiteral(
                 [
                     after_staff_switch,
-                    r'\change Staff = "' + self_staff_name + '"'
+                    r'\change Staff = "' + self_staff_name + '"',
                 ],
-                "after"
+                site="after",
             )
             # print(literal)
             if submaterials is True:
@@ -1114,11 +1277,10 @@ class Material:
                 # print(leaf)
                 abjad.attach(abjad_instrument, leaf)
         abjad.iterpitches.transpose_from_sounding_pitch(self.container)
-        
 
     def clef(self, clef: str, leaf: abjad.Leaf, hide=False):
         indicator = abjad.get.indicator(leaf, abjad.Clef)
-         
+
         if indicator:
             abjad.detach(abjad.Clef, leaf)
         abjad.attach(abjad.Clef(clef, hide=hide), leaf)
@@ -1173,37 +1335,38 @@ class Material:
 
                         # change note head to square
                         square_note_head = chord.note_heads[1]
-                        abjad.override(
-                            chord
-                        ).NoteHead.stencil = "#ly:text-interface::print"
-                        abjad.tweak(
-                            square_note_head
-                        ).text = '\markup{ \musicglyph "noteheads.s0laFunk"}'
+                        abjad.override(chord).NoteHead.stencil = (
+                            "#ly:text-interface::print"
+                        )
+                        abjad.tweak(square_note_head).text = (
+                            '\markup{ \musicglyph "noteheads.s0laFunk"}'
+                        )
 
                         # change the original note to arrow (tapping) head or parenthesized head
                         other_note_head = chord.note_heads[0]
                         if hammering is True and playing is False:
-                            abjad.tweak(
-                                other_note_head
-                            ).text = '\markup{ \musicglyph "arrowheads.open.01"}'
+                            abjad.tweak(other_note_head).text = (
+                                '\markup{ \musicglyph "arrowheads.open.01"}'
+                            )
                         elif hammering is True and playing is True:
-                            abjad.tweak(
-                                other_note_head
-                            ).text = '\markup{\musicglyph "arrowheads.close.01"}'
+                            abjad.tweak(other_note_head).text = (
+                                '\markup{\musicglyph "arrowheads.close.01"}'
+                            )
                         else:
-                            abjad.tweak(
-                                other_note_head
-                            ).text = '\markup{\musicglyph "noteheads.s2"}'
+                            abjad.tweak(other_note_head).text = (
+                                '\markup{\musicglyph "noteheads.s2"}'
+                            )
                         if parenthesized is True:
                             other_note_head.is_parenthesized = True
 
                         string = abjad.LilyPondLiteral(
-                            f"\{i}", format_slot="after")
+                            f"\{i}", format_slot="after"
+                        )
                         abjad.attach(string, chord)
 
                     abjad.mutate.replace(leaf, chord)
 
-    @ staticmethod
+    @staticmethod
     def select_material(
         container: abjad.Container,
         material_name: str,
@@ -1222,7 +1385,9 @@ class Material:
                     (
                         isinstance(
                             container,
-                            abjad.Tuplet or abjad.Voice or abjad.BeforeGraceContainer,
+                            abjad.Tuplet
+                            or abjad.Voice
+                            or abjad.BeforeGraceContainer,
                         )
                     )
                     or (container.name is None)
@@ -1332,7 +1497,11 @@ class Material:
     #     return selection
 
     def select(
-            self, material_name: str, container: abjad.Container = None, submaterials=False, exclude_material=None
+        self,
+        material_name: str,
+        container: abjad.Container = None,
+        submaterials=False,
+        exclude_material=None,
     ):
         """Select container by name."""
         if container is None:
@@ -1347,7 +1516,9 @@ class Material:
                 (
                     isinstance(
                         container,
-                        abjad.Tuplet or abjad.Voice or abjad.BeforeGraceContainer,
+                        abjad.Tuplet
+                        or abjad.Voice
+                        or abjad.BeforeGraceContainer,
                     )
                 )
                 or (container.name == exclude_material)
@@ -1397,8 +1568,9 @@ class Material:
         if material_name is None:
             selection = select(self.container)
         else:
-            selection = select(self.select_material(
-                self.container, material_name))
+            selection = select(
+                self.select_material(self.container, material_name)
+            )
         for element, element2, element3 in zip(
             selection[0::3], selection[1:][0::3], selection[2:][0::3]
         ):
@@ -1424,7 +1596,9 @@ class Material:
                 if pitch2 in range_ and pitch3 in range_:
                     abjad.attach(clef, element2[0])
 
-    def new_automatic_clefs(self, select: list = None, material_name: str = None):
+    def new_automatic_clefs(
+        self, select: list = None, material_name: str = None
+    ):
         """Attach appropriate clef for selection."""
         clefs = [
             abjad.Clef("treble^15"),
@@ -1448,8 +1622,9 @@ class Material:
         if material_name is None:
             selection = select(self.container)
         else:
-            selection = select(self.select_material(
-                self.container, material_name))
+            selection = select(
+                self.select_material(self.container, material_name)
+            )
 
         for element in selection:
             if isinstance(element, abjad.LogicalTie):
@@ -1481,7 +1656,9 @@ class Material:
             if clef1 == clef2 and clef2 != clef3:
                 abjad.detach(abjad.Clef(), element2)
 
-    def make_rests(self, argument: list[abjad.TimeSignature or abjad.Meter or tuple]):
+    def make_rests(
+        self, argument: list[abjad.TimeSignature or abjad.Meter or tuple]
+    ):
         r"""Write rests and time signatures to Context."""
         # site = "muda.Material.make_rests()"
         # tag = abjad.Tag(site)
@@ -1499,7 +1676,8 @@ class Material:
                 time_signatures_abjad = argument
             elif isinstance(argument[0], tuple):
                 time_signatures_abjad = [
-                    abjad.TimeSignature(_) for _ in argument]
+                    abjad.TimeSignature(_) for _ in argument
+                ]
             elif isinstance(argument[0], abjad.Meter):
                 time_signatures_abjad = argument
             else:
@@ -1517,10 +1695,12 @@ class Material:
         # print(tag)
         # print(argument)
 
+        appendice = abjad.Container(name="skips", identifier="% skips")
+
         def _append_skips(time_signatures_abjad):
             for time_sig in time_signatures_abjad:
                 skip = abjad.Skip(1, multiplier=time_sig.pair)
-                self.container.append(skip)
+                appendice.append(skip)
 
         time_signatures_abjad = argument
         if isinstance(argument, list):
@@ -1528,7 +1708,8 @@ class Material:
                 time_signatures_abjad = argument
             elif isinstance(argument[0], tuple):
                 time_signatures_abjad = [
-                    abjad.TimeSignature(_) for _ in argument]
+                    abjad.TimeSignature(_) for _ in argument
+                ]
             elif isinstance(argument[0], abjad.Meter):
                 time_signatures_abjad = argument
 
@@ -1537,28 +1718,35 @@ class Material:
             time_signatures_abjad = [argument]
             _append_skips(time_signatures_abjad)
 
-    def write_time_signatures(self, time_signatures):
+        self.container.append(appendice)
+
+    def write_time_signatures(self, time_signatures, cyclic=False):
         r"""Write time signatures."""
         site = "muda.Material.write_time_signatures()"
         tag = abjad.Tag(site)
         # print(tag)
         # select skips to attach TIME SIGNATURES
-        if isinstance(time_signatures[0], abjad.TimeSignature) or isinstance(time_signatures[0], abjad.Duration):
+        if isinstance(time_signatures[0], abjad.TimeSignature) or isinstance(
+            time_signatures[0], abjad.Duration
+        ):
             in_time_signatures = [_.pair for _ in time_signatures]
         else:
             in_time_signatures = time_signatures
-        abjad.mutate.split(self.container[:], in_time_signatures)
+        # assert sum(in_time_signatures) ==
+        # abjad.mutate.split(self.container[:], in_time_signatures, cyclic=cyclic)
         result = abjad.select.leaves(self.container)
 
         result = abjad.select.partition_by_durations(
             result,
             in_time_signatures,
-            cyclic=False,
+            cyclic=cyclic,
             fill=abjad.EXACT,
             in_seconds=False,
             overhang=True,
         )
-        for (i, time_sig), selection in zip(enumerate(in_time_signatures), result):
+        for (i, time_sig), selection in zip(
+            enumerate(in_time_signatures), result
+        ):
             j = i
             if i != 0:
                 j = i - 1
@@ -1566,7 +1754,9 @@ class Material:
                     pass
                 else:
                     abjad.attach(
-                        abjad.TimeSignature(time_sig, ),
+                        abjad.TimeSignature(
+                            time_sig,
+                        ),
                         abjad.select.leaf(selection, 0),
                         # site="absolute_before",
                         tag=tag,
@@ -1594,6 +1784,11 @@ class Material:
         else:
             time_signatures = [abjad.TimeSignature(_) for _ in time_signatures]
             durations = time_signatures
+
+        # no_name_containers = abjad.select.components(self.container, abjad.Container)
+        # for cont in no_name_containers:
+        #     if not hasattr(cont, "name"):
+        #         cont.name = "no_name"
         if self.container:
             materials_durations = []
             materials_names = []
@@ -1613,8 +1808,7 @@ class Material:
                 )
             if get_materials_back is True:
                 new_containers = abjad.Container()
-                shards = abjad.mutate.split(
-                    self.container, materials_durations)
+                shards = abjad.mutate.split(self.container, materials_durations)
                 for shard, name in zip(shards, materials_names):
                     for container in shard:
                         container.name = name
@@ -1625,8 +1819,7 @@ class Material:
                 selection = abjad.select.leaves(self.container)
 
                 selection = abjad.select.partition_by_durations(
-                    selection,
-                    time_signatures
+                    selection, time_signatures
                 )
 
                 for measure, time_signature in zip(selection, time_signatures):
@@ -1695,6 +1888,7 @@ class Segment:
     def __init__(
         self,
         modules: list,
+        post_processing_modules: list = None,
         material_list: list[Material] = None,
         score: _score.Score = None,
         annotated_durations: dict = None,
@@ -1710,6 +1904,7 @@ class Segment:
             self.material_list = score.make_materials_list()
         self.material_dict = self.make_material_dict(self.material_list)
         self.modules = modules
+        self.post_processing_modules = post_processing_modules
         self.annotated_durations = annotated_durations
         self.score = score
         # print(score)
@@ -1727,8 +1922,7 @@ class Segment:
         site = "muda.material.Segment.__call__()"
         tag = abjad.Tag(site)
         if self.verbose is True:
-            print('\033[1;96m', tag.string, '\033[0;0m',  self.name)
-
+            print("\033[1;96m", tag.string, "\033[0;0m", self.name)
 
         self.call_modules_functions(
             modules=self.modules,
@@ -1738,18 +1932,31 @@ class Segment:
         )
 
         for material in self.material_list:
-            if material.pleaves():
-                if isinstance(material.pleaf(-1), abjad.Chord):
-                    self.last_pitches[material.name] = []
-                    for pitch in material.pleaf(-1).written_pitches:
-                        self.last_pitches[material.name].append(pitch.get_name())
-                else:
-                    self.last_pitches[material.name] = material.pleaf(-1).written_pitch.get_name()
+            # GET LAST PITCHES
+            if not isinstance(material, Lyrics):
+                if material.pleaves():
+                    if isinstance(material.pleaf(-1), abjad.Chord):
+                        self.last_pitches[material.name] = []
+                        for pitch in material.pleaf(-1).written_pitches:
+                            self.last_pitches[material.name].append(
+                                pitch.get_name()
+                            )
+                    else:
+                        self.last_pitches[material.name] = material.pleaf(
+                            -1
+                        ).written_pitch.get_name()
+            # WRITE MATERIALS
             self.score.write_materials([material])
 
-    
-        
-            
+        if self.post_processing_modules:
+            self.call_modules_functions(
+                modules=self.post_processing_modules,
+                material_dict=self.material_dict,
+                annotated_durations=self.annotated_durations,
+                verbose=self.verbose,
+                provide_score=self.score.score,
+            )
+
         if self.attach_clefs is True:
             self.score.attach_clefs()
 
@@ -1773,8 +1980,9 @@ class Segment:
 
         return self.score
 
-    def call_by_material(self, material_names: list, make_part=False, part_template=None):
-
+    def call_by_material(
+        self, material_names: list, make_part=False, part_template=None
+    ):
         print(f"Building segment for {material_names}")
         if part_template:
             self.score = part_template
@@ -1799,8 +2007,7 @@ class Segment:
             #         # print(abjad.lilypond(self.score.score))
             #         part_score.write_materials([material])
             for material_name in material_names:
-                self.score.write_materials(
-                    [new_material_dict[material_name]])
+                self.score.write_materials([new_material_dict[material_name]])
             self.score.attach_clefs()
 
         else:
@@ -1809,6 +2016,14 @@ class Segment:
 
             self.score.attach_clefs()
 
+        if self.post_processing_modules:
+            self.call_modules_functions(
+                modules=self.post_processing_modules,
+                material_dict=self.material_dict,
+                annotated_durations=self.annotated_durations,
+                verbose=self.verbose,
+                provide_score=self.score.score,
+            )
         elapsed_time = round(time.time() - self.startTime, 2)
         if self.verbose is True:
             print(
@@ -1819,16 +2034,20 @@ class Segment:
                 "seconds\033[0;0m",
             )
 
-    def make_parts(self, includes: list or None = None, ly_path: str = "./", component: abjad.Container = abjad.StaffGroup):
+    def make_parts(
+        self,
+        includes: list or None = None,
+        ly_path: str = "./",
+        component: abjad.Container = abjad.StaffGroup,
+    ):
         components = abjad.select.components(self.score.score, component)
         for i in self.score.score.components:
             print(i.name)
         gl = self.score.score.components[0]
-        
+
         for component in components:
             if includes is None:
                 includes = ""
-
 
             # gl = [_ for _ in abjad.select.components(self.score.score, abjad.Staff) if _.name == "Global_Context"]
             score = abjad.Score(name="Score")
@@ -1836,16 +2055,15 @@ class Segment:
             # print(self.score.score[0])
             score.append(component)
             lyfile = abjad.LilyPondFile(
-                items=[
-                    score
-                    ],
-                )
-            abjad.persist.as_ly(lyfile, f"{ly_path}/{self.name}_{component.name}.ly")
+                items=[score],
+            )
+            abjad.persist.as_ly(
+                lyfile, f"{ly_path}/{self.name}_{component.name}.ly"
+            )
 
-
-
-    def make_part(self, staff_names: list, part_templates: list, parts_dir: str):
-        
+    def make_part(
+        self, staff_names: list, part_templates: list, parts_dir: str
+    ):
         self.parts_material_dict = self.material_dict
         for name in staff_names:
             self.parts_paths[name] = []
@@ -1859,11 +2077,14 @@ class Segment:
             #     _ for _ in voices if "Score" not in _.name and "Staff" not in _.name]
             # voices.append(copy(score.score["Global_Context"]))
             for voice in self.material_list:
-                new_parts_material_dict[voice.name] = self.parts_material_dict[voice.name]
+                new_parts_material_dict[voice.name] = self.parts_material_dict[
+                    voice.name
+                ]
                 if self.verbose is True:
                     print(
                         abjad.lilypond(
-                            self.parts_material_dict[voice.name].container)
+                            self.parts_material_dict[voice.name].container
+                        )
                     )
 
             self.call_modules_functions(
@@ -1878,7 +2099,7 @@ class Segment:
 
             if self.attach_clefs is True:
                 score.attach_clefs()
-                
+
             path = f"{parts_dir}{self.name}_{name}.ily"
             # print(path)
 
@@ -1895,75 +2116,108 @@ class Segment:
             #     "seconds\033[0;0m",
             #
 
-    @ staticmethod
+    @staticmethod
     def make_material_dict(material_list: list, make_part=False):
         material_dict = {}
         for material in material_list:
             material_dict[material.name] = material
         return material_dict
 
-    @ staticmethod
+    @staticmethod
     def call_modules_functions(
-            modules: list, material_dict: dict, annotated_durations=None, make_part=False, parts_material_dict=None, verbose=False
+        modules: list,
+        material_dict: dict,
+        annotated_durations=None,
+        make_part=False,
+        parts_material_dict=None,
+        verbose=False,
+        provide_score=None,
     ):
         if verbose is True:
             print(
-                "\033[1;94m", __name__, "muda.material.Segment.call_modules_functions()", "\033[0;0m"
+                "\033[1;94m",
+                __name__,
+                "muda.material.Segment.call_modules_functions()",
+                "\033[0;0m",
             )
 
         for i, module in enumerate(modules):
-
             # assert
             functions = [f for _, f in module.__dict__.items() if callable(f)]
             functions = [f for f in functions if hasattr(f, "apply_to")]
             if make_part:
                 functions = [
-                    f for f in functions if not hasattr(f, "score_only")]
+                    f for f in functions if not hasattr(f, "score_only")
+                ]
             else:
                 functions = [
-                    f for f in functions if not hasattr(f, "part_only")]
+                    f for f in functions if not hasattr(f, "part_only")
+                ]
             for fn in functions:
                 assert isinstance(fn.apply_to, list)
                 for name in fn.apply_to:
                     if name in material_dict.keys():
-                        string = module.__name__ + ": " + fn.__name__ + " on " + name
+                        string = (
+                            module.__name__ + ": " + fn.__name__ + " on " + name
+                        )
                         if verbose is True:
-                            print("\033[94m", string.ljust(
-                                80, "-"), "\033[0;0m")
-                        ts_test = "annotated_durations" in inspect.signature(
-                            fn).parameters.keys()
+                            print(
+                                "\033[94m", string.ljust(80, "-"), "\033[0;0m"
+                            )
+                        ts_test = (
+                            "annotated_durations"
+                            in inspect.signature(fn).parameters.keys()
+                        )
                         time_sig_test = (
-                            "time_signatures" in inspect.signature(
-                                fn).parameters.keys()
+                            "time_signatures"
+                            in inspect.signature(fn).parameters.keys()
+                        )
+                        provide_score_test = (
+                            "provide_score"
+                            in inspect.signature(fn).parameters.keys()
                         )
                         if i > 0 and not material_dict[name].container:
                             raise Exception(
-                                f"{string}: no content in material container.")
+                                f"{string}: no content in material container."
+                            )
 
-                        if ts_test and time_sig_test and annotated_durations is not None:
+                        if (
+                            ts_test
+                            and time_sig_test
+                            and annotated_durations is not None
+                        ):
                             fn(
                                 material_dict[name],
                                 annotated_durations=annotated_durations[name],
-                                time_signatures=annotated_durations["Time_Signatures"],
+                                time_signatures=annotated_durations[
+                                    "Time_Signatures"
+                                ],
                             )
                         elif (
-                            "annotated_durations" in inspect.signature(
-                                fn).parameters.keys()
+                            "annotated_durations"
+                            in inspect.signature(fn).parameters.keys()
                             and annotated_durations is not None
                         ):
-                            fn(material_dict[name],
-                               annotated_durations=annotated_durations[name])
+                            fn(
+                                material_dict[name],
+                                annotated_durations=annotated_durations[name],
+                            )
                         elif (
-                            "time_signatures" in inspect.signature(
-                                fn).parameters.keys()
+                            "time_signatures"
+                            in inspect.signature(fn).parameters.keys()
                             and time_sig_test is not None
                         ):
                             fn(
                                 material_dict[name],
-                                time_signatures=annotated_durations["Time_Signatures"],
+                                time_signatures=annotated_durations[
+                                    "Time_Signatures"
+                                ],
                             )
+                        elif provide_score_test is True:
+                            fn(material_dict[name], provide_score=provide_score)
 
                         else:
                             fn(material_dict[name])
 
-            
+
+select_named_containers = Material.select_material

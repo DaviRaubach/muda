@@ -22,7 +22,8 @@ def filter_pitches(pitches: list, pitch_range: str or abjad.PitchRange):
             pitch_range = abjad.PitchRange(pitch_range)
         except:
             print("Cannot build abjad.PitchRange of", pitch_range)
-    if not isinstance(pitches, list):
+    # print(pitch_range)
+    if isinstance(pitches, abjad.Pitch):
         pitches = [pitches]
     if pitches and not isinstance(pitches[0], abjad.NamedPitch):
         pitches = [abjad.NamedPitch(_) for _ in pitches]
@@ -37,21 +38,29 @@ def macro_pitches(
     pitch_range: str or abjad.PitchRange = False,
     _min: float = 0,
     _max: float = 1,
-):  # min = 0, max = 1
+    transpose_when_none: str or abjad.PitchRange = False,
+) -> list:  # min = 0, max = 1
     _pitches = [abjad.NamedPitch(_).number for _ in pitches]
     _pitches = list(dict.fromkeys(_pitches))
     _pitches.sort()
     if pitch_range:
         _pitches = filter_pitches(_pitches, pitch_range)
 
+    # print(outline)
     outline = [_ / max(outline) for _ in outline]
+    # print(outline)
 
     _max = round(len(_pitches) * _max)
     _min = round(len(_pitches) * _min)
 
     _pitches = _pitches[_min:_max]
     outline_indices = [int(_ * (len(_pitches) - 1)) for _ in outline]
-    _pitches = [_pitches[_] for _ in outline_indices]
+    # print(_pitches, outline_indices)
+    if _pitches:
+        _pitches = [_pitches[_] for _ in outline_indices]
+    else:
+        if transpose_when_none:
+            pitch_range
 
     if pitch_range:
         toprint = [_.number for _ in _pitches]
@@ -61,13 +70,18 @@ def macro_pitches(
     return _pitches
 
 
+outline_pitches = macro_pitches
+
+
 def transpose_outside_pitches(pitches: list, pitch_range: abjad.PitchRange):
     """Transpose pitches outside a pitch range by an octave (lower + 12, higher - 12)"""
 
     def get_higher_lower_pitch_ranges(pr):
         """For a given pitch range get the higher and the lower ones."""
         letters = [_ for _ in pr.range_string if _.isalpha()]
-        numbers = [int(_) for _ in pr.range_string if _ in [str(_) for _ in range(10)]]
+        numbers = [
+            int(_) for _ in pr.range_string if _ in [str(_) for _ in range(10)]
+        ]
 
         lopr = abjad.PitchRange(
             "["
@@ -100,14 +114,16 @@ def transpose_outside_pitches(pitches: list, pitch_range: abjad.PitchRange):
     return [_ for _ in pitches if _ in pitch_range]
 
 
-def write_pitches(container, pitches, grace=None):
-    """Write pitches to logical ties in selection."""
-    logical_ties = abjad.select.logical_ties(container, pitched=True, grace=grace)
-    for i, logical_tie in enumerate(logical_ties):
-        index = i % len(pitches)
-        pitch = pitches[index]
-        for note in logical_tie:
-            note.written_pitch = pitch
+# def write_pitches(selection, pitches, grace=None):
+#     """Write pitches to logical ties in selection."""
+#     logical_ties = abjad.select.logical_ties(
+#         selection, pitched=True, grace=grace
+#     )
+#     for i, logical_tie in enumerate(logical_ties):
+#         index = i % len(pitches)
+#         pitch = pitches[index]
+#         for note in logical_tie:
+#             note.written_pitch = pitch
 
 
 def make_art_harmonic_from_target(
@@ -139,7 +155,8 @@ def make_art_harmonic_from_target(
         indicator = abjad.get.indicator(lt[0], abjad.Articulation)
         if (
             not isinstance(lt[0], abjad.Chord)
-            and lt[0].written_pitch >= abjad.NamedPitch(lower_note + sound_interval)
+            and lt[0].written_pitch
+            >= abjad.NamedPitch(lower_note + sound_interval)
             and (indicator is None or indicator.name != "flageolet")
         ):
             for i, note in enumerate(lt):
@@ -198,7 +215,9 @@ def make_art_harmonic_from_target(
 def make_nat_harmonic(selection: list or abjad.Leaf, string_markup: str = None):
     def attach(selection):
         abjad.attach(
-            abjad.Articulation(r"flageolet"), selection, tag=abjad.Tag(f"nat_harm")
+            abjad.Articulation(r"flageolet"),
+            selection,
+            tag=abjad.Tag(f"nat_harm"),
         )
 
     if isinstance(selection, abjad.Leaf):
@@ -275,7 +294,10 @@ def make_possible_nat_harmonics(
             strings = [abjad.NamedPitch(_) for _ in strings]
 
         harmonics = [
-            [abjad.NamedPitch.from_hertz(s.hertz * i) for i in range(1, n_harmonics)]
+            [
+                abjad.NamedPitch.from_hertz(s.hertz * i)
+                for i in range(1, n_harmonics)
+            ]
             for s in strings
         ]
         for logical_tie in logical_ties:
@@ -289,9 +311,13 @@ def make_possible_nat_harmonics(
                     make_nat_harmonic(logical_tie, roman.toRoman(i + 1))
                     find = False
                 elif isinstance(logical_tie[0], abjad.Chord):
-                    art_to_nat_harmonics(abjad.select.chords(logical_tie), strings)
+                    art_to_nat_harmonics(
+                        abjad.select.chords(logical_tie), strings
+                    )
     else:
-        print("Cannot find instrument on selection. Please provide instrument strings.")
+        print(
+            "Cannot find instrument on selection. Please provide instrument strings."
+        )
 
 
 def get_harmonic_fundamental(note, strings: list[str], n_harmonics: int = 7):
@@ -299,7 +325,10 @@ def get_harmonic_fundamental(note, strings: list[str], n_harmonics: int = 7):
         strings = [abjad.NamedPitch(_) for _ in strings]
 
     harmonics = [
-        [abjad.NamedPitch.from_hertz(s.hertz * i) for i in range(1, n_harmonics)]
+        [
+            abjad.NamedPitch.from_hertz(s.hertz * i)
+            for i in range(1, n_harmonics)
+        ]
         for s in strings
     ]
     assert isinstance(note, abjad.Note)
@@ -329,19 +358,25 @@ def art_to_nat_harmonics(chords, strings: list):
                     ):
                         note = abjad.Note("c'4")
                         note.written_duration = chord.written_duration
-                        note.written_pitch = chord.note_heads[0].written_pitch + 24
+                        note.written_pitch = (
+                            chord.note_heads[0].written_pitch + 24
+                        )
                         make_possible_nat_harmonics(note, strings=strings)
                         abjad.mutate.replace(chord, note)
 
 
-def art_harmonic_for_longer_notes(pitched_logical_ties, duration=abjad.Duration(4, 8)):
+def art_harmonic_for_longer_notes(
+    pitched_logical_ties, duration=abjad.Duration(4, 8)
+):
     """Write artificial harmonics for pitched logical ties with duration >= X."""
     selection = pitched_logical_ties
     selection = [lt for lt in selection if lt.written_duration >= duration]
     make_art_harmonic_from_target(selection)
 
 
-def transpose_note_before_chord_to_the_same_octave(pitched_logical_ties, interval=12):
+def transpose_note_before_chord_to_the_same_octave(
+    pitched_logical_ties, interval=12
+):
     """Change the note before a harmonic for near positions on string instruments."""
     if isinstance(pitched_logical_ties, abjad.LogicalTie):
         inst = abjad.get.indicator(pitched_logical_ties[0], abjad.Instrument)
@@ -358,7 +393,9 @@ def transpose_note_before_chord_to_the_same_octave(pitched_logical_ties, interva
 
     selection = pitched_logical_ties
     for lt1, lt2 in zip(selection, selection[1:]):
-        test1 = isinstance(lt1[0], abjad.Note) and isinstance(lt2[0], abjad.Chord)
+        test1 = isinstance(lt1[0], abjad.Note) and isinstance(
+            lt2[0], abjad.Chord
+        )
         indicator = abjad.get.indicator(lt2[0], abjad.Articulation)
         test2 = True
         if indicator:
@@ -497,7 +534,9 @@ def pitches_in_staff(pitches, chord=False):
     abjad.override(staff_group).SpanBar.stencil = False
     abjad.override(staff_group).Stem.stencil = False
     abjad.override(staff_group).TimeSignature.stencil = False
-    abjad.setting(staff_group).proportionalNotationDuration = "#(ly:make-moment 1 25)"
+    abjad.setting(staff_group).proportionalNotationDuration = (
+        "#(ly:make-moment 1 25)"
+    )
     # abjad.show(staff_group)
 
     return staff_group
@@ -510,30 +549,40 @@ def illustrate_pitches_in_staff(
     pdf_path: str = None,
     open_in_emacs=False,
 ):
-    """Creates lilypond file and generates pdf with associated markups and scores."""
+    """Create lilypond file and generates pdf with associated markups and scores."""
     # score_block = abjad.Block("score")
 
     items = []
     if markups is None:
-        markups = [abjad.Markup(rf"\markup{ {i} }") for i, _ in enumerate(scores)]
+        markups = [
+            abjad.Markup(rf"\markup{ {i} }") for i, _ in enumerate(scores)
+        ]
+    if markups:
+        if isinstance(markups[0], str):
+            markups = [abjad.Markup(rf"\markup{{ {_} }}") for _ in markups]
     for score, markup in zip(scores, markups):
         items.append(markup)
         if midi is True:
             midi_block = abjad.Block("midi")
             layout_block = abjad.Block("layout")
-            score_block = abjad.Block("score", items=[score, midi_block, layout_block])
+            score_block = abjad.Block(
+                "score", items=[score, midi_block, layout_block]
+            )
             # score_block.items.append(midi_block)
         else:
             score_block = abjad.Block("score", items=[score])
         items.append(score_block)
 
     if pdf_path is None:
-        pdf_path = input("Enter a file path: ")
+        pdf_path = "pitch_illustration.pdf"
+        # pdf_path = input("Enter a file path: ")
 
     lyfile = abjad.LilyPondFile(
         items=items,
     )
     print(pdf_path)
+    # for i in items:
+    #     print(i)
     abjad.persist.as_pdf(lyfile, pdf_path)
     if open_in_emacs is True:
         os.system("emacsclient " + pdf_path)
@@ -579,7 +628,7 @@ def permut_thirds(pitches):
 # 2xFREQ_A - FREQ_B
 def ring_modulation(
     pitches,
-    pitch_range=abjad.PitchRange("[-inf, +inf]"),
+    pitch_range: abjad.PitchRange or str = abjad.PitchRange("[-inf, +inf]"),
     keep_originals=True,
     last=False,
     chords=False,
@@ -595,6 +644,9 @@ def ring_modulation(
         pitches_in = frequencies
     else:
         pitches_in = [abjad.NumberedPitch(_).hertz for _ in pitches]
+
+    if isinstance(pitch_range, str):
+        pitch_range = abjad.PitchRange(pitch_range)
 
     pitches_out = []
     if chords is False:
@@ -651,10 +703,14 @@ def ring_modulation(
     for frequency in pitches_out:
         if not isinstance(frequency, abjad.Chord) and frequency > 20:
             try:
-                new_pitches_out.append(abjad.NumberedPitch.from_hertz(frequency))
+                new_pitches_out.append(
+                    abjad.NumberedPitch.from_hertz(frequency)
+                )
             except ValueError:
                 print(
-                    "Cannot transform frequency:", frequency, "to abjad.NumberedPitch"
+                    "Cannot transform frequency:",
+                    frequency,
+                    "to abjad.NumberedPitch",
                 )
 
     # pitches_out=[abjad.NumberedPitch.from_hertz(_) for _ in pitches_out]
@@ -768,7 +824,11 @@ def new_ring_modulation(
             try:
                 new_pitches_out.append(abjad.NumberedPitch.from_hertz(pitch))
             except ValueError:
-                print("Cannot transform frequency:", pitch, "to abjad.NumberedPitch")
+                print(
+                    "Cannot transform frequency:",
+                    pitch,
+                    "to abjad.NumberedPitch",
+                )
 
     # pitches_out=[abjad.NumberedPitch.from_hertz(_) for _ in pitches_out]
     if hertz is False:
@@ -799,6 +859,23 @@ def new_ring_modulation(
     # print(pitches_out)
     return pitches_out
 
+
+# def check_and_replace_for_chords(pitches: list, argument):
+#     """Check in pitches list if a item is a list and replace the correspondent note in argument by a chord."""
+#     for pitch in pitches:
+#      chords_test = {}
+#         for key, pitches in annotated_pitches.items():
+#             if pitches is not None:
+#                 for item in pitches:
+#                     if isinstance(item, list):
+#                         chords_test[key] = [
+
+#         if chords_test:
+#             # convert notes to chords
+#             conversion = abjad.select.leaves(self.container, pitched=True)
+#             for note in conversion:
+#                 chord = abjad.Chord("c'", note.written_duration)
+#                 abjad.mutate.replace(note, chord
 
 # # ORIGINAL CHORD
 # pitches = []
@@ -861,3 +938,24 @@ def new_ring_modulation(
 #         chord_up_longer.append(note_up)
 #     for note_down in chord_down:
 #         chord_down_longer.append(note_down)
+
+
+def write_pitches(argument, pitches, cyclic=True):
+    """Write pitches to logical ties in selection, replace note by chord if pitch is a list."""
+    logical_ties = abjad.select.logical_ties(argument, pitched=True)
+    for i, lt in enumerate(logical_ties):
+        index = i % len(pitches)
+        pitch = pitches[index]
+        if isinstance(pitch, list):
+            for note in lt:
+                chord = abjad.Chord("<c' e'>4")
+                chord.written_duration = note.written_duration
+                chord.written_pitches = pitch
+
+                for indicator in abjad.get.indicators(note):
+                    abjad.attach(indicator, chord)
+                abjad.mutate.replace(note, chord)
+
+        else:
+            for note in lt:
+                note.written_pitch = pitch
