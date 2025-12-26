@@ -87,7 +87,9 @@ class Material:
     def write(self, lilypond_string, name: str):
         """It creates container from lilypond string and append to a
         ``muda.Material()`` instance."""
-        self.container.append(abjad.Container(lilypond_string, name=name))
+        self.container.append(
+            abjad.Container(lilypond_string, name=name, identifier="% " + name)
+        )
 
     def notes(self):
         """Select notes in self.container"""
@@ -158,9 +160,22 @@ class Material:
                 submaterials=submaterials,
                 exclude_material=exclude_material,
             )
+
         else:
             selection = argument
-        return abjad.select.leaves(selection, grace=grace, pitched=pitched)
+
+        if submaterials is True:
+            result = []
+            for sel in selection:
+                result.append(
+                    abjad.select.leaves(sel, grace=grace, pitched=pitched)
+                )
+        else:
+            result = abjad.select.leaves(
+                selection, grace=grace, pitched=pitched
+            )
+
+        return result
 
     def pleaves(
         self,
@@ -249,11 +264,17 @@ class Material:
             argument = self.container
         return abjad.select.note(self.container, i)
 
-    def m(self):
+    def ms(self):
         """Select measures in self.container"""
         leaves = abjad.select.leaves(self.container)
         measures = abjad.select.group_by_measure(leaves)
         return measures
+
+    def m(self, i, grace=None):
+        """Select measures in self.container"""
+        leaves = abjad.select.leaves(self.container, grace=grace)
+        measures = abjad.select.group_by_measure(leaves)
+        return measures[i]
 
     def tie_last_leaf(self):
         """Ties the last leaf of self.container. (used to connect segments)"""
@@ -425,6 +446,7 @@ class Material:
         annotated_durations: list,
         randomize=0,
         print_last_pitch=False,
+        annotate=False,
     ):
         """write pitches to notes according to annotated durations."""
         assert isinstance(
@@ -459,8 +481,8 @@ class Material:
                 overhang=True,
             )
 
-        print(self.container._get_duration())
-        print(abjad_durations)
+        # print(self.container._get_duration())
+        # print(abjad_durations)
         selections = selector(self.container)
 
         for key in annotated_pitches:
@@ -485,6 +507,57 @@ class Material:
                                         chord.written_pitches = pitch
                                     else:
                                         chord.written_pitch = pitch
+
+        if annotate is True:
+            for selection, duration in zip(selections, annotated_durations):
+                s = duration[0].annotation
+                leaves = abjad.select.leaves(selection)
+                if len(selection[0:-1]) == 1:
+                    string = r' \markup \with-color "red" {"' + s + r'"}'
+                    abjad.attach(
+                        abjad.Markup(string),
+                        abjad.select.leaf(selection, 0),
+                        direction=abjad.UP,
+                    )
+                else:
+                    lit = (
+                        r'''
+                    \once \override HorizontalBracketText.color = #(x11-color 'blue)
+                    \once \override HorizontalBracket.color = #(x11-color 'blue)
+                    \once \override HorizontalBracketText.text = "%s"'''
+                        % s
+                    )
+                    if s not in ["None", "none"]:
+                        try:
+                            abjad.attach(
+                                abjad.LilyPondLiteral(lit),
+                                abjad.select.leaf(selection, 0),
+                            )
+                            start = abjad.StartGroup()
+                            bundle = abjad.bundle(
+                                start,
+                                # rf'- \tweak HorizontalBracketText.text "{s}"',
+                            )
+                            abjad.horizontal_bracket(
+                                selection[0:-1],
+                                start_group=bundle,
+                            )
+
+                        except IndexError:
+                            print(f"Could not attach horizontal bracket in {s}")
+                # if select is not None:
+                #     for i, item in enumerate(select(submaterial)):
+                #         # print(i, item)
+                #         if isinstance(item, abjad.LogicalTie):
+                #             item = item[0]
+                #         str_ = (
+                #             r'\markup \with-color "red" \tiny {\null { \raise #2 {%i}}}'
+                #             % i
+                #         )
+                #         abjad.attach(
+                #             abjad.Markup(str_),  # direction=abjad.Up),
+                #             item,
+                #         )
 
     def write_notes_and_chords(self, pitches, cyclic=True):
         logical_ties = abjad.select.logical_ties(self.container, pitched=True)
@@ -536,9 +609,10 @@ class Material:
                 for note in logical_tie:
                     note.written_pitches = [pitch]
 
+
     def annotate_material_names(
         self,
-        material_name=None,
+        material_names=None,
         path=None,
         select=lambda _: abjad.select.leaves(_),
         submaterials=False,
@@ -550,10 +624,10 @@ class Material:
         # copied_container = abjad.mutate.copy(self.container)
         copied_container = self.container
 
-        if isinstance(material_name, str):
-            material_name = [material_name]
+        if isinstance(material_names, str):
+            material_name = [material_names]
 
-        if material_name is None:
+        if material_names is None:
             selectables = [copied_container]
             # selectables = [copied_container]
         else:
@@ -574,7 +648,10 @@ class Material:
                 s = container[0].name
                 leaves = abjad.select.leaves(submaterial)
                 if len(leaves) == 1:
-                    string = r' \markup \with-color "red" {"' + s + r'"}'
+                    # print(submaterial)
+                    string = (
+                        r' \markup \with-color "red"  {"' + s + r'"}'
+                    )  # \bold \fontsize #2
                     abjad.attach(
                         abjad.Markup(string),
                         abjad.select.leaf(submaterial, 0),
@@ -583,12 +660,14 @@ class Material:
                 else:
                     lit = (
                         r'''
+                    \once \override HorizontalBracket.direction = #UP
+                    \once \override HorizontalBracket.padding = #3
                     \once \override HorizontalBracketText.color = #(x11-color 'red)
                     \once \override HorizontalBracket.color = #(x11-color 'red)
-                    \once \override HorizontalBracketText.text = "%s"'''
+                    \once \override HorizontalBracketText.text = \markup  "%s"'''
                         % s
                     )
-
+                    # \bold \fontsize #2
                     try:
                         abjad.attach(
                             abjad.LilyPondLiteral(lit),
@@ -1063,6 +1142,7 @@ class Material:
                 container.append(new_container)
 
     def fit_in_duration(self, duration: abjad.Duration, final=False):
+        # if duration < abjad.get.duration(self.container):
         shards = abjad.mutate.split(self.container, [duration])
         n = 0
         if final is True:
@@ -1070,6 +1150,9 @@ class Material:
         copy = abjad.mutate.copy(shards[n])
         del self.container[:]
         self.container.append(copy[0])
+        # else:
+        #     difference = duration - abjad.get.duration(self.container)
+        #     _rhy
 
     def delete(
         self,
@@ -1720,21 +1803,17 @@ class Material:
 
         self.container.append(appendice)
 
-    def write_time_signatures(self, time_signatures, cyclic=False):
+    def write_time_signatures(self, time_signatures, cyclic=False, site=None):
         r"""Write time signatures."""
-        site = "muda.Material.write_time_signatures()"
-        tag = abjad.Tag(site)
-        # print(tag)
-        # select skips to attach TIME SIGNATURES
+        tag = "muda.Material.write_time_signatures()"
+        tag = abjad.Tag(tag)
         if isinstance(time_signatures[0], abjad.TimeSignature) or isinstance(
             time_signatures[0], abjad.Duration
         ):
             in_time_signatures = [_.pair for _ in time_signatures]
         else:
             in_time_signatures = time_signatures
-        # assert sum(in_time_signatures) ==
-        # abjad.mutate.split(self.container[:], in_time_signatures, cyclic=cyclic)
-        result = abjad.select.leaves(self.container)
+        result = abjad.select.leaves(self.container, grace=False)
 
         result = abjad.select.partition_by_durations(
             result,
@@ -1744,29 +1823,41 @@ class Material:
             in_seconds=False,
             overhang=True,
         )
+
+        def _attach_literal_and_time_signature(time_sig, leaf, site=site):
+            abjad.attach(
+                abjad.TimeSignature(time_sig, hide=True), leaf, tag=tag
+            )
+            abjad.attach(
+                abjad.LilyPondLiteral(
+                    abjad.TimeSignature(time_sig)._get_lilypond_format(),
+                    site=site,
+                ),
+                leaf,
+                tag=tag,
+            )
+
         for (i, time_sig), selection in zip(
             enumerate(in_time_signatures), result
         ):
             j = i
+            leaf = abjad.select.leaf(selection, 0)
             if i != 0:
                 j = i - 1
                 if in_time_signatures[j] == time_sig:
                     pass
                 else:
-                    abjad.attach(
-                        abjad.TimeSignature(
-                            time_sig,
-                        ),
-                        abjad.select.leaf(selection, 0),
-                        # site="absolute_before",
-                        tag=tag,
-                    )
+                    if site is not None:
+                        _attach_literal_and_time_signature(time_sig, leaf, site)
+                    else:
+                        abjad.attach(
+                            abjad.TimeSignature(time_sig), leaf, tag=tag
+                        )
             else:
-                abjad.attach(
-                    abjad.TimeSignature(time_sig),
-                    abjad.select.leaf(selection, 0),
-                    tag=tag,
-                )
+                if site is not None:
+                    _attach_literal_and_time_signature(time_sig, leaf, site)
+                else:
+                    abjad.attach(abjad.TimeSignature(time_sig), leaf, tag=tag)
 
     def rewrite_meter(
         self,
@@ -1935,16 +2026,17 @@ class Segment:
             # GET LAST PITCHES
             if not isinstance(material, Lyrics):
                 if material.pleaves():
-                    if isinstance(material.pleaf(-1), abjad.Chord):
+                    if isinstance(material.leaf(-1), abjad.Chord):
                         self.last_pitches[material.name] = []
-                        for pitch in material.pleaf(-1).written_pitches:
+                        for pitch in material.leaf(-1).written_pitches:
                             self.last_pitches[material.name].append(
                                 pitch.get_name()
                             )
                     else:
-                        self.last_pitches[material.name] = material.pleaf(
-                            -1
-                        ).written_pitch.get_name()
+                        if hasattr(material.leaf(-1), "written_pitch"):
+                            self.last_pitches[material.name] = material.pleaf(
+                                -1
+                            ).written_pitch.get_name()
             # WRITE MATERIALS
             self.score.write_materials([material])
 
@@ -1989,9 +2081,10 @@ class Segment:
         new_material_dict = {}
 
         for name in material_names:
-            self.material_dict[name].container = abjad.Container(name=name)
+            # self.material_dict[name].container
             new_material_dict[name] = self.material_dict[name]
-        # print(new_material_dict)
+
+            # print(new_material_dict)
 
         self.call_modules_functions(
             modules=self.modules,
@@ -2002,17 +2095,19 @@ class Segment:
         )
         # print(self.material_list, self.material_dict)
         if make_part:
+            for material in self.material_list:
+                if material.name in material_names:
+                    self.score.write_materials([material])
             # for material in self.material_list:
             #     if material.name in material_names:
             #         # print(abjad.lilypond(self.score.score))
-            #         part_score.write_materials([material])
-            for material_name in material_names:
-                self.score.write_materials([new_material_dict[material_name]])
-            self.score.attach_clefs()
+            # part_score.write_materials([material])
+            # self.score.attach_clefs()
 
         else:
-            for name in material_names:
-                self.score.write_materials([new_material_dict[name]])
+            for material in self.material_list:
+                if material.name in material_names:
+                    self.score.write_materials([material])
 
             self.score.attach_clefs()
 
@@ -2135,7 +2230,7 @@ class Segment:
     ):
         if verbose is True:
             print(
-                "\033[1;94m",
+                "\033[1;93m",
                 __name__,
                 "muda.material.Segment.call_modules_functions()",
                 "\033[0;0m",
@@ -2162,7 +2257,7 @@ class Segment:
                         )
                         if verbose is True:
                             print(
-                                "\033[94m", string.ljust(80, "-"), "\033[0;0m"
+                                "\033[95m", string.ljust(80, "-"), "\033[0;0m"
                             )
                         ts_test = (
                             "annotated_durations"
@@ -2176,10 +2271,11 @@ class Segment:
                             "provide_score"
                             in inspect.signature(fn).parameters.keys()
                         )
-                        if i > 0 and not material_dict[name].container:
-                            raise Exception(
-                                f"{string}: no content in material container."
-                            )
+                        if hasattr(material_dict[name], "container"):
+                            if i > 0 and not material_dict[name].container:
+                                raise Exception(
+                                    f"{string}: no content in material container."
+                                )
 
                         if (
                             ts_test
