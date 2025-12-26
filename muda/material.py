@@ -2236,10 +2236,45 @@ class Segment:
                 "\033[0;0m",
             )
 
-        for i, module in enumerate(modules):
-            # assert
-            functions = [f for _, f in module.__dict__.items() if callable(f)]
-            functions = [f for f in functions if hasattr(f, "apply_to")]
+        for i, item in enumerate(modules):
+            # Determinar como extrair as funções do item
+            functions = []
+            item_name = None
+            
+            # Caso 1: item é um módulo Python (abordagem tradicional)
+            if inspect.ismodule(item):
+                item_name = item.__name__
+                functions = [f for _, f in item.__dict__.items() if callable(f)]
+                functions = [f for f in functions if hasattr(f, "apply_to")]
+            
+            # Caso 2: item é uma lista de funções
+            elif isinstance(item, list):
+                item_name = f"list_{i}"
+                functions = [f for f in item if callable(f) and hasattr(f, "apply_to")]
+            
+            # Caso 3: item é um dicionário com estrutura esperada
+            elif isinstance(item, dict):
+                item_name = item.get("name", f"dict_{i}")
+                # Pode conter uma lista de funções sob a chave 'functions'
+                funcs = item.get("functions", [])
+                functions = [f for f in funcs if callable(f) and hasattr(f, "apply_to")]
+                # Se houver uma chave 'apply_to' global, aplicar a todas as funções
+                global_apply_to = item.get("apply_to")
+                if global_apply_to is not None:
+                    for f in functions:
+                        if not hasattr(f, "apply_to"):
+                            f.apply_to = global_apply_to
+            
+            # Caso 4: item é uma única função
+            elif callable(item) and hasattr(item, "apply_to"):
+                item_name = item.__name__ if hasattr(item, "__name__") else f"func_{i}"
+                functions = [item]
+            
+            else:
+                if verbose:
+                    print(f"\033[93mWarning: item {i} in modules is not a module, list, dict, or function with apply_to. Skipping.\033[0m")
+                continue
+
             if make_part:
                 functions = [
                     f for f in functions if not hasattr(f, "score_only")
@@ -2248,12 +2283,15 @@ class Segment:
                 functions = [
                     f for f in functions if not hasattr(f, "part_only")
                 ]
+
             for fn in functions:
                 assert isinstance(fn.apply_to, list)
                 for name in fn.apply_to:
                     if name in material_dict.keys():
                         string = (
-                            module.__name__ + ": " + fn.__name__ + " on " + name
+                            (item_name if item_name else "unknown") + ": " + 
+                            (fn.__name__ if hasattr(fn, "__name__") else "unnamed") + 
+                            " on " + name
                         )
                         if verbose is True:
                             print(
