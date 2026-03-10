@@ -1,4 +1,5 @@
 import abjad
+import time
 
 
 def operation_in_nested_lists(_list: list[int], function):
@@ -23,7 +24,6 @@ def make_measures(
     rhythm_maker,
     pitches,
 ):
-
     if rhythm_maker is not None:
         measures = rhythm_maker(durations)
         measures = abjad.Container(measures)
@@ -207,7 +207,6 @@ def auto_change(
     show_staff_switch: bool = False,
     original_staff: int or str = None,
 ):
-
     if pitch_ranges is None:
         pitch_ranges = [
             abjad.PitchRange("[C4, +inf]"),
@@ -300,3 +299,104 @@ def voice_number(argument, n: int):
     n = n - 1
     abjad.attach(abjad.LilyPondLiteral(strings[n], site="before"), leaves[0])
     abjad.attach(abjad.LilyPondLiteral(r"\oneVoice", site="after"), leaves[-1])
+
+
+def time_file_name(file_name: str) -> str:
+    minutes = fiveround(int(time.strftime("%M")))
+    minutes = str(minutes)
+    if len(minutes) < 2:
+        minutes = "0" + minutes
+    file_name = time.strftime("%Y%m%d_%H") + minutes + "_" + file_name
+    return file_name
+
+
+def print_time(start_time):
+    """Exibe o tempo decorrido desde start_time em mm:ss com cor verde."""
+    elapsed = round(time.time() - start_time)
+    minutes, seconds = divmod(elapsed, 60)
+    if minutes:
+        print(f"\033[92mTime: {minutes}m {seconds}s\033[0;0m")
+    else:
+        print(f"\033[92mTime: {seconds}s\033[0;0m")
+
+
+def fiveround(x, base=5):
+    return base * round(x / base)
+
+
+def annotate_selection(
+    selection,
+    name: str or None = None,
+    print_indices=True,
+):
+    assert len(selection) > 0
+    if len(selection) == 1:
+        # print(submaterial)
+        string = (
+            r' \markup \with-color "red"  {"' + name + r'"}'
+        )  # \bold \fontsize #2
+        abjad.attach(
+            abjad.Markup(string),
+            abjad.select.leaf(selection, 0),
+            direction=abjad.UP,
+        )
+    else:
+        lit = (
+            r'''
+                    \once \override HorizontalBracket.direction = #UP
+                    \once \override HorizontalBracket.padding = #3
+                    #(x11-color 'red)
+                    \once \override HorizontalBracketText.color =
+                    \once \override HorizontalBracket.color = #(x11-color 'red)
+                    \once \override HorizontalBracketText.text = \markup  "%s"'''
+            % name
+        )
+        # \bold \fontsize #2
+        abjad.attach(
+            abjad.LilyPondLiteral(lit),
+            abjad.select.leaf(selection, 0),
+        )
+        abjad.horizontal_bracket(selection)
+
+        for i, item in enumerate(selection):
+            # print(i, item)
+            if isinstance(item, abjad.LogicalTie):
+                item = item[0]
+            str_ = (
+                r'\markup \with-color "red" \tiny {\null { \raise #2 {%i}}}' % i
+            )
+            abjad.attach(
+                abjad.Markup(str_),  # direction=abjad.Up),
+                item,
+            )
+
+
+def retrograde(argument):
+    """Retrograde components in container."""
+    selection = abjad.select.components(argument[:], abjad.Container)
+    for container in selection:
+        if container.name is not None and material_name in container.name:
+            items = abjad.select(container).items
+            # print(container.components)
+            new_container = abjad.Container(name=container.name)
+            for item in reversed(items):
+                for comp in reversed(item.components):
+                    if isinstance(comp, abjad.Tuplet):
+                        new_tuplet = abjad.Tuplet(
+                            multiplier=comp.multiplier,
+                            denominator=comp.denominator,
+                        )
+                        for it in reversed(comp.components):
+                            new_tuplet.append(it)
+                        new_container.append(new_tuplet)
+                    elif isinstance(comp, abjad.Container):
+                        new_sub_container = abjad.Container()
+                        for it in reversed(comp.components):
+                            new_sub_container.append(it)
+                        new_container.append(new_sub_container)
+                    else:
+                        new_container.append(comp)
+            for i, item in enumerate(container):
+                container.remove(container[i])
+            container.append(new_container)
+    return argument

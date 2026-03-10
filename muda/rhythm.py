@@ -26,9 +26,7 @@ class AnnotatedDuration(abjad.Duration):
 
 
 def silence_and_rhythm_maker(maker, annotated_divisions, *commands):
-    rest_maker = rmakers.stack(
-        rmakers.note(), rmakers.force_rest(abjad.select())
-    )
+    rest_maker = rmakers.stack(rmakers.note(), rmakers.force_rest(abjad.select()))
 
     my_stack_voice = abjad.Container()
 
@@ -117,7 +115,7 @@ def delete(
     ``replace_with_skips`` to replace leaves by rests or skips.
     """
 
-    for leaf in leaves:
+    for i, leaf in enumerate(leaves):
         if replace_with_skips is True:
             abjad.mutate.replace(
                 leaf,
@@ -129,14 +127,26 @@ def delete(
                 abjad.Rest(leaf.written_duration),
             )
         else:
-            del leaf
+            del leaves[i]
+            # abjad.mutate.replace(
+            #     leaf,
+            #     abjad.Tuplet(),
+            # )
+            # leaves.pop(i)
 
 
 def fit_in_duration(container, duration: abjad.Duration, final=False):
-    shards = abjad.mutate.split(container, [duration])
-    n = 0
-    if final is True:
-        n = -1
-    copy = abjad.mutate.copy(shards[n])
-    del container[:]
-    container.append(copy[0])
+    if duration < abjad.get.duration(container):
+        shards = abjad.mutate.split(container, [duration])
+        n = 0
+        if final is True:
+            n = -1
+        copy = abjad.mutate.copy(shards[n])
+        del container[:]
+        container.append(copy[0])
+    else:
+        difference = duration - abjad.get.duration(container)
+        if difference:
+            rests = rest_maker([difference])
+            rests = abjad.Container(rests, name="fit in duration")
+            container.extend(rests)

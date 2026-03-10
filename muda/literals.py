@@ -9,14 +9,22 @@ import abjad
 #         return self(literal)
 
 
-def fancy_glissando(points: list = [(1, 3), (2, 0), (3, 3), (4, 1),
-                                    (5, 3.5), (6, 0), (7, 0, 8, 5, 12, 0)]):
-
+def fancy_glissando(
+    points: list = [
+        (1, 3),
+        (2, 0),
+        (3, 3),
+        (4, 1),
+        (5, 3.5),
+        (6, 0),
+        (7, 0, 8, 5, 12, 0),
+    ]
+):
     sub_string_list = ""
     for t in points:
         lytup = "("
         for i, n in enumerate(t):
-            lytup += (f"{str(n)}")
+            lytup += f"{str(n)}"
             if i != len(t) - 1:
                 lytup += " "
         lytup += ") "
@@ -32,3 +40,7 @@ def slap_tongue():
 
 def p_possibile():
     return abjad.Markup(r"\markup { \fontsize #-2 \dynamic p possibile}")
+
+
+def literal(string, site="before"):
+    return abjad.LilyPondLiteral(string, site=site)

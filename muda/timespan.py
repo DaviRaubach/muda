@@ -8,6 +8,7 @@ from itertools import cycle
 import abjad
 import muda
 from copy import copy
+from abjadext import rmakers
 
 
 class TimespanList(abjad.TimespanList):
@@ -60,9 +61,9 @@ class TimespanList(abjad.TimespanList):
         for span in self:
             sub_ts_list = []
             # print(annotation)
-            print(span)
+            # print(span)
             if hasattr(span, "annotation") and span.annotation is not None:
-                print(subdivisions[span.annotation])
+                # print(subdivisions[span.annotation])
                 splitted = span.divide_by_ratio(subdivisions[span.annotation])
                 # for ts in splitted:
                 # new_ts_list.append(ts)
@@ -77,7 +78,7 @@ class TimespanList(abjad.TimespanList):
             new_ts_list.append(sub_ts_list)
             # ts.annotation = annotation
             # self.append(ts)
-        print(new_ts_list)
+        # print(new_ts_list)
         return new_ts_list
 
     def pure_annotated_durations(self):
@@ -102,92 +103,174 @@ class TimespanList(abjad.TimespanList):
                 # dur.annotation = span.annotation
                 dur_list.append(dur)
             # print(span.annotation)
-        print(dur_list)
+        # print(dur_list)
         return dur_list
 
-    def annotated_durations(self, subdivision: tuple = None):
-        """Todo."""
+    def annotated_durations(self, subdivision=None, subdivisions=None):
+        """Return annotated durations, splitting each timespan according to subdivision.
 
-        if subdivision == None:
-            subdivision = (2, 4)
-        subdur = abjad.Duration(subdivision)
+        subdivision can be:
+        - None: default to (2,4)
+        - a tuple: single duration (old behavior)
+        - a list of tuples or durations: cycle through these durations, cutting the last to fit
 
-        new_ts_list = []
-        for span in self:
-            sub_ts_list = []
-            append_lower = True
-            append_higher = True
-            for a in range(2, 16):
-                if span.duration < subdur * 2 and append_lower is True:
-                    sub_ts_list.append(span)
-                    # print("menor:", span.duration)
-                    append_lower = False
-                elif (
-                    span.duration >= subdur * (a - 1)
-                    and span.duration < subdur * a
-                ) and append_higher is True:
-                    # print("maior:", span.duration)
-                    rest = span.duration % subdur
-                    # print("rest", rest)
-                    if rest == 0:
-                        splited1 = span.divide_by_ratio(a - 1)
-                        for ts in splited1:
-                            newts = abjad.Timespan(
-                                start_offset=ts.start_offset,
-                                stop_offset=ts.stop_offset,
-                                annotation=span.annotation,
-                            )
-                            sub_ts_list.append(newts)
-                            # print("rest = 0, span annotation:",
-                            #       newts.annotation)
-                    else:
-                        newspan = copy(span)
-                        # print("rest =!0, span duration: ", span.duration)
-                        dim = span.duration - rest
-                        # print("dur dim", dim)
-                        newspan = newspan.set_duration(dim)
-                        # print("newspan dur:", newspan.duration)
-                        splited2 = newspan.divide_by_ratio(a - 1)
-                        # print("splited:", splited2)
-                        for o, ts2 in enumerate(splited2):
-                            # print("o", o)
-                            if o == (len(splited2) - 1):
-                                nts2 = splited2[-1].set_duration(
-                                    splited2[-1].duration + rest
-                                )
-                                nts2.annotation = span.annotation
-                                sub_ts_list.append(nts2)
-                                # print("aquiiii", nts2.duration)
-                            else:
-                                ts2.annotation = span.annotation
-                                sub_ts_list.append(ts2)
-                            # print("rest =! 0:", ts2.duration)
-                    append_higher = False
-            new_ts_list.append(sub_ts_list)
+        subdivisions can be:
+        - None: use subdivision parameter for all materials
+        - a dict: keys are material names (annotations), values are lists of durations for that material
+        """
+        import itertools
+        from abjad import Duration
+
+        # Handle subdivisions dictionary
+        if subdivisions is not None:
+            # Convert each value in subdivisions to a list of Durations
+            sub_durs_dict = {}
+            for key, value in subdivisions.items():
+                if isinstance(value, tuple):
+                    sub_durs_dict[key] = [Duration(value)]
+                elif isinstance(value, list):
+                    sub_durs_dict[key] = [
+                        Duration(d) if not isinstance(d, Duration) else d for d in value
+                    ]
+                else:
+                    raise TypeError(
+                        f"subdivisions[{key}] must be tuple or list of tuples/durations"
+                    )
+        else:
+            sub_durs_dict = None
+
+        # Handle single subdivision parameter
+        if sub_durs_dict is None:
+            if subdivision is None:
+                subdivision = (2, 4)
+
+            # Convert subdivision to a list of Durations
+            if isinstance(subdivision, tuple):
+                sub_durs = [Duration(subdivision)]
+            elif isinstance(subdivision, list):
+                sub_durs = [
+                    Duration(d) if not isinstance(d, Duration) else d
+                    for d in subdivision
+                ]
+            else:
+                raise TypeError("subdivision must be tuple or list of tuples/durations")
 
         dur_list = []
-        for span in new_ts_list:
-            if isinstance(span, list):
-                # print("is list")
-                dur_sub_list = []
-                for sp in span:
-                    # print(sp.annotation)
-                    dur = muda.rhythm.AnnotatedDuration(
-                        sp.duration, annotation=sp.annotation
+        for span in self:
+            span_dur = span.duration
+            sub_ts_list = []
+
+            # Get the appropriate subdivision for this span's annotation
+            if sub_durs_dict is not None:
+                # Look up in dictionary
+                if span.annotation in sub_durs_dict:
+                    current_sub_durs = sub_durs_dict[span.annotation]
+                else:
+                    # If annotation not in dictionary, use default (2,4)
+                    current_sub_durs = [Duration((2, 4))]
+            else:
+                # Use the single subdivision parameter
+                current_sub_durs = sub_durs
+
+            # If we have a single duration, use the old logic for backward compatibility
+            if len(current_sub_durs) == 1:
+                subdur = current_sub_durs[0]
+                append_lower = True
+                append_higher = True
+                for a in range(2, 16):
+                    if span_dur < subdur * 2 and append_lower:
+                        sub_ts_list.append(span)
+                        append_lower = False
+                    elif (
+                        span_dur >= subdur * (a - 1) and span_dur < subdur * a
+                    ) and append_higher:
+                        rest = span_dur % subdur
+                        if rest == 0:
+                            splited = span.divide_by_ratio(a - 1)
+                            for ts in splited:
+                                newts = abjad.Timespan(
+                                    start_offset=ts.start_offset,
+                                    stop_offset=ts.stop_offset,
+                                    annotation=span.annotation,
+                                )
+                                sub_ts_list.append(newts)
+                        else:
+                            newspan = copy(span)
+                            dim = span_dur - rest
+                            newspan = newspan.set_duration(dim)
+                            splited = newspan.divide_by_ratio(a - 1)
+                            for o, ts2 in enumerate(splited):
+                                if o == len(splited) - 1:
+                                    nts2 = splited[-1].set_duration(
+                                        splited[-1].duration + rest
+                                    )
+                                    nts2.annotation = span.annotation
+                                    sub_ts_list.append(nts2)
+                                else:
+                                    ts2.annotation = span.annotation
+                                    sub_ts_list.append(ts2)
+                        append_higher = False
+            else:
+                # Cycle through the list of durations
+                current_offset = span.start_offset
+                for subdur in itertools.cycle(current_sub_durs):
+                    if current_offset >= span.stop_offset:
+                        break
+                    # Calculate the next offset
+                    next_offset = current_offset + subdur
+                    if next_offset > span.stop_offset:
+                        # Cut the last segment to fit
+                        next_offset = span.stop_offset
+                    # Create a timespan for this segment
+                    segment = abjad.Timespan(
+                        start_offset=current_offset,
+                        stop_offset=next_offset,
+                        annotation=span.annotation,
                     )
-                    dur_sub_list.append(dur)
-                if dur_sub_list:
+                    sub_ts_list.append(segment)
+                    current_offset = next_offset
+
+            # Convert the generated timespans to annotated durations
+            if sub_ts_list:
+                if len(sub_ts_list) == 1:
+                    dur = muda.rhythm.AnnotatedDuration(
+                        sub_ts_list[0].duration, annotation=span.annotation
+                    )
+                    dur_list.append([dur])
+                else:
+                    dur_sub_list = []
+                    for sp in sub_ts_list:
+                        dur = muda.rhythm.AnnotatedDuration(
+                            sp.duration, annotation=span.annotation
+                        )
+                        dur_sub_list.append(dur)
                     dur_list.append(dur_sub_list)
             else:
-                # print("is not a list")
+                # If no subdivision, add the whole span
                 dur = muda.rhythm.AnnotatedDuration(
                     span.duration, annotation=span.annotation
                 )
-                # print("mudadur:", dur)
-                # dur.annotation = span.annotation
-                dur_list.append(dur)
-            # print(span.annotation)
+                dur_list.append([dur])
+
+        # for item in dur_list:
+        # print(item, item[0].annotation)
         return dur_list
+
+    # def numbered_annotated_durations(annotated_durations: list):
+    #     """
+    #     Recebe uma lista de annotated durations e adiciona sufixos numéricos
+    #     """
+
+    #     for dur in annotated_durations:
+    #         name = dur[0].annotation
+
+    #     contador = {}
+    #     resultado = []
+    #     for item in anotacoes:
+    #         idx = contador.get(item, 0)
+    #         resultado.append(f"{item}_{idx}")
+    #         contador[item] = idx + 1
+    #     return resultado
 
     def nannotated_durations(
         self, subdivision: tuple | None = None, subdivisions: dict | None = None
@@ -500,9 +583,9 @@ def make_alternations(
 
 
 def illustrate_timespans(
-    timespans: abjad.TimespanList, title: str = "Timespans"
+    timespans: abjad.TimespanList, title: str = "Timespans", scale=0.5
 ):
-    m_a = timespans._make_markup(key="annotation")
+    m_a = timespans._make_markup(key="annotation", scale=scale)
     ly_file = abjad.LilyPondFile(
         items=[
             r' #(set-default-paper-size "a4landscape") ',
@@ -511,3 +594,42 @@ def illustrate_timespans(
         ],
     )
     abjad.persist.as_pdf(ly_file, "timespans_illustration.pdf")
+
+
+def annotated_durations_from_container(container, subdivision=None, subdivisions=None):
+    """Return annotated durations from a container, splitting according to subdivision.
+
+    This is a standalone function that works with any container, not just TimespanList.
+
+    subdivision can be:
+    - None: default to (2,4)
+    - a tuple: single duration (old behavior)
+    - a list of tuples or durations: cycle through these durations, cutting the last to fit
+
+    subdivisions can be:
+    - None: use subdivision parameter for all materials
+    - a dict: keys are material names (annotations), values are lists of durations for that material
+    """
+    import itertools
+    from abjad import Duration
+
+    # First, convert container to a TimespanList if it's not already
+    if not isinstance(container, abjad.TimespanList):
+        # We need to know how to convert the container to timespans
+        # For now, assume it's a list of timespans or can be converted
+        # This is a placeholder implementation
+        timespan_list = TimespanList()
+        # You may need to adjust this conversion based on your actual container type
+        for item in container:
+            if isinstance(item, abjad.Timespan):
+                timespan_list.append(item)
+            else:
+                # Try to convert item to a timespan
+                # This part depends on your specific container structure
+                pass
+        container = timespan_list
+
+    # Now use the annotated_durations method
+    return container.annotated_durations(
+        subdivision=subdivision, subdivisions=subdivisions
+    )

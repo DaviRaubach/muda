@@ -1,13 +1,13 @@
 import abjad
 import os
 
-# import numpy as np
+from numpy import log2
 import roman
 from .score import Instrument as _Instrument
 
 
 def ftom(f, f_a4_in_hz=440):
-    return 69 + 12 * np.log2(f / f_a4_in_hz)
+    return 69 + 12 * log2(f / f_a4_in_hz)
 
 
 def mtof(m, f_a4_in_hz=440):
@@ -79,9 +79,7 @@ def transpose_outside_pitches(pitches: list, pitch_range: abjad.PitchRange):
     def get_higher_lower_pitch_ranges(pr):
         """For a given pitch range get the higher and the lower ones."""
         letters = [_ for _ in pr.range_string if _.isalpha()]
-        numbers = [
-            int(_) for _ in pr.range_string if _ in [str(_) for _ in range(10)]
-        ]
+        numbers = [int(_) for _ in pr.range_string if _ in [str(_) for _ in range(10)]]
 
         lopr = abjad.PitchRange(
             "["
@@ -155,8 +153,7 @@ def make_art_harmonic_from_target(
         indicator = abjad.get.indicator(lt[0], abjad.Articulation)
         if (
             not isinstance(lt[0], abjad.Chord)
-            and lt[0].written_pitch
-            >= abjad.NamedPitch(lower_note + sound_interval)
+            and lt[0].written_pitch >= abjad.NamedPitch(lower_note + sound_interval)
             and (indicator is None or indicator.name != "flageolet")
         ):
             for i, note in enumerate(lt):
@@ -294,10 +291,7 @@ def make_possible_nat_harmonics(
             strings = [abjad.NamedPitch(_) for _ in strings]
 
         harmonics = [
-            [
-                abjad.NamedPitch.from_hertz(s.hertz * i)
-                for i in range(1, n_harmonics)
-            ]
+            [abjad.NamedPitch.from_hertz(s.hertz * i) for i in range(1, n_harmonics)]
             for s in strings
         ]
         for logical_tie in logical_ties:
@@ -311,13 +305,9 @@ def make_possible_nat_harmonics(
                     make_nat_harmonic(logical_tie, roman.toRoman(i + 1))
                     find = False
                 elif isinstance(logical_tie[0], abjad.Chord):
-                    art_to_nat_harmonics(
-                        abjad.select.chords(logical_tie), strings
-                    )
+                    art_to_nat_harmonics(abjad.select.chords(logical_tie), strings)
     else:
-        print(
-            "Cannot find instrument on selection. Please provide instrument strings."
-        )
+        print("Cannot find instrument on selection. Please provide instrument strings.")
 
 
 def get_harmonic_fundamental(note, strings: list[str], n_harmonics: int = 7):
@@ -325,10 +315,7 @@ def get_harmonic_fundamental(note, strings: list[str], n_harmonics: int = 7):
         strings = [abjad.NamedPitch(_) for _ in strings]
 
     harmonics = [
-        [
-            abjad.NamedPitch.from_hertz(s.hertz * i)
-            for i in range(1, n_harmonics)
-        ]
+        [abjad.NamedPitch.from_hertz(s.hertz * i) for i in range(1, n_harmonics)]
         for s in strings
     ]
     assert isinstance(note, abjad.Note)
@@ -358,25 +345,19 @@ def art_to_nat_harmonics(chords, strings: list):
                     ):
                         note = abjad.Note("c'4")
                         note.written_duration = chord.written_duration
-                        note.written_pitch = (
-                            chord.note_heads[0].written_pitch + 24
-                        )
+                        note.written_pitch = chord.note_heads[0].written_pitch + 24
                         make_possible_nat_harmonics(note, strings=strings)
                         abjad.mutate.replace(chord, note)
 
 
-def art_harmonic_for_longer_notes(
-    pitched_logical_ties, duration=abjad.Duration(4, 8)
-):
+def art_harmonic_for_longer_notes(pitched_logical_ties, duration=abjad.Duration(4, 8)):
     """Write artificial harmonics for pitched logical ties with duration >= X."""
     selection = pitched_logical_ties
     selection = [lt for lt in selection if lt.written_duration >= duration]
     make_art_harmonic_from_target(selection)
 
 
-def transpose_note_before_chord_to_the_same_octave(
-    pitched_logical_ties, interval=12
-):
+def transpose_note_before_chord_to_the_same_octave(pitched_logical_ties, interval=12):
     """Change the note before a harmonic for near positions on string instruments."""
     if isinstance(pitched_logical_ties, abjad.LogicalTie):
         inst = abjad.get.indicator(pitched_logical_ties[0], abjad.Instrument)
@@ -393,9 +374,7 @@ def transpose_note_before_chord_to_the_same_octave(
 
     selection = pitched_logical_ties
     for lt1, lt2 in zip(selection, selection[1:]):
-        test1 = isinstance(lt1[0], abjad.Note) and isinstance(
-            lt2[0], abjad.Chord
-        )
+        test1 = isinstance(lt1[0], abjad.Note) and isinstance(lt2[0], abjad.Chord)
         indicator = abjad.get.indicator(lt2[0], abjad.Articulation)
         test2 = True
         if indicator:
@@ -534,9 +513,7 @@ def pitches_in_staff(pitches, chord=False):
     abjad.override(staff_group).SpanBar.stencil = False
     abjad.override(staff_group).Stem.stencil = False
     abjad.override(staff_group).TimeSignature.stencil = False
-    abjad.setting(staff_group).proportionalNotationDuration = (
-        "#(ly:make-moment 1 25)"
-    )
+    abjad.setting(staff_group).proportionalNotationDuration = "#(ly:make-moment 1 25)"
     # abjad.show(staff_group)
 
     return staff_group
@@ -554,9 +531,7 @@ def illustrate_pitches_in_staff(
 
     items = []
     if markups is None:
-        markups = [
-            abjad.Markup(rf"\markup{ {i} }") for i, _ in enumerate(scores)
-        ]
+        markups = [abjad.Markup(rf"\markup{ {i} }") for i, _ in enumerate(scores)]
     if markups:
         if isinstance(markups[0], str):
             markups = [abjad.Markup(rf"\markup{{ {_} }}") for _ in markups]
@@ -565,9 +540,7 @@ def illustrate_pitches_in_staff(
         if midi is True:
             midi_block = abjad.Block("midi")
             layout_block = abjad.Block("layout")
-            score_block = abjad.Block(
-                "score", items=[score, midi_block, layout_block]
-            )
+            score_block = abjad.Block("score", items=[score, midi_block, layout_block])
             # score_block.items.append(midi_block)
         else:
             score_block = abjad.Block("score", items=[score])
@@ -626,7 +599,7 @@ def permut_thirds(pitches):
 # 2xFREQ_B - FREQ_A
 # 2xFREQ_A + FREQ_B
 # 2xFREQ_A - FREQ_B
-def ring_modulation(
+def ring_modulation(  # name is not appropriate ... better: combination tones modulation
     pitches,
     pitch_range: abjad.PitchRange or str = abjad.PitchRange("[-inf, +inf]"),
     keep_originals=True,
@@ -681,7 +654,7 @@ def ring_modulation(
             if keep_originals is True and last is True:
                 if i == (len(pitches_in) - 2) or len(pitches_in) == 2:
                     pitches_out.append(pitch2)
-                    print(pitch2)
+                    # print(pitch2)
 
     if chords is True:
         chords_out = []
@@ -703,9 +676,9 @@ def ring_modulation(
     for frequency in pitches_out:
         if not isinstance(frequency, abjad.Chord) and frequency > 20:
             try:
-                new_pitches_out.append(
-                    abjad.NumberedPitch.from_hertz(frequency)
-                )
+                # Creates a list of notes already rounded to quartertones
+                new_pitches_out.append(abjad.NumberedPitch.from_hertz(frequency))
+
             except ValueError:
                 print(
                     "Cannot transform frequency:",
@@ -751,8 +724,8 @@ def ring_modulation(
         return pitches_out
 
 
-def new_ring_modulation(
-    pitches,
+def new_ring_modulation(  # here ring modulation is more appropriate because of the result
+    pitches=None,
     pitch_range=abjad.PitchRange("[-inf, +inf]"),
     keep_originals=True,
     chords=False,
@@ -780,9 +753,9 @@ def new_ring_modulation(
             new_pitch_A = pitch2 - pitch1
             pitches_out.append(new_pitch_A)
 
-            if keep_originals is True:
-                # ORIGINAL
-                pitches_out.append(pitch2)
+            # if keep_originals is True:
+            #     # ORIGINAL
+            #     pitches_out.append(pitch2)
             # FREQ_B + FREQ_A
             new_pitch_B = pitch1 + pitch2
             pitches_out.append(new_pitch_B)
@@ -802,6 +775,11 @@ def new_ring_modulation(
             # # 2xFREQ_A - FREQ_B
             # new_pitch_F = 2 * pitch1 - pitch2
             # pitches_out.append(new_pitch_F)
+
+            # I could writte a function, as in Vivier’s approach, in which one can set different integers multipliers for f1 and f2
+
+    if keep_originals is True:
+        pitches_out.append(pitches_in[-1])
 
     if chords is True:
         for pitch1, pitch2 in zip(pitches_in, pitches_in[1:]):
@@ -958,4 +936,90 @@ def write_pitches(argument, pitches, cyclic=True):
 
         else:
             for note in lt:
-                note.written_pitch = pitch
+                if isinstance(note, abjad.Note):
+                    note.written_pitch = pitch
+                elif isinstance(note, abjad.Chord):
+                    note.written_pitches = [pitch]
+
+
+import math
+
+
+def get_ipf_synthesis(alpha, beta_list, iterations=3000, g0=0.3):
+    """
+    Implementação fiel da Equação Geral da IPF (Impulse Pattern Formulation).
+    Baseado em Linke, Bader & Mores (2022).
+
+    Parâmetros:
+    alpha (α): Relacionado à pressão de sopro e força da reflexão principal.
+    beta_list (βk): Lista de intensidades de reflexão nos furos abertos[cite: 138, 229].
+    iterations: Número de passos (cada passo = 1 período T0).
+    g0: Valor inicial do estado do sistema[cite: 126].
+    """
+    # g_history armazena os estados anteriores (g_k-) para as reflexões
+    # O tamanho da história deve ser pelo menos o número de reflexões (n)
+    n_reflexoes = len(beta_list)
+    g_history = [g0] * (n_reflexoes + 1)
+
+    results = []
+
+    for _ in range(iterations):
+        g = g_history[-1]
+
+        # Somatório das reflexões secundárias (furos) [cite: 140]
+        # beta_k * e^(g - g_k-)
+        sum_reflections = 0
+        for k, beta in enumerate(beta_list):
+            # g_history[-(k+1)] representa o estado k passos atrás (g_k-)
+            sum_reflections += beta * math.exp(g - g_history[-(k + 1)])
+
+        # Equação Geral da IPF (Eq. 3):
+        # g+ = g - ln( (1/alpha) * (g - sum_reflections) )
+        try:
+            argumento_log = (1 / alpha) * (g - sum_reflections)
+
+            # Condição de tone onset: se o argumento for negativo, g se torna complexo
+            # e não há produção de som estável [cite: 196, 197]
+            if argumento_log <= 0:
+                g_next = 0
+            else:
+                g_next = g - math.log(argumento_log)
+        except OverflowError:
+            g_next = 0
+
+        g_history.append(g_next)
+        results.append(g_next)
+
+        # Mantém o histórico enxuto
+        if len(g_history) > n_reflexoes + 1:
+            g_history.pop(0)
+
+    return results
+
+
+def get_guitar_multiphonic(f0, finger_ratio, stiffness_B, n_partials=10):
+    """
+    Feito pelo Gemini
+    f0: frequência da corda solta.
+    finger_ratio: ponto de contato do dedo (0.0 a 1.0).
+    stiffness_B: coeficiente de inarmonicidade.
+    """
+    # Frequência base do segmento ponte-dedo
+    f_bridge = f0 / (1 - finger_ratio)
+
+    # Frequência base do segmento dedo-pestana (vazamento simpático)
+    f_nut = f0 / finger_ratio
+
+    result = set()
+    for n in range(1, n_partials + 1):
+        # Aplicando a fórmula de Young para a rigidez da corda
+        # fn = n * f0 * sqrt(1 + B * n^2)
+        fn = n * f_bridge * (1 + stiffness_B * n**2) ** 0.5
+        result.add(round(fn, 2))
+
+        # Adiciona o acoplamento com o outro lado da corda para ordens baixas
+        if n <= 3:
+            fn_nut = n * f_nut * (1 + stiffness_B * n**2) ** 0.5
+            result.add(round(fn_nut, 2))
+
+    return sorted(list(result))

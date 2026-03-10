@@ -1,4 +1,4 @@
-from .literals import fancy_glissando, slap_tongue, p_possibile
+from .literals import fancy_glissando, slap_tongue, p_possibile, literal
 from .selections import (
     leaves,
     pitched_leaves,
@@ -25,6 +25,7 @@ from .material import (
     Segment,
     apply_to,
     select_named_containers,
+    VoiceContent,
 )
 from .indicators import (
     best_clef_for_logical_ties,
@@ -38,6 +39,9 @@ from .timespan import (
     make_alternations,
     illustrate_timespans,
 )
+from .timespan_visualization import (
+    make_annotated_timespan_markup,
+)
 from .override import (
     hide_engravers_for_text,
     stems_for_text,
@@ -46,6 +50,9 @@ from .override import (
     hide_bar_line,
     hide_bar_line_before,
     hide_last_bar_line,
+    hide_bar_line_piano_staff,
+    box_staff,
+    toggle_staff_elements,
 )
 from .score import (
     Instrument,
@@ -75,6 +82,7 @@ from .pitch import (
     transpose_note_before_chord_to_the_same_octave,
     macro_pitches,
     outline_pitches,
+    get_ipf_synthesis,
 )
 from .functions import (
     operation_in_nested_lists,
@@ -83,6 +91,10 @@ from .functions import (
     rewrite_meter,
     auto_change,
     voice_number,
+    time_file_name,
+    print_time,
+    annotate_selection,
+    retrograde,
 )
 from .rhythm import (
     AnnotatedDuration,
@@ -93,6 +105,7 @@ from .rhythm import (
     make_in_out_alternations,
     rmaker,
     delete,
+    fit_in_duration,
 )
 from .spanners import (
     dashed_right_arrow_text_spanner,
@@ -122,6 +135,14 @@ from .select import (
 
 from .markups import markup
 
+from .text import (
+    syllabify,
+    syllabify_to_lilypond,
+    syllabify_with_durations,
+    syllable_durations,
+    tonic_syllable_index,
+)
+
 # import time
 
 # startTime = time.time()
@@ -137,3 +158,4 @@ from .markups import markup
 # elapsed_time = round(time.time() - startTime, 2)
 # print('\033[95m', "Initialize Muda took",
 # elapsed_time, "seconds\033[0;0m")
+from .tests import test_pitch

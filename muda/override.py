@@ -204,7 +204,24 @@ def hide_bar_line_before(selection):
 
     abjad.attach(
         abjad.LilyPondLiteral(
-            r" \undo \omit BarLine \undo \omit StaffGroup.SpanBar", "after"
+            r" \undo \omit BarLine \undo \omit StaffGroup.SpanBar", site="after"
+        ),
+        selection[-1],
+    )
+
+
+def hide_bar_line_piano_staff(selection):
+    abjad.attach(
+        abjad.LilyPondLiteral(
+            r' \bar "" \omit Staff.BarLine \omit PianoStaff.SpanBar'
+        ),
+        selection[0],
+    )
+
+    abjad.attach(
+        abjad.LilyPondLiteral(
+            r" \undo \omit Staff.BarLine \undo \omit PianoStaff.SpanBar",
+            site="after",
         ),
         selection[-1],
     )
@@ -351,3 +368,135 @@ def replace_rest_by_skip(selection):
     rests = abjad.select.components(selection, abjad.Rest)
     for rest in rests:
         abjad.mutate.replace(rest, abjad.Skip(rest.written_duration))
+
+
+def box_staff(
+    selection,
+    clef_command=r"\omit Staff.Clef",
+    time_signature_command=r"\omit Staff.TimeSignature",
+    ledger_line_spanner_command=r"\omit Staff.LedgerLineSpanner",
+    stem_command=r"\omit Staff.Stem",
+    line_position_command=r"\override Staff.StaffSymbol.line-positions = #'(-10 6)",
+):
+    literal_commands = [
+        clef_command,
+        time_signature_command,
+        ledger_line_spanner_command,
+        stem_command,
+        line_position_command,
+    ]
+
+    literal = abjad.LilyPondLiteral(literal_commands)
+    abjad.attach(literal, abjad.select.leaf(selection, 0))
+
+    revert_literal_commands = [
+        _.replace(r"\omit", r"\undo \omit") for _ in literal_commands[:-1]
+    ]
+    revert_literal_commands += [r"\revert Staff.StaffSymbol.line-positions"]
+    revert_literal = abjad.LilyPondLiteral(
+        revert_literal_commands, site="after"
+    )
+    abjad.attach(revert_literal, abjad.select.leaf(selection, -1))
+
+
+def toggle_staff_elements(
+    selection,
+    clef=True,
+    time_signature=True,
+    ledger_line_spanner=True,
+    stem=True,
+    ottava=True,
+    key_signature=True,
+    accidental=True,
+    note_head=True,
+    rest=True,
+    beam=True,
+    slur=True,
+    tie=True,
+    dynamic=True,
+    articulation=True,
+    text_script=True,
+    line_positions=None,
+    site_before="before",
+    site_after="after",
+):
+    commands = []
+    revert_commands = []
+
+    # Define element mapping and their default LilyPond contexts
+    elements = {
+        "clef": (r"\omit Staff.Clef", r"\undo \omit Staff.Clef"),
+        "time_signature": (
+            r"\omit Staff.TimeSignature",
+            r"\undo \omit Staff.TimeSignature",
+        ),
+        "ledger_line_spanner": (
+            r"\omit Staff.LedgerLineSpanner",
+            r"\undo \omit Staff.LedgerLineSpanner",
+        ),
+        "stem": (r"\omit Staff.Stem", r"\undo \omit Staff.Stem"),
+        "ottava": (
+            r"\omit Staff.OttavaBracket",
+            r"\undo \omit Staff.OttavaBracket",
+        ),
+        "key_signature": (
+            r"\omit Staff.KeySignature",
+            r"\undo \omit Staff.KeySignature",
+        ),
+        "accidental": (
+            r"\omit Staff.Accidental",
+            r"\undo \omit Staff.Accidental",
+        ),
+        "note_head": (r"\omit Staff.NoteHead", r"\undo \omit Staff.NoteHead"),
+        "rest": (r"\omit Staff.Rest", r"\undo \omit Staff.Rest"),
+        "beam": (r"\omit Staff.Beam", r"\undo \omit Staff.Beam"),
+        "slur": (r"\omit Staff.Slur", r"\undo \omit Staff.Slur"),
+        "tie": (r"\omit Staff.Tie", r"\undo \omit Staff.Tie"),
+        "dynamic": (
+            r"\omit Staff.DynamicText",
+            r"\undo \omit Staff.DynamicText",
+        ),
+        "articulation": (
+            r"\omit Staff.Articulation",
+            r"\undo \omit Staff.Articulation",
+        ),
+        "text_script": (
+            r"\omit Staff.TextScript",
+            r"\undo \omit Staff.TextScript",
+        ),
+    }
+
+    # Process boolean toggles
+    for element, (omit_cmd, revert_cmd) in elements.items():
+        if not locals()[
+            element
+        ]:  # Get the value of the parameter named by element
+            commands.append(omit_cmd)
+            revert_commands.append(revert_cmd)
+
+    # Process line positions override if provided
+    if line_positions is not None:
+        commands.append(
+            rf"\override Staff.StaffSymbol.line-positions = #'{line_positions}"
+        )
+        revert_commands.append(r"\revert Staff.StaffSymbol.line-positions")
+
+    # Attach commands if any
+    if commands:
+        literal = abjad.LilyPondLiteral(commands, site=site_before)
+        abjad.attach(literal, abjad.select.leaf(selection, 0))
+
+    if revert_commands:
+        revert_literal = abjad.LilyPondLiteral(revert_commands, site=site_after)
+        abjad.attach(revert_literal, abjad.select.leaf(selection, -1))
+
+
+# container = abjad.Container(r" c'4 d'4 e'4 ")
+# toggle_staff_elements(
+#     container,
+#     clef=False,
+#     time_signature=False,
+#     stem=False,
+#     line_positions=r"(-10 6)"
+#     )
+# print(abjad.lilypond(container))

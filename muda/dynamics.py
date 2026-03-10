@@ -14,7 +14,12 @@ def inspect_selection(selection):
         selection = [selection]
 
 
-def make_dynamics(dynamics: list, leak=False, command: Optional[str] = None):
+def make_dynamics(
+    dynamics: list,
+    leak=False,
+    command: Optional[str] = None,
+    tweaks: set = None,
+):
     """
 
     :param dynamics: list:
@@ -32,6 +37,8 @@ def dynamics(
     leak=False,
     command: Optional[str] = None,
     hide: bool = False,
+    direction=abjad.DOWN,
+    # tweaks: list=None,
 ):
     """
 
@@ -41,31 +48,50 @@ def dynamics(
     :param command: Optional[str]:  (Default value = None)
 
     """
+    # if tweaks is not None:
+    #     if isinstance(tweaks[0], str):
+    #         tweaks = [abjad.Tweak(_) for _ in tweaks]
 
+    # if isinstance(dynamics, str):
+    # abjad.Bundle(
+    # indicator=abjad.Dynamic(dynamics, leak=leak, command=command, hide=hide),
+    # tweaks=(
+    #     abjad.Tweak(r"- \tweak color #blue"),
+    #     abjad.Tweak(r"- \tweak color #red"),
+    # ),
+    # )
     if abjad.Dynamic.is_dynamic_name(dynamics) or isinstance(dynamics, list):
         if isinstance(selection, abjad.Leaf):
             abjad.attach(
                 abjad.Dynamic(dynamics, leak=leak, command=command, hide=hide),
                 selection,
+                direction=direction,
             )
         elif isinstance(selection, abjad.LogicalTie):
             abjad.attach(
                 abjad.Dynamic(dynamics, leak=leak, command=command, hide=hide),
                 selection[0],
+                direction=direction,
             )
 
         elif not isinstance(selection, abjad.LogicalTie):
             if isinstance(dynamics, list):
                 for target, dyn in zip(selection, dynamics):
                     abjad.attach(
-                        abjad.Dynamic(dyn, leak=leak, command=command, hide=hide),
+                        abjad.Dynamic(
+                            dyn, leak=leak, command=command, hide=hide
+                        ),
                         target,
+                        direction=direction,
                     )
             else:
                 for _ in selection:
                     abjad.attach(
-                        abjad.Dynamic(dynamics, leak=leak, command=command, hide=hide),
+                        abjad.Dynamic(
+                            dynamics, leak=leak, command=command, hide=hide
+                        ),
                         _,
+                        direction=direction,
                     )
 
     elif isinstance(selection, list):
@@ -73,10 +99,10 @@ def dynamics(
             selection
             if isinstance(selection[0], list):
                 for sel in selection:
-                    abjad.hairpin(dynamics, sel)
+                    abjad.hairpin(dynamics, sel, direction=direction)
             else:
                 # print("else")
-                abjad.hairpin(dynamics, selection)
+                abjad.hairpin(dynamics, selection, direction=direction)
         except IndexError:
             Warning(f"selection: {selection}, dynamic: {dynamics}")
 
@@ -127,7 +153,9 @@ def dynamics_after(
 
     # if parent_component is not None:
     parentage = abjad.get.parentage(material[0])
-    if parent_component is not None and isinstance(parentage.parent, parent_component):
+    if parent_component is not None and isinstance(
+        parentage.parent, parent_component
+    ):
         # pass
         abjad.attach(literals, parentage.parent)
         # print(parentage.parent)
@@ -140,9 +168,13 @@ def dynamics_after(
         if parent_component is not None and isinstance(
             parentage.parent, parent_component
         ):
-            abjad.attach(abjad.LilyPondLiteral(r"}", site="after"), parentage.parent)
+            abjad.attach(
+                abjad.LilyPondLiteral(r"}", site="after"), parentage.parent
+            )
         else:
-            abjad.attach(abjad.LilyPondLiteral(r"}", site="after"), material[-1])
+            abjad.attach(
+                abjad.LilyPondLiteral(r"}", site="after"), material[-1]
+            )
 
     if flared_hairpin:
         abjad.attach(
